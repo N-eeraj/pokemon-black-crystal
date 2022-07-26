@@ -1,0 +1,29 @@
+@use "colors";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+}
+
+@media screen and (min-aspect-ratio: 5/4) {
+    body {
+        display: flex;
+        justify-content: center;
+        background-color: colors.$primary;
+
+        #app {
+            width: 50vh;
+            height: 100vh;
+        }
+    }
+}
+
+@media screen and (min-aspect-ratio: 5/4) and (max-height: 400px) {
+    
+}
