@@ -1,4 +1,16 @@
 @mixin full-screen {
-    width: 100vw;
-    height: 100vh;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+}
+
+@mixin flex($direction: row, $justify: center, $align: center, $row: 0, $col: 0) {
+	display: flex;
+	flex-direction: $direction;
+	justify-content: $justify;
+	align-items: $align;
+	row-gap: $row;
+	column-gap: $col;
 }

@@ -1,11 +1,9 @@
 <template>
-	<div>
-		Home
-	</div>
+	Splash
 </template>
 
 <script>
 	export default {
-
-	};
+		name: 'splash-screen',
+	}
 </script>
