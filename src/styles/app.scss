@@ -1,4 +1,6 @@
-@use "colors";
+@use "colors/palette";
+@use "mixins/main";
+
 
 * {
     margin: 0;
@@ -7,15 +9,24 @@
 }
 
 #app {
-    width: 100vw;
-    height: 100vh;
+    @include main.full-screen;
+}
+
+#rotate_device {
+    @include main.full-screen;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: palette.$primary;
 }
 
 @media screen and (min-aspect-ratio: 5/4) {
     body {
         display: flex;
         justify-content: center;
-        background-color: colors.$primary;
+        background-color: palette.$primary;
 
         #app {
             width: 50vh;
@@ -25,5 +36,7 @@
 }
 
 @media screen and (min-aspect-ratio: 5/4) and (max-height: 400px) {
-    
+    #rotate_device {
+        display: block;
+    }
 }
