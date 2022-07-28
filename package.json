@@ -6,6 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "deploy": "sh deploy.sh && cd ./dist && cp index.html 404.html",
     "watch": "vue-cli-service build --watch"
   },
   "dependencies": {
