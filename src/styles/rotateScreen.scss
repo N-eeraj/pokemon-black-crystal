@@ -4,10 +4,8 @@
 
 #rotate_device {
     @include main.full-screen;
-    position: fixed;
-    top: 0;
-    left: 0;
     display: none;
+    padding: 30px;
     background-color: palette.$primary;
 
     img {

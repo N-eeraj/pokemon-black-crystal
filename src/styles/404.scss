@@ -24,6 +24,7 @@ main {
 		img {
 			width: $text-404;
 			height: $text-404;
+			animation: tilt 2s linear infinite;
 		}
 	}
 	section {
@@ -53,5 +54,26 @@ main {
 				color: palette.$primary;
 			}
 		}
+	}
+}
+
+@keyframes tilt {
+	0% {
+		transform: rotateZ(0);
+	}
+	15% {
+		transform: rotateZ(20deg);
+	}
+	30% {
+		transform: rotateZ(0);
+	}
+	50% {
+		transform: rotateZ(0);
+	}
+	65% {
+		transform: rotateZ(-20deg);
+	}
+	80% {
+		transform: rotateZ(0);
 	}
 }
