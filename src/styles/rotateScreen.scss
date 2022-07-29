@@ -1,0 +1,27 @@
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
+
+
+#rotate_device {
+    @include main.full-screen;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: palette.$primary;
+
+    img {
+        height: 50%;
+        aspect-ratio: 25/23;
+    }
+    h2 {
+        color: palette.$white;
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (min-aspect-ratio: 5/4) and (max-height: 600px) {
+    #rotate_device {
+        @include main.flex($direction: column, $row: clamp(30px, 5vh, 75px));
+    }
+}

@@ -3,16 +3,16 @@
 		<splash-screen v-if="showSplashScreen"></splash-screen>
 		<router-view v-else/>
 	</main>
-	<div id="rotate_device" style="background-color: $white">
-		Please rotate your device
-	</div>
+	<rotate-screen></rotate-screen>
 </template>
 
 <script>
+	import RotateScreen from './components/RotateScreen.vue'
 	import SplashScreen from './components/SplashScreen.vue'
 
 	export default {
 		components: {
+			RotateScreen,
 			SplashScreen
 		},
 		data() {

@@ -19,16 +19,6 @@
 	font-size: 1vmin;
 }
 
-#rotate_device {
-	@include main.full-screen;
-
-	position: fixed;
-	top: 0;
-	left: 0;
-	display: none;
-	background-color: palette.$primary;
-}
-
 @media screen and (min-aspect-ratio: 5/4) {
 	body {
 		@include main.full-screen;
@@ -39,11 +29,5 @@
 			width: 50vh;
 			height: 100vh;
 		}
-	}
-}
-
-@media screen and (min-aspect-ratio: 5/4) and (max-height: 420px) {
-	#rotate_device {
-		display: block;
 	}
 }
