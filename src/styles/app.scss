@@ -14,20 +14,27 @@
 	outline: none
 }
 
-#app {
+#main:not(.page_not_found) {
 	@include main.full-screen;
 	font-size: 1vmin;
+	border:1px solid red;
 }
 
-@media screen and (min-aspect-ratio: 5/4) {
+@media screen and (min-aspect-ratio: 2/3) {
 	body {
 		@include main.full-screen;
-		@include main.flex;
 		background-color: palette.$primary;
 
-		#app {
+		#main:not(.page_not_found) {
+			left: 50vw;
 			width: 50vh;
-			height: 100vh;
+			transform: translateX(-50%);
 		}
 	}
+}
+
+@media screen and (min-aspect-ratio: 2/3) and (max-height: 600px) {
+    #main:not(.page_not_found) {
+		display: none;
+    }
 }

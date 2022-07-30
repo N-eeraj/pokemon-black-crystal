@@ -15,10 +15,11 @@
     h2 {
         color: palette.$white;
         font-size: 1.25rem;
+        text-align: center;
     }
 }
 
-@media screen and (min-aspect-ratio: 5/4) and (max-height: 600px) {
+@media screen and (min-aspect-ratio: 2/3) and (max-height: 600px) {
     #rotate_device {
         @include main.flex($direction: column, $row: clamp(30px, 5vh, 75px));
     }

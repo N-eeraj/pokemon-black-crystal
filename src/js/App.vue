@@ -1,26 +1,22 @@
 <template>
-	<main>
-		<splash-screen v-if="showSplashScreen"></splash-screen>
-		<router-view v-else/>
-	</main>
+	<splash-screen v-if="showSplashScreen"></splash-screen>
+	<router-view v-else id="main"/>
 	<rotate-screen></rotate-screen>
 </template>
 
 <script>
-	import RotateScreen from './components/RotateScreen.vue'
 	import SplashScreen from './components/SplashScreen.vue'
+	import RotateScreen from './components/RotateScreen.vue'
 
 	export default {
 		components: {
+			SplashScreen,
 			RotateScreen,
-			SplashScreen
 		},
 		data() {
 			return {
-				showSplashScreen: !true
+				showSplashScreen: true,
 			}
-		},
-		mounted() {
 		},
 	}
 </script>
