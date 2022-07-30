@@ -5,11 +5,6 @@ import actions from './actions'
 
 export default createStore({
 	state() {
-		return {
-			playerInfo: null,
-			playerPokemonData: null,
-			pokemonDetails: []
-		}
 	},
 	getters,
 	mutations,

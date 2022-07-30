@@ -18,13 +18,13 @@
 </template>
 
 <script>
-export default {
-	methods: {
-		goHome() {
-			this.$router.push('/')
-		}
-	},
-}
+	export default {
+		methods: {
+			goHome() {
+				this.$router.push('/')
+			}
+		},
+	}
 </script>
 
 <style lang="scss" scoped src="@/styles/404.scss"></style>

@@ -1,6 +1,6 @@
 <template>
+	<router-view id="main"/>
 	<splash-screen v-if="showSplashScreen"></splash-screen>
-	<router-view v-else id="main"/>
 	<rotate-screen></rotate-screen>
 </template>
 
@@ -15,9 +15,16 @@
 		},
 		data() {
 			return {
-				showSplashScreen: true,
+				showSplashScreen: true
 			}
 		},
+		watch:{
+			$route(to) {
+				if (to.name === 'NotFound')
+					return this.showSplashScreen = false
+				return this.showSplashScreen = true
+			}
+		} 
 	}
 </script>
 

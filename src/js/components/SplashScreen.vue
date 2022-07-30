@@ -6,7 +6,7 @@
 		</div>
 		<div id="loading">
 			<template v-if="isLoading">
-				<progress value="50" max="100"></progress>
+				<progress :value="progress.max" :max="progress.max"></progress>
 				<span>Loading</span>
 			</template>
 			<span v-else>
@@ -21,8 +21,18 @@
 		name: 'splash-screen',
 		data() {
 			return {
-				isLoading: true
+				isLoading: true,
+				progress: {
+					loaded: 0,
+					max: 0
+				}
 			}
+		},
+		mounted() {
+			if (localStorage.length)
+				console.log(localStorage);
+			else
+				console.log(localStorage);
 		},
 	}
 </script>
