@@ -17,6 +17,7 @@
 </template>
 
 <script>
+	import getPokemon from '@/js/utils/getPokemon.js'
 	export default {
 		name: 'splash-screen',
 		data() {
@@ -29,10 +30,9 @@
 			}
 		},
 		mounted() {
-			if (localStorage.length)
-				console.log(localStorage);
-			else
-				console.log(localStorage);
+			if (!localStorage.length) return console.log(localStorage)
+			this.$store.commit('loadData', localStorage.gameData)
+			getPokemon(4, 1000, 1)
 		},
 	}
 </script>
