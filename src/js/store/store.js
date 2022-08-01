@@ -5,6 +5,8 @@ import actions from './actions'
 
 export default createStore({
 	state() {
+		return {
+		}
 	},
 	getters,
 	mutations,
