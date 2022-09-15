@@ -1,14 +1,13 @@
 <template>
-	<div id="splash_screen">
+	<div id="splash_screen" @click="emitLoaded">
 		<div id="title">
 			<img src="@/assets/images/pokemon-logo.png" alt="Pokémon">
 			<h1>Black Crystal</h1>
 		</div>
 		<div id="loading">
-			<template v-if="isLoading">
-				<progress :value="progress.max" :max="progress.max"></progress>
-				<span>Loading</span>
-			</template>
+			<span v-if="isLoading">
+				Loading
+			</span>
 			<span v-else>
 				Click to continue
 			</span>
@@ -17,22 +16,30 @@
 </template>
 
 <script>
-	import getPokemon from '@/js/utils/getPokemon.js'
 	export default {
 		name: 'splash-screen',
 		data() {
 			return {
 				isLoading: true,
-				progress: {
-					loaded: 0,
-					max: 0
-				}
 			}
 		},
-		mounted() {
-			if (!localStorage.length) return console.log(localStorage)
-			this.$store.commit('loadData', localStorage.gameData)
-			getPokemon(4, 1000, 1)
+		created() {
+			this.loadData()
+		},
+		methods: {
+			async loadData() {
+				if (localStorage.gameData)
+					await this.$store.dispatch('fetchData')
+				else
+					this.$router.push({
+						path: '/welcome'
+					})
+				this.isLoading = false
+			},
+			emitLoaded() {
+				if (this.isLoading) return
+				this.$emit('loading-complete')
+			}
 		},
 	}
 </script>

@@ -1,6 +1,6 @@
 <template>
-	<router-view id="main"/>
-	<splash-screen v-if="showSplashScreen"></splash-screen>
+	<splash-screen v-if="showSplashScreen" @loading-complete="startGame"></splash-screen>
+	<router-view v-else id="main"/>
 	<rotate-screen></rotate-screen>
 </template>
 
@@ -18,13 +18,16 @@
 				showSplashScreen: true
 			}
 		},
+		methods: {
+			startGame() {
+				this.showSplashScreen = false
+			}
+		},
 		watch:{
 			$route(to) {
-				if (to.name === 'NotFound')
-					return this.showSplashScreen = false
-				return this.showSplashScreen = true
+				if (to.name === 'NotFound') return this.showSplashScreen = false
 			}
-		} 
+		}
 	}
 </script>
 

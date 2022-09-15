@@ -8,6 +8,7 @@
 	height: 100vh;
 	background-color: palette.$primary;
 	color: palette.$white;
+	cursor: pointer;
 
 	#title {
 		@include main.flex($direction: column, $row: clamp(50px, 5vh, 75px));

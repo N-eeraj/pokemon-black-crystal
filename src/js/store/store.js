@@ -6,6 +6,9 @@ import actions from './actions'
 export default createStore({
 	state() {
 		return {
+			gameData: null,
+			pokemonData: {},
+			movesData: {}
 		}
 	},
 	getters,

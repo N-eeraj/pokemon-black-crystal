@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import HomeView from '../views/HomeView.vue'
+import OnboardingView from '../views/OnboardingView.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 
 const routes = [
@@ -8,6 +9,11 @@ const routes = [
 		path: '/',
 		name: 'Home',
 		component: HomeView
+	},
+	{
+		path: '/welcome',
+		name: 'Welcome',
+		component: OnboardingView
 	},
 	{
 		path: '/:catchAll(.*)',
