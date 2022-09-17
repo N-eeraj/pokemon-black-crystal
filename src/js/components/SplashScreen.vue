@@ -28,6 +28,11 @@
 		},
 		methods: {
 			async loadData() {
+				await Promise.all([
+					this.$store.dispatch('fetchMoves'),
+					this.$store.dispatch('fetchGrowthRates'),
+					this.$store.dispatch('fetchTypes')
+				])
 				if (localStorage.gameData)
 					await this.$store.dispatch('fetchData')
 				else

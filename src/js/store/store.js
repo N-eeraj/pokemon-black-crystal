@@ -8,7 +8,9 @@ export default createStore({
 		return {
 			gameData: null,
 			pokemonData: {},
-			movesData: {}
+			movesData: {},
+			typesData: {},
+			growthRateData: {}
 		}
 	},
 	getters,
