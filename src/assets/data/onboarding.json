@@ -15,5 +15,129 @@
 			"name": "Squirtle",
 			"type": "Water"
 		}
-	]
+	],
+	"story": [
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "Welcome to the world of Pokemon!\nI'm Professor Oak."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "This world is inhabited by creatures called Pokémon! For some people, Pokémon are pets. Other use them for fights."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "What is your name trainer?"
+		},
+		{
+			"type": "askName",
+			"characterImg": "characters/oak",
+			"text": "What is your name trainer?"
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "Ah, so your name is <Player>. Nice to meet you <Player>."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "Your journey as a Pokémon trainer is about to begin.\nNow you need to choose your first Pokémon."
+		},
+		{
+			"type": "selectPokemon",
+			"text": "You can choose one of these Pokémon. Now, <Player>, which Pokémon do you want?"
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "Excellent, <Pokemon> is yours now, take good care of it.\nAllow me to introduce you to Brendan."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/rival/brendan",
+			"text": "Hi, I'm Brendan. I'm a friend of Prof. Oak's.\nI see you got your first Pokémon.\nHow about a trainer battle?"
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "That's a great idea. <Player> your objective is to defeat Brendan's Pokémon's by reducing it's HP."
+		},
+		{
+			"type": "battle"
+		},
+		{
+			"type": "conditionalDialogue",
+			"characterImg": "characters/rival/brendan",
+			"text": {
+				"win": "That was a great battle. You may have won this time, but I'll beat you in our next battle. I'm gonna go train and become stronger.",
+				"lose": "That was a great battle. Don't worry, you just became a trainer. Train harder and grow stronger and we'll battle again."
+			}
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "So, I guess you are excited to explore and find more pokemon.\nHere is a Pokédex, it'll help in recording the Pokémon you find."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "To catch new Pokémon, explore in the wild, battle and weaken them. Then use a Pokéball."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/oak",
+			"text": "You can have upto 6 Pokémon with you, rest will be transfered your PC. You can swap it at any time."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/rival/brendan",
+			"text": "<Player> you gotta enter the Pokémon League. If you can win it you'll be crowned as the champion.\nIsn't that exciting."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/rival/brendan",
+			"text": "You'll have to defeat the 8 Gym Leaders & the Elite Four to battle against the champion."
+		},
+		{
+			"type": "dialogue",
+			"characterImg": "characters/rival/brendan",
+			"text": "I'll be competing, we'll see which one of us can be the champion."
+		}
+	],
+	"gameData": {
+		"playerInfo": {
+			"name": null,
+			"avatar": 0
+		},
+		"sound":true,
+		"pokemon": {
+			"encountered": [],
+			"caught": {},
+			"party":[],
+			"pc":[]
+		},
+		"progress": {
+			"level": 1,
+			"coins": 500,
+			"bag": {},
+			"arcade": {
+				"battle": {
+					"attempts": 0,
+					"victories": 0
+				},
+				"tent": {
+					"attempts": 0,
+					"victories": 0
+				},
+				"tower": {
+					"attempts": 0,
+					"victories": 0
+				}
+			}
+		}
+	}
 }

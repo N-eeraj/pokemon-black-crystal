@@ -1,7 +1,7 @@
 <template>
 	<splash-screen v-if="showSplashScreen" @loading-complete="startGame"></splash-screen>
 	<router-view v-else id="main"/>
-	<rotate-screen></rotate-screen>
+	<rotate-screen />
 </template>
 
 <script>

@@ -16,8 +16,10 @@
 
 #main:not(.page_not_found) {
 	@include main.full-screen;
-	font-size: 1vmin;
-	border:1px solid red;
+	font-size: clamp(14px, 3.6vmin, 16px);
+	background-color: palette.$primary;
+	color: palette.$white;
+	border:1px solid palette.$secondary;
 }
 
 @media screen and (min-aspect-ratio: 2/3) {

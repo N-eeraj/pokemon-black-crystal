@@ -19,9 +19,10 @@
 
 <script>
 	export default {
+		name: 'page-not-found',
 		methods: {
 			goHome() {
-				this.$router.push('/')
+				this.$router.push(localStorage.gameData ? '/' : '/welcome')
 			}
 		},
 	}

@@ -1,44 +1,196 @@
 <template>
 	<div>
-		<section>
-			<div v-if="selectStarter">
-				<img
-				width='25'
-					v-for="(pokemon, index) in starters"
-					:key="index"
-					:src="require('@/assets/images/pokeball.png')"
-					alt="Pokeball"
-					@click="selectPokemon(pokemon)">
+		<div id="onboarding_wrapper">
+			<div v-if="selectStarter" class="pokeballs-container">
+			<img
+				v-for="(pokemon, index) in starters"
+				:key="index"
+				:src="require('@/assets/images/pokeball.png')"
+				alt="Pokeball"
+				class="pokeball"
+				@click="selectPokemon(pokemon)"
+			/>
 			</div>
-			<!-- <img :src="require(`@/assets/images/${characterName}.png`)" :alt="characterName"> -->
-		</section>
-		<p>
-			{{ message }}
-		</p>
-		<button>
+			<img
+			v-else-if="getCurrentDialogue.img"
+			:src="require(`@/assets/images/${getCurrentDialogue.img}.png`)"
+			class="character-img"
+			/>
+			<p class="dialogue">
+			{{ getCurrentDialogue.text }}
+			</p>
+			<button v-if="getCurrentDialogue.showNext" class="next-btn" @click="nextDialogue">
 			Next
-		</button>
+			</button>
+			<pop-up v-if="modal.askName" class="modal">
+			<template #body>
+				<input
+				v-model="onboarding.name"
+				placeholder="Enter Your Name"
+				class="name-input"
+				@keyup.enter="setName"
+				/>
+			</template>
+			<template #actions>
+				<button
+				class="confirm"
+				:class="{ disabled: !onboarding.name }"
+				:disabled="!onboarding.name"
+				@click="setName"
+				>
+				OK
+				</button>
+			</template>
+			</pop-up>
+			<pop-up v-if="modal.selectStarter" class="modal">
+			<template #body>
+				<div class="starter-confirmation">
+				<img :src="this.currentStarter.image" :alt="this.currentStarter.name" />
+				<p>
+					{{ confirmStarterMessage }}
+				</p>
+				</div>
+			</template>
+			<template #actions>
+				<button class="confirm" @click="confirmPokemon">Yes</button>
+				<button class="cancel" @click="closeModal('selectStarter')">No</button>
+			</template>
+			</pop-up>
+		</div>
 	</div>
 </template>
 
 <script>
-	import imageAndSprites from '@/js/mixins/imageAndSprites'
-	import data from '@/assets/data/onboarding.json'
+	import PopUp from "@/js/components/PopUp.vue"
+	import imageAndSprites from "@/js/mixins/imageAndSprites"
+	import data from "@/assets/data/onboarding.json"
+
 	export default {
+		name: "onboarding-view",
 		mixins: [imageAndSprites],
+		components: {
+			PopUp,
+		},
 		data() {
 			return {
-				selectStarter: false
+				story: null,
+				starters: null,
+				initData: null,
+				selectStarter: false,
+				currentDiaogue: {
+					index: 0,
+					type: null,
+				},
+				currentStarter: null,
+				onboarding: {
+					name: null,
+					starter: null,
+					rivalStarter: null,
+					rivalBattle: null,
+				},
+				modal: {
+					askName: false,
+					selectStarter: false,
+				},
 			}
+		},
+		computed: {
+			getCurrentDialogue() {
+				return {
+					img: this.story[this.currentDiaogue.index].characterImg,
+					text: this.formatDialogue(this.story[this.currentDiaogue.index].text),
+					showNext: ["dialogue", "conditionalDialogue"].includes(this.currentDiaogue.type),
+				}
+			},
+
+			confirmStarterMessage() {
+				return `So, you want the ${this.currentStarter.type} type Pokémon, ${this.currentStarter.name} ?`
+			},
 		},
 		created() {
-			console.log(data)
+			this.story = data.story
+			this.starters = data.starters
+			this.initData = data.gameData
+			this.currentDiaogue.type = this.story[this.currentDiaogue.index].type
 		},
 		methods: {
+			formatDialogue(dialogue) {
+				if (!dialogue) return null
+				if (this.currentDiaogue.type === "conditionalDialogue")
+				dialogue = dialogue[this.onboarding.rivalBattle ? "win" : "lose"]
+				return dialogue
+				.replace(/<Player>/gi, this.onboarding.name)
+				.replace(/<Pokemon>/gi, this.onboarding.starter?.name || null)
+			},
+
+			nextDialogue() {
+				if (!(this.currentDiaogue.index === this.story.length - 1))
+				return ++this.currentDiaogue.index
+				this.initData.playerInfo.name = this.onboarding.name
+				this.initData.pokemon.caught[1] = {
+					id: this.onboarding.starter.id,
+					exp: 135,
+					happiness: 50
+				}
+				this.initData.pokemon.encountered.push(...[this.onboarding.starter.id, this.onboarding.rivalStarter])
+				this.initData.pokemon.party.push(this.onboarding.starter.id)
+				localStorage.setItem('gameData', btoa(JSON.stringify(this.initData)))
+				this.$router.push("/")
+			},
+
+			closeModal(name) {
+				this.modal[name] = false
+			},
+
+			setName() {
+				this.closeModal("askName")
+				this.nextDialogue()
+			},
+
 			selectPokemon(pokemon) {
 				const pokemonName = pokemon.name.toLowerCase()
-				console.log(this.getImageUrl(pokemonName))
-			}
+				this.modal.selectStarter = true
+				this.currentStarter = pokemon
+				this.currentStarter.image = this.getImageUrl(pokemonName)
+			},
+
+			getRivalStarter() {
+				switch (this.onboarding.starter.id) {
+					case 1:
+						return 4
+					case 4:
+						return 7
+					case 7:
+						return 1
+				}
+			},
+
+			confirmPokemon() {
+				this.onboarding.starter = this.currentStarter
+				this.onboarding.rivalStarter = this.getRivalStarter()
+				this.closeModal("selectStarter")
+				this.selectStarter = false
+				this.nextDialogue()
+			},
+		},
+		watch: {
+			"currentDiaogue.index"(index) {
+				this.currentDiaogue.type = this.story[index].type
+				switch (this.currentDiaogue.type) {
+				case "askName":
+					this.modal.askName = true
+					break
+				case "selectPokemon":
+					this.selectStarter = true
+					break
+				case "battle":
+					console.log("start battle")
+					this.nextDialogue()
+					break
+				}
+			},
 		},
 	}
 </script>
+
+<style lang="scss" src="@/styles/onboarding.scss"></style>
