@@ -22,7 +22,7 @@
 	border:1px solid palette.$secondary;
 }
 
-@media screen and (min-aspect-ratio: 2/3) {
+@media screen and (min-aspect-ratio: 13/9) {
 	body {
 		@include main.full-screen;
 		background-color: palette.$primary;
@@ -35,7 +35,7 @@
 	}
 }
 
-@media screen and (min-aspect-ratio: 2/3) and (max-height: 600px) {
+@media screen and (min-aspect-ratio: 13/9) and (max-height: 600px) {
     #main:not(.page_not_found) {
 		display: none;
     }

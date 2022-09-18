@@ -19,7 +19,7 @@
     }
 }
 
-@media screen and (min-aspect-ratio: 2/3) and (max-height: 600px) {
+@media screen and (min-aspect-ratio: 13/9) and (max-height: 600px) {
     #rotate_device {
         @include main.flex($direction: column, $row: clamp(30px, 5vh, 75px));
     }
