@@ -213,4 +213,11 @@ export default {
 		const partyPokemon = gameData.pokemon.party.map(pokemon => gameData.pokemon.caught[pokemon].id)
 		partyPokemon.forEach(async id => await context.dispatch('cachePokemonById', id))
 	},
+
+	async getPokemonById({ getters, dispatch }, id) {
+		const data = getters.getPokemon[id]
+		if (data) return data
+		await dispatch('cachePokemonById', id)
+		return await dispatch('getPokemonById', id)
+	}
 }

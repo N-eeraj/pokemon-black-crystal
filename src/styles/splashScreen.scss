@@ -6,6 +6,7 @@
 #splash_screen {
 	@include main.flex($direction: column, $row: clamp(75px, 10vh, 100px));
 	height: 100vh;
+	padding: 5%;
 	background-color: palette.$primary;
 	color: palette.$white;
 	cursor: pointer;

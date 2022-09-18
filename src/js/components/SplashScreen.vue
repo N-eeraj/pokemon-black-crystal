@@ -16,6 +16,8 @@
 </template>
 
 <script>
+	import { mapActions } from 'vuex'
+
 	export default {
 		name: 'splash-screen',
 		data() {
@@ -29,22 +31,30 @@
 		methods: {
 			async loadData() {
 				await Promise.all([
-					this.$store.dispatch('fetchMoves'),
-					this.$store.dispatch('fetchGrowthRates'),
-					this.$store.dispatch('fetchTypes')
+					this.fetchMoves(),
+					this.fetchGrowthRates(),
+					this.fetchTypes()
 				])
+
 				if (localStorage.gameData)
-					await this.$store.dispatch('fetchData')
+					await this.fetchData()
 				else
-					this.$router.push({
-						path: '/welcome'
-					})
+					this.$router.push('/welcome')
+
 				this.isLoading = false
 			},
+
 			emitLoaded() {
 				if (this.isLoading) return
 				this.$emit('loading-complete')
-			}
+			},
+
+			...mapActions([
+				'fetchMoves',
+				'fetchGrowthRates',
+				'fetchTypes',
+				'fetchData'
+			])
 		},
 	}
 </script>

@@ -2,59 +2,62 @@
 	<div>
 		<div id="onboarding_wrapper">
 			<div v-if="selectStarter" class="pokeballs-container">
-			<img
-				v-for="(pokemon, index) in starters"
-				:key="index"
-				:src="require('@/assets/images/pokeball.png')"
-				alt="Pokeball"
-				class="pokeball"
-				@click="selectPokemon(pokemon)"
-			/>
+				<img
+					v-for="(pokemon, index) in starters"
+					:key="index"
+					:src="require('@/assets/images/pokeball.png')"
+					alt="Pokeball"
+					class="pokeball"
+					@click="selectPokemon(pokemon)"
+				/>
 			</div>
 			<img
-			v-else-if="getCurrentDialogue.img"
-			:src="require(`@/assets/images/${getCurrentDialogue.img}.png`)"
-			class="character-img"
+				v-else-if="getCurrentDialogue.img"
+				:src="require(`@/assets/images/${getCurrentDialogue.img}.png`)"
+				class="character-img"
 			/>
 			<p class="dialogue">
-			{{ getCurrentDialogue.text }}
+				{{ getCurrentDialogue.text }}
 			</p>
 			<button v-if="getCurrentDialogue.showNext" class="next-btn" @click="nextDialogue">
-			Next
+				Next
 			</button>
 			<pop-up v-if="modal.askName" class="modal">
-			<template #body>
-				<input
-				v-model="onboarding.name"
-				placeholder="Enter Your Name"
-				class="name-input"
-				@keyup.enter="setName"
-				/>
-			</template>
-			<template #actions>
-				<button
-				class="confirm"
-				:class="{ disabled: !onboarding.name }"
-				:disabled="!onboarding.name"
-				@click="setName"
-				>
-				OK
-				</button>
-			</template>
+				<template #body>
+					<input
+						v-model="onboarding.name"
+						placeholder="Enter Your Name"
+						class="name-input"
+						@keyup.enter="setName"
+					/>
+				</template>
+				<template #actions>
+					<button
+						class="confirm"
+						:class="{ disabled: !onboarding.name }"
+						:disabled="!onboarding.name"
+						@click="setName">
+						OK
+					</button>
+				</template>
 			</pop-up>
 			<pop-up v-if="modal.selectStarter" class="modal">
-			<template #body>
-				<div class="starter-confirmation">
-				<img :src="this.currentStarter.image" :alt="this.currentStarter.name" />
-				<p>
-					{{ confirmStarterMessage }}
-				</p>
-				</div>
-			</template>
-			<template #actions>
-				<button class="confirm" @click="confirmPokemon">Yes</button>
-				<button class="cancel" @click="closeModal('selectStarter')">No</button>
-			</template>
+				<template #body>
+					<div class="starter-confirmation">
+						<img :src="this.currentStarter.image" :alt="this.currentStarter.name" />
+						<p>
+							{{ confirmStarterMessage }}
+						</p>
+					</div>
+				</template>
+				<template #actions>
+					<button class="confirm" @click="confirmPokemon">
+						Yes
+					</button>
+					<button class="cancel" @click="closeModal('selectStarter')">
+						No
+					</button>
+				</template>
 			</pop-up>
 		</div>
 	</div>
@@ -64,6 +67,7 @@
 	import PopUp from "@/js/components/PopUp.vue"
 	import imageAndSprites from "@/js/mixins/imageAndSprites"
 	import data from "@/assets/data/onboarding.json"
+	import { mapActions } from 'vuex'
 
 	export default {
 		name: "onboarding-view",
@@ -71,6 +75,7 @@
 		components: {
 			PopUp,
 		},
+
 		data() {
 			return {
 				story: null,
@@ -94,6 +99,7 @@
 				},
 			}
 		},
+
 		computed: {
 			getCurrentDialogue() {
 				return {
@@ -105,14 +111,16 @@
 
 			confirmStarterMessage() {
 				return `So, you want the ${this.currentStarter.type} type Pokémon, ${this.currentStarter.name} ?`
-			},
+			}
 		},
+
 		created() {
 			this.story = data.story
 			this.starters = data.starters
 			this.initData = data.gameData
 			this.currentDiaogue.type = this.story[this.currentDiaogue.index].type
 		},
+
 		methods: {
 			formatDialogue(dialogue) {
 				if (!dialogue) return null
@@ -132,9 +140,9 @@
 					exp: 135,
 					happiness: 50
 				}
-				this.initData.pokemon.encountered.push(...[this.onboarding.starter.id, this.onboarding.rivalStarter])
-				this.initData.pokemon.party.push(this.onboarding.starter.id)
-				localStorage.setItem('gameData', btoa(JSON.stringify(this.initData)))
+				this.initData.pokemon.encountered.push(...[this.onboarding.starter.id, this.onboarding.rivalStarter.id])
+				this.initData.pokemon.party.push(1)
+				// localStorage.setItem('gameData', btoa(JSON.stringify(this.initData)))
 				this.$router.push("/")
 			},
 
@@ -165,14 +173,29 @@
 				}
 			},
 
-			confirmPokemon() {
+			async confirmPokemon() {
 				this.onboarding.starter = this.currentStarter
-				this.onboarding.rivalStarter = this.getRivalStarter()
+				this.onboarding.rivalStarter = this.starters.find(pokemon => pokemon.id === this.getRivalStarter())
 				this.closeModal("selectStarter")
 				this.selectStarter = false
 				this.nextDialogue()
 			},
+
+			async startBattle() {
+				await [
+					this.cachePokemonById(this.onboarding.starter.id),
+					this.cachePokemonById(this.onboarding.rivalStarter.id)
+				]
+				console.log(this.onboarding.starter.id)
+				console.log(this.onboarding.rivalStarter.id)
+				this.nextDialogue()
+			},
+
+			...mapActions([
+				'cachePokemonById'
+			])
 		},
+
 		watch: {
 			"currentDiaogue.index"(index) {
 				this.currentDiaogue.type = this.story[index].type
@@ -184,8 +207,7 @@
 					this.selectStarter = true
 					break
 				case "battle":
-					console.log("start battle")
-					this.nextDialogue()
+					this.startBattle()
 					break
 				}
 			},
