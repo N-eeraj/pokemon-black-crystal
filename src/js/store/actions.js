@@ -2,11 +2,7 @@ import common from "@/js/mixins/common"
 import imageAndSprites from "@/js/mixins/imageAndSprites"
 
 export default {
-	cachePokemonData(context, data) {
-		context.commit('cachePokemonData', data)
-	},
-
-	async getPokemonById(context, id) {
+	async cachePokemonById({ state, commit }, id) {
 		function getNextPokemon(evolvesTo) {
 			if (common.getIdFromUrl(evolvesTo.species.url) === id) {
 				pokemonEvolutionData = evolvesTo
@@ -41,7 +37,7 @@ export default {
 			evolution: null,
 			getLevel(currenrExp) {
 				let level = 0
-				Object.values(context.state.growthRateData[this.growthRate]).forEach(exp => {
+				Object.values(state.growthRateData[this.growthRate]).forEach(exp => {
 					if (currenrExp >= exp) level++
 				})
 				return level
@@ -60,14 +56,26 @@ export default {
 			getDamageRate(attackType) {
 				let rate = 1
 				this.types.forEach(type => {
-					if (context.state.typesData[type].doubleDamage.includes(attackType)) rate *= 2
-					if (context.state.typesData[type].halfDamage.includes(attackType)) rate *= 0.5
-					if (context.state.typesData[type].noDamage.includes(attackType)) rate *= 0
+					if (state.typesData[type].doubleDamage.includes(attackType)) rate *= 2
+					if (state.typesData[type].halfDamage.includes(attackType)) rate *= 0.5
+					if (state.typesData[type].noDamage.includes(attackType)) rate *= 0
 				})
 				return rate
+			},
+			getMovesByLevel(exp) {
+				return this.moves.filter(move => move.level <= this.getLevel(exp))
 			}
 		}
 		pokemonData.stats.forEach(stat => data.baseStat[stat.stat.name] = stat.base_stat)
+
+		data.moves = pokemonData.moves
+			.filter(move => Object.keys(state.movesData).includes(move.move.name) && move.version_group_details[0].level_learned_at)
+			.map(move => {
+				return {
+					name: move.move.name,
+					level: move.version_group_details[0].level_learned_at
+				}
+			})
 	
 		getNextPokemon(pokemonEvolutionData)
 		const nextEvolutionObj = {
@@ -111,6 +119,7 @@ export default {
 			})
 		})
 		data.evolution = nextEvolutionObj
+		commit('cachePokemonData', data)
 		return data
 	},
 
@@ -201,12 +210,7 @@ export default {
 	async fetchData(context) {
 		const gameData = JSON.parse(window.atob(localStorage.gameData))
 		context.commit('loadData', gameData)
-		const caughtPokemon = [
-			...new Set(Object.values(gameData.pokemon.caught).map((item) => item.id)),
-		]
-		for (let id of caughtPokemon) {
-			const data = await context.dispatch('getPokemonById', id)
-			context.dispatch('cachePokemonData', data)
-		}
+		const partyPokemon = gameData.pokemon.party.map(pokemon => gameData.pokemon.caught[pokemon].id)
+		partyPokemon.forEach(async id => await context.dispatch('cachePokemonById', id))
 	},
 }
