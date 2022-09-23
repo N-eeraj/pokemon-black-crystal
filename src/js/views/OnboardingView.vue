@@ -34,7 +34,7 @@
 				<template #actions>
 					<button
 						class="confirm"
-						:class="{ disabled: !onboarding.name }"
+						:class="{ disabled: !(onboarding.name?.trim()) }"
 						:disabled="!onboarding.name"
 						@click="setName">
 						OK
@@ -151,6 +151,7 @@
 			},
 
 			setName() {
+				if (!this.onboarding.name?.trim()) return
 				this.closeModal("askName")
 				this.nextDialogue()
 			},

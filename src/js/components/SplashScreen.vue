@@ -1,5 +1,8 @@
 <template>
-	<div id="splash_screen" @click="emitLoaded">
+	<div
+		id="splash_screen"
+		:class="{ loaded : !isLoading }"
+		@click="emitLoaded">
 		<div id="title">
 			<img src="@/assets/images/pokemon-logo.png" alt="Pokémon">
 			<h1>Black Crystal</h1>
