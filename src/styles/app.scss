@@ -22,7 +22,7 @@
 	border:1px solid palette.$secondary;
 }
 
-@media screen and (min-aspect-ratio: 13/9) {
+@media screen and (min-aspect-ratio: 2/3) and (min-height: 600px) {
 	body {
 		@include main.full-screen;
 		background-color: palette.$primary;
@@ -33,10 +33,4 @@
 			transform: translateX(-50%);
 		}
 	}
-}
-
-@media screen and (min-aspect-ratio: 13/9) and (max-height: 600px) {
-    #main:not(.page_not_found) {
-		display: none;
-    }
 }

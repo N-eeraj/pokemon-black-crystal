@@ -1,7 +1,7 @@
 <template>
 	<splash-screen v-if="showSplashScreen" @loading-complete="startGame"></splash-screen>
 	<router-view v-else id="main"/>
-	<rotate-screen />
+	<rotate-screen v-if="isSmallScreen" />
 </template>
 
 <script>
@@ -15,8 +15,17 @@
 		},
 		data() {
 			return {
-				showSplashScreen: true
+				showSplashScreen: true,
+				isSmallScreen: false
 			}
+		},
+		beforeCreate() {
+			window.visualViewport.addEventListener('resize', event => {
+				if (event.target?.height) {
+					// alert(event.target?.height)
+					this.isSmallScreen = event.target.height < 360
+				}
+			})
 		},
 		methods: {
 			startGame() {

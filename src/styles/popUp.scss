@@ -11,13 +11,12 @@
 
 	.pop-up-card {
 		position: absolute;
-		top: 50%;
+		top: 25%;
 		left: 5%;
 		@include main.flex($direction: column, $row: 20px);
 		width: 90%;
 		padding: 30px;
 		background-color: palette.$secondary;
-		transform: translateY(-50%);
 		border-radius: 7px;
 
 		.close {
