@@ -1,7 +1,7 @@
 export default {
   methods: {
 	getImageUrl(name) {
-		return `https://img.pokemondb.net/sprites/go/normal/1x/${name}.png`
+		return `https://img.pokemondb.net/sprites/home/normal/${name}.png`
 	},
 
 	getSpriteUrl(name) {

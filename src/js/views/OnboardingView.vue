@@ -44,7 +44,7 @@
 			<pop-up v-if="modal.selectStarter" class="modal">
 				<template #body>
 					<div class="starter-confirmation">
-						<img :src="this.currentStarter.image" :alt="this.currentStarter.name" />
+						<img :src="this.currentStarter.image" :alt="this.currentStarter.name" class="starter-img" />
 						<p>
 							{{ confirmStarterMessage }}
 						</p>

@@ -46,6 +46,10 @@
 
 		.starter-confirmation {
 			@include main.flex($direction: column, $row: 30px);
+
+			.starter-img {
+				width: 50%;
+			}
 		}
 	}
 }
