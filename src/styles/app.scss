@@ -1,6 +1,6 @@
-@use "colors/palette";
-@use "mixins/main";
-@use "fonts";
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
+@use "@/styles/fonts";
 
 * {
 	margin: 0;
@@ -20,6 +20,21 @@
 	background-color: palette.$primary;
 	color: palette.$white;
 	border:1px solid palette.$secondary;
+
+	button {
+		cursor: pointer;
+	}
+
+	.close-icon {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		cursor: pointer;
+		
+		&.dark {
+			filter: invert(1);
+		}
+	}
 }
 
 @media screen and (min-aspect-ratio: 2/3) and (min-height: 600px) {

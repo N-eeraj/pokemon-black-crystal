@@ -4,7 +4,9 @@
 		:class="{ loaded : !isLoading }"
 		@click="emitLoaded">
 		<div id="title">
-			<img src="@/assets/images/pokemon-logo.png" alt="Pokémon">
+			<img
+				src="@/assets/images/pokemon-logo.png"
+				alt="Pokémon" />
 			<h1>Black Crystal</h1>
 		</div>
 		<div id="loading">
@@ -33,11 +35,11 @@
 		},
 		methods: {
 			async loadData() {
-				await Promise.all([
-					this.fetchMoves(),
-					this.fetchGrowthRates(),
-					this.fetchTypes()
-				])
+				// await Promise.all([
+				// 	this.fetchMoves(),
+				// 	this.fetchGrowthRates(),
+				// 	this.fetchTypes()
+				// ])
 
 				if (localStorage.gameData)
 					await this.fetchData()

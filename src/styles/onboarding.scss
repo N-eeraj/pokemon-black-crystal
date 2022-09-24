@@ -1,5 +1,5 @@
-@use "colors/palette";
-@use "mixins/main";
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
 
 #onboarding_wrapper {
 	@include main.flex($direction: column, $justify: flex-start, $row: 20px);

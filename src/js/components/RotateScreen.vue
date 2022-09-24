@@ -1,6 +1,8 @@
 <template>
 	<div id="rotate_device">
-		<img src="@/assets/images/rotate-screen.gif" alt="Rotate your device">
+		<img
+			src="@/assets/images/rotate-screen.gif"
+			alt="Rotate your device" />
 		<h2>Please Rotate Your Device</h2>
 	</div>
 </template>

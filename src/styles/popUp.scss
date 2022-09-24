@@ -1,5 +1,5 @@
-@use "colors/palette";
-@use "mixins/main";
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
 
 .pop-up-wrapper {
 	position: fixed;
@@ -19,12 +19,6 @@
 		background-color: palette.$secondary;
 		border-radius: 7px;
 
-		.close {
-			position: absolute;
-			top: 10px;
-			left: 10px;
-		}
-
 		.body-container {
 			@include main.flex;
 		}
@@ -35,7 +29,6 @@
 			button {
 				padding: 5px 7px;
 				font-weight: 600;
-				cursor: pointer;
 			}
 
 			.confirm {

@@ -2,7 +2,7 @@
 	<main class="page_not_found">
 		<div>
 			<h1>4</h1>
-			<img src="@/assets/images/pokeball-icon.png" alt="0">
+			<img src="@/assets/images/pokeball-icon.png" alt="0" />
 			<h1>4</h1>
 		</div>
 		<section>

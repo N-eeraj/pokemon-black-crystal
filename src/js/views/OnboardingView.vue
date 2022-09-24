@@ -8,14 +8,12 @@
 					:src="require('@/assets/images/pokeball.png')"
 					alt="Pokeball"
 					class="pokeball"
-					@click="selectPokemon(pokemon)"
-				/>
+					@click="selectPokemon(pokemon)" />
 			</div>
 			<img
 				v-else-if="getCurrentDialogue.img"
 				:src="require(`@/assets/images/${getCurrentDialogue.img}.png`)"
-				class="character-img"
-			/>
+				class="character-img" />
 			<p class="dialogue">
 				{{ getCurrentDialogue.text }}
 			</p>
@@ -44,7 +42,10 @@
 			<pop-up v-if="modal.selectStarter" class="modal">
 				<template #body>
 					<div class="starter-confirmation">
-						<img :src="this.currentStarter.image" :alt="this.currentStarter.name" class="starter-img" />
+						<img
+							:src="this.currentStarter.image"
+							:alt="this.currentStarter.name"
+							class="starter-img" />
 						<p>
 							{{ confirmStarterMessage }}
 						</p>
@@ -60,11 +61,19 @@
 				</template>
 			</pop-up>
 		</div>
+		<battle-wrapper
+			v-if="battle.start"
+			:playerParty="battle.player"
+			:foeParty="battle.foe"
+			:foeDetails="battle.foeDetails">
+		</battle-wrapper>
 	</div>
 </template>
 
 <script>
 	import PopUp from "@/js/components/PopUp.vue"
+	import BattleWrapper from "@/js/components/battle/BattleWrapper.vue"
+	
 	import imageAndSprites from "@/js/mixins/imageAndSprites"
 	import data from "@/assets/data/onboarding.json"
 	import { mapActions } from 'vuex'
@@ -74,6 +83,7 @@
 		mixins: [imageAndSprites],
 		components: {
 			PopUp,
+			BattleWrapper
 		},
 
 		data() {
@@ -97,6 +107,11 @@
 					askName: false,
 					selectStarter: false,
 				},
+				battle: {
+					player: null,
+					foe: null,
+					start: false
+				}
 			}
 		},
 
@@ -127,13 +142,13 @@
 				if (this.currentDiaogue.type === "conditionalDialogue")
 				dialogue = dialogue[this.onboarding.rivalBattle ? "win" : "lose"]
 				return dialogue
-				.replace(/<Player>/gi, this.onboarding.name)
-				.replace(/<Pokemon>/gi, this.onboarding.starter?.name || null)
+					.replace(/<Player>/gi, this.onboarding.name)
+					.replace(/<Pokemon>/gi, this.onboarding.starter?.name || null)
 			},
 
 			nextDialogue() {
 				if (!(this.currentDiaogue.index === this.story.length - 1))
-				return ++this.currentDiaogue.index
+					return ++this.currentDiaogue.index
 				this.initData.playerInfo.name = this.onboarding.name
 				this.initData.pokemon.caught[1] = {
 					id: this.onboarding.starter.id,
@@ -187,9 +202,23 @@
 					this.cachePokemonById(this.onboarding.starter.id),
 					this.cachePokemonById(this.onboarding.rivalStarter.id)
 				]
-				console.log(this.onboarding.starter.id)
-				console.log(this.onboarding.rivalStarter.id)
-				this.nextDialogue()
+				this.battle.player = [
+					{
+						pokemon: this.onboarding.starter.id,
+						exp: 135
+					}
+				]
+				this.battle.foe = [
+					{
+						pokemon: this.onboarding.rivalStarter.id,
+						exp: 135
+					}
+				]
+				this.battle.foeDetails = {
+					image: require('@/assets/images/characters/rival/brendan.gif'),
+					name: 'Brendan'
+				}
+				this.battle.start = true
 			},
 
 			...mapActions([

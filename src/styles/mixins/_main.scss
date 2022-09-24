@@ -1,6 +1,6 @@
 @mixin full-screen {
 	position: fixed;
-	width: 100vw;
+	width: 100%;
 	height: calc(100vh - calc(100vh - 100%));
 	top: 0;
 	left: 0;

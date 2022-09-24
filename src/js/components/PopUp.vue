@@ -5,8 +5,8 @@
 				v-if="close"
 				:src="require(`@/assets/icons/cross-mark.svg`)"
 				width="20"
-				class="close"
-				@click="closePopUp">
+				class="close-icon"
+				@click="closePopUp" />
 			<slot name="title"></slot>
 			<div class="body-container">
 				<slot name="body"></slot>
@@ -23,6 +23,7 @@
 		name: 'pop-up',
 		props: {
 			close: {
+				type: Boolean,
 				required: false,
 				default: false
 			}

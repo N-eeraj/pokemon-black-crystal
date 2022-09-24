@@ -1,6 +1,6 @@
-@use "colors/palette";
-@use "mixins/main";
-@use "animation";
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
+@use "@/styles/animation";
 
 $text-404: clamp(30px, 25vw, 180px);
 
