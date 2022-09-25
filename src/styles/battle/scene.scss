@@ -1,0 +1,55 @@
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
+
+#battle_scene {
+	@include main.full-screen;
+	background-image: url('@/assets/images/battle-scene/background.png');
+
+	.battle-field {
+		position: relative;
+		height: 90%;
+		padding: 3%;
+
+		.icon {
+			position: absolute;
+			cursor: pointer;
+
+			&.escape {
+				width: 30px;
+			}
+
+			&.pokeball {
+				right: 10px;
+				bottom: 10px;
+				width: 50px;
+				padding: 3px;
+				background-color: rgba(palette.$primary, 0.75);
+				border-radius: 50%;
+			}
+		}
+	}
+
+	.actions {
+		position: fixed;
+		bottom: 0;
+		@include main.flex($align: stretch);
+		width: 100%;
+		height: 10%;
+
+		button {
+			width: 50%;
+			color: palette.$white;
+		}
+
+		.moves {
+			background-color: palette.$primary;
+		}
+		.pokemon {
+			background-color: palette.$secondary;
+		}
+	}
+
+	.modal {
+		
+	}
+}

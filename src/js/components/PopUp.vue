@@ -4,7 +4,6 @@
 			<img
 				v-if="close"
 				:src="require(`@/assets/icons/cross-mark.svg`)"
-				width="20"
 				class="close-icon"
 				@click="closePopUp" />
 			<slot name="title"></slot>

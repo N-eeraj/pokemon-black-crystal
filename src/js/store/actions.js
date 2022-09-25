@@ -178,40 +178,40 @@ export default {
 		return response.moves
 	},
 
-	async fetchMoves(context) {
+	async fetchMoves({ dispatch, commit }) {
 		const requiredMoveCategories = ['ohko', 'heal', 'damage+heal', 'damage+ailment', 'damage+lower', 'damage+raise', 'damage']
 		requiredMoveCategories.forEach(async category => {
-			const moves = await context.dispatch('getMovesByCategory', category)
+			const moves = await dispatch('getMovesByCategory', category)
 			moves.forEach(async move => {
 				if (common.getIdFromUrl(move.url) <= 354) {
-					const moveDetails = await context.dispatch('getMoveByUrl', move.url)
+					const moveDetails = await dispatch('getMoveByUrl', move.url)
 					if (moveDetails.power || ['ohko', 'heal'].includes(moveDetails.category))
-						context.commit('cacheMovesData', moveDetails)
+						commit('cacheMovesData', moveDetails)
 				}
 			})
 		})
 	},
 
-	async fetchGrowthRates(context) {
+	async fetchGrowthRates({ dispatch, commit }) {
 		for (let id = 1; id < 7; id++) {
-			const growthRate = await context.dispatch('getGrowthRateById', id)
-			context.commit('cacheGrowthRateData', growthRate)
+			const growthRate = await dispatch('getGrowthRateById', id)
+			commit('cacheGrowthRateData', growthRate)
 		}
 	},
 
-	async fetchTypes(context) {
-		const allTypes = await context.dispatch('getAllTypes')
+	async fetchTypes({ dispatch, commit }) {
+		const allTypes = await dispatch('getAllTypes')
 		allTypes.results.forEach(async type => {
-			const typeData = await context.dispatch('getTypeByUrl', type.url)
-			context.commit('cacheTypeData', typeData)
+			const typeData = await dispatch('getTypeByUrl', type.url)
+			commit('cacheTypeData', typeData)
 		})
 	},
 
-	async fetchData(context) {
+	async fetchData({ dispatch, commit }) {
 		const gameData = JSON.parse(window.atob(localStorage.gameData))
-		context.commit('loadData', gameData)
+		commit('loadData', gameData)
 		const partyPokemon = gameData.pokemon.party.map(pokemon => gameData.pokemon.caught[pokemon].id)
-		partyPokemon.forEach(async id => await context.dispatch('cachePokemonById', id))
+		partyPokemon.forEach(async id => await dispatch('cachePokemonById', id))
 	},
 
 	async getPokemonById({ getters, dispatch }, id) {
@@ -219,5 +219,11 @@ export default {
 		if (data) return data
 		await dispatch('cachePokemonById', id)
 		return await dispatch('getPokemonById', id)
+	},
+
+	getAvailableBalls({ state }) {
+		// to-do: return available types of balls
+		if (!state.gameData) return {}
+		return state.gameData.progress.bag
 	}
 }
