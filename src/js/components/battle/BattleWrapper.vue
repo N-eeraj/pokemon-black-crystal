@@ -11,7 +11,6 @@
 		<img
 			v-if="close"
 			:src="require(`@/assets/icons/cross-mark.svg`)"
-			width="20"
 			class="close-icon dark"
 			@click="emitClose" />
 		<div class="overlay">
@@ -28,10 +27,14 @@
 </template>
 
 <script>
-	import BattleScene from "@/js/components/battle/BattleScene.vue"
+	import BattleScene from "@/js/components/battle/scene/BattleScene.vue"
 
 	export default {
 		name: 'battle-wrapper',
+		components: {
+			BattleScene
+		},
+		
 		props: {
 			playerParty: {
 				type: Object,
@@ -55,9 +58,6 @@
 				required: false,
 				default: false
 			}
-		},
-		components: {
-			BattleScene
 		},
 
 		data() {

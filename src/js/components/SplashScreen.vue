@@ -41,10 +41,8 @@
 				// 	this.fetchTypes()
 				// ])
 
-				if (localStorage.gameData)
-					await this.fetchData()
-				else
-					this.$router.push('/welcome')
+				if (localStorage.gameData) await this.fetchData()
+				else this.$router.push('/welcome')
 
 				this.isLoading = false
 			},

@@ -129,6 +129,10 @@
 			}
 		},
 
+		beforeCreate() {
+			if (localStorage.gameData) this.$router.push('/')
+		},
+
 		created() {
 			this.story = data.story
 			this.starters = data.starters
