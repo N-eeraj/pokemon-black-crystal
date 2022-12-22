@@ -35,11 +35,11 @@
 		},
 		methods: {
 			async loadData() {
-				// await Promise.all([
-				// 	this.fetchMoves(),
-				// 	this.fetchGrowthRates(),
-				// 	this.fetchTypes()
-				// ])
+				await Promise.all([
+					this.fetchMoves(),
+					this.fetchGrowthRates(),
+					this.fetchTypes()
+				])
 
 				if (localStorage.gameData) await this.fetchData()
 				else this.$router.push('/welcome')

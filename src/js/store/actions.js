@@ -35,10 +35,10 @@ export default {
 			captureRate: pokemonSpeciesData.capture_rate,
 			growthRate: pokemonSpeciesData.growth_rate.name,
 			evolution: null,
-			getLevel(currenrExp) {
+			getLevel(currentExp) {
 				let level = 0
 				Object.values(state.growthRateData[this.growthRate]).forEach(exp => {
-					if (currenrExp >= exp) level++
+					if (currentExp >= exp) level++
 				})
 				return level
 			},
@@ -219,11 +219,5 @@ export default {
 		if (data) return data
 		await dispatch('cachePokemonById', id)
 		return await dispatch('getPokemonById', id)
-	},
-
-	getAvailableBalls({ state }) {
-		// to-do: return available types of balls
-		if (!state.gameData) return {}
-		return state.gameData.progress.bag
 	}
 }

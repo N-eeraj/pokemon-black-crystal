@@ -11,11 +11,25 @@
 				:src="require(`@/assets/icons/pokeball.svg`)"
 				class="icon pokeball"
 				@click="showPokeballs" />
+
+			<battle-pokemon
+				v-if="battle.foe.partyList.length"
+				:pokemon="battle.foe.partyList[battle.foe.currentPokemonIndex]"
+				isFoe />
+			<battle-pokemon
+				v-if="battle.trainer.partyList.length"
+				:pokemon="battle.trainer.partyList[battle.trainer.currentPokemonIndex]"/>
 		</div>
+
 		<div class="actions">
-			<button class="moves">Moves</button>
-			<button class="pokemon">Pokémon</button>
+			<button class="moves">
+				Moves
+			</button>
+			<button class="pokemon">
+				Pokémon
+			</button>
 		</div>
+
 		<pop-up
 			v-if="modal.confirmEscape"
 			close
@@ -39,12 +53,15 @@
 
 <script>
 	import PopUp from "@/js/components/PopUp.vue"
-	import { mapActions } from 'vuex'
+	import BattlePokemon from "@/js/components/battle/scene/BattlePokemon.vue"
+
+	import { mapGetters, mapActions } from 'vuex'
 
 	export default {
 		name: 'battle-scene',
 		components: {
-			PopUp
+			PopUp,
+			BattlePokemon
 		},
 
 		props: {
@@ -80,6 +97,16 @@
 
 		data() {
 			return {
+				battle: {
+					trainer: {
+						partyList: [],
+						currentPokemonIndex: 0
+					},
+					foe: {
+						partyList: [],
+						currentPokemonIndex: 0
+					}
+				},
 				availablePokeballs: null,
 				modal: {
 					confirmEscape: false
@@ -93,10 +120,27 @@
 			}
 		},
 
-		async mounted() {
+		async created() {
 			// to-do: check & show available pokeballs
 			this.availablePokeballs = await this.getAvailableBalls()
-			console.log(this.availablePokeballs)
+			// console.log(this.availablePokeballs)
+
+			await this.playerParty.forEach(async (pokemon, index) => {
+				let data = await this.getPokemonById(pokemon.pokemon)
+				data.level = data.getLevel(pokemon.exp)
+				data.movesList = data.getMovesByLevel(pokemon.exp)
+				data.stat = data.getStat(pokemon.exp)
+				data.currentHp = data.stat.hp
+				this.battle.trainer.partyList[index] = data
+			})
+			await this.foeParty.forEach(async (pokemon, index) => {
+				let data = await this.getPokemonById(pokemon.pokemon)
+				data.level = data.getLevel(pokemon.exp)
+				data.movesList = data.getMovesByLevel(pokemon.exp)
+				data.stat = data.getStat(pokemon.exp)
+				data.currentHp = data.stat.hp
+				this.battle.foe.partyList[index] = data
+			})
 		},
 
 		methods: {
@@ -117,13 +161,17 @@
 				console.log('show available pokeballs')
 			},
 
-			...mapActions([
+			...mapGetters([
 				'getAvailableBalls'
+			]),
+
+			...mapActions([
+				'getPokemonById'
 			])
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import "@/styles/battle/scene", "@/styles/pokemonList";
 </style>

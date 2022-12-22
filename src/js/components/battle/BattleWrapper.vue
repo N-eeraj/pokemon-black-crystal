@@ -4,6 +4,7 @@
 		:playerParty="playerParty"
 		:foeParty="foeParty"
 		:saveBattle="saveBattle" />
+
 	<div
 		v-else
 		id="battle_wrapper"
@@ -11,7 +12,7 @@
 		<img
 			v-if="close"
 			:src="require(`@/assets/icons/cross-mark.svg`)"
-			class="close-icon dark"
+			class="close-icon"
 			@click="emitClose" />
 		<div class="overlay">
 			<button 
@@ -73,6 +74,7 @@
 		created() {
 			this.message = `${this.foeDetails.name} wants to battle`
 		},
+		
 		methods: {
 			emitClose() {
 				this.$emit('close')

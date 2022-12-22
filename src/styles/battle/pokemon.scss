@@ -1,0 +1,64 @@
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
+
+.battle-pokemon {
+	@include main.flex($direction: column);
+
+	&.front {
+		align-items: flex-end;
+		align-self: flex-end;
+	}
+	&.back {
+		align-items: flex-start;
+		align-self: flex-start
+	}
+
+	.status{
+		@include main.flex($direction: column, $align: flex-start, $row: 5px);
+		width: 100%;
+		padding: 5%;
+		background-color: palette.$primary;
+		border-radius: 5px;
+
+		strong {
+			color: palette.$white;
+		}
+		span {
+			color: palette.$white-secondary;
+			font-size: 0.8rem;
+		}
+		progress {
+			width: 100%;
+			height: 7px;
+			border-radius: 10px;
+		  
+		  &::-webkit-progress-bar {
+			background-color: palette.$white;
+			border-radius: 10px;
+		  }
+		  &::-webkit-progress-value {
+			border-radius: 10px;
+		  }
+
+		  &.high::-webkit-progress-value {
+			background-color: palette.$value-high;
+		  }
+		  &.medium::-webkit-progress-value {
+			background-color: palette.$value-med;
+		  }
+		  &.low::-webkit-progress-value {
+			background-color: palette.$value-low;
+		  }
+		}
+	}
+
+	.pokemon {
+		@include main.flex;
+		width: 80%;
+		aspect-ratio: 1.25;
+		background-image: url('@/assets/images/battle-scene/ground.png');
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: bottom;
+	}
+}

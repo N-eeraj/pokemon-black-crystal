@@ -20,6 +20,7 @@
 			<button v-if="getCurrentDialogue.showNext" class="next-btn" @click="nextDialogue">
 				Next
 			</button>
+
 			<pop-up v-if="modal.askName" class="modal">
 				<template #body>
 					<input
@@ -61,6 +62,7 @@
 				</template>
 			</pop-up>
 		</div>
+
 		<battle-wrapper
 			v-if="battle.start"
 			:playerParty="battle.player"
@@ -219,7 +221,7 @@
 					}
 				]
 				this.battle.foeDetails = {
-					image: require('@/assets/images/characters/rival/brendan.gif'),
+					image: require('@/assets/images/characters/foe/brendan.png'),
 					name: 'Brendan'
 				}
 				this.battle.start = true

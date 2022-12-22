@@ -4,9 +4,11 @@
 #battle_scene {
 	@include main.full-screen;
 	background-image: url('@/assets/images/battle-scene/background.png');
+	background-size: contain;
 
 	.battle-field {
 		position: relative;
+		@include main.flex($direction: column, $justify: space-between);
 		height: 90%;
 		padding: 3%;
 
@@ -27,6 +29,10 @@
 				border-radius: 50%;
 			}
 		}
+
+		.battle-pokemon {
+			width: 70%;
+		}
 	}
 
 	.actions {
@@ -34,7 +40,7 @@
 		bottom: 0;
 		@include main.flex($align: stretch);
 		width: 100%;
-		height: 10%;
+		height: min(10%, 80px);
 
 		button {
 			width: 50%;
