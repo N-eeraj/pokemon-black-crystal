@@ -1,18 +1,127 @@
-$BUG: #8B9A12;
-$DARK: #503A27;
-$DRAGON: #765FDF;
-$ELECTRIC: #EFAF1C;
-$FAIRY: #E18DE2;
-$FIGHTING: #78321F;
-$FIRE: #D62F06;
-$FLYING: #8397EA;
-$GHOST: #6162B3;
-$GRASS: #68B632;
-$GROUND: #CFAE52;
-$ICE: #6BD3F4;
-$NORMAL: #C8C1B7;
-$POISON: #9A579D;
-$PSYCHIC: #DB3166;
-$ROCK: #B7A65F;
-$STEEL: #B1B2BF;
-$WATER: #3092F0;
+@use "@/styles/colors/palette";
+
+.bug {
+    background-color: palette.$BUG;;
+}
+.bug-text {
+    color: palette.$BUG;
+}
+
+.dark {
+    background-color: palette.$DARK;;
+}
+.dark-text {
+    color: palette.$DARK;
+}
+
+.dragon {
+    background-color: palette.$DRAGON;;
+}
+.dragon-text {
+    color: palette.$DRAGON;
+}
+
+.electric {
+    background-color: palette.$ELECTRIC;;
+}
+.electric-text {
+    color: palette.$ELECTRIC;
+}
+
+.fairy {
+    background-color: palette.$FAIRY;;
+}
+.fairy-text {
+    color: palette.$FAIRY;
+}
+
+.fighting {
+    background-color: palette.$FIGHTING;;
+}
+.fighting-text {
+    color: palette.$FIGHTING;
+}
+
+.fire {
+    background-color: palette.$FIRE;;
+}
+.fire-text {
+    color: palette.$FIRE;
+}
+
+.flying {
+    background-color: palette.$FLYING;;
+}
+.flying-text {
+    color: palette.$FLYING;
+}
+
+.ghost {
+    background-color: palette.$GHOST;;
+}
+.ghost-text {
+    color: palette.$GHOST;
+}
+
+.grass {
+    background-color: palette.$GRASS;;
+}
+.grass-text {
+    color: palette.$GRASS;
+}
+
+.ground {
+    background-color: palette.$GROUND;;
+}
+.ground-text {
+    color: palette.$GROUND;
+}
+
+.ice {
+    background-color: palette.$ICE;;
+}
+.ice-text {
+    color: palette.$ICE;
+}
+
+.normal {
+    background-color: palette.$NORMAL;;
+}
+.normal-text {
+    color: palette.$NORMAL;
+}
+
+.poison {
+    background-color: palette.$POISON;;
+}
+.poison-text {
+    color: palette.$POISON;
+}
+
+.psychic {
+    background-color: palette.$PSYCHIC;;
+}
+.psychic-text {
+    color: palette.$PSYCHIC;
+}
+
+.rock {
+    background-color: palette.$ROCK;;
+}
+.rock-text {
+    color: palette.$ROCK;
+}
+
+.steel {
+    background-color: palette.$STEEL;;
+}
+.steel-text {
+    color: palette.$STEEL;
+}
+
+.water {
+    background-color: palette.$WATER;;
+}
+.water-text {
+    color: palette.$WATER;
+}
