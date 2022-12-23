@@ -9,8 +9,7 @@ export default {
 		return state.gameData.progress.bag
 	},
 
-	getMovesByName(state, name) {
-		console.log(name);
+	getMovesByName: (state) => (name) => {
 		return state.movesData[name]
 	}
 }

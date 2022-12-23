@@ -7,7 +7,31 @@
             @iconEvent="$emit('closeMoveset')" />
 
         <div id="moves_list">
-            {{ getMovesByName(moveset) }}
+            <div
+                v-for="(move, index) in movesetList"
+                :key="index"
+                class="move-card"
+                :class="move.type">
+                <span>
+                    {{ $filters.toTitleCase(move.name) }}
+                </span>
+                <span>
+                    Power:
+                    {{ move.power }}
+                </span>
+                <span>
+                    PP:
+                    {{ move.pp }}
+                </span>
+                <span>
+                    Accuracy:
+                    {{ move.accuracy }}
+                </span>
+                <span>
+                    Type:
+                    {{ $filter.toTitleCase(move.type) }}
+                </span>
+            </div>
         </div>
     </div>
 </template>
@@ -30,7 +54,16 @@
             }
         },
 
-        methods: {
+        computed: {
+            movesetList() {
+                return this.moveset.map(move => {
+                    return {
+                        name: move.name,
+                        ...this.getMovesByName(move.name)
+                    }
+                })
+            },
+
 			...mapGetters([
 				'getMovesByName'
 			]),
