@@ -22,10 +22,14 @@
 		</div>
 
 		<div class="actions">
-			<button class="moves">
+			<button
+				class="moves"
+				@click="listPokemonMoves">
 				Moves
 			</button>
-			<button class="pokemon">
+			<button
+				class="pokemon"
+				@click="listPartyPokemon">
 				Pokémon
 			</button>
 		</div>
@@ -122,28 +126,33 @@
 
 		async created() {
 			// to-do: check & show available pokeballs
-			this.availablePokeballs = await this.getAvailableBalls()
-			// console.log(this.availablePokeballs)
+			this.availablePokeballs = this.getAvailableBalls()
+			console.log(this.availablePokeballs)
 
-			await this.playerParty.forEach(async (pokemon, index) => {
-				let data = await this.getPokemonById(pokemon.pokemon)
-				data.level = data.getLevel(pokemon.exp)
-				data.movesList = data.getMovesByLevel(pokemon.exp)
-				data.stat = data.getStat(pokemon.exp)
-				data.currentHp = data.stat.hp
-				this.battle.trainer.partyList[index] = data
-			})
-			await this.foeParty.forEach(async (pokemon, index) => {
-				let data = await this.getPokemonById(pokemon.pokemon)
-				data.level = data.getLevel(pokemon.exp)
-				data.movesList = data.getMovesByLevel(pokemon.exp)
-				data.stat = data.getStat(pokemon.exp)
-				data.currentHp = data.stat.hp
-				this.battle.foe.partyList[index] = data
-			})
+			await this.setBattleParty(this.playerParty, 'trainer')
+			await this.setBattleParty(this.foeParty, 'foe')
 		},
 
 		methods: {
+			async setBattleParty(partyIds, trainer) {
+				await partyIds.forEach(async (pokemon, index) => {
+					let data = await this.getPokemonById(pokemon.pokemon)
+					data.level = data.getLevel(pokemon.exp)
+					data.movesList = data.getMovesByLevel(pokemon.exp)
+					data.stat = data.getStat(pokemon.exp)
+					data.currentHp = data.stat.hp
+					this.battle[trainer].partyList[index] = data
+				})
+			},
+
+			listPokemonMoves() {
+				console.log(this.battle.trainer.partyList[this.battle.trainer.currentPokemonIndex].movesList)
+			},
+
+			listPartyPokemon() {
+				console.log(this.battle.trainer.partyList)
+			},
+
 			closePopUp(popUpName) {
 				this.modal[popUpName] = false
 			},

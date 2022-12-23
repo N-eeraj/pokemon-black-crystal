@@ -4,7 +4,7 @@
 		:class="isFoe ? 'front' : 'back'">
 		<div class="status">
 			<strong>
-				{{ pokemon.name }}
+				{{ $filters.toTitleCase(pokemon.name) }}
 			</strong>
 			<span>
 				Level
@@ -16,7 +16,9 @@
 				:class="{high: true}" />
 		</div>
 		<div class="pokemon">
-			<img :src="pokemon.sprite[isFoe ? 'front' : 'back']" />
+			<img
+				:src="pokemon.sprite[isFoe ? 'front' : 'back']"
+				class />
 		</div>
 	</div>
 </template>
