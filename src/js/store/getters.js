@@ -7,5 +7,10 @@ export default {
 		// to-do: return available types of balls
 		if (!state.gameData) return {}
 		return state.gameData.progress.bag
+	},
+
+	getMovesByName(state, name) {
+		console.log(name);
+		return state.movesData[name]
 	}
 }

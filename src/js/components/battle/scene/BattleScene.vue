@@ -34,6 +34,11 @@
 			</button>
 		</div>
 
+		<moves-list
+			v-if="show.moveset && moveset"
+			:moveset="moveset"
+			@closeMoveset="show.moveset=false" />
+
 		<pop-up
 			v-if="modal.confirmEscape"
 			close
@@ -58,6 +63,7 @@
 <script>
 	import PopUp from "@/js/components/PopUp.vue"
 	import BattlePokemon from "@/js/components/battle/scene/BattlePokemon.vue"
+	import MovesList from "@/js/components/battle/MovesList.vue"
 
 	import { mapGetters, mapActions } from 'vuex'
 
@@ -65,7 +71,8 @@
 		name: 'battle-scene',
 		components: {
 			PopUp,
-			BattlePokemon
+			BattlePokemon,
+			MovesList
 		},
 
 		props: {
@@ -112,6 +119,11 @@
 					}
 				},
 				availablePokeballs: null,
+				moveset: null,
+				show: {
+					moveset: false,
+					party: false
+				},
 				modal: {
 					confirmEscape: false
 				}
@@ -120,14 +132,14 @@
 
 		computed: {
 			showPokeballAction() {
-				return this.canCatch && Object.keys(this.availablePokeballs).length
+				return Boolean(this.canCatch && Object.keys(this.availablePokeballs).length)
 			}
 		},
 
 		async created() {
 			// to-do: check & show available pokeballs
 			this.availablePokeballs = this.getAvailableBalls()
-			console.log(this.availablePokeballs)
+			// console.log(this.availablePokeballs)
 
 			await this.setBattleParty(this.playerParty, 'trainer')
 			await this.setBattleParty(this.foeParty, 'foe')
@@ -146,10 +158,12 @@
 			},
 
 			listPokemonMoves() {
-				console.log(this.battle.trainer.partyList[this.battle.trainer.currentPokemonIndex].movesList)
+				this.moveset = this.battle.trainer.partyList[this.battle.trainer.currentPokemonIndex].movesList
+				this.show.moveset = true
 			},
 
 			listPartyPokemon() {
+				this.show.party = true
 				console.log(this.battle.trainer.partyList)
 			},
 

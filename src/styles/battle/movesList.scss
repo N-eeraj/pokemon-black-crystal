@@ -1,0 +1,11 @@
+@use "@/styles/colors/palette";
+@use "@/styles/mixins/main";
+
+#moveset_container {
+	@include main.full-screen;
+    background-color: palette.$primary;
+
+    #moves_list {
+        width: 100%;
+    }
+}
