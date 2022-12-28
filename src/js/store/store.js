@@ -10,7 +10,8 @@ export default createStore({
 			pokemonData: {},
 			movesData: {},
 			typesData: {},
-			growthRateData: {}
+			growthRateData: {},
+			battle: null
 		}
 	},
 	getters,

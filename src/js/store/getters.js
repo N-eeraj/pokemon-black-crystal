@@ -3,6 +3,10 @@ export default {
 		return state.pokemonData
 	},
 
+	getBattleData(state) {
+		return state.battle
+	},
+
 	getAvailableBalls(state) {
 		// to-do: return available types of balls
 		if (!state.gameData) return {}

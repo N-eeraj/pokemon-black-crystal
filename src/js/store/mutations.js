@@ -22,5 +22,9 @@ export default {
 		const {name, levels} = growthRateData
 		const data = Object.values(levels).map(({experience}) => experience)
 		state.growthRateData[name] = data
+	},
+
+	setBattleData(state, data) {
+		state.battle = data
 	}
 }

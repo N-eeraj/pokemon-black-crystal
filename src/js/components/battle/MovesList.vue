@@ -8,7 +8,7 @@
 
         <div id="moves_list">
             <div
-                v-for="(move, index) in movesetList"
+                v-for="(move, index) in moveList"
                 :key="index"
                 class="move-card"
                 :class="move.type">
@@ -29,7 +29,7 @@
                 </span>
                 <span>
                     Type:
-                    {{ $filter.toTitleCase(move.type) }}
+                    {{ $filters.toTitleCase(move.type) }}
                 </span>
             </div>
         </div>
@@ -47,25 +47,19 @@
             NavigationBar
         },
 
-        props: {
-            moveset: {
-                type: Array,
-                require: true
-            }
+        created() {
+            this.moveList
         },
 
         computed: {
-            movesetList() {
-                return this.moveset.map(move => {
-                    return {
-                        name: move.name,
-                        ...this.getMovesByName(move.name)
-                    }
-                })
+
+            moveList() {
+                const trainer = this.getBattleData.trainer
+                return trainer.partyList[trainer.currentPokemonIndex].movesList
             },
 
 			...mapGetters([
-				'getMovesByName'
+				'getBattleData'
 			]),
         },
     }

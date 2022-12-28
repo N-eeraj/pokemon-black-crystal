@@ -13,12 +13,12 @@
 				@click="showPokeballs" />
 
 			<battle-pokemon
-				v-if="battle.foe.partyList.length"
-				:pokemon="battle.foe.partyList[battle.foe.currentPokemonIndex]"
+				v-if="battleData?.foe.partyList.length"
+				:pokemon="battleData.foe.partyList[battleData.foe.currentPokemonIndex]"
 				isFoe />
 			<battle-pokemon
-				v-if="battle.trainer.partyList.length"
-				:pokemon="battle.trainer.partyList[battle.trainer.currentPokemonIndex]"/>
+				v-if="battleData?.trainer.partyList.length"
+				:pokemon="battleData.trainer.partyList[battleData.trainer.currentPokemonIndex]"/>
 		</div>
 
 		<div class="actions">
@@ -35,8 +35,7 @@
 		</div>
 
 		<moves-list
-			v-if="show.moveset && moveset"
-			:moveset="moveset"
+			v-if="show.moveset && battleData"
 			@closeMoveset="show.moveset=false" />
 
 		<pop-up
@@ -119,7 +118,7 @@
 					}
 				},
 				availablePokeballs: null,
-				moveset: null,
+				trainerPokemonMoveset: null,
 				show: {
 					moveset: false,
 					party: false
@@ -133,7 +132,15 @@
 		computed: {
 			showPokeballAction() {
 				return Boolean(this.canCatch && Object.keys(this.availablePokeballs).length)
-			}
+			},
+
+			battleData() {
+				return this.getBattleData()
+			},
+			
+			...mapGetters([
+				'getMovesByName'
+			]),
 		},
 
 		async created() {
@@ -143,6 +150,8 @@
 
 			await this.setBattleParty(this.playerParty, 'trainer')
 			await this.setBattleParty(this.foeParty, 'foe')
+
+			this.setBattleData(this.battle)
 		},
 
 		methods: {
@@ -151,6 +160,12 @@
 					let data = await this.getPokemonById(pokemon.pokemon)
 					data.level = data.getLevel(pokemon.exp)
 					data.movesList = data.getMovesByLevel(pokemon.exp)
+						.map(move => {
+							return {
+								name: move.name,
+								...this.getMovesByName(move.name)
+							}
+						})
 					data.stat = data.getStat(pokemon.exp)
 					data.currentHp = data.stat.hp
 					this.battle[trainer].partyList[index] = data
@@ -158,7 +173,7 @@
 			},
 
 			listPokemonMoves() {
-				this.moveset = this.battle.trainer.partyList[this.battle.trainer.currentPokemonIndex].movesList
+				this.trainerPokemonMoveset = this.battle.trainer.partyList[this.battle.trainer.currentPokemonIndex].movesList
 				this.show.moveset = true
 			},
 
@@ -185,11 +200,13 @@
 			},
 
 			...mapGetters([
-				'getAvailableBalls'
+				'getAvailableBalls',
+				'getBattleData'
 			]),
 
 			...mapActions([
-				'getPokemonById'
+				'getPokemonById',
+				'setBattleData'
 			])
 		}
 	}

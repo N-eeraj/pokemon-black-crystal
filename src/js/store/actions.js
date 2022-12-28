@@ -219,5 +219,9 @@ export default {
 		if (data) return data
 		await dispatch('cachePokemonById', id)
 		return await dispatch('getPokemonById', id)
+	},
+
+	setBattleData({ commit }, data) {
+		commit('setBattleData', data)
 	}
 }
