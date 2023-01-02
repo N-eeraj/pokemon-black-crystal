@@ -204,8 +204,11 @@
 				console.log('show available pokeballs')
 			},
 
-			useMove(move) {
-				this.useMoveBattleDataUpdate(move)
+			useMove(moveData) {
+				this.useMoveBattleDataUpdate({
+					moveData,
+					inCommingAttack: false
+				})
 				this.hidePokemonMoves()
 			},
 
