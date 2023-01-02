@@ -1,3 +1,5 @@
+import calculations from "@/js/mixins/calculations"
+
 export default {
 	loadData(state, data) {
 		state.gameData = data
@@ -33,7 +35,10 @@ export default {
 		// console.log(moveData)
 		const trainer = state.battle.trainer
 		const foe = state.battle.foe
-		foe.partyList[foe.currentPokemonIndex].currentHp -= moveData.power
+
+		const damage = calculations.moveDamage(moveData, trainer.partyList[trainer.currentPokemonIndex], foe.partyList[foe.currentPokemonIndex])
+		
+		foe.partyList[foe.currentPokemonIndex].currentHp -= damage
 		trainer.partyList[trainer.currentPokemonIndex].movesList.find(move => move.name === moveData.name).pp -= 1
 	}
 }
