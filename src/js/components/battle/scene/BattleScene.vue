@@ -36,7 +36,8 @@
 
 		<moves-list
 			v-if="show.moveset && battleData"
-			@closeMoveset="show.moveset=false" />
+			@useMove="useMove"
+			@closeMoveset="hidePokemonMoves" />
 
 		<pop-up
 			v-if="modal.confirmEscape"
@@ -177,6 +178,10 @@
 				this.show.moveset = true
 			},
 
+			hidePokemonMoves() {
+				this.show.moveset = false
+			},
+
 			listPartyPokemon() {
 				this.show.party = true
 				console.log(this.battle.trainer.partyList)
@@ -199,6 +204,11 @@
 				console.log('show available pokeballs')
 			},
 
+			useMove(move) {
+				this.useMoveBattleDataUpdate(move)
+				this.hidePokemonMoves()
+			},
+
 			...mapGetters([
 				'getAvailableBalls',
 				'getBattleData'
@@ -206,7 +216,8 @@
 
 			...mapActions([
 				'getPokemonById',
-				'setBattleData'
+				'setBattleData',
+				'useMoveBattleDataUpdate'
 			])
 		}
 	}

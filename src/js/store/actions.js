@@ -223,5 +223,9 @@ export default {
 
 	setBattleData({ commit }, data) {
 		commit('setBattleData', data)
+	},
+	
+	useMoveBattleDataUpdate({ commit }, data) {
+		commit('useMoveBattleDataUpdate', data)
 	}
 }

@@ -11,7 +11,8 @@
                 v-for="(move, index) in moveList"
                 :key="index"
                 class="move-card"
-                :class="move.type">
+                :class="move.type"
+                @click="$emit('useMove', move)">
                 <span>
                     {{ $filters.toTitleCase(move.name) }}
                 </span>
