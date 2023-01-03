@@ -1,4 +1,8 @@
 export default {
+	checkOfflineStats(state) {
+		return state.isOffline
+	},
+
 	getPokemon(state) {
 		return state.pokemonData
 	},

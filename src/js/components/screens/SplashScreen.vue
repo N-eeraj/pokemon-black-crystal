@@ -62,4 +62,4 @@
 	}
 </script>
 
-<style lang="scss" scoped src="@/styles/splashScreen.scss"></style>
+<style lang="scss" scoped src="@/styles/screens/splashScreen.scss"></style>

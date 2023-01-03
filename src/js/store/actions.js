@@ -2,6 +2,22 @@ import common from "@/js/mixins/common"
 import imageAndSprites from "@/js/mixins/imageAndSprites"
 
 export default {
+	async updateOfflineStats({ state, commit }) {
+		let isOffline
+		try {
+			await fetch(`https://upload.wikimedia.org/wikipedia/commons/e/e6/1kb.png?${Date.now()}`)
+			isOffline = false
+		}
+		catch {
+			isOffline = true
+		}
+		if (state.isOffline === true && isOffline === false) {
+			if (confirm('You seem to be back online. Would you like to reconnect?'))
+				location.reload()
+		}
+		else commit('updateOfflineStats', isOffline)
+	},
+
 	async cachePokemonById({ state, commit }, id) {
 		function getNextPokemon(evolvesTo) {
 			if (common.getIdFromUrl(evolvesTo.species.url) === id) {

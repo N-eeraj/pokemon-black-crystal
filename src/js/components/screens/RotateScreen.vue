@@ -13,4 +13,4 @@
 	}
 </script>
 
-<style lang="scss" scoped src="@/styles/rotateScreen.scss"></style>
+<style lang="scss" scoped src="@/styles/screens/rotateScreen.scss"></style>

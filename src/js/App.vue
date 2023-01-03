@@ -1,24 +1,35 @@
 <template>
-	<splash-screen v-if="showSplashScreen" @loading-complete="startGame" />
-	<router-view v-else id="main" />
-	<rotate-screen v-if="isSmallScreen" />
+	<offline-screen v-if="checkOfflineStats" />
+	<template v-else>
+		<splash-screen v-if="showSplashScreen" @loading-complete="startGame" />
+		<router-view v-else id="main" />
+		<rotate-screen v-if="isSmallScreen" />
+	</template>
 </template>
 
 <script>
-	import SplashScreen from './components/SplashScreen.vue'
-	import RotateScreen from './components/RotateScreen.vue'
+
+	import SplashScreen from './components/screens/SplashScreen.vue'
+	import RotateScreen from './components/screens/RotateScreen.vue'
+	import OfflineScreen from './components/screens/OfflineScreen.vue'
+
+	import { mapGetters, mapActions } from 'vuex'
+
 
 	export default {
 		components: {
 			SplashScreen,
 			RotateScreen,
+			OfflineScreen,
 		},
+
 		data() {
 			return {
 				showSplashScreen: true,
 				isSmallScreen: false
 			}
 		},
+
 		beforeCreate() {
 			window.visualViewport.addEventListener('resize', event => {
 				if (event.target) {
@@ -27,12 +38,30 @@
 				}
 			})
 		},
+
+		mounted() {
+			setInterval(() => {
+				this.updateOfflineStats()
+			}, 10000);
+		},
+
+		computed: {
+			...mapGetters([
+					'checkOfflineStats',
+			])
+		},
+
 		methods: {
 			startGame() {
 				this.showSplashScreen = false
-			}
+			},
+
+			...mapActions([
+				'updateOfflineStats'
+			])
 		},
-		watch:{
+
+		watch: {
 			$route(to) {
 				if (to.name === 'NotFound') return this.showSplashScreen = false
 			}

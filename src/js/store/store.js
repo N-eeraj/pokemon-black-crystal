@@ -6,6 +6,7 @@ import actions from './actions'
 export default createStore({
 	state() {
 		return {
+			isOffline: false,
 			gameData: null,
 			pokemonData: {},
 			movesData: {},

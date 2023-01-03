@@ -1,6 +1,10 @@
 import calculations from "@/js/mixins/calculations"
 
 export default {
+	updateOfflineStats(state, status) {
+		state.isOffline = status
+	},
+	
 	loadData(state, data) {
 		state.gameData = data
 	},
