@@ -12,8 +12,10 @@ export default {
 			isOffline = true
 		}
 		if (state.isOffline === true && isOffline === false) {
-			if (confirm('You seem to be back online. Would you like to reconnect?'))
+			if (confirm('You seem to be back online, would you like to reconnect?')) {
+				commit('updateOfflineStats', isOffline)
 				location.reload()
+			}
 		}
 		else commit('updateOfflineStats', isOffline)
 	},

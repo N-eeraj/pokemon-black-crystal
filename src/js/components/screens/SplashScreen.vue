@@ -30,9 +30,11 @@
 				isLoading: true,
 			}
 		},
+
 		created() {
 			this.loadData()
 		},
+		
 		methods: {
 			async loadData() {
 				await Promise.all([

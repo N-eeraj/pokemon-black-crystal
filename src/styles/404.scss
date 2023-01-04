@@ -6,11 +6,7 @@ $text-404: clamp(30px, 25vw, 180px);
 
 main {
 	@include main.full-screen;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	row-gap: max(5vh, 50px);
+	@include main.flex($direction: column, $row: max(5vh, 50px));
 	background-color: palette.$primary;
 	color: palette.$white;
 
