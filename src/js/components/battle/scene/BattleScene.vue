@@ -14,11 +14,11 @@
 
 			<battle-pokemon
 				v-if="battleData?.foe.partyList.length"
-				:pokemon="battleData.foe.partyList[battleData.foe.currentPokemonIndex]"
+				:pokemon="currentPokemon.foe"
 				isFoe />
 			<battle-pokemon
 				v-if="battleData?.trainer.partyList.length"
-				:pokemon="battleData.trainer.partyList[battleData.trainer.currentPokemonIndex]"/>
+				:pokemon="currentPokemon.trainer"/>
 		</div>
 
 		<div class="actions">
@@ -66,6 +66,8 @@
 	import MovesList from "@/js/components/battle/MovesList.vue"
 
 	import { mapGetters, mapActions } from 'vuex'
+
+	import messages from "@/js/mixins/messages"
 
 	export default {
 		name: 'battle-scene',
@@ -137,6 +139,13 @@
 
 			battleData() {
 				return this.getBattleData()
+			},
+
+			currentPokemon() {
+				return {
+					foe: this.battleData.foe.partyList[this.battleData.foe.currentPokemonIndex],
+					trainer: this.battleData.trainer.partyList[this.battleData.trainer.currentPokemonIndex]
+				}
 			},
 			
 			...mapGetters([
@@ -210,6 +219,8 @@
 					inCommingAttack: false
 				})
 				this.hidePokemonMoves()
+				const message = messages.moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData)
+				console.log(message)
 			},
 
 			...mapGetters([
