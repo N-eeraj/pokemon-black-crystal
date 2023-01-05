@@ -56,7 +56,7 @@
 
             moveList() {
                 const trainer = this.getBattleData.trainer
-                return trainer.partyList[trainer.currentPokemonIndex].movesList
+                return trainer.partyList[trainer.currentPokemonIndex].movesList.filter(move => move.pp)
             },
 
 			...mapGetters([

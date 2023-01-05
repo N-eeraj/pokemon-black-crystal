@@ -67,6 +67,7 @@
 
 	import { mapGetters, mapActions } from 'vuex'
 
+	import randomGenerator from "@/js/mixins/randomGenerator"
 	import messages from "@/js/mixins/messages"
 
 	export default {
@@ -214,13 +215,24 @@
 			},
 
 			useMove(moveData) {
+				this.hidePokemonMoves()
+
+				const message1 = messages.moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData)
+				console.log(message1)
+
 				this.useMoveBattleDataUpdate({
 					moveData,
 					inCommingAttack: false
 				})
-				this.hidePokemonMoves()
-				const message = messages.moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData)
-				console.log(message)
+
+				
+				const message2 = messages.moveMessage(this.currentPokemon.foe, this.currentPokemon.trainer, randomGenerator.getRandomMove(this.currentPokemon.foe))
+				console.log(message2)
+
+				this.useMoveBattleDataUpdate({
+					moveData: randomGenerator.getRandomMove(this.currentPokemon.foe),
+					inCommingAttack: true
+				})
 			},
 
 			...mapGetters([
