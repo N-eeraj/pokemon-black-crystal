@@ -234,7 +234,7 @@ export default {
 
 	async getPokemonById({ getters, dispatch }, id) {
 		const data = getters.getPokemon[id]
-		if (data) return data
+		if (data) return common.deepCopy(data)
 		await dispatch('cachePokemonById', id)
 		return await dispatch('getPokemonById', id)
 	},

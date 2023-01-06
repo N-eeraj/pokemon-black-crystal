@@ -13,13 +13,13 @@
 				@click="showPokeballs" />
 
 			<battle-pokemon
-				v-if="battleData?.foe.partyList.length"
+				v-if="!loading && currentPokemon.foe"
 				:pokemon="currentPokemon.foe"
 				isFoe />
 			<div v-else>
 			</div>
 			<battle-pokemon
-				v-if="battleData?.trainer.partyList.length"
+				v-if="!loading && currentPokemon.trainer"
 				:pokemon="currentPokemon.trainer"/>
 		</div>
 
@@ -140,7 +140,8 @@
 				modal: {
 					confirmEscape: false
 				},
-				battleMessage: null
+				battleMessage: null,
+				loading: true
 			}
 		},
 
@@ -166,18 +167,19 @@
 		},
 
 		async created() {
+			await this.setBattleParty(this.playerParty, 'trainer')
+			await this.setBattleParty(this.foeParty, 'foe')
+			this.setBattleData(this.battle)
+
 			// to-do: check & show available pokeballs
 			this.availablePokeballs = this.getAvailableBalls()
 			// console.log(this.availablePokeballs)
 
-			await this.setBattleParty(this.playerParty, 'trainer')
-			await this.setBattleParty(this.foeParty, 'foe')
-
-			this.setBattleData(this.battle)
+			this.loading = false
 		},
 
 		methods: {
-			async setBattleParty(partyIds, trainer) {
+			async setBattleParty(partyIds, user) {
 				await partyIds.forEach(async (pokemon, index) => {
 					let data = await this.getPokemonById(pokemon.pokemon)
 					data.level = data.getLevel(pokemon.exp)
@@ -190,7 +192,7 @@
 						})
 					data.stat = data.getStat(pokemon.exp)
 					data.currentHp = data.stat.hp
-					this.battle[trainer].partyList[index] = data
+					this.battle[user].partyList[index] = data
 				})
 			},
 
@@ -282,26 +284,28 @@
 							if (this.currentPokemon[firstPokemon].currentHp <= 0) {
 								this.battleMessage = messages.faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
 								this.handleFaint(firstPokemon)
-								// if battle is not over reset battle message
-								if (!this.checkGameOver()) {
-									setTimeout(() => {
-										this.battleMessage = null
-									}, 2500);
-								}
 							}
-						}, 2500)
-					}, 2500)
+							// if battle is not over reset battle message
+							if (!this.checkGameOver()) {
+								setTimeout(() => {
+									this.battleMessage = null
+								}, 2000);
+							}
+						}, 2000)
+					}, 2000)
 				}
 				else {
-					// the Pokémon to make the second move faints
-					this.battleMessage = messages.faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
-					this.handleFaint(secondPokemon)
-					// if battle is not over reset battle message
-					if (!this.checkGameOver()) {
-						setTimeout(() => {
-							this.battleMessage = null
-						}, 2500);
-					}
+					setTimeout(() => {
+						// the Pokémon to make the second move faints
+						this.battleMessage = messages.faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
+						this.handleFaint(secondPokemon)
+						// if battle is not over reset battle message
+						if (!this.checkGameOver()) {
+							setTimeout(() => {
+								this.battleMessage = null
+							}, 2000);
+						}
+					}, 2000)
 				}
 			},
 
@@ -327,13 +331,13 @@
 			blackOut() {
 				setTimeout(() => {
 					this.battleMessage = 'You have no usable Pokémon left.'
-				}, 2500);
+				}, 2000);
 			},
 
 			victory() {
 				setTimeout(() => {
 					this.battleMessage = 'You defeated your opponent.'
-				}, 2500);
+				}, 2000);
 			},
 
 			...mapGetters([
