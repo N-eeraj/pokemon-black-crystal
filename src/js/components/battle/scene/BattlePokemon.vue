@@ -13,7 +13,7 @@
 			<progress
 				:value="pokemon.currentHp"
 				:max="pokemon.stat.hp"
-				:class="{high: true}" />
+				:class="hpClass" />
 		</div>
 		<div class="pokemon">
 			<img
@@ -26,6 +26,7 @@
 <script>
 	export default {
 		name: 'battle-pokemon',
+
 		props: {
 			pokemon: {
 				type: Object,
@@ -36,8 +37,15 @@
 				required: false,
 				default: false
 			}
-		}
+		},
+
+		computed: {
+			hpClass() {
+				const healthPercentage = this.pokemon.currentHp / this.pokemon.stat.hp
+				if (healthPercentage > 0.75) return 'high'
+				if (healthPercentage > 0.4) return 'medium'
+				return 'low'
+			}
+		},
 	}
 </script>
-
-<style lang="scss" src="@/styles/battle/pokemon.scss"></style>

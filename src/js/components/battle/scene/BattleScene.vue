@@ -16,6 +16,8 @@
 				v-if="battleData?.foe.partyList.length"
 				:pokemon="currentPokemon.foe"
 				isFoe />
+			<div v-else>
+			</div>
 			<battle-pokemon
 				v-if="battleData?.trainer.partyList.length"
 				:pokemon="currentPokemon.trainer"/>
@@ -79,6 +81,7 @@
 
 	export default {
 		name: 'battle-scene',
+
 		components: {
 			PopUp,
 			BattlePokemon,
@@ -230,8 +233,8 @@
 				const foeMessage = messages.moveMessage(this.currentPokemon.foe, this.currentPokemon.trainer, foeMove, true)
 
 				let firstPokemon, firstMove, firstMoveMessage, secondPokemon, secondMove, secondMoveMessage
-
 				if (this.canAttackFirst(moveData, foeMove)) {
+					// Sets the values of variable such that player makes the first move
 					firstPokemon = 'trainer'
 					firstMove = {
 						moveData,
@@ -245,9 +248,9 @@
 						inCommingAttack: true
 					}
 					secondMoveMessage = foeMessage
-
 				}
 				else {
+					// Sets the values of variable such that oppponent makes the first move
 					firstPokemon = 'foe'
 					firstMove = {
 						moveData: foeMove,
@@ -261,29 +264,44 @@
 						inCommingAttack: false
 					}
 					secondMoveMessage = trainerMessage
-
 				}
-				
+
+				// Make the first attack and display message
 				this.useMoveBattleDataUpdate(firstMove)
 				this.battleMessage = firstMoveMessage
 
 				if (this.currentPokemon[secondPokemon].currentHp > 0) {
+					// the Pokémon to make the second move doesn't faint
 					setTimeout(() => {
+						// Make the second attack and display message
 						this.useMoveBattleDataUpdate(secondMove)
 						this.battleMessage = secondMoveMessage
-						if (this.currentPokemon[firstPokemon].currentHp <= 0) {
-							this.battleMessage = messages.faintMessage(this.currentPokemon[firstPokemon], firstPokemon==='foe')
-						}
+
 						setTimeout(() => {
-							this.battleMessage = null
-						}, 2500);
+							// checks if the Pokémon that made the first attack faints
+							if (this.currentPokemon[firstPokemon].currentHp <= 0) {
+								this.battleMessage = messages.faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
+								this.handleFaint(firstPokemon)
+								// if battle is not over reset battle message
+								if (!this.checkGameOver()) {
+									setTimeout(() => {
+										this.battleMessage = null
+									}, 2500);
+								}
+							}
+						}, 2500)
 					}, 2500)
 				}
 				else {
-					this.battleMessage = messages.faintMessage(this.currentPokemon[secondPokemon], secondPokemon==='foe')
-					setTimeout(() => {
-						this.battleMessage = null
-					}, 2500);
+					// the Pokémon to make the second move faints
+					this.battleMessage = messages.faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
+					this.handleFaint(secondPokemon)
+					// if battle is not over reset battle message
+					if (!this.checkGameOver()) {
+						setTimeout(() => {
+							this.battleMessage = null
+						}, 2500);
+					}
 				}
 			},
 
@@ -291,6 +309,31 @@
 				if (trainerMove.priority > foeMove.priority) return true
 				if (trainerMove.priority < foeMove.priority) return false
 				return this.currentPokemon.trainer.stat.speed > this.currentPokemon.foe.stat.speed
+			},
+
+			handleFaint(user) {
+				this.pokemonFaintedBattleDataUpdate(user)
+			},
+
+			checkGameOver() {
+				const trainerParty = this.battleData.trainer.partyList.length
+				const foeParty = this.battleData.foe.partyList.length
+				if (trainerParty && foeParty) return false
+				if (!trainerParty) this.blackOut()
+				else if (!foeParty) this.victory()
+				return true
+			},
+
+			blackOut() {
+				setTimeout(() => {
+					this.battleMessage = 'You have no usable Pokémon left.'
+				}, 2500);
+			},
+
+			victory() {
+				setTimeout(() => {
+					this.battleMessage = 'You defeated your opponent.'
+				}, 2500);
 			},
 
 			...mapGetters([
@@ -301,12 +344,13 @@
 			...mapActions([
 				'getPokemonById',
 				'setBattleData',
-				'useMoveBattleDataUpdate'
+				'useMoveBattleDataUpdate',
+				'pokemonFaintedBattleDataUpdate'
 			])
 		}
 	}
 </script>
 
 <style lang="scss">
-	@import "@/styles/battle/scene", "@/styles/pokemonList";
+	@import "@/styles/battle/scene", "@/styles/pokemonList", "@/styles/battle/pokemon.scss";
 </style>

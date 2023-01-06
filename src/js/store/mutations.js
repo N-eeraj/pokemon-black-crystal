@@ -36,15 +36,17 @@ export default {
 
 	useMoveBattleDataUpdate(state, data) {
 		const { moveData, inCommingAttack } = data
-		// console.log(state.battle)
-		// console.log(moveData)
 
 		const attacker = state.battle[inCommingAttack ? 'foe' : 'trainer']
-		const defener = state.battle[inCommingAttack ? 'trainer' : 'foe']
+		const defender = state.battle[inCommingAttack ? 'trainer' : 'foe']
 
-		const damage = calculations.moveDamage(moveData, attacker.partyList[attacker.currentPokemonIndex], defener.partyList[defener.currentPokemonIndex])
+		const damage = calculations.moveDamage(moveData, attacker.partyList[attacker.currentPokemonIndex], defender.partyList[defender.currentPokemonIndex])
 
-		defener.partyList[defener.currentPokemonIndex].currentHp -= damage
+		defender.partyList[defender.currentPokemonIndex].currentHp -= damage
 		attacker.partyList[attacker.currentPokemonIndex].movesList.find(move => move.name === moveData.name).pp -= 1
+	},
+
+	pokemonFaintedBattleDataUpdate(state, user) {
+		state.battle[user].partyList.splice(state.battle[user].currentPokemonIndex, 1)
 	}
 }

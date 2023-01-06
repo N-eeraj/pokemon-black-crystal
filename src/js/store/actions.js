@@ -245,5 +245,9 @@ export default {
 	
 	useMoveBattleDataUpdate({ commit }, data) {
 		commit('useMoveBattleDataUpdate', data)
+	},
+	
+	pokemonFaintedBattleDataUpdate({ commit }, data) {
+		commit('pokemonFaintedBattleDataUpdate', data)
 	}
 }
