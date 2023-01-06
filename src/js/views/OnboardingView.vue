@@ -73,7 +73,7 @@
 </template>
 
 <script>
-	import PopUp from "@/js/components/PopUp.vue"
+	import PopUp from "@/js/components/UI/PopUp.vue"
 	import BattleWrapper from "@/js/components/battle/BattleWrapper.vue"
 	
 	import imageAndSprites from "@/js/mixins/imageAndSprites"

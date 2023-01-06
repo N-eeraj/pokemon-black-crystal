@@ -38,7 +38,7 @@
 </template>
 
 <script>
-	import NavigationBar from "@/js/components/NavigationBar.vue"
+	import NavigationBar from "@/js/components/UI/NavigationBar.vue"
     import { mapGetters } from 'vuex'
 
 

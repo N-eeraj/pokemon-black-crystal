@@ -42,7 +42,7 @@
 		mounted() {
 			setInterval(() => {
 				this.updateOfflineStats()
-			}, 10000);
+			}, 30000);
 		},
 
 		computed: {

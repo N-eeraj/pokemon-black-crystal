@@ -48,6 +48,10 @@
 			@useMove="useMove"
 			@closeMoveset="hidePokemonMoves" />
 
+		<pokemon-list
+			v-if="show.party && battleData"
+			@closeParty="hidePartyPokemon" />
+
 		<pop-up
 			v-if="modal.confirmEscape"
 			close
@@ -70,9 +74,10 @@
 </template>
 
 <script>
-	import PopUp from "@/js/components/PopUp.vue"
+	import PopUp from "@/js/components/UI/PopUp.vue"
 	import BattlePokemon from "@/js/components/battle/scene/BattlePokemon.vue"
 	import MovesList from "@/js/components/battle/MovesList.vue"
+	import PokemonList from "@/js/components/PokemonList.vue"
 
 	import { mapGetters, mapActions } from 'vuex'
 
@@ -85,7 +90,8 @@
 		components: {
 			PopUp,
 			BattlePokemon,
-			MovesList
+			MovesList,
+			PokemonList
 		},
 
 		props: {
@@ -132,7 +138,6 @@
 					}
 				},
 				availablePokeballs: null,
-				trainerPokemonMoveset: null,
 				show: {
 					moveset: false,
 					party: false
@@ -197,7 +202,6 @@
 			},
 
 			listPokemonMoves() {
-				this.trainerPokemonMoveset = this.battle.trainer.partyList[this.battle.trainer.currentPokemonIndex].movesList
 				this.show.moveset = true
 			},
 
@@ -207,7 +211,10 @@
 
 			listPartyPokemon() {
 				this.show.party = true
-				console.log(this.battle.trainer.partyList)
+			},
+
+			hidePartyPokemon() {
+				this.show.party = false
 			},
 
 			closePopUp(popUpName) {
