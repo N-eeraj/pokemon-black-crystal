@@ -21,7 +21,14 @@
 				:pokemon="currentPokemon.trainer"/>
 		</div>
 
-		<div class="actions">
+		<div
+			v-if="battleMessage"
+			class="battle-message">
+			{{ battleMessage }}
+		</div>
+		<div
+			v-else
+			class="actions">
 			<button
 				class="moves"
 				@click="listPokemonMoves">
@@ -129,7 +136,8 @@
 				},
 				modal: {
 					confirmEscape: false
-				}
+				},
+				battleMessage: null
 			}
 		},
 
@@ -257,19 +265,25 @@
 				}
 				
 				this.useMoveBattleDataUpdate(firstMove)
-				console.log(firstMoveMessage)
+				this.battleMessage = firstMoveMessage
 
 				if (this.currentPokemon[secondPokemon].currentHp > 0) {
 					setTimeout(() => {
 						this.useMoveBattleDataUpdate(secondMove)
-						console.log(secondMoveMessage)
+						this.battleMessage = secondMoveMessage
 						if (this.currentPokemon[firstPokemon].currentHp <= 0) {
-							console.log(messages.faintMessage(this.currentPokemon[firstPokemon], firstPokemon==='foe'))
+							this.battleMessage = messages.faintMessage(this.currentPokemon[firstPokemon], firstPokemon==='foe')
 						}
+						setTimeout(() => {
+							this.battleMessage = null
+						}, 2500);
 					}, 2500)
 				}
 				else {
-					console.log(messages.faintMessage(this.currentPokemon[secondPokemon], secondPokemon==='foe'))
+					this.battleMessage = messages.faintMessage(this.currentPokemon[secondPokemon], secondPokemon==='foe')
+					setTimeout(() => {
+						this.battleMessage = null
+					}, 2500);
 				}
 			},
 

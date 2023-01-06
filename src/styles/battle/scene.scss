@@ -37,12 +37,21 @@
 		}
 	}
 
+	.battle-message, .actions {
+		width: 100%;
+		height: min(10%, 80px);
+	}
+
+	.battle-message {
+		padding: 10px;
+		background-color: palette.$primary;
+		color: palette.$white;
+	}
+
 	.actions {
 		position: fixed;
 		bottom: 0;
 		@include main.flex($align: stretch);
-		width: 100%;
-		height: min(10%, 80px);
 
 		button {
 			width: 50%;
