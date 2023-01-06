@@ -50,7 +50,13 @@
 
 		<pokemon-list
 			v-if="show.party && battleData"
-			@closeParty="hidePartyPokemon" />
+			:list="this.battleData.trainer.partyList"
+			title="Pokémon"
+			icon="cross-mark"
+			iconAction="closeParty"
+			showHp
+			@closeParty="hidePartyPokemon"
+			@selectedPokemon="changeCurrentPokemon" />
 
 		<pop-up
 			v-if="modal.confirmEscape"
@@ -234,6 +240,18 @@
 				console.log('show available pokeballs')
 			},
 
+			changeCurrentPokemon(newIndex) {
+				if (newIndex === this.battleData.trainer.currentPokemonIndex) return
+				this.switchBattlePokemon({
+					newIndex,
+					isOpponent: false
+				})
+				this.hidePartyPokemon()
+				setTimeout(() => {
+					this.useMove(null)
+				}, 2000);
+			},
+
 			useMove(moveData) {
 				this.hidePokemonMoves()
 				const trainerMessage = messages.moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData, false)
@@ -317,6 +335,7 @@
 			},
 
 			canAttackFirst(trainerMove, foeMove) {
+				if (!trainerMove) return false
 				if (trainerMove.priority > foeMove.priority) return true
 				if (trainerMove.priority < foeMove.priority) return false
 				return this.currentPokemon.trainer.stat.speed > this.currentPokemon.foe.stat.speed
@@ -355,6 +374,7 @@
 			...mapActions([
 				'getPokemonById',
 				'setBattleData',
+				'switchBattlePokemon',
 				'useMoveBattleDataUpdate',
 				'pokemonFaintedBattleDataUpdate'
 			])

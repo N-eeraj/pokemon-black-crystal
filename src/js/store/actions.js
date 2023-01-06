@@ -243,8 +243,12 @@ export default {
 		commit('setBattleData', data)
 	},
 	
+	switchBattlePokemon({ commit }, data) {
+		commit('switchBattlePokemon', data)
+	},
+
 	useMoveBattleDataUpdate({ commit }, data) {
-		commit('useMoveBattleDataUpdate', data)
+		if (data.moveData) commit('useMoveBattleDataUpdate', data)
 	},
 	
 	pokemonFaintedBattleDataUpdate({ commit }, data) {

@@ -42,18 +42,13 @@
     import { mapGetters } from 'vuex'
 
 
-    export default{
+    export default {
 
         components: {
             NavigationBar
         },
 
-        created() {
-            this.moveList
-        },
-
         computed: {
-
             moveList() {
                 const trainer = this.getBattleData.trainer
                 return trainer.partyList[trainer.currentPokemonIndex].movesList.filter(move => move.pp)

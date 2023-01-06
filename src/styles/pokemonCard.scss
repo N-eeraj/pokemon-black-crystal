@@ -1,0 +1,49 @@
+@use "@/styles/colors/palette";
+@use "@/styles/colors/types";
+@use "@/styles/mixins/main";
+
+.pokemon-card {
+    @include main.flex($justify: flex-start);
+    width: 90%;
+    height: min(160px, 20vh);
+    padding: 10px;
+    border-radius: 15px;
+    background-color: palette.$secondary;
+    cursor: pointer;
+
+    img {
+        width: 30%;
+        aspect-ratio: 1;
+    }
+
+    .details {
+        @include main.flex($direction: column, $justify: space-evenly, $align: flex-start);
+        width: 70%;
+        height: 100%;
+        
+        strong {
+            color: palette.$white;
+        }
+        span {
+            color: palette.$white-secondary;
+            font-size: 0.8rem;
+        }
+        progress {
+            @include main.hp;
+        }
+
+        .types-list {
+            @include main.flex($justify: flex-start, $col: 5%);
+            width: 100%;
+
+            .pokemon-type {
+                width: 50%;
+                padding: 3px;
+                border-radius: 20px;
+                text-align: center;
+                border: 1px solid;
+                font-size: 0.75rem;
+            }
+        }
+    }
+}

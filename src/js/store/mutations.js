@@ -34,6 +34,11 @@ export default {
 		state.battle = data
 	},
 
+	switchBattlePokemon(state, data) {
+		const { newIndex, isOpponent } = data
+		state.battle[isOpponent ? 'foe' : 'trainer'].currentPokemonIndex = newIndex
+	},
+
 	useMoveBattleDataUpdate(state, data) {
 		const { moveData, inCommingAttack } = data
 

@@ -35,4 +35,4 @@
 	}
 </script>
 
-<style lang="scss" src="@/styles/popUp.scss"></style>
+<style lang="scss" src="@/styles/UI/popUp.scss"></style>

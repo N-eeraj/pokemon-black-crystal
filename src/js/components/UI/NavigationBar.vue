@@ -29,5 +29,5 @@
 </script>
 
 <style lang="scss">
-	@import "@/styles/navbar";
+	@import "@/styles/UI/navbar";
 </style>

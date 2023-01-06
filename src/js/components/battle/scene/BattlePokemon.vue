@@ -46,6 +46,6 @@
 				if (healthPercentage > 0.4) return 'medium'
 				return 'low'
 			}
-		},
+		}
 	}
 </script>

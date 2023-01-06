@@ -1,5 +1,7 @@
 export default {
     moveMessage(attacker, defender, move, isFoe = false) {
+        if (!move) return null // skip move
+
         let message = isFoe ? 'Foe ' : 'Your '
 
         message += `${attacker.name} used ${move.name}.`
