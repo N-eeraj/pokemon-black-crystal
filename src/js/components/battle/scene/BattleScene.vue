@@ -216,23 +216,67 @@
 
 			useMove(moveData) {
 				this.hidePokemonMoves()
-
-				const message1 = messages.moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData)
-				console.log(message1)
-
-				this.useMoveBattleDataUpdate({
-					moveData,
-					inCommingAttack: false
-				})
-
+				const trainerMessage = messages.moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData, false)
 				
-				const message2 = messages.moveMessage(this.currentPokemon.foe, this.currentPokemon.trainer, randomGenerator.getRandomMove(this.currentPokemon.foe))
-				console.log(message2)
+				const foeMove = randomGenerator.getRandomMove(this.currentPokemon.foe)
+				const foeMessage = messages.moveMessage(this.currentPokemon.foe, this.currentPokemon.trainer, foeMove, true)
 
-				this.useMoveBattleDataUpdate({
-					moveData: randomGenerator.getRandomMove(this.currentPokemon.foe),
-					inCommingAttack: true
-				})
+				let firstPokemon, firstMove, firstMoveMessage, secondPokemon, secondMove, secondMoveMessage
+
+				if (this.canAttackFirst(moveData, foeMove)) {
+					firstPokemon = 'trainer'
+					firstMove = {
+						moveData,
+						inCommingAttack: false
+					}
+					firstMoveMessage = trainerMessage
+
+					secondPokemon = 'foe'
+					secondMove = {
+						moveData: foeMove,
+						inCommingAttack: true
+					}
+					secondMoveMessage = foeMessage
+
+				}
+				else {
+					firstPokemon = 'foe'
+					firstMove = {
+						moveData: foeMove,
+						inCommingAttack: true
+					}
+					firstMoveMessage = foeMessage
+
+					secondPokemon = 'trainer'
+					secondMove = {
+						moveData,
+						inCommingAttack: false
+					}
+					secondMoveMessage = trainerMessage
+
+				}
+				
+				this.useMoveBattleDataUpdate(firstMove)
+				console.log(firstMoveMessage)
+
+				if (this.currentPokemon[secondPokemon].currentHp > 0) {
+					setTimeout(() => {
+						this.useMoveBattleDataUpdate(secondMove)
+						console.log(secondMoveMessage)
+						if (this.currentPokemon[firstPokemon].currentHp <= 0) {
+							console.log(messages.faintMessage(this.currentPokemon[firstPokemon], firstPokemon==='foe'))
+						}
+					}, 2500)
+				}
+				else {
+					console.log(messages.faintMessage(this.currentPokemon[secondPokemon], secondPokemon==='foe'))
+				}
+			},
+
+			canAttackFirst(trainerMove, foeMove) {
+				if (trainerMove.priority > foeMove.priority) return true
+				if (trainerMove.priority < foeMove.priority) return false
+				return this.currentPokemon.trainer.stat.speed > this.currentPokemon.foe.stat.speed
 			},
 
 			...mapGetters([

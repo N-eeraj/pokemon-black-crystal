@@ -12,6 +12,6 @@ export default {
         // ratio between attacking pokemon's offence & defening pokemon's defense
         const attackDefenseRatio = getAttackDefenseRatio(move.damageClass, attacker, defender)
 
-        return STAB * random * (2 + (0.4 * level + 2) * power * attackDefenseRatio * 0.02)
+        return Math.floor(STAB * random * (2 + (0.4 * level + 2) * power * attackDefenseRatio * 0.02))
 	}
 }

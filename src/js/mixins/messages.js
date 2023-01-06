@@ -11,5 +11,11 @@ export default {
             message += ' It is not very effective.'
 
         return message
+    },
+
+    faintMessage(pokemon, isFoe = false) {
+        let message = isFoe ? 'Foe ' : 'Your '
+        message += `${pokemon.name} fainted.`
+        return message
     }
 }
