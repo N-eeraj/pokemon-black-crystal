@@ -247,6 +247,7 @@
 					isOpponent: false
 				})
 				this.hidePartyPokemon()
+				this.battleMessage = messages.changePokemon(false)
 				setTimeout(() => {
 					this.useMove(null)
 				}, 2000);
