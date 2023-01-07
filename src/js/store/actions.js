@@ -242,6 +242,10 @@ export default {
 	setBattleData({ commit }, data) {
 		commit('setBattleData', data)
 	},
+
+	reArrangePartyPokemon({ commit }, data) {
+		commit('reArrangePartyPokemon', data)
+	},
 	
 	switchBattlePokemon({ commit }, data) {
 		commit('switchBattlePokemon', data)

@@ -34,8 +34,21 @@ export default {
 		state.battle = data
 	},
 
-	switchBattlePokemon(state, data) {
-		const { newIndex, isOpponent } = data
+	reArrangePartyPokemon(state, { currentIndex, newIndex, isOpponent }) {
+		const user = state.battle[isOpponent ? 'foe' : 'trainer']
+
+		if (newIndex < 0) newIndex = 0
+		else if (newIndex > user.partyList.length) {
+			newIndex = user.partyList.length - 1
+		}
+
+		[user.partyList[currentIndex], user.partyList[newIndex]] = [user.partyList[newIndex], user.partyList[currentIndex]]
+		
+		if (user.currentPokemonIndex === newIndex) user.currentPokemonIndex = currentIndex
+		else if (user.currentPokemonIndex === currentIndex) user.currentPokemonIndex = newIndex
+	},
+
+	switchBattlePokemon(state, { newIndex, isOpponent }) {
 		state.battle[isOpponent ? 'foe' : 'trainer'].currentPokemonIndex = newIndex
 	},
 

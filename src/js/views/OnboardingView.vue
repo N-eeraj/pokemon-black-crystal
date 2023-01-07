@@ -33,8 +33,6 @@
 				<template #actions>
 					<button
 						class="confirm"
-						:class="{ disabled: !(onboarding.name?.trim()) }"
-						:disabled="!onboarding.name"
 						@click="setName">
 						OK
 					</button>

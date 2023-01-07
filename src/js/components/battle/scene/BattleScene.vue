@@ -55,8 +55,10 @@
 			icon="cross-mark"
 			iconAction="closeParty"
 			showHp
-			@closeParty="hidePartyPokemon"
-			@selectedPokemon="changeCurrentPokemon" />
+			rearrangeable
+			@navIconAction="hidePartyPokemon"
+			@selectedPokemon="changeCurrentPokemon"
+			@rearrangePokemon="changePartyOrder" />
 
 		<pop-up
 			v-if="modal.confirmEscape"
@@ -240,6 +242,14 @@
 				console.log('show available pokeballs')
 			},
 
+			changePartyOrder({ currentIndex, newIndex }) {
+				this.reArrangePartyPokemon({
+					currentIndex,
+					newIndex,
+					isOpponent: false
+				})
+			},
+
 			changeCurrentPokemon(newIndex) {
 				if (newIndex === this.battleData.trainer.currentPokemonIndex) return
 				this.switchBattlePokemon({
@@ -375,6 +385,7 @@
 			...mapActions([
 				'getPokemonById',
 				'setBattleData',
+				'reArrangePartyPokemon',
 				'switchBattlePokemon',
 				'useMoveBattleDataUpdate',
 				'pokemonFaintedBattleDataUpdate'

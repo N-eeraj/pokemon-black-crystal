@@ -1,7 +1,13 @@
 <template>
 
-    <div class="pokemon-card">
-        
+    <div
+        draggable="true"
+        class="pokemon-card"
+        @touchstart="handleTouchStart"
+        @dragstart="handleDragStart"
+        @touchend="handleTouchEnd"
+        @dragend="handleDragEnd">
+
         <img :src="pokemon.image">
 
         <div class="details">
@@ -45,6 +51,17 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            rearrangeable: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
+        },
+        
+        data() {
+            return {
+                startPosition: null
             }
         },
 
@@ -54,6 +71,33 @@
                 if (healthPercentage > 0.75) return 'high'
                 if (healthPercentage > 0.4) return 'medium'
                 return 'low'
+            },
+
+            handleTouchStart() {
+                this.handleStart(event.changedTouches[0].screenY)
+            },
+
+            handleDragStart() {
+                this.handleStart(event.y)
+            },
+
+            handleStart(startValue) {
+                if (!this.rearrangeable) return
+                this.startPosition = startValue
+            },
+
+            handleTouchEnd() {
+                this.handleEnd(event.changedTouches[0].screenY, event.target.closest('.pokemon-card').offsetHeight)
+            },
+
+            handleDragEnd() {
+                this.handleEnd(event.y, event.target.closest('.pokemon-card').offsetHeight)
+            },
+
+            handleEnd(endValue, elementHeight) {
+                if (!this.rearrangeable) return
+                const change = Math.round((endValue - this.startPosition) / elementHeight)
+                if (change !== 0) this.$emit('rearrange', change)
             }
         }
     }

@@ -4,16 +4,17 @@
         <navigation-bar
             :title="title"
             :icon="icon"
-            @iconEvent="$emit(iconAction)" />
+            @iconEvent="$emit('navIconAction')" />
         
         <div id="pokemon_list">
             <pokemon-card
                 v-for="(pokemon, index) in list"
                 :pokemon="pokemon"
                 :showHp="showHp"
+                :rearrangeable="rearrangeable"
                 :key="index"
-                class="pokemon-card"
-                @click="$emit('selectedPokemon', index)" />
+                @click="$emit('selectedPokemon', index)"
+                @rearrange="(positions) => handleRearrange(index, positions)" />
         </div>
     </div>
 </template>
@@ -42,10 +43,6 @@
                 type: String,
                 required: false
             },
-            iconAction: {
-                type: String,
-                required: false
-            },
             showHp: {
                 type: Boolean,
                 required: false,
@@ -55,12 +52,14 @@
                 type: Boolean,
                 required: false,
                 default: false
-            },
-            rearrangeAction: {
-                type: String,
-                required: false
             }
-        }
+        },
+
+        methods: {
+            handleRearrange(currentIndex, newIndex) {
+                this.$emit('rearrangePokemon', { currentIndex, newIndex })
+            }
+        },
     }
 </script>
 
