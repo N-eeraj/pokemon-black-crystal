@@ -65,8 +65,8 @@
 			v-if="battle.start"
 			:playerParty="battle.player"
 			:foeParty="battle.foe"
-			:foeDetails="battle.foeDetails">
-		</battle-wrapper>
+			:foeDetails="battle.foeDetails"
+			@completedMatch="handleMatchCompleteion" />
 	</div>
 </template>
 
@@ -159,7 +159,10 @@
 					exp: 135,
 					happiness: 50
 				}
-				this.initData.pokemon.encountered.push(...[this.onboarding.starter.id, this.onboarding.rivalStarter.id])
+				this.initData.pokemon.encountered = {
+					list: [this.onboarding.starter.id, this.onboarding.rivalStarter.id],
+					last: 2
+				}
 				this.initData.pokemon.party.push(1)
 				// localStorage.setItem('gameData', btoa(JSON.stringify(this.initData)))
 				this.$router.push("/")
@@ -223,6 +226,12 @@
 					name: 'Brendan'
 				}
 				this.battle.start = true
+			},
+
+			handleMatchCompleteion(victory) {
+				this.onboarding.rivalBattle = victory
+				this.battle.start = false
+				this.nextDialogue()
 			},
 
 			...mapActions([

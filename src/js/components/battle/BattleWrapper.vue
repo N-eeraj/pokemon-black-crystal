@@ -3,7 +3,8 @@
 		v-if="battle.ongoing"
 		:playerParty="playerParty"
 		:foeParty="foeParty"
-		:saveBattle="saveBattle" />
+		:saveBattle="saveBattle"
+		@gameOver="handleGameOver" />
 
 	<div
 		v-else
@@ -29,6 +30,8 @@
 
 <script>
 	import BattleScene from "@/js/components/battle/scene/BattleScene.vue"
+
+	import { mapActions } from 'vuex'
 
 	export default {
 		name: 'battle-wrapper',
@@ -82,7 +85,16 @@
 
 			startBattle() {
 				this.battle.ongoing = true
-			}
+			},
+
+			handleGameOver(victory) {
+				this.setBattleData(null)
+				this.$emit('completedMatch', victory)
+			},
+
+			...mapActions([
+				'setBattleData'
+			])
 		},
 	}
 </script>

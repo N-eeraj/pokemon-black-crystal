@@ -368,12 +368,18 @@
 			blackOut() {
 				setTimeout(() => {
 					this.battleMessage = 'You have no usable Pokémon left.'
+					setTimeout(() => {
+						this.$emit('gameOver', false)
+					}, 2000);
 				}, 2000);
 			},
 
 			victory() {
 				setTimeout(() => {
 					this.battleMessage = 'You defeated your opponent.'
+					setTimeout(() => {
+						this.$emit('gameOver', true)
+					}, 2000);
 				}, 2000);
 			},
 
