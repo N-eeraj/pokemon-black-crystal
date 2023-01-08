@@ -305,15 +305,25 @@
 				}
 
 				// Make the first attack and display message
-				this.useMoveBattleDataUpdate(firstMove)
-				this.battleMessage = firstMoveMessage
+				if (randomGenerator.checkMoveAccuracy(firstMove)) {
+					this.useMoveBattleDataUpdate(firstMove)
+					this.battleMessage = firstMoveMessage
+				}
+				else {
+					this.battleMessage = messages.missedMove(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
+				}
 
 				if (this.currentPokemon[secondPokemon].currentHp > 0) {
 					// the Pokémon to make the second move doesn't faint
 					setTimeout(() => {
 						// Make the second attack and display message
-						this.useMoveBattleDataUpdate(secondMove)
-						this.battleMessage = secondMoveMessage
+						if (randomGenerator.checkMoveAccuracy(secondMove)) {
+							this.useMoveBattleDataUpdate(secondMove)
+							this.battleMessage = secondMoveMessage
+						}
+						else {
+							this.battleMessage = messages.missedMove(this.currentPokemon[secondPokemon], firstPokemon === 'foe')
+						}
 
 						setTimeout(() => {
 							// checks if the Pokémon that made the first attack faints

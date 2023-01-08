@@ -24,5 +24,11 @@ export default {
         let message = isFoe ? 'Foe' : 'Your'
         message += ` ${pokemon.name} fainted.`
         return message
+    },
+    
+    missedMove(pokemon, isFoe = false) {
+        let message = isFoe ? 'Foe' : 'Your'
+        message += ` ${pokemon.name} missed the attack.`
+        return message
     }
 }
