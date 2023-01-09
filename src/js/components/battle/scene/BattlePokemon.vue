@@ -42,8 +42,8 @@
 		computed: {
 			hpClass() {
 				const healthPercentage = this.pokemon.currentHp / this.pokemon.stat.hp
-				if (healthPercentage > 0.75) return 'high'
-				if (healthPercentage > 0.4) return 'medium'
+				if (healthPercentage > 0.65) return 'high'
+				if (healthPercentage > 0.25) return 'medium'
 				return 'low'
 			}
 		}
