@@ -38,6 +38,8 @@
 	}
 
 	.battle-message, .actions {
+		position: fixed;
+		bottom: 0;
 		width: 100%;
 		height: min(10%, 80px);
 	}
@@ -49,8 +51,6 @@
 	}
 
 	.actions {
-		position: fixed;
-		bottom: 0;
 		@include main.flex($align: stretch);
 
 		button {
