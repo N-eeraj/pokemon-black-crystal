@@ -27,3 +27,12 @@
         opacity: 1;
     }
 }
+
+@keyframes wiggle {
+    from {
+        transform: rotate(1deg);
+    }
+    to {
+        transform: rotate(-1deg);
+    }
+}

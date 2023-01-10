@@ -2,7 +2,8 @@
 
     <div
         draggable="true"
-        class="pokemon-card">
+        class="pokemon-card"
+        :class="{ wiggle: startPosition}">
 
         <img :src="pokemon.image"
         @touchstart="handleTouchStart"
@@ -84,6 +85,7 @@
             handleStart(startValue) {
                 if (!this.rearrangeable) return
                 this.startPosition = startValue
+                console.log(this.$refs.pokemonCard)
             },
 
             handleTouchEnd() {
@@ -98,6 +100,7 @@
                 if (!this.rearrangeable) return
                 const change = Math.round((endValue - this.startPosition) / elementHeight)
                 if (change !== 0) this.$emit('rearrange', change)
+                this.startPosition = null
             }
         }
     }

@@ -1,6 +1,7 @@
 @use "@/styles/colors/palette";
 @use "@/styles/colors/types";
 @use "@/styles/mixins/main";
+@use "@/styles/animation";
 
 .pokemon-card {
     @include main.flex($justify: flex-start);
@@ -10,6 +11,10 @@
     border-radius: 15px;
     background-color: palette.$secondary;
     cursor: pointer;
+
+    &.wiggle {
+        animation: wiggle 250ms ease-in-out infinite alternate;
+    }
 
     img {
         width: 30%;
