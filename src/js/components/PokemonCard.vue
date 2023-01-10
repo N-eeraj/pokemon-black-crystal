@@ -5,11 +5,14 @@
         class="pokemon-card"
         :class="{ wiggle: startPosition}">
 
-        <img :src="pokemon.image"
-        @touchstart="handleTouchStart"
-        @dragstart="handleDragStart"
-        @touchend="handleTouchEnd"
-        @dragend="handleDragEnd" />
+        <div
+            class="image"
+            :style="`background-image: url(${pokemon.image});`"
+            @touchstart="handleTouchStart"
+            @dragstart="handleDragStart"
+            @touchend="handleTouchEnd"
+            @dragend="handleDragEnd">
+        </div>
 
         <div class="details">
             <strong>
@@ -85,7 +88,6 @@
             handleStart(startValue) {
                 if (!this.rearrangeable) return
                 this.startPosition = startValue
-                console.log(this.$refs.pokemonCard)
             },
 
             handleTouchEnd() {

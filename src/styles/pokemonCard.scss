@@ -16,9 +16,10 @@
         animation: wiggle 250ms ease-in-out infinite alternate;
     }
 
-    img {
+    .image {
         width: 30%;
         aspect-ratio: 1;
+        background-size: contain;
 
         &:active {
             cursor: grabbing;
