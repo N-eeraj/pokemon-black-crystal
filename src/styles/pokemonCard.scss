@@ -14,6 +14,10 @@
     img {
         width: 30%;
         aspect-ratio: 1;
+
+        &:active {
+            cursor: grabbing;
+        }
     }
 
     .details {
@@ -26,7 +30,6 @@
         }
         span {
             color: palette.$white-secondary;
-            font-size: 0.8rem;
         }
         progress {
             @include main.hp;

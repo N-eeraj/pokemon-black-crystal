@@ -56,8 +56,11 @@
         },
 
         methods: {
-            handleRearrange(currentIndex, newIndex) {
-                this.$emit('rearrangePokemon', { currentIndex, newIndex })
+            handleRearrange(currentIndex, positions) {
+                this.$emit('rearrangePokemon', {
+                    currentIndex,
+                    newIndex: currentIndex + positions
+                })
             }
         },
     }

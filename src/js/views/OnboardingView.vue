@@ -25,7 +25,7 @@
 				<template #body>
 					<input
 						v-model="onboarding.name"
-						placeholder="Enter Your Name"
+						placeholder="Your Name"
 						class="name-input"
 						@keyup.enter="setName"
 					/>

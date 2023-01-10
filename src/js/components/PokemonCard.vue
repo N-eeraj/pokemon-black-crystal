@@ -2,13 +2,13 @@
 
     <div
         draggable="true"
-        class="pokemon-card"
+        class="pokemon-card">
+
+        <img :src="pokemon.image"
         @touchstart="handleTouchStart"
         @dragstart="handleDragStart"
         @touchend="handleTouchEnd"
-        @dragend="handleDragEnd">
-
-        <img :src="pokemon.image">
+        @dragend="handleDragEnd" />
 
         <div class="details">
             <strong>

@@ -41,7 +41,7 @@
 		position: fixed;
 		bottom: 0;
 		width: 100%;
-		height: min(10%, 80px);
+		min-height: min(10%, 80px);
 	}
 
 	.battle-message {

@@ -11,5 +11,9 @@
         max-height: 90vh;
         padding-top: 10px;
         overflow-y: auto;
+        
+		progress {
+			@include main.hp;
+		}
     }
 }
