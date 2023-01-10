@@ -3,15 +3,15 @@
     <div
         draggable="true"
         class="pokemon-card"
-        :class="{ wiggle: startPosition}">
+        :class="{ wiggle: (startPosition && canMove) }"
+        @touchstart="handleTouchStart"
+        @dragstart="handleDragStart"
+        @touchend="handleTouchEnd"
+        @dragend="handleDragEnd">
 
         <div
             class="image"
-            :style="`background-image: url(${pokemon.image});`"
-            @touchstart="handleTouchStart"
-            @dragstart="handleDragStart"
-            @touchend="handleTouchEnd"
-            @dragend="handleDragEnd">
+            :style="`background-image: url(${pokemon.image});`">
         </div>
 
         <div class="details">
@@ -65,8 +65,23 @@
         
         data() {
             return {
-                startPosition: null
+                startPosition: null,
+                startTime: null,
+                now: null
             }
+        },
+
+        mounted() {
+            setInterval(() => {
+                if (this.startTime) this.now = Date.now()
+            }, 100)
+        },
+
+        computed: {
+            canMove() {
+                if (this.startTime) return (this.now - this.startTime) > 1000
+                return false
+            },
         },
 
         methods: {
@@ -88,6 +103,7 @@
             handleStart(startValue) {
                 if (!this.rearrangeable) return
                 this.startPosition = startValue
+                this.startTime = Date.now()
             },
 
             handleTouchEnd() {
@@ -99,10 +115,12 @@
             },
 
             handleEnd(endValue, elementHeight) {
-                if (!this.rearrangeable) return
-                const change = Math.round((endValue - this.startPosition) / elementHeight)
-                if (change !== 0) this.$emit('rearrange', change)
+                if (this.rearrangeable && this.canMove) {
+                    const change = Math.round((endValue - this.startPosition) / elementHeight)
+                    if (change !== 0) this.$emit('rearrange', change)
+                }
                 this.startPosition = null
+                this.startTime = null
             }
         }
     }

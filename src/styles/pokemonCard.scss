@@ -14,16 +14,13 @@
 
     &.wiggle {
         animation: wiggle 250ms ease-in-out infinite alternate;
+        cursor: grabbing;
     }
 
     .image {
         width: 30%;
         aspect-ratio: 1;
         background-size: contain;
-
-        &:active {
-            cursor: grabbing;
-        }
     }
 
     .details {
