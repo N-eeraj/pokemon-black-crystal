@@ -13,7 +13,7 @@ export default {
 
         const moveDamageRate = defender.getDamageRate(move.type)
         if (moveDamageRate > 1)
-            message += ' It is very effective.'
+            message += ' It is supper effective.'
         else if (moveDamageRate < 1)
             message += ' It is not very effective.'
 

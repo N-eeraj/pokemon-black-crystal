@@ -81,7 +81,7 @@ export default {
 				return rate
 			},
 			getMovesByLevel(exp) {
-				return this.moves.filter(move => move.level <= this.getLevel(exp))
+				return this.moves.filter(move => move.level <= this.getLevel(exp));
 			}
 		}
 		pokemonData.stats.forEach(stat => data.baseStat[stat.stat.name] = stat.base_stat)
@@ -94,6 +94,12 @@ export default {
 					level: move.version_group_details[0].level_learned_at
 				}
 			})
+		if (!data.moves.length) {
+			data.moves = [{
+				name: 'tackle',
+				level: 1
+			}]
+		}
 	
 		getNextPokemon(pokemonEvolutionData)
 		const nextEvolutionObj = {
