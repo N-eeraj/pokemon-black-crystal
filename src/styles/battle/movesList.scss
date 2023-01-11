@@ -1,9 +1,9 @@
+@use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
 @use "@/styles/colors/types";
-@use "@/styles/mixins/main";
 
 #moveset_container {
-	@include main.full-screen;
+    @include main.full-screen;
     background-color: palette.$primary;
 
     #moves_list {

@@ -1,9 +1,9 @@
 @use "@/styles/mixins/main";
 
 #navigation_bar {
+    @include main.flex;
     width: 100%;
     height: 8vh;
-	@include main.flex;
 
     .icon {
         position: absolute;

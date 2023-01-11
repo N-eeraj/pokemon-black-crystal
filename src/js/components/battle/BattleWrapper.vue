@@ -1,102 +1,107 @@
 <template>
-	<battle-scene
-		v-if="battle.ongoing"
-		:playerParty="playerParty"
-		:foeParty="foeParty"
-		:saveBattle="saveBattle"
-		@gameOver="handleGameOver" />
+    <battle-scene
+        v-if="battle.ongoing"
+        :player-party="playerParty"
+        :foe-party="foeParty"
+        :save-battle="saveBattle"
+        @gameOver="handleGameOver" />
 
-	<div
-		v-else
-		id="battle_wrapper"
-		:style="`background-image: url(${foeDetails.image})`">
-		<img
-			v-if="close"
-			:src="require(`@/assets/icons/cross-mark.svg`)"
-			class="close-icon"
-			@click="emitClose" />
-		<div class="overlay">
-			<button 
-				class="battle-btn"
-				@click="startBattle">
-				Battle
-			</button>
-			<p>
-				{{ message }}
-			</p>
-		</div>
-	</div>
+    <div
+        v-else
+        id="battle_wrapper"
+        :style="`background-image: url(${foeDetails.image})`">
+
+        <img
+            v-if="close"
+            :src="require(`@/assets/icons/cross-mark.svg`)"
+            class="close-icon"
+            @click="emitClose" />
+
+        <div class="overlay">
+            <button 
+                class="battle-btn"
+                @click="startBattle">
+                Battle
+            </button>
+            <p>
+                {{ message }}
+            </p>
+        </div>
+
+    </div>
 </template>
 
 <script>
-	import BattleScene from "@/js/components/battle/scene/BattleScene.vue"
 
-	import { mapActions } from 'vuex'
+    import BattleScene from "@/js/components/battle/scene/BattleScene.vue"
 
-	export default {
-		name: 'battle-wrapper',
-		components: {
-			BattleScene
-		},
-		
-		props: {
-			playerParty: {
-				type: Object,
-				required: true
-			},
-			foeParty: {
-				type: Object,
-				required: true
-			},
-			saveBattle: {
-				type: Boolean,
-				required: false,
-				default: false
-			},
-			foeDetails: {
-				type: Object,
-				required: true
-			},
-			close: {
-				type: Boolean,
-				required: false,
-				default: false
-			}
-		},
+    import { mapActions } from 'vuex'
 
-		data() {
-			return {
-				message: null,
-				battle: {
-					ongoing: false,
-					victory: false
-				}
-			}
-		},
+    export default {
+        name: 'battle-wrapper',
 
-		created() {
-			this.message = `${this.foeDetails.name} wants to battle`
-		},
-		
-		methods: {
-			emitClose() {
-				this.$emit('close')
-			},
+        components: {
+            BattleScene
+        },
 
-			startBattle() {
-				this.battle.ongoing = true
-			},
+        props: {
+            playerParty: {
+                type: Object,
+                required: true
+            },
+            foeParty: {
+                type: Object,
+                required: true
+            },
+            saveBattle: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
+            foeDetails: {
+                type: Object,
+                required: true
+            },
+            close: {
+                type: Boolean,
+                required: false,
+                default: false
+            }
+        },
 
-			handleGameOver(victory) {
-				this.setBattleData(null)
-				this.$emit('completedMatch', victory)
-			},
+        data() {
+            return {
+                message: null,
+                battle: {
+                    ongoing: false,
+                    victory: false
+                }
+            }
+        },
 
-			...mapActions([
-				'setBattleData'
-			])
-		},
-	}
+        created() {
+            this.message = `${this.foeDetails.name} wants to battle`
+        },
+
+        methods: {
+            emitClose() {
+                this.$emit('close')
+            },
+
+            startBattle() {
+                this.battle.ongoing = true
+            },
+
+            handleGameOver(victory) {
+                this.setBattleData(null)
+                this.$emit('completedMatch', victory)
+            },
+
+            ...mapActions([
+                'setBattleData'
+            ])
+        },
+    }
 </script>
 
 <style lang="scss" src="@/styles/battle/wrapper.scss"></style>

@@ -1,51 +1,51 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 
 .pop-up-wrapper {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
 
-	.pop-up-card {
-		position: absolute;
-		top: 25%;
-		left: 5%;
-		@include main.flex($direction: column, $row: 20px);
-		width: 90%;
-		padding: 30px;
-		background-color: palette.$secondary;
-		border-radius: 7px;
+    .pop-up-card {
+        position: absolute;
+        top: 25%;
+        left: 5%;
+        @include main.flex($direction: column, $row: 20px);
+        width: 90%;
+        padding: 30px;
+        background-color: palette.$secondary;
+        border-radius: 7px;
 
-		.body-container {
-			@include main.flex;
-		}
+        .body-container {
+            @include main.flex;
+        }
 
-		.actions-container {
-			@include main.flex($justify: space-around, $col: 25px);
+        .actions-container {
+            @include main.flex($justify: space-around, $col: 25px);
 
-			button {
-				padding: 5px 7px;
-				font-weight: 600;
-			}
+            button {
+                padding: 5px 7px;
+                font-weight: 600;
+            }
 
-			.confirm {
-				background-color: palette.$accent;
-				color: palette.$primary;
-			}
+            .confirm {
+                background-color: palette.$accent;
+                color: palette.$primary;
+            }
 
-			.cancel {
-				background-color: transparent;
-				color: palette.$accent;
-				border: 1px solid palette.$accent;
-			}
+            .cancel {
+                background-color: transparent;
+                color: palette.$accent;
+                border: 1px solid palette.$accent;
+            }
 
-			.disabled {
-				filter: grayscale(1);
-				cursor: not-allowed;
-			}
-		}
-	}
+            .disabled {
+                filter: grayscale(1);
+                cursor: not-allowed;
+            }
+        }
+    }
 }

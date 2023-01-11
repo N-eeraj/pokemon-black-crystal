@@ -10,7 +10,7 @@
             <pokemon-card
                 v-for="(pokemon, index) in list"
                 :pokemon="pokemon"
-                :showHp="showHp"
+                :show-hp="showHp"
                 :rearrangeable="rearrangeable"
                 :key="index"
                 @click="$emit('selectedPokemon', index)"
@@ -20,10 +20,12 @@
 </template>
 
 <script>
-	import NavigationBar from "@/js/components/UI/NavigationBar.vue"
-	import PokemonCard from "@/js/components/PokemonCard.vue"
+
+    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
+    import PokemonCard from "@/js/components/PokemonCard.vue"
 
     export default {
+        name: 'pokemon-list',
 
         components: {
             NavigationBar,
@@ -66,6 +68,4 @@
     }
 </script>
 
-<style lang="scss">
-	@import "@/styles/pokemonList";
-</style>
+<style lang="scss" src="@/styles/pokemonList.scss"></style>

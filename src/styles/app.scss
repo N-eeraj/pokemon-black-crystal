@@ -1,67 +1,67 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 @use "@/styles/fonts";
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: fonts.$content;
-	letter-spacing: 3px;
-	line-height: 150%;
-	text-decoration: none;
-	border: none;
-	outline: none;
-	scrollbar-width: thin;
-	scrollbar-color: palette.$accent palette.$secondary;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: fonts.$content;
+    letter-spacing: 3px;
+    line-height: 150%;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scrollbar-width: thin;
+    scrollbar-color: palette.$accent palette.$secondary;
 }
 
 #main:not(.page_not_found) {
-	@include main.full-screen;
-	font-size: clamp(14px, 3.6vmin, 16px);
-	background-color: palette.$primary;
-	color: palette.$white;
-	border:1px solid palette.$secondary;
+    @include main.full-screen;
+    font-size: clamp(14px, 3.6vmin, 16px);
+    background-color: palette.$primary;
+    color: palette.$white;
+    border: 1px solid palette.$secondary;
 
-	button {
-		cursor: pointer;
-	}
+    button {
+        cursor: pointer;
+    }
 
-	.close-icon {
-		position: absolute;
-		top: 10px;
-		left: 10px;
-		width: 20px;
-		cursor: pointer;
-	}
+    .close-icon {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 20px;
+        cursor: pointer;
+    }
 }
 
 @media screen and (min-aspect-ratio: 2/3) and (min-height: 600px) {
-	body {
-		@include main.full-screen;
-		background-color: palette.$primary;
+    body {
+        @include main.full-screen;
+        background-color: palette.$primary;
 
-		#main:not(.page_not_found) {
-			left: 45vw;
-			width: 50vh;
-			transform: translateX(-50%);
-		}
-	}
+        #main:not(.page_not_found) {
+            left: 45vw;
+            width: 50vh;
+            transform: translateX(-50%);
+        }
+    }
 }
 
 ::-webkit-scrollbar {
-	width: 5px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-	background-color: palette.$secondary;
+    background-color: palette.$secondary;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: palette.$accent;
-	border-radius: 5px;
+    background-color: palette.$accent;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background-color: palette.$white;
+    background-color: palette.$white;
 }

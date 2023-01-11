@@ -1,8 +1,8 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 
 #pokemon_list_container {
-	@include main.full-screen;
+    @include main.full-screen;
     background-color: palette.$primary;
 
     #pokemon_list {
@@ -12,9 +12,5 @@
         padding-top: 10px;
         padding-bottom: 50px;
         overflow-y: auto;
-        
-		progress {
-			@include main.hp;
-		}
     }
 }

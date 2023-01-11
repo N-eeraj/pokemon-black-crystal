@@ -11,8 +11,8 @@
 </template>
 
 <script>
-	export default {
-		name: 'offline-screen'
+    export default {
+        name: 'offline-screen'
     }
 </script>
 

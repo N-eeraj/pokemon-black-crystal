@@ -1,55 +1,56 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 @use "@/styles/animation";
 
 $text-404: clamp(30px, 25vw, 180px);
 
 main {
-	@include main.full-screen;
-	@include main.flex($direction: column, $row: max(5vh, 50px));
-	background-color: palette.$primary;
-	color: palette.$white;
+    @include main.full-screen;
+    @include main.flex($direction: column, $row: max(5vh, 50px));
+    background-color: palette.$primary;
+    color: palette.$white;
 
-	div {
-		@include main.flex;
-		width: 90%;
+    div {
+        @include main.flex;
+        width: 90%;
 
-		h1 {
-			font-size: $text-404;
-		}
+        h1 {
+            font-size: $text-404;
+        }
 
-		img {
-			width: $text-404;
-			height: $text-404;
-			animation: tilt 2s linear infinite;
-		}
-	}
-	section {
-		@include main.flex($direction: column, $row: clamp(25px, 3vh, 50px));
-		width: 90%;
+        img {
+            width: $text-404;
+            height: $text-404;
+            animation: tilt 2s linear infinite;
+        }
+    }
 
-		h2 {
-			font-size: 1.5rem;
-		}
+    section {
+        @include main.flex($direction: column, $row: clamp(25px, 3vh, 50px));
+        width: 90%;
 
-		p {
-			font-size: 0.9rem;
-		}
+        h2 {
+            font-size: 1.5rem;
+        }
 
-		button {
-			padding: 7px 10px;
-			font-size: 1rem;
-			background-color: palette.$primary;
-			border: 1px solid palette.$accent;
-			color: palette.$accent;
-			border-radius: 5px;
-			transition: 400ms;
-			cursor: pointer;
+        p {
+            font-size: 0.9rem;
+        }
 
-			&:hover {
-				background-color: palette.$accent;
-				color: palette.$primary;
-			}
-		}
-	}
+        button {
+            padding: 7px 10px;
+            background-color: palette.$primary;
+            font-size: 1rem;
+            border: 1px solid palette.$accent;
+            color: palette.$accent;
+            border-radius: 5px;
+            transition: 400ms;
+            cursor: pointer;
+
+            &:hover {
+                background-color: palette.$accent;
+                color: palette.$primary;
+            }
+        }
+    }
 }

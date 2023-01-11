@@ -13,6 +13,7 @@
                 class="move-card"
                 :class="move.type"
                 @click="$emit('useMove', move)">
+
                 <span>
                     {{ $filters.toTitleCase(move.name) }}
                 </span>
@@ -36,17 +37,21 @@
                     Type:
                     {{ $filters.toTitleCase(move.type) }}
                 </span>
+                
             </div>
         </div>
     </div>
 </template>
 
 <script>
-	import NavigationBar from "@/js/components/UI/NavigationBar.vue"
+
+    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
+
     import { mapGetters } from 'vuex'
 
 
     export default {
+        name: 'moves-list',
 
         components: {
             NavigationBar
@@ -58,13 +63,11 @@
                 return trainer.partyList[trainer.currentPokemonIndex].movesList.filter(move => move.pp)
             },
 
-			...mapGetters([
-				'getBattleData'
-			]),
+            ...mapGetters([
+                'getBattleData'
+            ]),
         },
     }
 </script>
 
-<style lang="scss">
-	@import "@/styles/battle/movesList";
-</style>
+<style lang="scss" src="@/styles/battle/movesList.scss"></style>

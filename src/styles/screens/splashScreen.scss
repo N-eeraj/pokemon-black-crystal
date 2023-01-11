@@ -1,54 +1,40 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 @use "@/styles/fonts";
 @use "@/styles/animation";
 
 #splash_screen {
-	@include main.flex($direction: column, $row: clamp(75px, 10vh, 100px));
-	height: 100vh;
-	padding: 5%;
-	background-color: palette.$primary;
-	color: palette.$white;
+    @include main.flex($direction: column, $row: clamp(75px, 10vh, 100px));
+    height: 100vh;
+    padding: 5%;
+    background-color: palette.$primary;
+    color: palette.$white;
 
-	&.loaded {
-		cursor: pointer;
-	}
+    &.loaded {
+        cursor: pointer;
+    }
 
-	#title {
-		@include main.flex($direction: column, $row: clamp(50px, 5vh, 75px));
+    #title {
+        @include main.flex($direction: column, $row: clamp(50px, 5vh, 75px));
 
-		img {
-			width: 85%;
-		}
+        img {
+            width: 85%;
+        }
 
-		h1 {
-			text-align: center;
-			font-size: 2.5rem;
-			font-family: fonts.$heading;
-		}
-	}
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: fonts.$heading;
+        }
+    }
 
-	#loading {
-		@include main.flex($direction: column, $row: clamp(25px, 3vh, 50px));
-		width: 100%;
-
-		progress {
-			width: min(75%, 600px);
-		}
-		progress::-webkit-progress-bar {
-			height: 10px;
-			background-color: palette.$secondary;
-			border: none;
-			border-radius: 12px;
-		}
-		progress::-webkit-progress-value {
-			background-color: palette.$accent;
-			border-radius: 12px;
-		}
-
-		span {
-			text-align: center;
-			animation: blink 800ms ease-in-out infinite alternate;
-		}
-	}
+    #loading {
+        @include main.flex($direction: column, $row: clamp(25px, 3vh, 50px));
+        width: 100%;
+        
+        span {
+            text-align: center;
+            animation: blink 800ms ease-in-out infinite alternate;
+        }
+    }
 }

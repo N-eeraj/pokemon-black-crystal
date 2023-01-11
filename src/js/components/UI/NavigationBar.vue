@@ -12,8 +12,9 @@
 </template>
 
 <script>
-
     export default {
+        name: 'navigation-bar',
+
         props: {
             title: {
                 type: String,
@@ -25,9 +26,6 @@
             }
         }
     }
-
 </script>
 
-<style lang="scss">
-	@import "@/styles/UI/navbar";
-</style>
+<style lang="scss" src="@/styles/UI/navbar.scss"></style>

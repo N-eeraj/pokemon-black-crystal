@@ -1,72 +1,68 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 
 #battle_scene {
-	@include main.full-screen;
-	background-image: url('@/assets/images/battle-scene/background.png');
-	background-size: cover;
+    @include main.full-screen;
+    background-image: url('@/assets/images/battle-scene/background.png');
+    background-size: cover;
 
-	.battle-field {
-		position: relative;
-		@include main.flex($direction: column, $justify: space-between);
-		height: 90%;
-		padding: 3%;
+    .battle-field {
+        position: relative;
+        @include main.flex($direction: column, $justify: space-between);
+        height: 90%;
+        padding: 3%;
 
-		.icon {
-			position: absolute;
-			cursor: pointer;
+        .icon {
+            position: absolute;
+            cursor: pointer;
 
-			&.escape {
-				left: 5px;
-				top: 5px;
-				width: 30px;
-			}
+            &.escape {
+                left: 5px;
+                top: 5px;
+                width: 30px;
+            }
 
-			&.pokeball {
-				right: 10px;
-				bottom: 10px;
-				width: 50px;
-				padding: 3px;
-				background-color: rgba(palette.$primary, 0.75);
-				border-radius: 50%;
-			}
-		}
+            &.pokeball {
+                right: 10px;
+                bottom: 10px;
+                width: 50px;
+                padding: 3px;
+                background-color: rgba(palette.$primary, 0.75);
+                border-radius: 50%;
+            }
+        }
 
-		.battle-pokemon {
-			width: 70%;
-		}
-	}
+        .battle-pokemon {
+            width: 70%;
+        }
+    }
 
-	.battle-message, .actions {
-		position: fixed;
-		bottom: 0;
-		width: 100%;
-		min-height: min(10%, 80px);
-	}
+    .battle-message, .actions {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        min-height: min(10%, 80px);
+    }
 
-	.battle-message {
-		padding: 10px;
-		background-color: palette.$primary;
-		color: palette.$white;
-	}
+    .battle-message {
+        padding: 10px;
+        background-color: palette.$primary;
+        color: palette.$white;
+    }
 
-	.actions {
-		@include main.flex($align: stretch);
+    .actions {
+        @include main.flex($align: stretch);
 
-		button {
-			width: 50%;
-			color: palette.$white;
-		}
+        button {
+            width: 50%;
+            color: palette.$white;
+        }
 
-		.moves {
-			background-color: palette.$primary;
-		}
-		.pokemon {
-			background-color: palette.$secondary;
-		}
-	}
-
-	.modal {
-		
-	}
+        .moves {
+            background-color: palette.$primary;
+        }
+        .pokemon {
+            background-color: palette.$secondary;
+        }
+    }
 }

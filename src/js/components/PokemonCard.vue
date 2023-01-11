@@ -44,8 +44,9 @@
 </template>
 
 <script>
-    
     export default {
+        name: 'pokemon-card',
+
         props: {
             pokemon: {
                 type: Object,
@@ -71,17 +72,17 @@
             }
         },
 
-        mounted() {
-            setInterval(() => {
-                if (this.startTime) this.now = Date.now()
-            }, 100)
-        },
-
         computed: {
             canMove() {
                 if (this.startTime) return (this.now - this.startTime) > 1000
                 return false
             },
+        },
+
+        mounted() {
+            setInterval(() => {
+                if (this.startTime) this.now = Date.now()
+            }, 100)
         },
 
         methods: {
@@ -124,9 +125,6 @@
             }
         }
     }
-
 </script>
 
-<style lang="scss">
-	@import "@/styles/pokemonCard";
-</style>
+<style lang="scss" src="@/styles/pokemonCard.scss"></style>

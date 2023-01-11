@@ -1,11 +1,11 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 
 #offline {
-	@include main.full-screen;
-	@include main.flex($direction: column, $row: max(5vh, 50px));
-	background-color: palette.$secondary;
-	color: palette.$white;
+    @include main.full-screen;
+    @include main.flex($direction: column, $row: max(5vh, 50px));
+    background-color: palette.$secondary;
+    color: palette.$white;
 
     #image{
         width: 50%;

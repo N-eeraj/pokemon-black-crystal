@@ -1,29 +1,29 @@
-@use "@/styles/colors/palette";
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 
 #battle_wrapper {
-	@include main.full-screen;
-	background-color: palette.$primary;
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: 50% -15vh;
-	
-	.overlay {
-		position: fixed;
-		bottom: 0;
-		@include main.flex($direction: column, $justify: flex-end, $row: 30px);
-		width: 100%;
-		height: 60%;
-		padding: 5%;
-		background-image: linear-gradient(rgba(palette.$primary, 0), palette.$primary);
+    @include main.full-screen;
+    background-color: palette.$primary;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% -15vh;
+    
+    .overlay {
+        position: fixed;
+        bottom: 0;
+        @include main.flex($direction: column, $justify: flex-end, $row: 30px);
+        width: 100%;
+        height: 60%;
+        padding: 5%;
+        background-image: linear-gradient(rgba(palette.$primary, 0), palette.$primary);
 
-		.battle-btn {
-			width: 50%;
-			padding: 5px;
-			background-color: palette.$accent;
-			color: palette.$primary;
-			border-radius: 5px;
-			font-weight: 600;
-		}
-	}
+        .battle-btn {
+            width: 50%;
+            padding: 5px;
+            background-color: palette.$accent;
+            color: palette.$primary;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+    }
 }

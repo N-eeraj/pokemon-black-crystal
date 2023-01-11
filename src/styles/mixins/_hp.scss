@@ -1,0 +1,41 @@
+@use "@/styles/colors/palette";
+
+@mixin progress-value {
+    width: 100%;
+    height: 7px;
+    border-radius: 10px;
+    border: none;
+  
+    &::-webkit-progress-bar {
+        background-color: palette.$white;
+        border-radius: 10px;
+    }
+    &::-webkit-progress-value {
+        border-radius: 10px;
+    }
+
+    &.high {
+        &::-webkit-progress-value {
+            background-color: palette.$value-high;
+        }
+        &::-moz-progress-bar {
+            background-color: palette.$value-high;
+        }
+    }
+    &.medium {
+        &::-webkit-progress-value {
+            background-color: palette.$value-med;
+        }
+        &::-moz-progress-bar {
+            background-color: palette.$value-med;
+        }
+    }
+    &.low {
+        &::-webkit-progress-value {
+            background-color: palette.$value-low;
+        }
+        &::-moz-progress-bar {
+            background-color: palette.$value-low;
+        }
+    }
+}

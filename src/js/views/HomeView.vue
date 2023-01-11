@@ -1,33 +1,34 @@
 <template>
-	<div>
-		<div
-			class="home-container"
-			:style="`background-image: url(${characterImage});`">
+    <div>
+        <div
+            class="home-container"
+            :style="`background-image: url(${characterImage});`">
 
-		</div>
-	</div>
+        </div>
+    </div>
 </template>
 
 <script>
 
-	import { mapGetters } from 'vuex'
+    import { mapGetters } from 'vuex'
 
-	export default {
-		data() {
-			return {
-			}
-		},
+    export default {
+        name: "onboarding-view",
 
-		computed: {
-			characterImage() {
-				return require(`@/assets/images/characters/main-character/character-${this.getAvatar}.gif`)
-			},
+        data() {
+            return {}
+        },
 
-			...mapGetters([
-				'getAvatar'
-			])
-		}
-	}
+        computed: {
+            characterImage() {
+                return require(`@/assets/images/characters/main-character/character-${this.getAvatar}.gif`)
+            },
+
+            ...mapGetters([
+                'getAvatar'
+            ])
+        }
+    }
 </script>
 
 <style lang="scss" scoped src="@/styles/home.scss"></style>
