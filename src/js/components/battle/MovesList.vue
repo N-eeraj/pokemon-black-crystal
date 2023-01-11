@@ -16,7 +16,11 @@
                 <span>
                     {{ $filters.toTitleCase(move.name) }}
                 </span>
-                <span>
+                <span v-if="move.healing > 0">
+                    Heal:
+                    {{ move.healing }}%
+                </span>
+                <span v-else>
                     Power:
                     {{ move.power || 'KO' }}
                 </span>
