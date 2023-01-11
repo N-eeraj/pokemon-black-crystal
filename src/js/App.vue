@@ -1,5 +1,5 @@
 <template>
-	<offline-screen v-if="checkOfflineStats" />
+	<offline-screen v-if="isOffline" />
 	<template v-else>
 		<splash-screen v-if="showSplashScreen" @loading-complete="startGame" />
 		<router-view v-else id="main" />
@@ -42,12 +42,12 @@
 		mounted() {
 			setInterval(() => {
 				this.updateOfflineStats()
-			}, 30000);
+			}, 10000);
 		},
 
 		computed: {
 			...mapGetters([
-					'checkOfflineStats',
+				'isOffline',
 			])
 		},
 

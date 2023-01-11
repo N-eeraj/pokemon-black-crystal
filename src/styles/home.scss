@@ -1,0 +1,10 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+.home-container {
+	@include main.full-screen;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: palette.$white;
+}

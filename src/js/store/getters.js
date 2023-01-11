@@ -1,5 +1,5 @@
 export default {
-	checkOfflineStats(state) {
+	isOffline(state) {
 		return state.isOffline
 	},
 
@@ -19,5 +19,9 @@ export default {
 
 	getMovesByName: (state) => (name) => {
 		return state.movesData[name]
+	},
+
+	getAvatar(state) {
+		return state.gameData.playerInfo.avatar
 	}
 }
