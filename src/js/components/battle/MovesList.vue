@@ -18,7 +18,7 @@
                 </span>
                 <span>
                     Power:
-                    {{ move.power }}
+                    {{ move.power || 'KO' }}
                 </span>
                 <span>
                     PP:
