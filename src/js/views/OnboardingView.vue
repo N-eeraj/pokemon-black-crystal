@@ -164,7 +164,7 @@
 					last: 2
 				}
 				this.initData.pokemon.party.push(1)
-				// localStorage.setItem('gameData', btoa(JSON.stringify(this.initData)))
+				this.saveGameData(this.initData)
 				this.$router.push("/")
 			},
 
@@ -235,7 +235,8 @@
 			},
 
 			...mapActions([
-				'cachePokemonById'
+				'cachePokemonById',
+				'saveGameData'
 			])
 		},
 

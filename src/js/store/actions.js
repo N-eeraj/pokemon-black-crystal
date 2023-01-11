@@ -229,9 +229,13 @@ export default {
 		})
 	},
 
-	async fetchData({ dispatch, commit }) {
+	async saveGameData({ commit }, gameData) {
+		commit('saveGameData', gameData)
+	},
+
+	async loadGameData({ dispatch }) {
 		const gameData = JSON.parse(window.atob(localStorage.gameData))
-		commit('loadData', gameData)
+		dispatch('saveGameData', gameData)
 		const partyPokemon = gameData.pokemon.party.map(pokemon => gameData.pokemon.caught[pokemon].id)
 		partyPokemon.forEach(async id => await dispatch('cachePokemonById', id))
 	},

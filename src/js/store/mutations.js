@@ -6,8 +6,9 @@ export default {
 		state.isOffline = status
 	},
 	
-	loadData(state, data) {
+	saveGameData(state, data) {
 		state.gameData = data
+		localStorage.setItem('gameData', btoa(JSON.stringify(data)))
 	},
 
 	cachePokemonData(state, pokemonData) {
