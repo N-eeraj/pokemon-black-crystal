@@ -52,16 +52,28 @@ export default {
 		state.battle[isOpponent ? 'foe' : 'trainer'].currentPokemonIndex = newIndex
 	},
 
-	useMoveBattleDataUpdate(state, data) {
-		const { moveData, inCommingAttack } = data
+	useMoveBattleDataUpdate(state, { moveData, inCommingAttack }) {
 
 		const attacker = state.battle[inCommingAttack ? 'foe' : 'trainer']
 		const defender = state.battle[inCommingAttack ? 'trainer' : 'foe']
 
-		const damage = calculations.moveDamage(moveData, attacker.partyList[attacker.currentPokemonIndex], defender.partyList[defender.currentPokemonIndex])
+		const attackingPokemon = attacker.partyList[defender.currentPokemonIndex]
+		const defendingPokemon = defender.partyList[attacker.currentPokemonIndex]
 
-		defender.partyList[defender.currentPokemonIndex].currentHp -= damage
-		attacker.partyList[attacker.currentPokemonIndex].movesList.find(move => move.name === moveData.name).pp -= 1
+		// if move category is ohko set damage as defending pokemon's hp else calculate damage
+		let damage
+		if (moveData.category === 'ohko') damage = defendingPokemon.currentHp
+		else damage = calculations.moveDamage(moveData, attackingPokemon, defendingPokemon)
+
+		// if move category is damage+heal set heal as half of the damage dealt else set use heal from move data as percentage
+		let heal
+		if (moveData.category === 'damage+heal') heal = Math.ceil(moveData.healing / 2)
+		else heal = defendingPokemon.stat.hp * moveData.healing * 0.01
+
+		defendingPokemon.currentHp -= damage
+		attackingPokemon.currentHp += heal
+		attackingPokemon.currentHp = Math.min(attackingPokemon.currentHp, attackingPokemon.stat.hp)
+		attackingPokemon.movesList.find(move => move.name === moveData.name).pp -= 1
 	},
 
 	pokemonFaintedBattleDataUpdate(state, user) {

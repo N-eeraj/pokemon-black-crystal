@@ -170,16 +170,14 @@ export default {
 			type: response.type.name,
 			power: response.power,
 			pp: response.pp,
-			accuracy: response.accuracy,
+			accuracy: response.accuracy || 100,
 			priority: response.priority,
 			category: response.meta.category.name,
 			damageClass: response.damage_class.name,
+			healing: response.meta.healing,
+			min: response.meta.min_hits,
+			max: response.meta.max_hits
 		}
-		if (response.meta.min_hits)
-			moveData.hits = {
-				min: response.meta.min_hits,
-				max: response.meta.max_hits
-			}
 		return moveData
 	},
 
