@@ -1,6 +1,9 @@
 <template>
     <div>
+        <main-menu v-if="openMenu" />
+
         <div
+            v-else
             class="home-container"
             :class="{ 'edit-view': editView }"
             :style="`background-image: url(${characterImage});`"
@@ -60,24 +63,29 @@
                     src="@/assets/images/home-icons/pc.svg"
                     alt="PC Pokemon">
             </div>
-
-            <button
-                class="main-menu-btn"
-                :class="{ open: openMenu }"
-                @click.stop="toggleMenu">
-                <span></span>
-            </button>
-
         </div>
+
+        <button
+            class="main-menu-btn"
+            :class="{ open: openMenu, 'shrink-menu': editView }"
+            @click.stop="toggleMenu">
+            <span></span>
+        </button>
     </div>
 </template>
 
 <script>
 
+    import MainMenu from '@/js/components/MainMenu.vue'
+
     import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: "home-view",
+
+        components: {
+            MainMenu
+        },
 
         data() {
             return {
@@ -92,13 +100,13 @@
 
         computed: {
             characterImage() {
-                let avatarId = this.getPlayerInfo.avatar
+                let avatarId = this.playerInfo.avatar
                 if (this.editView) avatarId = this.player.avatar
                 return require(`@/assets/images/characters/main-character/character-${avatarId}.gif`)
             },
 
             ...mapGetters([
-                'getPlayerInfo'
+                'playerInfo'
             ])
         },
 
@@ -110,8 +118,8 @@
             editPlayer() {
                 if (this.editView) return
                 this.editView = true
-                this.player.name = this.getPlayerInfo.name
-                this.player.avatar = this.getPlayerInfo.avatar
+                this.player.name = this.playerInfo.name
+                this.player.avatar = this.playerInfo.avatar
             },
 
             closeEdit() {

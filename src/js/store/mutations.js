@@ -11,9 +11,14 @@ export default {
         state.gameData = data
         encryptAndSave(data)
     },
-    
+
     savePlayerInfo(state, playerInfo) {
         state.gameData.playerInfo = playerInfo
+        encryptAndSave(state.gameData)
+    },
+
+    toggleSound(state) {
+        state.gameData.sound = !state.gameData.sound
         encryptAndSave(state.gameData)
     },
 

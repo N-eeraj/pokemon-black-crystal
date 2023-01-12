@@ -21,7 +21,15 @@ export default {
         return state.movesData[name]
     },
 
-    getPlayerInfo(state) {
+    playerInfo(state) {
         return state.gameData.playerInfo
+    },
+
+    soundStatus(state) {
+        return state.gameData.sound
+    },
+
+    playerCoins(state) {
+        return state.gameData.progress.coins
     }
 }

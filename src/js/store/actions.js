@@ -269,5 +269,9 @@ export default {
     
     savePlayerInfo({ commit }, playerInfo) {
         commit('savePlayerInfo', playerInfo)
+    },
+    
+    toggleSound({ commit }) {
+        commit('toggleSound')
     }
 }

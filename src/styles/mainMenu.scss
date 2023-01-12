@@ -1,0 +1,43 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#main_menu {
+    @include main.full-screen;
+    @include main.flex($direction: column, $justify: space-around);
+    background-color: palette.$secondary;
+
+    .menu-header {
+        @include main.flex($justify: space-between);
+        width: 100%;
+        height: 10%;
+        padding: 0 5%;
+        margin-top: 1%;
+
+        .icon {
+            width: 25px;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .player-coins {
+            @include main.flex($col: 10px);
+
+            img {
+                width: 25px;
+                aspect-ratio: 1;
+            }
+        }
+    }
+
+    .menu-actions-container {
+        width: 100%;
+        height: 75%;
+        border: 1px solid;
+    }
+
+    .menu-footer {
+        width: 100%;
+        height: 10%;
+        border: 1px solid;
+    }
+}
