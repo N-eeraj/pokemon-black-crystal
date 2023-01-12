@@ -21,9 +21,39 @@
                 class="icon" />
         </header>
 
-        <main class="menu-actions-container"></main>
+        <main class="menu-actions-container">
 
-        <footer class="menu-footer"></footer>
+            <button
+                v-for="(action, index) in menuActions"
+                :key="index"
+                class="menu-action">
+                <img
+                    :src="require(`@/assets/images/home-icons/menu-icons/${action.icon}.svg`)"
+                    :alt="action.name"
+                    class="icon" />
+                <span class="name">
+                    {{ action.name }}
+                </span>
+            </button>
+
+        </main>
+
+        <footer class="menu-footer">
+            <div class="menu-footer-action">
+                Store
+                <img
+                    src="@/assets/images/home-icons/menu-icons/store.svg"
+                    alt="PokeCoin"
+                    class="icon" />
+            </div>
+            <div class="menu-footer-action">
+                Bag
+                <img
+                    src="@/assets/images/home-icons/menu-icons/bag.svg"
+                    alt="PokeCoin"
+                    class="icon" />
+            </div>
+        </footer>
 
     </div>
 </template>
@@ -34,6 +64,43 @@
 
     export default {
         name: "main-menu",
+
+        data() {
+            return {
+                menuActions: [
+                    {
+                        name: 'Story Mode',
+                        icon: 'story-mode',
+                        to: ''
+                    },
+                    {
+                        name: 'Exploration',
+                        icon: 'exploration',
+                        to: ''
+                    },
+                    {
+                        name: 'Arcade',
+                        icon: 'arcade',
+                        to: ''
+                    },
+                    {
+                        name: 'PVP',
+                        icon: 'pvp',
+                        to: ''
+                    },
+                    {
+                        name: 'Trade',
+                        icon: 'trade',
+                        to: ''
+                    },
+                    {
+                        name: 'Carnival',
+                        icon: 'carnival',
+                        to: ''
+                    }
+                ]
+            }
+        },
 
         computed: {
             soundImage() {
