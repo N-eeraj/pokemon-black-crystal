@@ -1,10 +1,79 @@
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
 
+@mixin menu-bars {
+    aspect-ratio: 8;
+    background-color: palette.$primary;
+    border-radius: 10px;
+    transition: 400ms;
+}
+
 .home-container {
     @include main.full-screen;
+    @include main.flex($justify: space-between);
     background-size: contain;
-    background-position: center;
+    background-position: center 30%;
     background-repeat: no-repeat;
     background-color: palette.$white;
+
+    .home-icons-container {
+        @include main.flex($direction: column, $row: 25px);
+        width: 25%;
+        height: 100vh;
+
+        img {
+            width: 100%;
+            aspect-ratio: 1;
+            padding: 15px;
+            color: palette.$primary;
+        }
+    }
+
+    .main-menu {
+        position: absolute;
+        bottom: 3vh;
+        left: 50%;
+        width: min(100px, 20%);
+        aspect-ratio: 1;
+        background-color: palette.$accent;
+        border-radius: 50%;
+        transform: translateX(-50%);
+
+        span {
+            position: relative;
+            display: block;
+            width: 50%;
+            @include menu-bars;
+            margin-left: 25%;
+            transform: translateY(-10px);
+
+            &::before, &::after {
+                content: '';
+                position: absolute;
+                left: 0;
+                width: 100%;
+                @include menu-bars;
+            }
+
+            &::before {
+                transform: translateY(10px);
+            }
+            &::after {
+                transform: translateY(20px);
+            }
+        }
+
+        &.open span {
+            transform: rotateZ(45deg);
+            transition-delay: 300ms;
+
+            &::before {
+                transform: translateY(10px) scaleX(0);
+            }
+            &::after {
+                transform: rotateZ(270deg);
+                transition-delay: 300ms;
+            }
+        }
+    }
 }
