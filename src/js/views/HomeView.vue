@@ -2,7 +2,43 @@
     <div>
         <div
             class="home-container"
-            :style="`background-image: url(${characterImage});`">
+            :class="{ 'edit-view': editView }"
+            :style="`background-image: url(${characterImage});`"
+            @click="editPlayer">
+
+            <div
+                v-show="editView"
+                class="edit-container">
+                <div class="edit-nav">
+                    <img
+                        :src="require(`@/assets/icons/cross-mark.svg`)"
+                        class="icon"
+                        @click.stop="closeEdit" />
+                    <button
+                        v-if="player.name"
+                        class="save-btn"
+                        @click.stop="submitPlayerInfo">
+                        Save
+                    </button>
+                </div>
+                <input
+                    v-model="player.name"
+                    placeholder="Your Name"
+                    class="player-name" />
+
+                <div class="avatar-controller-container">
+                    <img
+                        src="@/assets/icons/previous.svg"
+                        alt="Previous"
+                        class="change-avatar-icon"
+                        @click="previousAvatar">
+                    <img
+                        src="@/assets/icons/next.svg"
+                        alt="Next"
+                        class="change-avatar-icon"
+                        @click="nextAvatar">
+                </div>
+            </div>
 
             <div class="home-icons-container">
                 <img
@@ -26,9 +62,9 @@
             </div>
 
             <button
-                class="main-menu"
+                class="main-menu-btn"
                 :class="{ open: openMenu }"
-                @click="toggleMenu">
+                @click.stop="toggleMenu">
                 <span></span>
             </button>
 
@@ -38,31 +74,68 @@
 
 <script>
 
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
-        name: "onboarding-view",
+        name: "home-view",
 
         data() {
             return {
-                openMenu: false
+                openMenu: false,
+                editView: false,
+                player: {
+                    name: '',
+                    avatar: null
+                }
             }
         },
 
         computed: {
             characterImage() {
-                return require(`@/assets/images/characters/main-character/character-${this.getAvatar}.gif`)
+                let avatarId = this.getPlayerInfo.avatar
+                if (this.editView) avatarId = this.player.avatar
+                return require(`@/assets/images/characters/main-character/character-${avatarId}.gif`)
             },
 
             ...mapGetters([
-                'getAvatar'
+                'getPlayerInfo'
             ])
         },
 
         methods: {
             toggleMenu() {
                 this.openMenu = !this.openMenu
-            }
+            },
+
+            editPlayer() {
+                if (this.editView) return
+                this.editView = true
+                this.player.name = this.getPlayerInfo.name
+                this.player.avatar = this.getPlayerInfo.avatar
+            },
+
+            closeEdit() {
+                this.openMenu = false
+                this.editView = false
+            },
+
+            previousAvatar() {
+                if (this.player.avatar === 0) this.player.avatar = 3
+                else this.player.avatar -= 1
+            },
+            nextAvatar() {
+                if (this.player.avatar === 3) this.player.avatar = 0
+                else this.player.avatar += 1
+            },
+
+            submitPlayerInfo() {
+                this.savePlayerInfo(this.player)
+                this.closeEdit()
+            },
+
+            ...mapActions([
+                'savePlayerInfo'
+            ])
         }
     }
 </script>

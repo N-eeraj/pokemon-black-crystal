@@ -44,6 +44,7 @@
         #main:not(.page_not_found) {
             left: 45vw;
             width: 50vh;
+            max-width: 500px;
             transform: translateX(-50%);
         }
     }

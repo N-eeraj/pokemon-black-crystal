@@ -21,7 +21,7 @@ export default {
         return state.movesData[name]
     },
 
-    getAvatar(state) {
-        return state.gameData.playerInfo.avatar
+    getPlayerInfo(state) {
+        return state.gameData.playerInfo
     }
 }

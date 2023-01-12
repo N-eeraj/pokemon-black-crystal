@@ -1,3 +1,4 @@
+import { encryptAndSave } from "@/js/mixins/common"
 import { moveDamage } from "@/js/mixins/calculations"
 import { getInRange } from "@/js/mixins/randomGenerator"
 
@@ -8,7 +9,12 @@ export default {
     
     saveGameData(state, data) {
         state.gameData = data
-        localStorage.setItem('gameData', btoa(JSON.stringify(data)))
+        encryptAndSave(data)
+    },
+    
+    savePlayerInfo(state, playerInfo) {
+        state.gameData.playerInfo = playerInfo
+        encryptAndSave(state.gameData)
     },
 
     cachePokemonData(state, pokemonData) {

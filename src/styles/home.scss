@@ -1,5 +1,6 @@
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
+@use "@/styles/fonts";
 
 @mixin menu-bars {
     aspect-ratio: 8;
@@ -15,11 +16,13 @@
     background-position: center 30%;
     background-repeat: no-repeat;
     background-color: palette.$white;
+    transition: 800ms;
 
     .home-icons-container {
         @include main.flex($direction: column, $row: 25px);
         width: 25%;
         height: 100vh;
+        transition: 400ms;
 
         img {
             width: 100%;
@@ -29,7 +32,7 @@
         }
     }
 
-    .main-menu {
+    .main-menu-btn {
         position: absolute;
         bottom: 3vh;
         left: 50%;
@@ -38,6 +41,7 @@
         background-color: palette.$accent;
         border-radius: 50%;
         transform: translateX(-50%);
+        transition: 400ms;
 
         span {
             position: relative;
@@ -74,6 +78,69 @@
                 transform: rotateZ(270deg);
                 transition-delay: 300ms;
             }
+        }
+    }
+
+    &.edit-view {
+        background-position-y: 80%;
+
+        .edit-container {
+            position: fixed;
+            top: 0;
+            @include main.flex($direction: column);
+            width: 100%;
+            color: palette.$primary;
+
+            .edit-nav {
+                @include main.flex($justify: space-between, $align: center);
+                height: 8vh;
+                width: 100%;
+                padding: 5px;
+
+                .icon {
+                    width: 25px;
+                    aspect-ratio: 1;
+                    filter: invert(1);
+                }
+                .save-btn {
+                    background-color: transparent;
+                }
+            }
+            .player-name {
+                width: 90%;
+                margin-left: 5%;
+                font-family: fonts.$heading;
+                text-align: center;
+                background-color: transparent;
+                font-size: 1.5rem;
+            }
+
+            .avatar-controller-container {
+                position: fixed;
+                top: 50%;
+                @include main.flex($justify: space-between);
+                width: 100%;
+                padding: 5%;
+
+                .change-avatar-icon {
+                    width: 30px;
+                    aspect-ratio: 1;
+                }
+            }
+        }
+
+        .home-icons-container {
+            transform: scaleX(0);
+        }
+        .home-icons-container:first-of-type {
+            transform-origin: left;
+        }
+        .home-icons-container:last-of-type {
+            transform-origin: right;
+        }
+
+        .main-menu-btn {
+            transform: translateX(-50%) scale(0) rotate(360deg);
         }
     }
 }

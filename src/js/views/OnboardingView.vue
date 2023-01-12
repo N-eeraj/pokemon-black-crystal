@@ -32,8 +32,7 @@
                         v-model="onboarding.name"
                         placeholder="Your Name"
                         class="name-input"
-                        @keyup.enter="setName"
-                    />
+                        @keyup.enter="setName" />
                 </template>
                 <template #actions>
                     <button

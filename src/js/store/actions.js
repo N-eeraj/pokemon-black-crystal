@@ -1,4 +1,4 @@
-import { getIdFromUrl, deepCopy } from "@/js/mixins/common"
+import { getIdFromUrl, deepCopy, decryptAndLoad } from "@/js/mixins/common"
 import { getImageUrl, getSpriteUrl } from "@/js/mixins/imageAndSprites"
 
 export default {
@@ -234,7 +234,7 @@ export default {
     },
 
     async loadGameData({ dispatch }) {
-        const gameData = JSON.parse(window.atob(localStorage.gameData))
+        const gameData = decryptAndLoad()
         dispatch('saveGameData', gameData)
         const partyPokemon = gameData.pokemon.party.map(pokemon => gameData.pokemon.caught[pokemon].id)
         partyPokemon.forEach(async id => await dispatch('cachePokemonById', id))
@@ -265,5 +265,9 @@ export default {
     
     pokemonFaintedBattleDataUpdate({ commit }, data) {
         commit('pokemonFaintedBattleDataUpdate', data)
+    },
+    
+    savePlayerInfo({ commit }, playerInfo) {
+        commit('savePlayerInfo', playerInfo)
     }
 }
