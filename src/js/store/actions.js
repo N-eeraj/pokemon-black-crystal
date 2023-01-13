@@ -224,6 +224,7 @@ export default {
     async fetchTypes({ dispatch, commit }) {
         const allTypes = await dispatch('getAllTypes')
         allTypes.results.forEach(async type => {
+            if (getIdFromUrl(type.url) > 1000) return
             const typeData = await dispatch('getTypeByUrl', type.url)
             commit('cacheTypeData', typeData)
         })

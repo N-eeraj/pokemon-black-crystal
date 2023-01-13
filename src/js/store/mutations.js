@@ -1,6 +1,5 @@
 import { encryptAndSave } from "@/js/mixins/common"
 import { moveDamage } from "@/js/mixins/calculations"
-import { getInRange } from "@/js/mixins/randomGenerator"
 
 export default {
     updateOfflineStats(state, status) {
@@ -74,15 +73,10 @@ export default {
         const defendingPokemon = defender.partyList[defender.currentPokemonIndex]
 
         // if move category is ohko set damage as defending pokemon's hp else calculate damage
-        let damage = 0
-        if (moveData.category === 'ohko') damage = defendingPokemon.currentHp
-        else {
-            // set number of times the damage is dealt in case of multi times move, else set to one
-            const times = getInRange(moveData.min, moveData.max) || 1
-            for (let time = 0; time < times; time++) {
-                damage += moveDamage(moveData, attackingPokemon, defendingPokemon)
-            }
-        }
+        const damage = (moveData.category === 'ohko') ? defendingPokemon.currentHp : moveDamage(moveData, attackingPokemon, defendingPokemon)
+
+        // if (moveData.category === 'ohko') damage = defendingPokemon.currentHp
+        // else damage = moveDamage(moveData, attackingPokemon, defendingPokemon)
 
         // if move category is damage+heal set heal as half of the damage dealt else set use heal from move data as percentage
         let heal
