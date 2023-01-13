@@ -31,5 +31,16 @@ export default {
 
     playerCoins(state) {
         return state.gameData.progress.coins
+    },
+
+    getPokedexList(state) {
+        const encountered = state.gameData.pokemon.encountered.list
+        const caught = Object.values(state.gameData.pokemon.caught).map(pokemon => pokemon.id)
+        return encountered.map(pokemonId => {
+            return {
+                id: pokemonId,
+                caught: caught.includes(pokemonId)
+            }
+        })
     }
 }

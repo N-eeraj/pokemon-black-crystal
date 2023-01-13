@@ -73,7 +73,7 @@
         <button
             class="main-menu-btn"
             :class="{ open: openMenu, 'shrink-menu': editView }"
-            @click.stop="toggleMenu">
+            @click.stop="openMenu = !openMenu">
             <span></span>
         </button>
     </div>
@@ -116,10 +116,6 @@
         },
 
         methods: {
-            toggleMenu() {
-                this.openMenu = !this.openMenu
-            },
-
             editPlayer() {
                 if (this.editView) return
                 this.editView = true

@@ -6,7 +6,7 @@
     left: 0;
 }
 
-@mixin flex($direction: row, $justify: center, $align: center, $row: 0, $col: 0, $wrap: no-wrap) {
+@mixin flex($direction: row, $justify: center, $align: center, $row: 0, $col: 0, $wrap: nowrap) {
     display: flex;
     flex-direction: $direction;
     justify-content: $justify;

@@ -8,6 +8,9 @@
         <h3>
             {{ title }}
         </h3>
+        <div class="right-action">
+            <slot name="right-action"></slot>
+        </div>
     </div>
 </template>
 
@@ -18,7 +21,7 @@
         props: {
             title: {
                 type: String,
-                required: true
+                required: false
             },
             icon: {
                 type: String,

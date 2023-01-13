@@ -1,0 +1,79 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+$header-ht: calc(8vh + 100px);
+
+#pokedex {
+    @include main.full-screen;
+    overflow-y: auto;
+
+    header {
+        position: fixed;
+        @include main.flex($direction: column, $justify: space-between);
+        width: calc(100% - 5px);
+        height: $header-ht;
+        background-color: palette.$primary;
+
+        .filter-icon {
+            width: 30px;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 90%;
+            margin: auto;
+            background-color: palette.$secondary;
+            border-radius: 7px;
+
+            input {
+                width: 80%;
+                height: 50px;
+                padding: 5%;
+                background-color: transparent;
+                color: palette.$white;
+            }
+            .search-icon {
+                position: absolute;
+                right: 5%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    .pokemon-list {
+        @include main.flex($direction: column, $justify: flex-start, $row: 20px);
+        width: 100%;
+        padding: $header-ht 5% 25px 5%;
+
+        .pokemon-card {
+            @include main.flex($justify: space-between);
+            width: 100%;
+            height: 125px;
+            padding: 5px;
+            background-color: palette.$secondary;
+            border-radius: 7px;
+
+            &.uncaught {
+                filter: grayscale(1);
+            }
+
+            .details {
+                @include main.flex($direction: column, $justify: space-evenly, $align: flex-start);
+                height: 100%;
+                padding: 3% 5%;
+
+                .id {
+                    color: palette.$white-secondary;
+                }
+                .types-container {
+                    @include main.flex($col: 5px);
+                }
+            }
+
+            img {
+                width: 30%;
+            }
+        }
+    }
+}

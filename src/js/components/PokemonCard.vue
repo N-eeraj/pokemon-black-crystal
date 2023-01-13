@@ -131,4 +131,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/pokemonCard.scss"></style>
+<style lang="scss" scoped src="@/styles/pokemonCard.scss"></style>
