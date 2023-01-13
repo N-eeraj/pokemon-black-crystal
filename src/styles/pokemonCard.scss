@@ -42,15 +42,6 @@
         .types-list {
             @include main.flex($justify: flex-start, $col: 5%);
             width: 100%;
-
-            .pokemon-type {
-                width: 50%;
-                padding: 3px;
-                border-radius: 20px;
-                border: 1px solid;
-                text-align: center;
-                font-size: 0.75rem;
-            }
         }
     }
 }

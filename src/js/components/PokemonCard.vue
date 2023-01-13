@@ -30,13 +30,10 @@
                 :class="hpClass(pokemon)" />
 
             <div class="types-list">
-                <div
+                <type-icon
                     v-for="(type, index) in pokemon.types"
-                    :key="index"
-                    class="pokemon-type"
-                    :class="type">
-                    {{ $filters.toTitleCase(type) }}
-                </div>
+                    :type="type"
+                    :key="index" />
             </div>
         </div>
 </div>
@@ -44,8 +41,15 @@
 </template>
 
 <script>
+
+    import TypeIcon from '@/js/components/TypeIcon.vue'
+
     export default {
         name: 'pokemon-card',
+
+        components: {
+            TypeIcon
+        },
 
         props: {
             pokemon: {

@@ -46,22 +46,27 @@
             <div class="home-icons-container">
                 <img
                     src="@/assets/images/home-icons/pokedex.svg"
-                    alt="Pokedex">
+                    alt="Pokedex"
+                    @click="$router.push('/pokedex')" />
                 <img
                     src="@/assets/images/home-icons/badges.svg"
-                    alt="Gym Badges">
+                    alt="Gym Badges"
+                    @click="$router.push('/gym-badges')" />
                 <img
                     src="@/assets/images/home-icons/achievements.svg"
-                    alt="Achievements">
+                    alt="Achievements"
+                    @click="$router.push('/achievements')" />
             </div>
 
             <div class="home-icons-container">
                 <img
                     src="@/assets/images/home-icons/party.svg"
-                    alt="Party Pokemon">
+                    alt="Party Pokemon"
+                    @click="$router.push('/pokemon/party')" />
                 <img
                     src="@/assets/images/home-icons/pc.svg"
-                    alt="PC Pokemon">
+                    alt="PC Pokemon"
+                    @click="$router.push('/pokemon/pc')" />
             </div>
         </div>
 
