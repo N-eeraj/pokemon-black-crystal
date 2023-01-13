@@ -8,7 +8,6 @@
                     icon="cross-mark"
                     class="nav-bar"
                     @iconEvent="$router.push('/')">
-
                     <template #right-action>
                         <img
                             src="@/assets/icons/filter.svg"
@@ -62,6 +61,85 @@
 
             </div>
 
+            <div
+                v-if="openFilter"
+                id="filter_view">
+                
+                <navigation-bar
+                    title="Filter"
+                    icon="cross-mark"
+                    @iconEvent="openFilter = false">
+                    <template #right-action>
+                        <button
+                            class="apply-filter-btn"
+                            @click="applyFilter">
+                            Apply
+                        </button>
+                    </template>
+                </navigation-bar>
+
+                <div class="filter-container">
+
+                    <div class="filter">
+                        <div
+                            class="title"
+                            :class="{ 'open-filter': filterVisibility.encountered }"
+                            @click="toggleFilterVisiblity('encountered')">
+                            Encountered
+                        </div>
+                        <div
+                            v-if="filterVisibility.encountered"
+                            class="options">
+                            <label
+                                v-for="radioOption in encounter"
+                                :for="`encountered_${radioOption.label}`"
+                                :key="radioOption.value"
+                                class="option">
+                                <input
+                                    type="radio"
+                                    v-model="filter.encounter"
+                                    :value="radioOption.value"
+                                    name="encounter"
+                                    :id="`encountered_${radioOption.label}`" />
+                                <span>
+                                    {{ $filters.toTitleCase(radioOption.label) }}
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="filter">
+                        <div
+                            class="title"
+                            :class="{ 'open-filter': filterVisibility.type }"
+                            @click="toggleFilterVisiblity('type')">
+                            Types
+                        </div>
+                        <div
+                            v-if="filterVisibility.type"
+                            class="options">
+                            <label
+                                v-for="type in allTypes"
+                                :for="type"
+                                :key="type"
+                                class="option">
+                                <input
+                                    type="checkbox"
+                                    v-model="filter.types"
+                                    :value="type"
+                                    name="encounter"
+                                    :id="type" />
+                                <span>
+                                    {{ $filters.toTitleCase(type) }}
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
     </div>
 </template>
@@ -85,7 +163,29 @@
             return {
                 openFilter: false,
                 searchQuery: '',
-                pokedex: []
+                pokedex: [],
+                filter: {
+                    encounter: 0,
+                    types: []
+                },
+                filterVisibility: {
+                    encounter: false,
+                    types: false
+                },
+                encounter: [
+                    {
+                        label: 'all',
+                        value: 0
+                    },
+                    {
+                        label: 'caught',
+                        value: 1
+                    },
+                    {
+                        label: 'not-caught',
+                        value: 2
+                    }
+                ]
             }
         },
 
@@ -95,7 +195,8 @@
             },
 
             ...mapGetters([
-                'getPokedexList'
+                'getPokedexList',
+                'allTypes'
             ])
         },
 
@@ -112,6 +213,10 @@
         },
 
         methods: {
+            toggleFilterVisiblity(filter) {
+                this.filterVisibility[filter] = !this.filterVisibility[filter]
+            },
+
             ...mapActions([
                 'getPokemonById'
             ])

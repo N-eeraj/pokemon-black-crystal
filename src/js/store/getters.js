@@ -34,7 +34,7 @@ export default {
     },
 
     getPokedexList(state) {
-        const encountered = state.gameData.pokemon.encountered.list
+        const encountered = state.gameData.pokemon.encountered.list.sort((first, second) => first - second)
         const caught = Object.values(state.gameData.pokemon.caught).map(pokemon => pokemon.id)
         return encountered.map(pokemonId => {
             return {
@@ -42,5 +42,9 @@ export default {
                 caught: caught.includes(pokemonId)
             }
         })
+    },
+
+    allTypes(state) {
+        return Object.keys(state.typesData)
     }
 }

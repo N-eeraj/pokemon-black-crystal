@@ -16,6 +16,7 @@ $header-ht: calc(8vh + 100px);
 
         .filter-icon {
             width: 30px;
+            cursor: pointer;
         }
 
         .search-bar {
@@ -53,6 +54,7 @@ $header-ht: calc(8vh + 100px);
             padding: 5px;
             background-color: palette.$secondary;
             border-radius: 7px;
+            cursor: pointer;
 
             &.uncaught {
                 filter: grayscale(1);
@@ -73,6 +75,64 @@ $header-ht: calc(8vh + 100px);
 
             img {
                 width: 30%;
+            }
+        }
+    }
+
+    #filter_view {
+        @include main.full-screen;
+        background-color: palette.$primary;
+
+        .apply-filter-btn {
+            background-color: transparent;
+            color: palette.$white;
+        }
+
+        .filter-container {
+            @include main.flex($direction: column, $justify: flex-start, $row: 20px);
+            max-height: 92vh;
+            padding-top: 3vh;
+            overflow-y: auto;
+
+            .filter {
+                width: 100%;
+
+                .title {
+                    position: relative;
+                    padding: 3% 5%;
+                    background-color: palette.$secondary;
+                    cursor: pointer;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        right: 5%;
+                        top: 50%;
+                        width: 25px;
+                        aspect-ratio: 1;
+                        background-image: url('@/assets/icons/arrow-down.svg');
+                        background-size: contain;
+                        transform: translateY(-50%);
+                        transition: 400ms;
+                        transform-origin: center;
+                    }
+
+                    &.open-filter::after {
+                        transform: translateY(-50%) rotate(180deg);
+                    }
+                }
+
+                .options {
+                    @include main.flex($direction: column, $justify: flex-start, $row: 5px);
+                    margin-top: 5px;
+
+                    .option {
+                        @include main.flex($justify: flex-start, $col: 10px);
+                        width: 100%;
+                        padding: 5px;
+                        cursor: pointer;
+                    }
+                }
             }
         }
     }
