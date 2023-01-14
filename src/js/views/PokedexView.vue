@@ -163,6 +163,7 @@
             return {
                 openFilter: false,
                 searchQuery: '',
+                originalPokedex: [],
                 pokedex: [],
                 filter: {
                     encounter: 0,
@@ -208,13 +209,31 @@
                     caught: pokemon.caught,
                     ...await this.getPokemonById(pokemon.id)
                 }
-                this.pokedex.push(details)
+                this.originalPokedex.push(details)
             })
+            this.pokedex = this.originalPokedex
         },
 
         methods: {
             toggleFilterVisiblity(filter) {
                 this.filterVisibility[filter] = !this.filterVisibility[filter]
+            },
+
+            applyFilter() {
+                switch (this.filter.encounter) {
+                    case 1:
+                        this.pokedex = this.originalPokedex.filter(pokemon => pokemon.caught)
+                        break
+                    case 2:
+                        this.pokedex = this.originalPokedex.filter(pokemon => !pokemon.caught)
+                        break
+                    default:
+                        this.pokedex = this.originalPokedex
+                }
+                if (this.filter.types.length) {
+                    this.pokedex = this.pokedex.filter(pokemon => pokemon.types.some(type => this.filter.types.includes(type)))
+                }
+                this.openFilter = false
             },
 
             ...mapActions([
