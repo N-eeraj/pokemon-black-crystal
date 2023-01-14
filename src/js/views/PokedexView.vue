@@ -34,7 +34,8 @@
                     v-for="pokemon in (searchQuery ? filteredDexList : pokedex)"
                     :key="pokemon.id"
                     class="pokemon-card"
-                    :class="{ uncaught: !pokemon.caught }">
+                    :class="{ uncaught: !pokemon.caught }"
+                    @click="viewPokemon(pokemon)">
 
                     <div
                         class="details">
@@ -234,6 +235,11 @@
                     this.pokedex = this.pokedex.filter(pokemon => pokemon.types.some(type => this.filter.types.includes(type)))
                 }
                 this.openFilter = false
+            },
+
+            viewPokemon(pokemon) {
+                if (!pokemon.caught) return
+                this.$router.push(`/pokemon/details/pokedex/${pokemon.id}`)
             },
 
             ...mapActions([

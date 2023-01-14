@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import OnboardingView from '../views/OnboardingView.vue'
-import PageNotFound from '../views/PageNotFound.vue'
-import HomeView from '../views/HomeView.vue'
-import PokedexView from '../views/PokedexView.vue'
-import GymBadges from '../views/GymBadges.vue'
-import AchievementsView from '../views/AchievementsView.vue'
-import PlayerPokemonList from '../views/PlayerPokemonList.vue'
+import OnboardingView from '@/js/views/OnboardingView.vue'
+import PageNotFound from '@/js/views/PageNotFound.vue'
+import HomeView from '@/js/views/HomeView.vue'
+import PokedexView from '@/js/views/PokedexView.vue'
+import GymBadges from '@/js/views/GymBadges.vue'
+import AchievementsView from '@/js/views/AchievementsView.vue'
+import PlayerPokemonList from '@/js/views/PlayerPokemonList.vue'
+import PokemonDetails from '@/js/views/PokemonDetails.vue'
 
 const routes = [
     {
@@ -18,15 +19,6 @@ const routes = [
         path: '/welcome',
         name: 'Welcome',
         component: OnboardingView
-    },
-    {
-        path: '/:catchAll(.*)',
-        redirect: '/page-not-found',
-    },
-    {
-        path: '/page-not-found',
-        name: 'NotFound',
-        component: PageNotFound
     },
     {
         path: '/pokedex',
@@ -44,9 +36,23 @@ const routes = [
         component: AchievementsView
     },
     {
-        path: '/pokemon/:id',
+        path: '/pokemon/list/:type',
         name: 'PlayerPokemon',
         component: PlayerPokemonList
+    },
+    {
+        path: '/pokemon/details/:type/:id',
+        name: 'PokemonDetails',
+        component: PokemonDetails
+    },
+    {
+        path: '/page-not-found',
+        name: 'NotFound',
+        component: PageNotFound
+    },
+    {
+        path: '/:catchAll(.*)',
+        redirect: '/page-not-found',
     },
 ]
 

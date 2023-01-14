@@ -58,6 +58,7 @@ $header-ht: calc(8vh + 100px);
 
             &.uncaught {
                 filter: grayscale(1);
+                cursor: default;
             }
 
             .details {
