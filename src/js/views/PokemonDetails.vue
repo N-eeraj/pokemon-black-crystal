@@ -5,7 +5,7 @@
 
 <script>
 
-    import { mapActions } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: 'pokemon-details',
@@ -13,9 +13,14 @@
         data() {
             return {
                 details: null,
-                backPath: null,
-                isPokedex: false
+                backPath: null
             }
+        },
+
+        computed: {
+            ...mapGetters([
+                'getCaughtPokemon'
+            ])
         },
 
         created() {
@@ -25,16 +30,17 @@
                 case 'pokedex':
                     if (id > 386) return this.$router.push('/page-not-found')
                     this.backPath = '/pokedex'
-                    this.isPokedex = true
                     this.setPokemonDetails(id)
                     break
 
                 case 'party':
                     this.backPath = '/pokemon/list/party'
+                    this.getCaughtPokemonDetails(id)
                     break
 
                 case 'pc':
                     this.backPath = '/pokemon/list/pc'
+                    this.getCaughtPokemonDetails(id)
                     break
 
                 default:
@@ -45,11 +51,17 @@
         methods: {
             async setPokemonDetails(id) {
                 this.details = await this.getPokemonById(id)
-                console.log(this.details)
+            },
+
+            async getCaughtPokemonDetails(id) {
+                const pokemon = this.getCaughtPokemon(id)
+                await this.setPokemonDetails(pokemon.id)
+                this.details.stat = this.details.getStat(pokemon.exp)
             },
 
             ...mapActions([
-                'getPokemonById'
+                'getPokemonById',
+                'getPokemonByEncounterId'
             ])
         }
     }

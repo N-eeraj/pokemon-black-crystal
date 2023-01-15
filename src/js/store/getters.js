@@ -46,5 +46,10 @@ export default {
 
     allTypes(state) {
         return Object.keys(state.typesData)
+    },
+
+
+getCaughtPokemon: (state) => (id) => {
+        return state.gameData.pokemon.caught[id]
     }
 }
