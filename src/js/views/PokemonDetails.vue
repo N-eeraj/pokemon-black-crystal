@@ -10,7 +10,7 @@
                 @iconEvent="$router.push(backPath)">
                 <template
                     #right-action
-                    v-if="actions">
+                    v-if="actions?.length">
                     <img
                         src="@/assets/icons/options.svg"
                         alt="options"
@@ -171,6 +171,8 @@
             },
 
             getActions(isParty) {
+                if (isParty && this.partyPokemon.length < 2) return
+
                 const actions = [
                     {
                         label: 'Release',
@@ -203,7 +205,7 @@
                 // check if this is party pokemon & if pokemon is in party
                 if (isParty ^ isInParty) this.$router.push('/page-not-found')
 
-                this.actions = this.getActions()
+                this.actions = this.getActions(isParty)
 
                 this.setStats('stat', this.pokemon.getLevel(pokemon.exp))
             },
