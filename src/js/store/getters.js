@@ -49,7 +49,11 @@ export default {
     },
 
 
-getCaughtPokemon: (state) => (id) => {
+    getCaughtPokemon: (state) => (id) => {
         return state.gameData.pokemon.caught[id]
+    },
+
+    partyPokemon(state) {
+        return state.gameData.pokemon.party
     }
 }
