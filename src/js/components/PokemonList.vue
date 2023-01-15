@@ -1,6 +1,5 @@
 <template>
     <div id="pokemon_list_container">
-
         <navigation-bar
             :title="title"
             :icon="icon"

@@ -48,9 +48,12 @@ export default {
         return Object.keys(state.typesData)
     },
 
-
     getCaughtPokemon: (state) => (id) => {
         return state.gameData.pokemon.caught[id]
+    },
+
+    getCaughtPokemonList(state) {
+        return Object.values(state.gameData.pokemon.caught).map(pokemon => pokemon.id)
     },
 
     partyPokemon(state) {

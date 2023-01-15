@@ -45,7 +45,7 @@ export default {
             types: pokemonData.types.map(type => type.type.name),
             image: getImageUrl(pokemonData.name),
             sprite: getSpriteUrl(pokemonData.name),
-            height: pokemonData.height * 10,
+            height: pokemonData.height / 10,
             weight: pokemonData.weight / 10,
             baseStat: {},
             baseExp: pokemonData.base_experience,
