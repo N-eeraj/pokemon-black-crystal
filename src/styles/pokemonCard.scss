@@ -1,5 +1,5 @@
 @use "@/styles/mixins/main";
-@use "@/styles/mixins/hp";
+@use "@/styles/mixins/progress";
 @use "@/styles/colors/palette";
 @use "@/styles/colors/types";
 @use "@/styles/animation";
@@ -36,7 +36,7 @@
             color: palette.$white-secondary;
         }
         progress {
-            @include hp.progress-value;
+            @include progress.progress-value;
         }
 
         .types-list {

@@ -37,52 +37,62 @@
                     :alt="pokemon?.name"
                     class="image" />
                 
-                <strong v-if="pokemon?.name">
-                    {{ $filters.toTitleCase(pokemon?.name) }}
-                </strong>
+                <div class="details">
+                    <strong v-if="pokemon?.name">
+                        {{ $filters.toTitleCase(pokemon?.name) }}
+                    </strong>
 
-                <div class="types-container">
-                    <type-icon
-                        v-for="(type, index) in pokemon?.types"
-                        :type="type"
-                        :key="`type-${index}`" />
-                </div>
-
-                <div class="height-weight">
-                    <div>
-                        <span>
-                            {{ pokemon?.height }} m
-                        </span>
-                        <span class="label">
-                            Height
-                        </span>
+                    <div class="types-container">
+                        <type-icon
+                            v-for="(type, index) in pokemon?.types"
+                            :type="type"
+                            :key="`type-${index}`" />
                     </div>
-                    <div>
-                        <span>
-                            {{ pokemon?.weight }} Kg
-                        </span>
-                        <span class="label">
-                            Weight
-                        </span>
+
+                    <div class="height-weight">
+                        <div>
+                            <span>
+                                {{ pokemon?.height }} m
+                            </span>
+                            <span class="label">
+                                Height
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                {{ pokemon?.weight }} Kg
+                            </span>
+                            <span class="label">
+                                Weight
+                            </span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="stats-container">
-                    <span class="label">
-                        <template v-if="!pokemon?.stat">
-                            Base
-                        </template>
-                        Stats
-                    </span>
+                    <div class="stats-container">
+                        <span class="label">
+                            <template v-if="!pokemon?.stat">
+                                Base
+                            </template>
+                            Stats
+                        </span>
 
-                    <div class="stats">
-                        <div
-                            v-for="(stat, index) in stats"
-                            :key="`stat-${index}`"
-                            class="stat-value">
-                            {{ stat.label }}
-                            {{ stat.value }}
-                            {{ stat.max }}
+                        <div class="stats">
+                            <div
+                                v-for="(stat, index) in stats"
+                                :key="`stat-${index}`"
+                                class="stat-value">
+
+                                <span class="stat-label">
+                                    {{ stat.label }}
+                                </span>
+                                <span>
+                                    {{ stat.value }}
+                                </span>
+                                <progress
+                                    :value="stat.value"
+                                    :max="stat.max"
+                                    :class="getClass(stat)" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -203,6 +213,13 @@
                 let value = (0.02 * statValue * level) + 5 + (5 + level)
                 if (isHp) value += (5 + level)
                 return Math.round(value, 2)
+            },
+
+            getClass(stat) {
+                const percentage = stat.value / stat.max
+                if (percentage > 0.65) return 'high'
+                if (percentage > 0.25) return 'medium'
+                return 'low'
             },
 
             setStats(stat, level = null) {

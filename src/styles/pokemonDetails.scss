@@ -1,4 +1,5 @@
 @use "@/styles/mixins/main";
+@use "@/styles/mixins/progress";
 @use "@/styles/colors/palette";
 
 #pokemon_details {
@@ -37,10 +38,6 @@
         background-color: palette.$primary;
         border-radius: 30px 30px 0 0;
 
-        .label {
-            color: palette.$white-secondary;
-        }
-
         .image {
             position: absolute;
             bottom: 100%;
@@ -49,23 +46,51 @@
             transform: translate(-50%, 25%);
         }
 
-        .types-container {
-            @include main.flex($col: 10px);
-        }
-
-        .height-weight {
-            @include main.flex($col: 30px);
-            padding: 0 5%;
-            text-align: center;
+        .details {
+            @include main.flex($direction: column, $justify: flex-start, $row: 20px);
+            height: 80%;
 
             .label {
-                font-size: 0.8rem;
+                color: palette.$white-secondary;
             }
-        }
 
-        .stats-container {
-            width: 100%;
-            padding: 5% 5% 10% 5%;
+            .types-container {
+                @include main.flex($col: 10px);
+            }
+
+            .height-weight {
+                @include main.flex($col: 30px);
+                padding: 0 5%;
+                text-align: center;
+
+                .label {
+                    font-size: 0.8rem;
+                }
+            }
+
+            .stats-container {
+                width: 100%;
+                padding: 5% 5% 10% 5%;
+
+                .stats {
+                    @include main.flex($direction: column, $align: flex-start, $row: 7px);
+                    margin-top: 12px;
+                    font-size: 0.75rem;
+                    
+                    .stat-value {
+                        @include main.flex($justify: space-between);
+                        width: 100%;
+
+                        .stat-label {
+                            width: 30%;
+                        }
+                        progress {
+                            @include progress.progress-value(palette.$secondary);
+                            width: 40%;
+                        }
+                    }
+                }
+            }
         }
     }
 }

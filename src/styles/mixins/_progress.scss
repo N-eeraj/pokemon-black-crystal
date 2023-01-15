@@ -1,13 +1,13 @@
 @use "@/styles/colors/palette";
 
-@mixin progress-value {
+@mixin progress-value($bg-color: palette.$white) {
     width: 100%;
     height: 7px;
     border-radius: 10px;
     border: none;
   
     &::-webkit-progress-bar {
-        background-color: palette.$white;
+        background-color: $bg-color;
         border-radius: 10px;
     }
     &::-webkit-progress-value {
