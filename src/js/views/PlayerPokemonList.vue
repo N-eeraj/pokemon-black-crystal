@@ -48,11 +48,16 @@
         created() {
             this.listType = this.$route.params.type
             const pokemonIdList = (this.listType === 'party') ? this.partyPokemon : this.pcPokemon
-            const pokemonList = pokemonIdList.map(id => this.getCaughtPokemon(id))
+            const pokemonList = pokemonIdList.map(id => {
+                return {
+                    caughtId: id,
+                    ...this.getCaughtPokemon(id)
+                }
+            })
             pokemonList.map(async (pokemon) => {
                 const pokemonDetails = await this.getPokemonById(pokemon.id)
                 this.pokemonList.push({
-                    encounterId: pokemon.id,
+                    caughtId: pokemon.caughtId,
                     exp: pokemon.exp,
                     level: pokemonDetails.getLevel(pokemon.exp),
                     ...pokemonDetails
@@ -63,7 +68,7 @@
         methods: {
             handleSelectPokemon(index) {
                 const selectedPokemon = this.pokemonList[index]
-                this.$router.push(`/pokemon/details/${this.listType}/${selectedPokemon.encounterId}`)
+                this.$router.push(`/pokemon/details/${this.listType}/${selectedPokemon.caughtId}`)
             },
 
             changeListOrder({ currentIndex, newIndex }) {

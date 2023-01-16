@@ -199,7 +199,7 @@
                 if (!pokemon) return this.$router.push('/page-not-found')
                 await this.setPokemonDetails(pokemon.id)
                 this.pokemon.stat = this.pokemon.getStat(pokemon.exp)
-                this.pokemon.encounteredId = id
+                this.pokemon.caughtId = id
 
                 const isInParty = this.partyPokemon.includes(id)
                 // check if this is party pokemon & if pokemon is in party
@@ -260,12 +260,12 @@
             },
 
             release() {
-                console.log('Release pokemon', this.pokemon.encounteredId)
+                console.log('Release pokemon', this.pokemon.caughtId)
             },
 
             movePokemon() {
                 const moveFrom = this.$route.params.type
-                console.log('Move pokemon', this.pokemon.encounteredId, ' from', moveFrom)
+                console.log('Move pokemon', this.pokemon.caughtId, ' from', moveFrom)
             },
 
             ...mapActions([
