@@ -42,6 +42,25 @@ export default {
         state.growthRateData[name] = data
     },
 
+    rearrangePlayerPokemon(state, { list, currentIndex, newIndex }) {
+        const pokemonList = state.gameData.pokemon[list]
+
+        if (newIndex < 0) newIndex = 0
+        else if (newIndex >= pokemonList.length) {
+            newIndex = pokemonList.length - 1
+        }
+        
+        [pokemonList[currentIndex], pokemonList[newIndex]] = [pokemonList[newIndex], pokemonList[currentIndex]]
+        encryptAndSave(state.gameData)
+    },
+
+    movePokemon(state, { id, from, to }) {
+        const pokemonData = state.gameData.pokemon
+        pokemonData[from] = pokemonData[from].filter(caughtId => caughtId !== id)
+        pokemonData[to].push(id)
+        encryptAndSave(state.gameData)
+    },
+
     setBattleData(state, data) {
         state.battle = data
     },
@@ -74,9 +93,6 @@ export default {
 
         // if move category is ohko set damage as defending pokemon's hp else calculate damage
         const damage = (moveData.category === 'ohko') ? defendingPokemon.currentHp : moveDamage(moveData, attackingPokemon, defendingPokemon)
-
-        // if (moveData.category === 'ohko') damage = defendingPokemon.currentHp
-        // else damage = moveDamage(moveData, attackingPokemon, defendingPokemon)
 
         // if move category is damage+heal set heal as half of the damage dealt else set use heal from move data as percentage
         let heal

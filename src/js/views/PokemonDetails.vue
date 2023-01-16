@@ -184,7 +184,7 @@
 
                 actions.unshift({
                     label: `Move to ${ isParty ? 'PC' : 'Party' }`,
-                    action: this.movePokemon
+                    action: this.handleMovePokemon
                 })
                 return actions
             },
@@ -263,14 +263,21 @@
                 console.log('Release pokemon', this.pokemon.caughtId)
             },
 
-            movePokemon() {
-                const moveFrom = this.$route.params.type
-                console.log('Move pokemon', this.pokemon.caughtId, ' from', moveFrom)
+        handleMovePokemon() {
+                const from = this.$route.params.type
+                const to = (from === 'party') ? 'pc' : 'party'
+                this.movePokemon({
+                    id: this.pokemon.caughtId,
+                    from,
+                    to
+                })
+                this.$router.push(`/pokemon/list/${from}`)
             },
 
             ...mapActions([
                 'getPokemonById',
-                'getPokemonByEncounterId'
+                'getPokemonByEncounterId',
+                'movePokemon'
             ])
         }
     }

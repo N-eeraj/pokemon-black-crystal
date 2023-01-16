@@ -274,5 +274,13 @@ export default {
     
     toggleSound({ commit }) {
         commit('toggleSound')
+    },
+
+    rearrangePlayerPokemon({ commit }, data) {
+        commit('rearrangePlayerPokemon', data)
+    },
+
+    movePokemon({ commit }, data) {
+        commit('movePokemon', data)
     }
 }

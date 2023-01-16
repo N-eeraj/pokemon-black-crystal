@@ -29,7 +29,7 @@
         data() {
             return {
                 listType: null,
-                pokemonList: []
+                pokemonList: null
             }
         },
 
@@ -47,41 +47,46 @@
 
         created() {
             this.listType = this.$route.params.type
-            const pokemonIdList = (this.listType === 'party') ? this.partyPokemon : this.pcPokemon
-            const pokemonList = pokemonIdList.map(id => {
-                return {
-                    caughtId: id,
-                    ...this.getCaughtPokemon(id)
-                }
-            })
-            pokemonList.map(async (pokemon) => {
-                const pokemonDetails = await this.getPokemonById(pokemon.id)
-                this.pokemonList.push({
-                    caughtId: pokemon.caughtId,
-                    exp: pokemon.exp,
-                    level: pokemonDetails.getLevel(pokemon.exp),
-                    ...pokemonDetails
-                })
-            })
+            this.setList()
         },
 
         methods: {
+            setList() {
+                this.pokemonList = []
+                const pokemonIdList = (this.listType === 'party') ? this.partyPokemon : this.pcPokemon
+                const pokemonList = pokemonIdList.map(id => {
+                    return {
+                        caughtId: id,
+                        ...this.getCaughtPokemon(id)
+                    }
+                })
+                pokemonList.map(async (pokemon) => {
+                    const pokemonDetails = await this.getPokemonById(pokemon.id)
+                    this.pokemonList.push({
+                        caughtId: pokemon.caughtId,
+                        exp: pokemon.exp,
+                        level: pokemonDetails.getLevel(pokemon.exp),
+                        ...pokemonDetails
+                    })
+                })
+            },
+
             handleSelectPokemon(index) {
                 const selectedPokemon = this.pokemonList[index]
                 this.$router.push(`/pokemon/details/${this.listType}/${selectedPokemon.caughtId}`)
             },
 
-            changeListOrder({ currentIndex, newIndex }) {
-                if (newIndex < 0) newIndex = 0
-                else if (newIndex >= this.pokemonList.length) {
-                    newIndex = this.pokemonList.length - 1
-                }
-
-                [this.pokemonList[currentIndex], this.pokemonList[newIndex]] = [this.pokemonList[newIndex], this.pokemonList[currentIndex]]
+            changeListOrder(data) {
+                this.rearrangePlayerPokemon({
+                    list: this.listType,
+                    ...data
+                })
+                this.setList()
             },
 
             ...mapActions([
-                'getPokemonById'
+                'getPokemonById',
+                'rearrangePlayerPokemon'
             ])
         },
     }
