@@ -93,4 +93,12 @@
             }
         }
     }
+
+    .release-modal {
+        transform: translateY(20%);
+
+        .text {
+            font-size: 0.8rem;
+        }
+    }
 }

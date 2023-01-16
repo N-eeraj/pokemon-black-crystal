@@ -99,6 +99,28 @@
 
             </div>
 
+            <pop-up
+                v-if="showReleaseModal"
+                class="release-modal">
+                <template #body>
+                    <div class="text">
+                        Are you sure you want to release this pokemon?
+                    </div>
+                </template>
+                <template #actions>
+                    <button
+                        class="confirm"
+                        @click="release">
+                        Yes
+                    </button>
+                    <button
+                        class="cancel"
+                        @click="showReleaseModal = false">
+                        No
+                    </button>
+                </template>
+            </pop-up>
+
         </div>
     </div>
 </template>
@@ -106,6 +128,7 @@
 <script>
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
     import TypeIcon from '@/js/components/TypeIcon.vue'
 
     import { mapGetters, mapActions } from 'vuex'
@@ -115,6 +138,7 @@
 
         components: {
             NavigationBar,
+            PopUp,
             TypeIcon
         },
 
@@ -122,9 +146,11 @@
             return {
                 pokemon: null,
                 stats: [],
+                listType: null,
                 backPath: null,
                 actions: null,
-                showActions: false
+                showActions: false,
+                showReleaseModal: false
             }
         },
 
@@ -142,11 +168,11 @@
 
         methods: {
             initialize() {
-                const { type } = this.$route.params
-                let { id } = this.$route.params
+                this.listType = this.$route.params.type
+                let id = this.$route.params.id
                 id = Number(id)
 
-                switch (type) {
+                switch (this.listType) {
                     case 'pokedex':
                         if (id < 387 && this.getCaughtPokemonList.includes(id)) {
                             this.backPath = '/pokedex'
@@ -176,7 +202,7 @@
                 const actions = [
                     {
                         label: 'Release',
-                        action: this.release
+                        action: this.confirmRelease
                     }
                 ]
 
@@ -259,25 +285,35 @@
                 ]
             },
 
+            confirmRelease() {
+                this.showReleaseModal = true
+            },
+
             release() {
-                console.log('Release pokemon', this.pokemon.caughtId)
+                this.releasePokemon({
+                    id: this.pokemon.caughtId,
+                    list: this.$route.params.type
+                })
+                this.showReleaseModal = false
+                this.$router.push(`/pokemon/list/${this.listType}`)
             },
 
         handleMovePokemon() {
-                const from = this.$route.params.type
+                const from = this.listType
                 const to = (from === 'party') ? 'pc' : 'party'
                 this.movePokemon({
                     id: this.pokemon.caughtId,
                     from,
                     to
                 })
-                this.$router.push(`/pokemon/list/${from}`)
+                this.$router.push(`/pokemon/list/${this.listType}`)
             },
 
             ...mapActions([
                 'getPokemonById',
                 'getPokemonByEncounterId',
-                'movePokemon'
+                'movePokemon',
+                'releasePokemon'
             ])
         }
     }

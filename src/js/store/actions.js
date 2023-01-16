@@ -282,5 +282,9 @@ export default {
 
     movePokemon({ commit }, data) {
         commit('movePokemon', data)
-    }
+    },
+
+    releasePokemon({ commit }, data) {
+        commit('releasePokemon', data)
+    },
 }

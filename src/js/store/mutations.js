@@ -61,6 +61,12 @@ export default {
         encryptAndSave(state.gameData)
     },
 
+    releasePokemon(state, { id, list }) {
+        const pokemonData = state.gameData.pokemon
+        pokemonData[list] = pokemonData[list].filter(caughtId => caughtId !== id)
+        encryptAndSave(state.gameData)
+    },
+
     setBattleData(state, data) {
         state.battle = data
     },

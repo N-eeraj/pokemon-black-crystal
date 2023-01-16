@@ -56,10 +56,14 @@
                     </div>
                 </template>
                 <template #actions>
-                    <button class="confirm" @click="confirmPokemon">
+                    <button
+                        class="confirm"
+                        @click="confirmPokemon">
                         Yes
                     </button>
-                    <button class="cancel" @click="closeModal('selectStarter')">
+                    <button
+                        class="cancel"
+                        @click="closeModal('selectStarter')">
                         No
                     </button>
                 </template>
