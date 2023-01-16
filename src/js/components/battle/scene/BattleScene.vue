@@ -54,7 +54,6 @@
             :list="this.battleData.trainer.partyList"
             title="Pokémon"
             icon="cross-mark"
-            icon-action="closeParty"
             show-hp
             rearrangeable
             @navIconAction="hidePartyPokemon"

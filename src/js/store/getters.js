@@ -58,5 +58,9 @@ export default {
 
     partyPokemon(state) {
         return state.gameData.pokemon.party
+    },
+
+    pcPokemon(state) {
+        return state.gameData.pokemon.pc
     }
 }

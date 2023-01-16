@@ -62,11 +62,11 @@
                 <img
                     src="@/assets/images/home-icons/party.svg"
                     alt="Party Pokemon"
-                    @click="$router.push('/pokemon/party')" />
+                    @click="$router.push('/pokemon/list/party')" />
                 <img
                     src="@/assets/images/home-icons/pc.svg"
                     alt="PC Pokemon"
-                    @click="$router.push('/pokemon/pc')" />
+                    @click="$router.push('/pokemon/list/pc')" />
             </div>
         </div>
 
