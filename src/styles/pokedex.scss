@@ -13,6 +13,7 @@ $header-ht: calc(8vh + 100px);
         width: calc(100% - 5px);
         height: $header-ht;
         background-color: palette.$primary;
+        z-index: 2;
 
         .filter-icon {
             width: 30px;
@@ -126,6 +127,7 @@ $header-ht: calc(8vh + 100px);
                 .options {
                     @include main.flex($direction: column, $justify: flex-start, $row: 5px);
                     margin-top: 5px;
+                    padding-bottom: 60px;
 
                     .option {
                         @include main.flex($justify: flex-start, $col: 10px);

@@ -62,5 +62,9 @@ export default {
 
     pcPokemon(state) {
         return state.gameData.pokemon.pc
+    },
+
+    playerLevel(state) {
+        return state.gameData.progress.level
     }
 }
