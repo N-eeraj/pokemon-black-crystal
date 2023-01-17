@@ -1,0 +1,34 @@
+[
+    {
+        "name": "rock",
+        "level": 18
+    },
+    {
+        "name": "water",
+        "level": 86
+    },
+    {
+        "name": "fighting",
+        "level": 204
+    },
+    {
+        "name": "electric",
+        "level": 372
+    },
+    {
+        "name": "fire",
+        "level": 590
+    },
+    {
+        "name": "normal",
+        "level": 858
+    },
+    {
+        "name": "flying",
+        "level": 1176
+    },
+    {
+        "name": "fairy",
+        "level": 1544
+    }
+]
