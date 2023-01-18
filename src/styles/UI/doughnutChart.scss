@@ -10,7 +10,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 2rem;
     }
 
     .chart {
@@ -19,10 +18,18 @@
         transform: rotate(-90deg);
 
         circle {
-            stroke-width: 30%;
-            stroke-dasharray: 220%;
+            stroke-width: 15%;
             @include progress.progress-chart;
             animation: doughnut 1s ease-out forwards;
+
+            &.background {
+                stroke: palette.$primary;
+                stroke-dasharray: none;
+            }
+
+            &.doughnut {
+                stroke-dasharray: 220%;
+            }
         }
     }
 }

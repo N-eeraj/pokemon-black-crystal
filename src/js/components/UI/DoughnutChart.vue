@@ -9,6 +9,13 @@
                 cy="50%"
                 cx="50%"
                 fill="none"
+                class="background" />
+            <circle
+                r="35%"
+                cy="50%"
+                cx="50%"
+                fill="none"
+                class="doughnut"
                 :class="color"
                 :style="`stroke-dashoffset: ${ 220 - value * 2.2 }%;`" />
         </svg>
