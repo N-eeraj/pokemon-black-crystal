@@ -1,0 +1,34 @@
+@use "@/styles/mixins/main.scss";
+@use "@/styles/mixins/progress.scss";
+@use "@/styles/colors/palette.scss";
+
+.doughnut-chart {
+    position: relative;
+
+    .value {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2rem;
+    }
+
+    .chart {
+        width: 100%;
+        aspect-ratio: 1;
+        transform: rotate(-90deg);
+
+        circle {
+            stroke-width: 30%;
+            stroke-dasharray: 220%;
+            @include progress.progress-chart;
+            animation: doughnut 1s ease-out forwards;
+        }
+    }
+}
+
+@keyframes doughnut {
+    from {
+        stroke-dashoffset: 220%;
+    }
+}

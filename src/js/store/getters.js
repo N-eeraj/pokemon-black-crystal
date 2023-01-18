@@ -66,5 +66,9 @@ export default {
 
     playerLevel(state) {
         return state.gameData.progress.level
+    },
+
+    playerAchievements(state) {
+        return state.gameData.progress.arcade
     }
 }

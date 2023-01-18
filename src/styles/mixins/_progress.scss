@@ -39,3 +39,15 @@
         }
     }
 }
+
+@mixin progress-chart {
+    &.high {
+        stroke: palette.$value-high;
+    }
+    &.medium {
+        stroke: palette.$value-med;
+    }
+    &.low {
+        stroke: palette.$value-low;
+    }
+}
