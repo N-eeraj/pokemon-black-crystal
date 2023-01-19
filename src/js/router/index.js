@@ -8,6 +8,8 @@ import GymBadges from '@/js/views/GymBadges.vue'
 import AchievementsView from '@/js/views/AchievementsView.vue'
 import PlayerPokemonList from '@/js/views/PlayerPokemonList.vue'
 import PokemonDetails from '@/js/views/PokemonDetails.vue'
+import StoreView from '@/js/views/StoreView.vue'
+import BagView from '@/js/views/BagView.vue'
 
 const routes = [
     {
@@ -44,6 +46,16 @@ const routes = [
         path: '/pokemon/details/:type/:id',
         name: 'PokemonDetails',
         component: PokemonDetails
+    },
+    {
+        path: '/store',
+        name: 'StoreView',
+        component: StoreView
+    },
+    {
+        path: '/bag',
+        name: 'BagView',
+        component: BagView
     },
     {
         path: '/page-not-found',

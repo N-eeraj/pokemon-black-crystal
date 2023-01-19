@@ -39,18 +39,22 @@
         </main>
 
         <footer class="menu-footer">
-            <div class="menu-footer-action">
+            <div
+                class="menu-footer-action"
+                @click="$router.push('/store')">
                 Store
                 <img
                     src="@/assets/images/home-icons/menu-icons/store.svg"
-                    alt="PokeCoin"
+                    alt="Store"
                     class="icon" />
             </div>
-            <div class="menu-footer-action">
+            <div
+                class="menu-footer-action"
+                @click="$router.push('/bag')">
                 Bag
                 <img
                     src="@/assets/images/home-icons/menu-icons/bag.svg"
-                    alt="PokeCoin"
+                    alt="Bag"
                     class="icon" />
             </div>
         </footer>
