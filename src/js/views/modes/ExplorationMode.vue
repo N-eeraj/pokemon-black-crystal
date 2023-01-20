@@ -7,8 +7,10 @@
                 @selectedLocation="handleLocation"
                 @legendaryHunt="handleLegendaryHunt" />
 
+            <common-loader v-else-if="isLoading" />
+
             <battle-scene
-                v-else-if="playerPokemon.length && wildPokemon.length"
+                v-else
                 :playerParty="playerPokemon"
                 :foeParty="wildPokemon"
                 saveBattle
@@ -25,6 +27,7 @@
 
     import WildLocations from '@/js/components/WildLocations.vue'
     import BattleScene from '@/js/components/battle/scene/BattleScene.vue'
+    import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 
@@ -33,14 +36,16 @@
 
         components: {
             WildLocations,
-            BattleScene
+            BattleScene,
+            CommonLoader
         },
 
         data() {
             return {
                 battleOngoing: false,
                 playerPokemon: null,
-                wildPokemon: []
+                wildPokemon: [],
+                isLoading: false
             }
         },
 
@@ -65,12 +70,14 @@
 
         methods: {
             async handleLocation(location) {
+                this.isLoading = true
                 this.battleOngoing = true
                 const encounteredPokemon = await this.getWildPokemonByLocation(location)
                 this.wildPokemon.push({
                     pokemon: encounteredPokemon.id,
                     exp: 1000
                 })
+                this.isLoading = false
             },
 
             handleLegendaryHunt() {
@@ -80,6 +87,10 @@
             battleOver() {
                 this.battleOngoing = false
                 this.wildPokemon = []
+            },
+
+            handleGameOver() {
+                console.log('handleGameOver')
             },
 
             ...mapActions([

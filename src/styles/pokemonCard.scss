@@ -25,7 +25,7 @@
     }
 
     .details {
-        @include main.flex($direction: column, $justify: space-evenly, $align: flex-start);
+        @include main.flex($direction: column, $justify: space-evenly, $align: flex-start, $row: 5px);
         width: 70%;
         height: 100%;
         

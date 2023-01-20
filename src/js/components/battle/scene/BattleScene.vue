@@ -161,7 +161,7 @@
 
         computed: {
             showPokeballAction() {
-                return Boolean(this.canCatch && Object.keys(this.availablePokeballs).length)
+                return Boolean(this.canCatch && Object.keys(this.availablePokeballs || {}).length)
             },
 
             battleData() {
@@ -185,9 +185,7 @@
             await this.setBattleParty(this.foeParty, 'foe')
             this.setBattleData(this.battle)
 
-            // to-do: check & show available pokeballs
             this.availablePokeballs = this.getAvailableBalls()
-            // console.log(this.availablePokeballs)
 
             this.loading = false
         },

@@ -9,9 +9,9 @@
 
 <script>
 
-    import SplashScreen from './components/screens/SplashScreen.vue'
-    import RotateScreen from './components/screens/RotateScreen.vue'
-    import OfflineScreen from './components/screens/OfflineScreen.vue'
+    import SplashScreen from '@/js/components/screens/SplashScreen.vue'
+    import RotateScreen from '@/js/components/screens/RotateScreen.vue'
+    import OfflineScreen from '@/js/components/screens/OfflineScreen.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 

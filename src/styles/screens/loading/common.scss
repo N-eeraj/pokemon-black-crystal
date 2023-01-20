@@ -1,0 +1,15 @@
+@use "@/styles/mixins/main";
+@use "@/styles/animation";
+
+#common_loader {
+    @include main.full-screen;
+    @include main.flex($direction: column, $row: 3vh);
+
+    .image {
+        width: 50%;
+    }
+    .text {
+        font-size: 1.5rem;
+        animation: blink 800ms ease-in-out infinite alternate;
+    }
+}

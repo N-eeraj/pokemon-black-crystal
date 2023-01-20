@@ -12,9 +12,14 @@ export default {
     },
 
     getAvailableBalls(state) {
-        // to-do: return available types of balls
         if (!state.gameData) return {}
-        return state.gameData.progress.bag
+        const ballIds = [1, 2, 3, 13]
+        const availableBalls = {}
+        Object.entries(state.gameData.progress.bag).forEach(([id, count]) => {
+            if (ballIds.includes(Number(id)) && count)
+                availableBalls[id] = count
+        })
+        return availableBalls
     },
 
     getMovesByName: (state) => (name) => {
