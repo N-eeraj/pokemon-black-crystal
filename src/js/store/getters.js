@@ -70,5 +70,9 @@ export default {
 
     playerAchievements(state) {
         return state.gameData.progress.arcade
+    },
+
+    bagItems(state) {
+        return state.gameData.progress.bag
     }
 }

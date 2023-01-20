@@ -1,0 +1,40 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#bag {
+    .items-list {
+        @include main.flex($direction: column, $justify: flex-start, $row: 25px);
+        max-height: 92vh;
+        padding-bottom: 60px;
+        overflow-y: auto;
+
+        .item-container {
+            position: relative;
+            @include main.flex($justify: space-between);
+            width: 95%;
+
+            .item-image {
+                width: 25%;
+            }
+
+            .item-details {
+                @include main.flex($direction: column, $align: flex-start, $row: 7px);
+                width: 70%;
+
+                .description {
+                    font-size: 0.7rem;
+                }
+            }
+
+            .item-count {
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                padding: 3px;
+                background-color: palette.$accent;
+                color: palette.$primary;
+                border-radius: 10px;
+            }
+        }
+    }
+}
