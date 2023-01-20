@@ -1,6 +1,5 @@
 <template>
-    <div
-        :style="`background-image: url(${icon});`">
+    <div :style="`background-image: url(${icon});`">
     </div>
 </template>
 
@@ -19,7 +18,7 @@
             icon() {
                 return require(`@/assets/images/type-icons/${this.type}.webp`)
             }
-        },
+        }
     }
 </script>
 
