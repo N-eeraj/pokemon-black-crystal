@@ -61,6 +61,11 @@ export default {
         return Object.values(state.gameData.pokemon.caught).map(pokemon => pokemon.id)
     },
 
+    strongestPokemon(state) {
+        const caughtPokemonDetails = Object.values(state.gameData.pokemon.caught)
+        return caughtPokemonDetails.sort((first, second) => first.exp - second.exp)[caughtPokemonDetails.length - 1]
+    },
+
     partyPokemon(state) {
         return state.gameData.pokemon.party
     },

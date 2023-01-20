@@ -31,6 +31,8 @@
 
     import { mapActions, mapGetters } from 'vuex'
 
+    import { getInRange } from '@/js/mixins/randomGenerator'
+
     export default {
         name: 'exploration-mode',
 
@@ -52,7 +54,8 @@
         computed: {
             ...mapGetters([
                 'partyPokemon',
-                'getCaughtPokemon'
+                'getCaughtPokemon',
+                'strongestPokemon'
             ])
         },
 
@@ -73,9 +76,10 @@
                 this.isLoading = true
                 this.battleOngoing = true
                 const encounteredPokemon = await this.getWildPokemonByLocation(location)
+                const exp = getInRange(this.strongestPokemon.exp * 0.6, this.strongestPokemon.exp)
                 this.wildPokemon.push({
                     pokemon: encounteredPokemon.id,
-                    exp: 1000
+                    exp
                 })
                 this.isLoading = false
             },

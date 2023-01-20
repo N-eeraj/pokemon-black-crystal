@@ -29,6 +29,10 @@
                 padding: 3px;
                 background-color: rgba(palette.$primary, 0.75);
                 border-radius: 50%;
+
+                &.close {
+                    padding: 10px;
+                }
             }
         }
 
@@ -37,17 +41,42 @@
         }
     }
 
-    .battle-message, .actions {
+    .battle-message, .pokeballs-list, .actions {
         position: fixed;
         bottom: 0;
         width: 100%;
         min-height: min(10%, 80px);
     }
 
-    .battle-message {
+    .battle-message, .pokeballs-list {
         padding: 10px;
         background-color: palette.$primary;
         color: palette.$white;
+    }
+    
+    .pokeballs-list {
+        @include main.flex($justify: space-evenly);
+
+        .pokeball-container {
+            position: relative;
+            max-width: 25%;
+            height: 100%;
+            cursor: pointer;
+
+            .item-image {
+                height: 50px;
+            }
+            .count {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                padding: 3px;
+                background-color: palette.$accent;
+                color: palette.$primary;
+                font-size: 0.7rem;
+                border-radius: 10px;
+            }
+        }
     }
 
     .actions {

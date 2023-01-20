@@ -44,7 +44,6 @@
 
     import { mapGetters } from "vuex"
 
-
     import items from "@/assets/data/items"
 
     export default {
@@ -77,7 +76,7 @@
                     image
                 })
             })
-        },
+        }
 
     }
 </script>

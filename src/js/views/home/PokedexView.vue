@@ -40,7 +40,7 @@
                     <div
                         class="details">
                         <span class="id">
-                            #{{ pokemon.id.padStart(3, '0') }}
+                            #{{ String(pokemon.id).padStart(3, '0') }}
                         </span>
                         <span>
                             {{ $filters.toTitleCase(pokemon.name) }}

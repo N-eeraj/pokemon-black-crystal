@@ -1,34 +1,58 @@
 <template>
     <div id="battle_scene">
 
-        <div class="battle-field">
+        <common-loader v-if="loading" />
 
-            <img
-                v-if="canEscape"
-                :src="require(`@/assets/icons/escape.svg`)"
-                class="icon escape"
-                @click="confirmEscape" />
-            <img
-                v-if="showPokeballAction"
-                :src="require(`@/assets/icons/pokeball.svg`)"
-                class="icon pokeball"
-                @click="showPokeballs" />
+        <template v-else>
+            <div class="battle-field">
 
-            <battle-pokemon
-                v-if="!loading && currentPokemon.foe"
-                :pokemon="currentPokemon.foe"
-                isFoe />
-            <div v-else></div> <!-- to leave space for foe -->
-            <battle-pokemon
-                v-if="!loading && currentPokemon.trainer"
-                :pokemon="currentPokemon.trainer"/>
-        </div>
+                <img
+                    v-if="canEscape"
+                    :src="require(`@/assets/icons/escape.svg`)"
+                    class="icon escape"
+                    @click="confirmEscape" />
+                <img
+                    v-if="showPokeballAction"
+                    :src="require(`@/assets/icons/${ show.pokeballs ? 'cross-mark' : 'pokeball' }.svg`)"
+                    class="icon pokeball"
+                    :class="{ close : show.pokeballs }"
+                    @click="toggleShowPokeballs" />
+
+                <battle-pokemon
+                    v-if="currentPokemon.foe"
+                    :pokemon="currentPokemon.foe"
+                    isFoe />
+                <div v-else></div> <!-- to leave space for foe -->
+                <battle-pokemon
+                    v-if="currentPokemon.trainer"
+                    :pokemon="currentPokemon.trainer"/>
+            </div>
+        </template>
 
         <div
             v-if="battleMessage"
             class="battle-message">
             {{ battleMessage }}
         </div>
+
+        <div
+            v-else-if="show.pokeballs"
+            class="pokeballs-list">            
+            <div
+                v-for="([id, ball]) in Object.entries(availablePokeballs)"
+                :key="id"
+                class="pokeball-container"
+                @click="useBall(ball)">
+                <img
+                    :src="require(`@/assets/images/items${ball.image}`)"
+                    :alt="ball.name"
+                    class="item-image" />
+                <span class="count">
+                    {{ ball.count }}
+                </span>
+            </div>
+        </div>
+
         <div
             v-else
             class="actions">
@@ -87,11 +111,14 @@
     import BattlePokemon from "@/js/components/battle/scene/BattlePokemon.vue"
     import MovesList from "@/js/components/battle/MovesList.vue"
     import PokemonList from "@/js/components/PokemonList.vue"
+    import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
     import { getRandomMove, checkMoveAccuracy } from "@/js/mixins/randomGenerator"
     import { changePokemon, moveMessage, missedMove, faintMessage } from "@/js/mixins/messages"
+
+    import items from "@/assets/data/items"
 
     export default {
         name: 'battle-scene',
@@ -100,7 +127,8 @@
             PopUp,
             BattlePokemon,
             MovesList,
-            PokemonList
+            PokemonList,
+            CommonLoader
         },
 
         props: {
@@ -146,10 +174,11 @@
                         currentPokemonIndex: 0
                     }
                 },
-                availablePokeballs: null,
+                availablePokeballs: {},
                 show: {
                     moveset: false,
-                    party: false
+                    party: false,
+                    pokeballs: false
                 },
                 modal: {
                     confirmEscape: false
@@ -184,8 +213,15 @@
             await this.setBattleParty(this.playerParty, 'trainer')
             await this.setBattleParty(this.foeParty, 'foe')
             this.setBattleData(this.battle)
-
-            this.availablePokeballs = this.getAvailableBalls()
+            
+            Object.entries(this.getAvailableBalls()).forEach(([id, count]) => {
+                const { name, image } = items.find(item => item.id == id)
+                this.availablePokeballs[id] = {
+                    count,
+                    name,
+                    image
+                }
+            })
 
             this.loading = false
         },
@@ -237,8 +273,8 @@
                 this.$emit('escape')
             },
 
-            showPokeballs() {
-                console.log('show available pokeballs')
+            toggleShowPokeballs() {
+                this.show.pokeballs = !this.show.pokeballs
             },
 
             changePartyOrder({ currentIndex, newIndex }) {
@@ -260,6 +296,11 @@
                 setTimeout(() => {
                     this.useMove(null)
                 }, 2000);
+            },
+
+            useBall(ball) {
+                console.log(ball)
+                this.toggleShowPokeballs()
             },
 
             useMove(moveData) {
