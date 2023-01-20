@@ -1,7 +1,16 @@
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 
 #shop {
     
+    .price-container {
+        @include main.flex($col: 5px);
+
+        .coin-icon {
+            width: 30px;
+        }
+    }
+
     .items-container {
         display: grid;
         grid-template-columns: 40% 40%;
@@ -13,21 +22,44 @@
         overflow-y: auto;
 
         .shop-item {
-            aspect-ratio: 1;
             @include main.flex($direction: column);
+            aspect-ratio: 1;
+            cursor: pointer;
+
+            &.disabled {
+                filter: grayscale(1);
+            }
 
             .item-image {
                 width: 62.5%;
                 aspect-ratio: 1;
                 object-fit: contain;
             }
+        }
+    }
 
-            .price-container {
-                @include main.flex($col: 5px);
+    .selected-item .body-container {
+        @include main.flex($direction: column, $row: 20px);
+        width: 100%;
 
-                .coin-icon {
-                    width: 30px;
+        .quantity-selector {
+            @include main.flex($justify: space-between);
+            width: 75%;
+            
+            .icons {
+                padding: 5px;
+                border-radius: 50%;
+                border: 2px solid palette.$accent;
+                cursor: pointer;
+
+                &.disabled {
+                    filter: grayscale(1);
+                    cursor: default;
                 }
+            }
+
+            .total-quantity {
+                font-size: 2rem;
             }
         }
     }

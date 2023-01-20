@@ -3,7 +3,9 @@
 
         <div id="onboarding_wrapper">
 
-            <div v-if="selectStarter" class="pokeballs-container">
+            <div
+                v-if="selectStarter"
+                class="pokeballs-container">
                 <img
                     v-for="(pokemon, index) in starters"
                     :key="index"
@@ -22,11 +24,16 @@
                 {{ getCurrentDialogue.text }}
             </p>
 
-            <button v-if="getCurrentDialogue.showNext" class="next-btn" @click="nextDialogue">
+            <button
+                v-if="getCurrentDialogue.showNext"
+                class="next-btn"
+                @click="nextDialogue">
                 Next
             </button>
 
-            <pop-up v-if="modal.askName" class="modal">
+            <pop-up
+                v-if="modal.askName"
+                class="modal">
                 <template #body>
                     <input
                         v-model="onboarding.name"
@@ -43,7 +50,9 @@
                 </template>
             </pop-up>
 
-            <pop-up v-if="modal.selectStarter" class="modal">
+            <pop-up
+                v-if="modal.selectStarter"
+                class="modal">
                 <template #body>
                     <div class="starter-confirmation">
                         <img

@@ -37,7 +37,7 @@
         },
         methods: {
             closePopUp() {
-                this.$emit('close-pop-up')
+                this.$emit('closePopUp')
             }
         }
     }

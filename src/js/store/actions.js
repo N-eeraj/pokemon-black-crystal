@@ -287,4 +287,12 @@ export default {
     releasePokemon({ commit }, data) {
         commit('releasePokemon', data)
     },
+
+    updateBag({ commit }, data) {
+        commit('updateBag', data)
+    },
+
+    updatePlayerCoins({ commit }, amount) {
+        commit('updatePlayerCoins', amount)
+    }
 }

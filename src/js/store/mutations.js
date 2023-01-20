@@ -67,6 +67,17 @@ export default {
         encryptAndSave(state.gameData)
     },
 
+    updateBag(state, { itemId, count }) {
+        if (state.gameData.progress.bag[itemId]) state.gameData.progress.bag[itemId] += count
+        else state.gameData.progress.bag[itemId] = count
+        encryptAndSave(state.gameData)
+    },
+
+    updatePlayerCoins(state, amount) {
+        state.gameData.progress.coins += amount
+        encryptAndSave(state.gameData)
+    },
+
     setBattleData(state, data) {
         state.battle = data
     },
