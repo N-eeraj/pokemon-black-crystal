@@ -26,7 +26,8 @@
             <button
                 v-for="(action, index) in menuActions"
                 :key="index"
-                class="menu-action">
+                class="menu-action"
+                @click="$router.push(action.to)">
                 <img
                     :src="require(`@/assets/images/home-icons/menu-icons/${action.icon}.svg`)"
                     :alt="action.name"
@@ -75,12 +76,12 @@
                     {
                         name: 'Story Mode',
                         icon: 'story-mode',
-                        to: ''
+                        to: '/mode/story'
                     },
                     {
                         name: 'Exploration',
                         icon: 'exploration',
-                        to: ''
+                        to: '/mode/exploration'
                     },
                     {
                         name: 'Arcade',
@@ -125,4 +126,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/mainMenu.scss"></style>
+<style lang="scss" src="@/styles/home/mainMenu.scss"></style>

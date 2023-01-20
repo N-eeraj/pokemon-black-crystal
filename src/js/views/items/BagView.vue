@@ -82,4 +82,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/bag.scss"></style>
+<style lang="scss" src="@/styles/items/bag.scss"></style>

@@ -249,4 +249,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/pokedex.scss"></style>
+<style lang="scss" src="@/styles/home/pokedex.scss"></style>

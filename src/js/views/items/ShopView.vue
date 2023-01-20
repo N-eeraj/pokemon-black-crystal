@@ -165,4 +165,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/shop.scss"></style>
+<style lang="scss" src="@/styles/items/shop.scss"></style>

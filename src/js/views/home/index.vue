@@ -149,4 +149,4 @@
     }
 </script>
 
-<style lang="scss" scoped src="@/styles/home.scss"></style>
+<style lang="scss" scoped src="@/styles/home/main.scss"></style>

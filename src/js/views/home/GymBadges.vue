@@ -54,4 +54,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/gymBadges.scss"></style>
+<style lang="scss" src="@/styles/home/gymBadges.scss"></style>

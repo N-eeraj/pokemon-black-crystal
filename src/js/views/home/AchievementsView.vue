@@ -64,10 +64,10 @@
 
         methods: {
             getPecentage(achievement) {
-                return Math.round(achievement.victories / achievement.attempts * 100, 2)
+                return Math.round(achievement.victories / achievement.attempts * 100, 2) || 0
             }
         },
     }
 </script>
 
-<style lang="scss" src="@/styles/achievements.scss"></style>
+<style lang="scss" src="@/styles/home/achievements.scss"></style>

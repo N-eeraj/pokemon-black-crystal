@@ -5,15 +5,12 @@ $header-ht: calc(8vh + 100px);
 
 #pokedex {
     @include main.full-screen;
-    overflow-y: auto;
 
     header {
-        position: fixed;
         @include main.flex($direction: column, $justify: space-between);
         width: calc(100% - 5px);
         height: $header-ht;
         background-color: palette.$primary;
-        z-index: 2;
 
         .filter-icon {
             width: 30px;
@@ -46,7 +43,9 @@ $header-ht: calc(8vh + 100px);
     .pokemon-list {
         @include main.flex($direction: column, $justify: flex-start, $row: 20px);
         width: 100%;
-        padding: $header-ht 5% 25px 5%;
+        height: calc(100% - $header-ht);
+        padding: 0 5% 30px 5%;
+        overflow-y: auto;
 
         .pokemon-card {
             @include main.flex($justify: space-between);
