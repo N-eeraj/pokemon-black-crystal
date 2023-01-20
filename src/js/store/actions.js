@@ -1,4 +1,6 @@
 import { getIdFromUrl, deepCopy, decryptAndLoad } from "@/js/mixins/common"
+import { getInRange } from "@/js/mixins/randomGenerator"
+
 import { getImageUrl, getSpriteUrl } from "@/js/mixins/imageAndSprites"
 
 export default {
@@ -243,7 +245,10 @@ export default {
 
     async getPokemonById({ getters, dispatch }, id) {
         const data = getters.getPokemon[id]
-        if (data) return deepCopy(data)
+        if (data) {
+            data.id = id
+            return deepCopy(data)
+        }
         await dispatch('cachePokemonById', id)
         return await dispatch('getPokemonById', id)
     },
@@ -294,5 +299,28 @@ export default {
 
     updatePlayerCoins({ commit }, amount) {
         commit('updatePlayerCoins', amount)
+    },
+
+    async getWildPokemonByLocation({ dispatch }, location) {
+        // get all pokemons in the location
+        const response = await fetch(`https://pokeapi.co/api/v2/pal-park-area/${location}`)
+        const data = await response.json()
+        const encounterDetails = data.pokemon_encounters.map(pokemon => {
+            return {
+                id: getIdFromUrl(pokemon.pokemon_species.url),
+                rate: pokemon.rate
+            }
+        })
+
+        // filter out post gen 3 pokemon & create list of possible inividual pokemon
+        const encounterPossibilities = []
+        encounterDetails.forEach(pokemon => {
+            if (pokemon.id > 386) return
+            for (let i=0; i<pokemon.rate; i++)
+                encounterPossibilities.push(pokemon.id)
+        })
+
+        const randomPokemon = encounterPossibilities[getInRange(0, encounterPossibilities.length)]
+        return await dispatch('getPokemonById', randomPokemon)
     }
 }
