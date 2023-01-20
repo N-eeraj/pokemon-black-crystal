@@ -132,7 +132,7 @@ export default {
                 case 'use-item':
                 if (evolutionObject.item.name)
                     nextEvolutionObj.useItem.push({
-                        itemName: evolutionObject.item.name ,
+                        itemName: evolutionObject.item.name,
                         pokemon: evolvedPokemonId
                     })
                     break

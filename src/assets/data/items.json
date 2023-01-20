@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "name": "Pokéball",
+        "price": 100,
+        "description": "A device for capturing wild Pokémon.",
+        "image": "/balls/pokeball.webp"
+    },
+    {
+        "id": 2,
+        "name": "Great Ball",
+        "price": 300,
+        "description": "A device with higher capture rate than a standard Pokéball.",
+        "image": "/balls/great-ball.webp"
+    },
+    {
+        "id": 3,
+        "name": "Ultra Ball",
+        "price": 750,
+        "description": "A device with higher capture rate than a Great Ball.",
+        "image": "/balls/ultra-ball.webp"
+    },
+    {
+        "id": 4,
+        "name": "Razz Berry",
+        "price": 150,
+        "description": "A berry that can be used to make a Pokéblock.",
+        "image": "/razz-berry.webp"
+    },
+    {
+        "id": 5,
+        "name": "Pokéblock",
+        "price": 1000,
+        "description": "An item to increase a Pokémon's happiness.",
+        "image": "/pokeblock.png"
+    },
+    {
+        "id": 6,
+        "name": "Fire Stone",
+        "price": 3000,
+        "description": "An item used to evolve certain species of Pokémon.",
+        "image": "/evolution/fire-stone.png"
+    },
+    {
+        "id": 7,
+        "name": "Water Stone",
+        "price": 3000,
+        "description": "An item used to evolve certain species of Pokémon.",
+        "image": "/evolution/water-stone.png"
+    },
+    {
+        "id": 8,
+        "name": "Thunder Stone",
+        "price": 3000,
+        "description": "An item used to evolve certain species of Pokémon.",
+        "image": "/evolution/thunder-stone.png"
+    },
+    {
+        "id": 9,
+        "name": "Leaf Stone",
+        "price": 3000,
+        "description": "An item used to evolve certain species of Pokémon.",
+        "image": "/evolution/leaf-stone.png"
+    },
+    {
+        "id": 10,
+        "name": "Sun Stone",
+        "price": 3000,
+        "description": "An item used to evolve certain species of Pokémon.",
+        "image": "/evolution/sun-stone.png"
+    },
+    {
+        "id": 11,
+        "name": "Moon Stone",
+        "price": 3000,
+        "description": "An item used to evolve certain species of Pokémon.",
+        "image": "/evolution/moon-stone.png"
+    },
+    {
+        "id": 12,
+        "name": "Rare Candy",
+        "price": 30000,
+        "description": "An item that is used to level up your Pokémon.",
+        "image": "/rare-candy.webp"
+    },
+    {
+        "id": 13,
+        "name": "Master Ball",
+        "price": 100000,
+        "description": "A device for capturing wild Pokémon without fail.",
+        "image": "/balls/master-ball.webp"
+    }
+]

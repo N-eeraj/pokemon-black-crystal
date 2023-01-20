@@ -41,11 +41,11 @@
         <footer class="menu-footer">
             <div
                 class="menu-footer-action"
-                @click="$router.push('/store')">
-                Store
+                @click="$router.push('/shop')">
+                Shop
                 <img
-                    src="@/assets/images/home-icons/menu-icons/store.svg"
-                    alt="Store"
+                    src="@/assets/images/home-icons/menu-icons/shop.svg"
+                    alt="Shop"
                     class="icon" />
             </div>
             <div
