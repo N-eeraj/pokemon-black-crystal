@@ -42,7 +42,7 @@
                 v-for="([id, ball]) in Object.entries(availablePokeballs)"
                 :key="id"
                 class="pokeball-container"
-                @click="useBall(ball)">
+                @click="useBall(id)">
                 <img
                     :src="require(`@/assets/images/items${ball.image}`)"
                     :alt="ball.name"
@@ -174,7 +174,6 @@
                         currentPokemonIndex: 0
                     }
                 },
-                availablePokeballs: {},
                 show: {
                     moveset: false,
                     party: false,
@@ -191,6 +190,19 @@
         computed: {
             showPokeballAction() {
                 return Boolean(this.canCatch && Object.keys(this.availablePokeballs || {}).length)
+            },
+
+            availablePokeballs() {
+                const availableBalls = {}
+                Object.entries(this.getAvailableBalls()).forEach(([id, count]) => {
+                    const { name, image } = items.find(item => item.id == id)
+                    availableBalls[id] = {
+                        count,
+                        name,
+                        image
+                    }
+                })
+                return availableBalls
             },
 
             battleData() {
@@ -213,16 +225,6 @@
             await this.setBattleParty(this.playerParty, 'trainer')
             await this.setBattleParty(this.foeParty, 'foe')
             this.setBattleData(this.battle)
-            
-            Object.entries(this.getAvailableBalls()).forEach(([id, count]) => {
-                const { name, image } = items.find(item => item.id == id)
-                this.availablePokeballs[id] = {
-                    count,
-                    name,
-                    image
-                }
-            })
-
             this.loading = false
         },
 
@@ -298,8 +300,11 @@
                 }, 2000);
             },
 
-            useBall(ball) {
-                console.log(ball)
+            useBall(itemId) {
+                this.updateBag({
+                    count: -1,
+                    itemId
+                })
                 this.toggleShowPokeballs()
             },
 
@@ -444,7 +449,8 @@
                 'reArrangePartyPokemon',
                 'switchBattlePokemon',
                 'useMoveBattleDataUpdate',
-                'pokemonFaintedBattleDataUpdate'
+                'pokemonFaintedBattleDataUpdate',
+                'updateBag'
             ])
         }
     }
