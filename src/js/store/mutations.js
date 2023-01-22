@@ -129,7 +129,22 @@ export default {
     enounterNewPokemon(state, id) {
         const encounters = state.gameData.pokemon.encountered
         ++encounters.last
-        encounters.list.push(id)
+        if (!encounters.list.includes(id))
+            encounters.list.push(id)
+        encryptAndSave(state.gameData)
+    },
+
+    addCaughtPokemon(state, data) {
+        const pokemonData = state.gameData.pokemon
+        pokemonData.caught[pokemonData.encountered.last] = {
+            id: data.pokemon,
+            exp: data.exp,
+            happiness: state.pokemonData[data.pokemon].baseHappiness
+        }
+        if (pokemonData.party.length < 6)
+            pokemonData.party.push(pokemonData.encountered.last)
+        else
+            pokemonData.pc.push(pokemonData.encountered.last)
         encryptAndSave(state.gameData)
     }
 }

@@ -328,9 +328,11 @@ export default {
         return pokemonDetails
     },
 
-    encounterPokemon({ getters, commit }, pokemonId) {
-        const encounterPokemon = getters.getPokedexList
-        if (!encounterPokemon.find(pokemon => pokemon.id == pokemonId))
-            commit('enounterNewPokemon', pokemonId)
+    encounterPokemon({ commit }, pokemonId) {
+        commit('enounterNewPokemon', pokemonId)
+    },
+
+    addCaughtPokemon({ commit }, data) {
+        commit('addCaughtPokemon', data)
     }
 }

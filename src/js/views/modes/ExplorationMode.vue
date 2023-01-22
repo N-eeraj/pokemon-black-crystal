@@ -12,7 +12,7 @@
             <battle-scene
                 v-else
                 :playerParty="playerPokemon"
-                :foeParty="wildPokemon"
+                :foeParty="[wildPokemon]"
                 saveBattle
                 canCatch
                 canEscape
@@ -47,7 +47,7 @@
             return {
                 battleOngoing: false,
                 playerPokemon: null,
-                wildPokemon: [],
+                wildPokemon: null,
                 isLoading: false
             }
         },
@@ -78,10 +78,10 @@
                 this.battleOngoing = true
                 const encounteredPokemon = await this.getWildPokemonByLocation(location)
                 const exp = getInRange(this.strongestPokemon.exp * 0.6, this.strongestPokemon.exp)
-                this.wildPokemon.push({
+                this.wildPokemon = {
                     pokemon: encounteredPokemon.id,
                     exp
-                })
+                }
                 this.isLoading = false
                 this.encounterPokemon(encounteredPokemon.id)
             },
@@ -92,7 +92,8 @@
 
             battleOver() {
                 this.battleOngoing = false
-                this.wildPokemon = []
+                this.wildPokemon = null
+                this.setBattleData(null)
             },
 
             handleGameOver() {
@@ -102,11 +103,15 @@
 
             handleCaughtPokemon() {
                 this.battleOngoing = false
+                this.addCaughtPokemon(this.wildPokemon)
+                this.setBattleData(null)
             },
 
             ...mapActions([
                 'getWildPokemonByLocation',
-                'encounterPokemon'
+                'encounterPokemon',
+                'addCaughtPokemon',
+                'setBattleData'
             ])
         }
     }
