@@ -7,12 +7,12 @@
             <div class="battle-field">
 
                 <img
-                    v-if="canEscape"
+                    v-if="canEscape && !battleMessage"
                     :src="require(`@/assets/icons/escape.svg`)"
                     class="icon escape"
                     @click="confirmEscape" />
                 <img
-                    v-if="showPokeballAction"
+                    v-if="showPokeballAction && !battleMessage"
                     :src="require(`@/assets/icons/${ show.pokeballs ? 'cross-mark' : 'pokeball' }.svg`)"
                     class="icon pokeball"
                     :class="{ close : show.pokeballs }"
@@ -21,7 +21,8 @@
                 <battle-pokemon
                     v-if="currentPokemon.foe"
                     :pokemon="currentPokemon.foe"
-                    isFoe />
+                    isFoe
+                    :catchStatus="catchStatus" />
                 <div v-else></div> <!-- to leave space for foe -->
                 <battle-pokemon
                     v-if="currentPokemon.trainer"
@@ -42,7 +43,7 @@
                 v-for="([id, ball]) in Object.entries(availablePokeballs)"
                 :key="id"
                 class="pokeball-container"
-                @click="useBall(id)">
+                @click="useBall(id, ball)">
                 <img
                     :src="require(`@/assets/images/items${ball.image}`)"
                     :alt="ball.name"
@@ -116,7 +117,8 @@
     import { mapGetters, mapActions } from 'vuex'
 
     import { getRandomMove, checkMoveAccuracy } from "@/js/mixins/randomGenerator"
-    import { changePokemon, moveMessage, missedMove, faintMessage } from "@/js/mixins/messages"
+    import { getCaptureRate } from "@/js/mixins/calculations"
+    import { changePokemon, moveMessage, missedMove, faintMessage, useItem, caughtPokemon, pokemonBrokeFree } from "@/js/mixins/messages"
 
     import items from "@/assets/data/items"
 
@@ -183,6 +185,10 @@
                     confirmEscape: false
                 },
                 battleMessage: null,
+                catchStatus: {
+                    ballUsed: null,
+                    caught: false
+                },
                 loading: true
             }
         },
@@ -297,15 +303,37 @@
                 this.battleMessage = changePokemon(false)
                 setTimeout(() => {
                     this.useMove(null)
-                }, 2000);
+                }, 2000)
             },
 
-            useBall(itemId) {
+            handleCapture() {
+                this.battleMessage = caughtPokemon(this.currentPokemon.foe)
+                this.catchStatus.caught = true
+                setTimeout(() => {
+                    this.$emit('caughtPokemon')
+                }, 2000)
+            },
+
+            useBall(itemId, item) {
                 this.updateBag({
                     count: -1,
                     itemId
                 })
                 this.toggleShowPokeballs()
+                this.battleMessage = useItem(item.name)
+                this.catchStatus.ballUsed = itemId
+
+                const captureRate = getCaptureRate(this.currentPokemon.foe, itemId)
+                setTimeout(() => {
+                    if (captureRate) this.handleCapture()
+                    else {
+                        this.battleMessage = pokemonBrokeFree(this.currentPokemon.foe)
+                        this.catchStatus.ballUsed = null
+                        setTimeout(() => {
+                            this.useMove(null)
+                        }, 2000)
+                    }
+                }, 4000)
             },
 
             useMove(moveData) {
@@ -380,7 +408,7 @@
                             if (!this.checkGameOver()) {
                                 setTimeout(() => {
                                     this.battleMessage = null
-                                }, 2000);
+                                }, 2000)
                             }
                         }, 2000)
                     }, 2000)
@@ -394,7 +422,7 @@
                         if (!this.checkGameOver()) {
                             setTimeout(() => {
                                 this.battleMessage = null
-                            }, 2000);
+                            }, 2000)
                         }
                     }, 2000)
                 }
@@ -425,8 +453,8 @@
                     this.battleMessage = 'You have no usable Pokémon left.'
                     setTimeout(() => {
                         this.$emit('gameOver', false)
-                    }, 2000);
-                }, 2000);
+                    }, 2000)
+                }, 2000)
             },
 
             victory() {
@@ -434,8 +462,8 @@
                     this.battleMessage = 'You defeated your opponent.'
                     setTimeout(() => {
                         this.$emit('gameOver', true)
-                    }, 2000);
-                }, 2000);
+                    }, 2000)
+                }, 2000)
             },
 
             ...mapGetters([

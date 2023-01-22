@@ -24,3 +24,20 @@ export const moveDamage = (move, attacker, defender) => {
 
     return Math.floor(damage)
 }
+
+export const getCaptureRate = (pokemon, ballId) => {
+    const ballSuccessRate = {
+        1: 1,
+        2: 1.5,
+        3: 2,
+        13: Infinity
+    }
+
+    const maxHp = pokemon.stat.hp
+    const currentHp = pokemon.currentHp
+    const pokemonCaptureRate = pokemon.captureRate
+    const successRate = ballSuccessRate[ballId]
+
+    const captureRate = ((3 * maxHp - 2 * currentHp) * pokemonCaptureRate * successRate) / (765 * maxHp)
+    return captureRate > Math.random()
+}

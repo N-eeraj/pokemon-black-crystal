@@ -27,3 +27,9 @@ export const missedMove = (pokemon, isFoe = false) => {
     message += ` ${pokemon.name} missed the attack.`
     return message
 }
+
+export const useItem = (itemName) => `You used ${itemName}.`
+
+export const caughtPokemon = (pokemon) => `You caught a ${pokemon.name}.`
+
+export const pokemonBrokeFree = (pokemon) => `${pokemon.name} broke free.`

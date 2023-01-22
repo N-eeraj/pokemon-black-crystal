@@ -1,6 +1,7 @@
 @use "@/styles/mixins/main";
 @use "@/styles/mixins/progress";
 @use "@/styles/colors/palette";
+@use "@/styles/animation";
 
 .battle-pokemon, .pokemon-list {
     @include main.flex($direction: column);
@@ -31,6 +32,10 @@
         progress {
             @include progress.progress-value;
         }
+
+        &.caught {
+            visibility: hidden;
+        }
     }
 
     .pokemon {
@@ -42,8 +47,17 @@
         background-size: contain;
         background-position: bottom;
 
-        img {
+        .pokemon-image {
             transform: scale(1.5);
+        }
+
+        .pokeball-image {
+            width: 50px;
+            animation: pokeball-wiggle 400ms alternate infinite;
+
+            &.caught {
+                animation: none;
+            }
         }
     }
 }

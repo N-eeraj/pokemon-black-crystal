@@ -3,7 +3,9 @@
         class="battle-pokemon"
         :class="view">
 
-        <div class="status">
+        <div
+            class="status"
+            :class="{ caught: catchStatus?.caught }">
             <strong>
                 {{ $filters.toTitleCase(pokemon.name) }}
             </strong>
@@ -18,7 +20,15 @@
         </div>
 
         <div class="pokemon">
-            <img :src="pokemon.sprite[view]" />
+            <img
+                v-if="catchStatus?.ballUsed"
+                src="@/assets/images/items/balls/pokeball.webp"
+                class="pokeball-image"
+                :class="{ caught: catchStatus.caught }" />
+            <img
+                v-else
+                :src="pokemon.sprite[view]"
+                class="pokemon-image" />
         </div>
 
     </div>
@@ -32,6 +42,10 @@
             pokemon: {
                 type: Object,
                 required: true
+            },
+            catchStatus: {
+                type: Object,
+                required: false
             },
             isFoe: {
                 type: Boolean,

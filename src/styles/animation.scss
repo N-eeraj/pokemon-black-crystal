@@ -36,3 +36,12 @@
         transform: rotate(-1deg);
     }
 }
+
+@keyframes pokeball-wiggle {
+    from {
+        transform: rotate(15deg);
+    }
+    to {
+        transform: rotate(-15deg);
+    }
+}
