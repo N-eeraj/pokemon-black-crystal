@@ -323,5 +323,11 @@ export default {
 
         const randomPokemon = encounterPossibilities[getInRange(0, encounterPossibilities.length)]
         return await dispatch('getPokemonById', randomPokemon)
+    },
+
+    encounterPokemon({ getters, commit }, pokemonId) {
+        const encounterPokemon = getters.getPokedexList
+        if (!encounterPokemon.find(pokemon => pokemon.id == pokemonId))
+            commit('enounterNewPokemon', pokemonId)
     }
 }

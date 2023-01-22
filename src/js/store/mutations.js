@@ -124,5 +124,12 @@ export default {
 
     pokemonFaintedBattleDataUpdate(state, user) {
         state.battle[user].partyList.splice(state.battle[user].currentPokemonIndex, 1)
+    },
+
+    enounterNewPokemon(state, id) {
+        const encounters = state.gameData.pokemon.encountered
+        ++encounters.last
+        encounters.list.push(id)
+        encryptAndSave(state.gameData)
     }
 }

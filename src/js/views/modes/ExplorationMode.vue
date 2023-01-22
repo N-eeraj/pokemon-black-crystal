@@ -17,6 +17,7 @@
                 canCatch
                 canEscape
                 @escape="battleOver"
+                @caughtPokemon="handleCaughtPokemon"
                 @gameOver="handleGameOver" />
 
         </div>
@@ -82,6 +83,7 @@
                     exp
                 })
                 this.isLoading = false
+                this.encounterPokemon(encounteredPokemon.id)
             },
 
             handleLegendaryHunt() {
@@ -95,10 +97,16 @@
 
             handleGameOver() {
                 console.log('handleGameOver')
+                this.battleOngoing = false
+            },
+
+            handleCaughtPokemon() {
+                this.battleOngoing = false
             },
 
             ...mapActions([
-                'getWildPokemonByLocation'
+                'getWildPokemonByLocation',
+                'encounterPokemon'
             ])
         }
     }
