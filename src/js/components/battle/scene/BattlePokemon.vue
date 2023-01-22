@@ -22,7 +22,7 @@
         <div class="pokemon">
             <img
                 v-if="catchStatus?.ballUsed"
-                src="@/assets/images/items/balls/pokeball.webp"
+                :src="require(`@/assets/images/items${pokeball}`)"
                 class="pokeball-image"
                 :class="{ caught: catchStatus.caught }" />
             <img
@@ -35,6 +35,9 @@
 </template>
 
 <script>
+
+    import items from "@/assets/data/items"
+
     export default {
         name: 'battle-pokemon',
 
@@ -64,6 +67,10 @@
                 if (healthPercentage > 0.65) return 'high'
                 if (healthPercentage > 0.25) return 'medium'
                 return 'low'
+            },
+
+            pokeball() {
+                return items.find(item => item.id == this.catchStatus.ballUsed).image
             }
         }
     }

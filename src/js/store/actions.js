@@ -54,6 +54,7 @@ export default {
             baseHappiness: pokemonSpeciesData.base_happiness,
             captureRate: pokemonSpeciesData.capture_rate,
             growthRate: pokemonSpeciesData.growth_rate.name,
+            isLegendary: pokemonSpeciesData.is_legendary,
             evolution: null,
             getLevel(currentExp) {
                 let level = 0
@@ -322,7 +323,9 @@ export default {
         })
 
         const randomPokemon = encounterPossibilities[getInRange(0, encounterPossibilities.length)]
-        return await dispatch('getPokemonById', randomPokemon)
+        const pokemonDetails = await dispatch('getPokemonById', randomPokemon)
+        if (pokemonDetails.isLegendary) return dispatch('getWildPokemonByLocation', location)
+        return pokemonDetails
     },
 
     encounterPokemon({ getters, commit }, pokemonId) {
