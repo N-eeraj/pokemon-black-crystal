@@ -160,5 +160,10 @@ export default {
             state.gameData.pokemon.caught[id].exp += sharedExp
         })
         encryptAndSave(state.gameData)
+    },
+
+    updatePokemonHappiness(state, { id, happiness }) {
+        state.gameData.pokemon.caught[id].happiness += happiness
+        encryptAndSave(state.gameData)
     }
 }

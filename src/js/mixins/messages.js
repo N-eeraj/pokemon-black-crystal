@@ -10,6 +10,8 @@ export const moveMessage = (attacker, defender, move, isFoe = false) => {
     const moveDamageRate = defender.getDamageRate(move.type)
     if (moveDamageRate > 1)
         message += ' It is supper effective.'
+    else if (moveDamageRate === 0)
+        message += ` It doesn't effect ${defender.name}.`
     else if (moveDamageRate < 1)
         message += ' It is not very effective.'
 

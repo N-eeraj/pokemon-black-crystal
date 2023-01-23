@@ -348,5 +348,9 @@ export default {
 
     gainExperience({ commit }, data) {
         commit('gainExperience', data)
+    },
+
+    updatePokemonHappiness({ commit }, data) {
+        commit('updatePokemonHappiness', data)
     }
 }
