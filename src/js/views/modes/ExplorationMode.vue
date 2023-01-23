@@ -2,12 +2,12 @@
     <div>
         <div id="exploration">
 
+            <common-loader v-if="isLoading" />
+
             <wild-locations
-                v-if="!battleOngoing"
+                v-else-if="!battleOngoing"
                 @selectedLocation="handleLocation"
                 @legendaryHunt="handleLegendaryHunt" />
-
-            <common-loader v-else-if="isLoading" />
 
             <battle-scene
                 v-else
@@ -20,6 +20,28 @@
                 @caughtPokemon="handleCaughtPokemon"
                 @gameOver="handleGameOver" />
 
+            <pop-up
+                v-if="legendaryNotFound">
+                <template #body>
+                    <p>
+                        No legendary Pokémon found.
+                        Better Luck Next Time!
+                    </p>
+                </template>
+                <template #actions>
+                    <button
+                        class="cancel"
+                        @click="legendaryNotFound = false">
+                        Cancel
+                    </button>
+                    <button
+                        class="confirm"
+                        @click="retryLegendaryHunt">
+                        Retry
+                    </button>
+                </template>
+            </pop-up>
+
         </div>
     </div>
 </template>
@@ -29,6 +51,7 @@
     import WildLocations from '@/js/components/WildLocations.vue'
     import BattleScene from '@/js/components/battle/scene/BattleScene.vue'
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 
@@ -40,7 +63,8 @@
         components: {
             WildLocations,
             BattleScene,
-            CommonLoader
+            CommonLoader,
+            PopUp
         },
 
         data() {
@@ -48,7 +72,9 @@
                 battleOngoing: false,
                 playerPokemon: null,
                 wildPokemon: null,
-                isLoading: false
+                wildPokemonLevel: null,
+                isLoading: false,
+                legendaryNotFound: false
             }
         },
 
@@ -70,6 +96,7 @@
                     happiness: pokemon.happiness
                 }
             })
+            this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.6, this.strongestPokemon.exp)
         },
 
         methods: {
@@ -77,17 +104,35 @@
                 this.isLoading = true
                 this.battleOngoing = true
                 const encounteredPokemon = await this.getWildPokemonByLocation(location)
-                const exp = getInRange(this.strongestPokemon.exp * 0.6, this.strongestPokemon.exp)
+                const exp = this.wildPokemonLevel
+                this.setWildPokemon(encounteredPokemon.id, exp)
+            },
+
+            async handleLegendaryHunt() {
+                this.isLoading = true
+                const legendaryPokemon = await this.getLegendaryPokemon()
+                if (legendaryPokemon) {
+                    this.battleOngoing = true
+                    const exp = Math.max(this.wildPokemonLevel, 160000)
+                    this.setWildPokemon(legendaryPokemon.id, exp)
+                    return
+                }
+                this.isLoading = false
+                this.legendaryNotFound = true
+            },
+
+            setWildPokemon(pokemon, exp) {
                 this.wildPokemon = {
-                    pokemon: encounteredPokemon.id,
+                    pokemon,
                     exp
                 }
                 this.isLoading = false
-                this.encounterPokemon(encounteredPokemon.id)
+                this.encounterPokemon(pokemon)
             },
 
-            handleLegendaryHunt() {
-                console.log('handleLegendaryHunt')
+            retryLegendaryHunt() {
+                this.legendaryNotFound = false
+                this.handleLegendaryHunt()
             },
 
             battleOver() {
@@ -109,6 +154,7 @@
 
             ...mapActions([
                 'getWildPokemonByLocation',
+                'getLegendaryPokemon',
                 'encounterPokemon',
                 'addCaughtPokemon',
                 'setBattleData'

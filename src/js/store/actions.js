@@ -328,6 +328,12 @@ export default {
         return pokemonDetails
     },
 
+    async getLegendaryPokemon({ dispatch }) {
+        const pokemonData = await dispatch('getPokemonById', getInRange(1, 387))
+        if (pokemonData.isLegendary) return pokemonData
+        return null
+    },
+
     encounterPokemon({ commit }, pokemonId) {
         commit('enounterNewPokemon', pokemonId)
     },
