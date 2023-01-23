@@ -352,5 +352,9 @@ export default {
 
     updatePokemonHappiness({ commit }, data) {
         commit('updatePokemonHappiness', data)
+    },
+
+    toggleEvolutionCheck({ commit }) {
+        commit('toggleEvolutionCheck')
     }
 }

@@ -84,5 +84,9 @@ export default {
 
     bagItems(state) {
         return state.gameData.progress.bag
+    },
+
+    checkEvolution(state) {
+        return state.checkEvolution
     }
 }

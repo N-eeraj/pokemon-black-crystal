@@ -163,7 +163,14 @@ export default {
     },
 
     updatePokemonHappiness(state, { id, happiness }) {
-        state.gameData.pokemon.caught[id].happiness += happiness
+        const pokemon = state.gameData.pokemon.caught[id]
+        pokemon.happiness += happiness
+        if (pokemon.happiness < 0)
+            pokemon.happiness = 0
         encryptAndSave(state.gameData)
+    },
+
+    toggleEvolutionCheck(state) {
+        state.checkEvolution = !state.checkEvolution
     }
 }

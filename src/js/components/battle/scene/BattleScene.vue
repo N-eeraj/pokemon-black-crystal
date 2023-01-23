@@ -235,24 +235,28 @@
         },
 
         methods: {
+            async getPokemonDetails(pokemon, user = 'trainer') {
+                let data = await this.getPokemonById(pokemon.pokemon)
+                data.level = data.getLevel(pokemon.exp)
+                data.movesList = data.getMovesByLevel(pokemon.exp)
+                    .map(move => {
+                        return {
+                            name: move.name,
+                            ...this.getMovesByName(move.name)
+                        }
+                    })
+                data.stat = data.getStat(pokemon.exp)
+                data.currentHp = data.stat.hp
+                if (this.saveBattle) {
+                    data.expGained = data.getExpGained(this.canCatch, user, pokemon.exp)
+                    if (user === 'trainer') {data.encounterId = pokemon.encounterId}
+                }
+                return data
+            },
+
             async setBattleParty(partyIds, user) {
                 await partyIds.forEach(async (pokemon, index) => {
-                    let data = await this.getPokemonById(pokemon.pokemon)
-                    data.level = data.getLevel(pokemon.exp)
-                    data.movesList = data.getMovesByLevel(pokemon.exp)
-                        .map(move => {
-                            return {
-                                name: move.name,
-                                ...this.getMovesByName(move.name)
-                            }
-                        })
-                    data.stat = data.getStat(pokemon.exp)
-                    data.currentHp = data.stat.hp
-                    if (this.saveBattle) {
-                        data.expGained = data.getExpGained(this.canCatch, user, pokemon.exp)
-                        if (user ==='trainer') {data.encounterId = pokemon.encounterId}
-                    }
-                    this.battle[user].partyList[index] = data
+                    this.battle[user].partyList[index] = await this.getPokemonDetails(pokemon, user)
                 })
             },
 
@@ -463,6 +467,7 @@
                         encounterIds: this.playerParty.map(pokemon => pokemon.encounterId)
                     })
                 }
+                this.toggleEvolutionCheck()
                 return true
             },
 
@@ -498,7 +503,8 @@
                 'pokemonFaintedBattleDataUpdate',
                 'updateBag',
                 'gainExperience',
-                'updatePokemonHappiness'
+                'updatePokemonHappiness',
+                'toggleEvolutionCheck'
             ])
         }
     }

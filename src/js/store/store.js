@@ -12,7 +12,8 @@ export default createStore({
             movesData: {},
             typesData: {},
             growthRateData: {},
-            battle: null
+            battle: null,
+            checkEvolution: false
         }
     },
     getters,
