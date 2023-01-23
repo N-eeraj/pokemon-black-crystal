@@ -79,6 +79,7 @@ export default {
     },
 
     setBattleData(state, data) {
+        if(data) data.faintedPokemon = []
         state.battle = data
     },
 
@@ -123,7 +124,12 @@ export default {
     },
 
     pokemonFaintedBattleDataUpdate(state, user) {
-        state.battle[user].partyList.splice(state.battle[user].currentPokemonIndex, 1)
+        const player = state.battle[user]
+        const faintedPokemon = player.partyList.splice(player.currentPokemonIndex, 1)[0]
+        state.battle.faintedPokemon.push({
+            encounterId: faintedPokemon.encounterId,
+            exp: faintedPokemon.expGained
+        })
     },
 
     enounterNewPokemon(state, id) {
@@ -145,6 +151,14 @@ export default {
             pokemonData.party.push(pokemonData.encountered.last)
         else
             pokemonData.pc.push(pokemonData.encountered.last)
+        encryptAndSave(state.gameData)
+    },
+
+    gainExperience(state, { totalExp, encounterIds }) {
+        const sharedExp = totalExp / encounterIds.length
+        encounterIds.forEach(id => {
+            state.gameData.pokemon.caught[id].exp += sharedExp
+        })
         encryptAndSave(state.gameData)
     }
 }

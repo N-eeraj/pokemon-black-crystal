@@ -93,10 +93,11 @@
                 return {
                     pokemon: pokemon.id,
                     exp: pokemon.exp,
-                    happiness: pokemon.happiness
+                    happiness: pokemon.happiness,
+                    encounterId: id
                 }
             })
-            this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.6, this.strongestPokemon.exp)
+            this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.5, this.strongestPokemon.exp)
         },
 
         methods: {
@@ -142,7 +143,6 @@
             },
 
             handleGameOver() {
-                console.log('handleGameOver')
                 this.battleOngoing = false
             },
 

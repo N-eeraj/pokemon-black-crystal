@@ -63,6 +63,10 @@ export default {
                 })
                 return level
             },
+            getExpGained(canCatch, user, exp) {
+                const level = this.getLevel(exp)
+                return Math.round(((!canCatch || user ==='trainer') ? 1.5 : 1) * this.baseExp * level / 7)
+            },
             getStat(exp) {
                 const level = this.getLevel(exp)
                 return {
@@ -340,5 +344,9 @@ export default {
 
     addCaughtPokemon({ commit }, data) {
         commit('addCaughtPokemon', data)
+    },
+
+    gainExperience({ commit }, data) {
+        commit('gainExperience', data)
     }
 }

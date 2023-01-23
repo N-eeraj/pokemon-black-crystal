@@ -248,6 +248,10 @@
                         })
                     data.stat = data.getStat(pokemon.exp)
                     data.currentHp = data.stat.hp
+                    if (this.saveBattle) {
+                        data.expGained = data.getExpGained(this.canCatch, user, pokemon.exp)
+                        if (user ==='trainer') {data.encounterId = pokemon.encounterId}
+                    }
                     this.battle[user].partyList[index] = data
                 })
             },
@@ -445,6 +449,17 @@
                 if (trainerParty && foeParty) return false
                 if (!trainerParty) this.blackOut()
                 else if (!foeParty) this.victory()
+                if (this.saveBattle) {
+                    let totalExpGained = 0
+                    this.battleData.faintedPokemon.forEach(pokemon => {
+                        if (pokemon.encounterId) return console.log(pokemon.encounterId)
+                        totalExpGained += pokemon.exp
+                    })
+                    this.gainExperience({
+                        totalExp: totalExpGained,
+                        encounterIds: this.playerParty.map(pokemon => pokemon.encounterId)
+                    })
+                }
                 return true
             },
 
@@ -478,7 +493,8 @@
                 'switchBattlePokemon',
                 'useMoveBattleDataUpdate',
                 'pokemonFaintedBattleDataUpdate',
-                'updateBag'
+                'updateBag',
+                'gainExperience'
             ])
         }
     }
