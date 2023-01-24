@@ -16,11 +16,14 @@
     scrollbar-color: palette.$accent palette.$secondary;
 }
 
-#main:not(.page_not_found) {
+#main:not(.page_not_found), .global-evolution-pop-up {
     @include main.full-screen;
     font-size: clamp(14px, 3.6vmin, 16px);
-    background-color: palette.$primary;
     color: palette.$white;
+}
+
+#main:not(.page_not_found) {
+    background-color: palette.$primary;
     border: 1px solid palette.$secondary;
 
     button {
@@ -41,7 +44,7 @@
         @include main.full-screen;
         background-color: palette.$primary;
 
-        #main:not(.page_not_found) {
+        #main:not(.page_not_found), .global-evolution-pop-up {
             left: 45vw;
             width: 50vh;
             max-width: 500px;

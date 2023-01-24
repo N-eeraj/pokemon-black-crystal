@@ -126,6 +126,7 @@ export default {
     pokemonFaintedBattleDataUpdate(state, user) {
         const player = state.battle[user]
         const faintedPokemon = player.partyList.splice(player.currentPokemonIndex, 1)[0]
+        if (player.partyList.length) player.currentPokemonIndex = 0
         state.battle.faintedPokemon.push({
             encounterId: faintedPokemon.encounterId,
             exp: faintedPokemon.expGained
@@ -155,7 +156,7 @@ export default {
     },
 
     gainExperience(state, { totalExp, encounterIds }) {
-        const sharedExp = totalExp / encounterIds.length
+        const sharedExp = Math.floor(totalExp / encounterIds.length)
         encounterIds.forEach(id => {
             state.gameData.pokemon.caught[id].exp += sharedExp
         })
@@ -172,5 +173,10 @@ export default {
 
     toggleEvolutionCheck(state) {
         state.checkEvolution = !state.checkEvolution
+    },
+
+    evolvePokemon(state, { encounterId, evolutionId }) {
+        state.gameData.pokemon.caught[encounterId].id = evolutionId
+        encryptAndSave(state.gameData)
     }
 }

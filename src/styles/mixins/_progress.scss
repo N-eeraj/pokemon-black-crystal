@@ -14,6 +14,13 @@
         border-radius: 10px;
     }
 
+    &::-webkit-progress-value {
+        background-color: palette.$accent;
+    }
+    &::-moz-progress-bar {
+        background-color: palette.$accent;
+    }
+
     &.high {
         &::-webkit-progress-value {
             background-color: palette.$value-high;

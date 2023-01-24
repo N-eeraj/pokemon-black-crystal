@@ -1,0 +1,36 @@
+@use "@/styles/mixins/main.scss";
+@use "@/styles/mixins/progress.scss";
+
+.evolution-modal .pop-up-card .body-container {
+    @include main.flex($direction: column, $row: 10px);
+    
+    .images-container {
+        position: relative;
+        width: 80%;
+        aspect-ratio: 1;
+
+        .pokemon-img {
+            position: absolute;
+            width: 100%;
+            transform: scale(1);
+            transition: 700ms;
+
+            &.evolution-progress {
+                filter: brightness(0);
+            }
+
+            &.shrink {
+                transform: scale(0);
+            }
+        }
+    }
+    
+    .timer {
+        width: 100%;
+        @include progress.progress-value;
+    }
+
+    .message {
+        font-size: 0.8rem;
+    }
+}

@@ -9,7 +9,9 @@
             id="main" />
         <evolution-pop-up
             v-if="evolutionReadyPokemon.length"
-            :pokemonList="evolutionReadyPokemon" />
+            :pokemonList="evolutionReadyPokemon"
+            class="global-evolution-pop-up"
+            @completedEvolutions="handleCompletedEvolutions" />
         <rotate-screen v-if="isSmallScreen" />
     </template>
 </template>
@@ -58,10 +60,22 @@
             ])
         },
 
+        watch: {
+            $route(to) {
+                if (to.name === 'NotFound') return this.showSplashScreen = false
+            },
+
+            checkEvolution(to) {
+                if (!to) return
+                this.toggleEvolutionCheck()
+                this.checkProgressiveEvolutions()
+            }
+        },
+
         mounted() {
             setInterval(() => {
                 this.updateOfflineStats()
-            }, 10000);
+            }, 10000)
         },
 
         methods: {
@@ -71,11 +85,16 @@
 
             checkProgressiveEvolutions() {
                 // this function checks if any of the party pokemon evolves by level up or happiness up
-                const party = this.partyPokemon.map(id => this.getCaughtPokemon(id))
+                const party = this.partyPokemon.map(id => {
+                    return {
+                        encounterId: id,
+                        ...this.getCaughtPokemon(id)
+                    }
+                })
                 const evolutionReadyPokemon = []
                 party.forEach(async (pokemon, index) => {
                     const data = {
-                        encounterId: pokemon.id,
+                        encounterId: pokemon.encounterId,
                         exp: pokemon.exp,
                         happiness: pokemon.happiness,
                         ...await this.getPokemonById(pokemon.id)
@@ -96,22 +115,15 @@
                 })
             },
 
+            handleCompletedEvolutions() {
+                this.evolutionReadyPokemon = []
+            },
+
             ...mapActions([
                 'updateOfflineStats',
                 'toggleEvolutionCheck',
                 'getPokemonById'
             ])
-        },
-
-        watch: {
-            $route(to) {
-                if (to.name === 'NotFound') return this.showSplashScreen = false
-            },
-            checkEvolution(to) {
-                if (!to) return
-                this.toggleEvolutionCheck()
-                this.checkProgressiveEvolutions()
-            }
         }
     }
 </script>

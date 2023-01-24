@@ -356,5 +356,9 @@ export default {
 
     toggleEvolutionCheck({ commit }) {
         commit('toggleEvolutionCheck')
+    },
+
+    evolvePokemon({ commit }, data) {
+        commit('evolvePokemon', data)
     }
 }
