@@ -1,19 +1,28 @@
 <template>
     <div>
+        <div id="story">
+            <navigation-bar
+                v-if="showNavBar"
+                icon="cross-mark"
+                @iconEvent="$router.push('/')" />
+
             <battle-wrapper
                 :player-party="playerParty"
                 :foe-party="foeParty"
                 :foe-details="foeDetails"
                 save-battle
                 can-escape
+                @battleStarted="toggleNavBar"
                 @completedMatch="handleMatchCompleteion" />
         </div>
+    </div>
 </template>
 
 
 <script>
 
     import BattleWrapper from '@/js/components/battle/BattleWrapper.vue'
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 
@@ -23,14 +32,16 @@
         name: 'story-mode',
 
         components: {
-            BattleWrapper
+            BattleWrapper,
+            NavigationBar,
         },
 
         data() {
             return {
                 playerParty: null,
                 foeParty: null,
-                foeDetails: null
+                foeDetails: null,
+                showNavBar: true
             }
         },
 
@@ -70,10 +81,15 @@
             },
 
             handleMatchCompleteion(result) {
-                if (!result) return
-                this.levelUp()
+                this.toggleNavBar()
                 this.initializeParty()
+                if (!result) return
                 this.initializeFoe()
+                this.levelUp()
+            },
+
+            toggleNavBar() {
+                this.showNavBar = !this.showNavBar
             },
 
             ...mapActions([

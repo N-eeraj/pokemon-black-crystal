@@ -98,16 +98,17 @@
 
             startBattle() {
                 this.battle.ongoing = true
+                this.$emit('battleStarted')
             },
 
-            endBattle() {
+            endBattle(victory) {
                 this.battle.ongoing = false
+                this.$emit('completedMatch', victory)
             },
 
             handleGameOver(victory) {
                 this.setBattleData(null)
-                this.$emit('completedMatch', victory)
-                this.endBattle()
+                this.endBattle(victory)
             },
 
             ...mapActions([

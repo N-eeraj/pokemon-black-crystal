@@ -313,5 +313,218 @@
             "image": "trainers/whitney.png",
             "name": "Lass Helen"
         }
+    },
+    {
+        "level": 20,
+        "party": [
+            {
+                "pokemon": 24,
+                "exp": 3500
+            }
+        ],
+        "details": {
+            "image": "trainers/lucy.png",
+            "name": "Goth Liz"
+        }
+    },
+    {
+        "level": 21,
+        "party": [
+            {
+                "pokemon": 224,
+                "exp": 3600
+            }
+        ],
+        "details": {
+            "image": "trainers/cheren.png",
+            "name": "Teacher Lucas"
+        }
+    },
+    {
+        "level": 22,
+        "party": [
+            {
+                "pokemon": 324,
+                "exp": 3500
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Nerd Mark"
+        }
+    },
+    {
+        "level": 23,
+        "party": [
+            {
+                "pokemon": 101,
+                "exp": 3600
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Alen"
+        }
+    },
+    {
+        "level": 24,
+        "party": [
+            {
+                "pokemon": 349,
+                "exp": 2800
+            },
+            {
+                "pokemon": 318,
+                "exp": 2800
+            }
+        ],
+        "details": {
+            "image": "trainers/nessa.png",
+            "name": "Surfer Vanessa"
+        }
+    },
+    {
+        "level": 25,
+        "party": [
+            {
+                "pokemon": 307,
+                "exp": 2800
+            },
+            {
+                "pokemon": 333,
+                "exp": 3200
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Teacher Eve"
+        }
+    },
+    {
+        "level": 26,
+        "party": [
+            {
+                "pokemon": 312,
+                "exp": 2800
+            },
+            {
+                "pokemon": 129,
+                "exp": 3200
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "School boy Julius"
+        }
+    },
+    {
+        "level": 27,
+        "party": [
+            {
+                "pokemon": 114,
+                "exp": 3600
+            },
+            {
+                "pokemon": 213,
+                "exp": 3800
+            }
+        ],
+        "details": {
+            "image": "trainers/cheren.png",
+            "name": "Teacher Nail"
+        }
+    },
+    {
+        "level": 28,
+        "party": [
+            {
+                "pokemon": 231,
+                "exp": 3600
+            },
+            {
+                "pokemon": 273,
+                "exp": 4000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Lucky"
+        }
+    },
+    {
+        "level": 29,
+        "party": [
+            {
+                "pokemon": 1,
+                "exp": 5000
+            },
+            {
+                "pokemon": 4,
+                "exp": 5000
+            },
+            {
+                "pokemon": 7,
+                "exp": 5000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Adam"
+        }
+    },
+    {
+        "level": 30,
+        "party": [
+            {
+                "pokemon": 98,
+                "exp": 5000
+            },
+            {
+                "pokemon": 90,
+                "exp": 5000
+            },
+            {
+                "pokemon": 79,
+                "exp": 5000
+            }
+        ],
+        "details": {
+            "image": "trainers/marlon.png",
+            "name": "Diver Joma"
+        }
+    },
+    {
+        "level": 31,
+        "party": [
+            {
+                "pokemon": 175,
+                "exp": 5000
+            },
+            {
+                "pokemon": 177,
+                "exp": 5000
+            },
+            {
+                "pokemon": 179,
+                "exp": 5000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Gaga"
+        }
+    },
+    {
+        "level": 32,
+        "party": [
+            {
+                "pokemon": 172,
+                "exp": 5500
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Florist Lola"
+        }
     }
 ]
