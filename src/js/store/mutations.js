@@ -178,5 +178,10 @@ export default {
     evolvePokemon(state, { encounterId, evolutionId }) {
         state.gameData.pokemon.caught[encounterId].id = evolutionId
         encryptAndSave(state.gameData)
+    },
+
+    levelUp(state) {
+        ++state.gameData.progress.level
+        encryptAndSave(state.gameData)
     }
 }

@@ -466,8 +466,8 @@
                         totalExp: totalExpGained,
                         encounterIds: this.playerParty.map(pokemon => pokemon.encounterId)
                     })
+                    this.toggleEvolutionCheck()
                 }
-                this.toggleEvolutionCheck()
                 return true
             },
 

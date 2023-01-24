@@ -360,5 +360,9 @@ export default {
 
     evolvePokemon({ commit }, data) {
         commit('evolvePokemon', data)
+    },
+
+    levelUp({ commit }) {
+        commit('levelUp')
     }
 }

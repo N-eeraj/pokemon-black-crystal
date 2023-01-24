@@ -86,21 +86,24 @@
             ])
         },
 
-
         created() {
-            this.playerPokemon = this.partyPokemon.map(id => {
-                const pokemon = this.getCaughtPokemon(id)
-                return {
-                    pokemon: pokemon.id,
-                    exp: pokemon.exp,
-                    happiness: pokemon.happiness,
-                    encounterId: id
-                }
-            })
-            this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.5, this.strongestPokemon.exp)
+            this.initializeParties()
         },
 
         methods: {
+            initializeParties() {
+                this.playerPokemon = this.partyPokemon.map(id => {
+                    const pokemon = this.getCaughtPokemon(id)
+                    return {
+                        pokemon: pokemon.id,
+                        exp: pokemon.exp,
+                        happiness: pokemon.happiness,
+                        encounterId: id
+                    }
+                })
+                this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.5, this.strongestPokemon.exp)
+            },
+
             async handleLocation(location) {
                 this.isLoading = true
                 this.battleOngoing = true

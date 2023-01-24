@@ -4,6 +4,8 @@
         :player-party="playerParty"
         :foe-party="foeParty"
         :save-battle="saveBattle"
+        :can-escape="canEscape"
+        @escape="endBattle"
         @gameOver="handleGameOver" />
 
     <div
@@ -62,6 +64,11 @@
                 type: Object,
                 required: true
             },
+            canEscape: {
+                type: Boolean,
+                required: false,
+                default: false
+            },
             close: {
                 type: Boolean,
                 required: false,
@@ -71,7 +78,6 @@
 
         data() {
             return {
-                message: null,
                 battle: {
                     ongoing: false,
                     victory: false
@@ -79,8 +85,10 @@
             }
         },
 
-        created() {
-            this.message = `${this.foeDetails.name} wants to battle`
+        computed: {
+            message() {
+                return `${this.foeDetails.name} wants to battle`
+            }
         },
 
         methods: {
@@ -92,9 +100,14 @@
                 this.battle.ongoing = true
             },
 
+            endBattle() {
+                this.battle.ongoing = false
+            },
+
             handleGameOver(victory) {
                 this.setBattleData(null)
                 this.$emit('completedMatch', victory)
+                this.endBattle()
             },
 
             ...mapActions([
