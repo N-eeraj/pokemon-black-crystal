@@ -134,6 +134,7 @@ export default {
     },
 
     enounterNewPokemon(state, id) {
+        if (!state.gameData) return
         const encounters = state.gameData.pokemon.encountered
         ++encounters.last
         if (!encounters.list.includes(id))
@@ -177,6 +178,9 @@ export default {
 
     evolvePokemon(state, { encounterId, evolutionId }) {
         state.gameData.pokemon.caught[encounterId].id = evolutionId
+        const encounters = state.gameData.pokemon.encountered
+        if (!encounters.list.includes(evolutionId))
+            encounters.list.push(evolutionId)
         encryptAndSave(state.gameData)
     },
 
