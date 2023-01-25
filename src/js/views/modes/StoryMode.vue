@@ -1,11 +1,6 @@
 <template>
     <div>
         <div id="story">
-            <navigation-bar
-                v-if="showNavBar"
-                icon="cross-mark"
-                @iconEvent="$router.push('/')" />
-
             <battle-wrapper
                 :player-party="playerParty"
                 :foe-party="foeParty"
@@ -14,7 +9,12 @@
                 can-escape
                 @battleStarted="toggleNavBar"
                 @completedMatch="handleMatchCompleteion" />
-        </div>
+
+            <navigation-bar
+                v-if="showNavBar"
+                icon="cross-mark"
+                @iconEvent="$router.push('/')" />
+ </div>
     </div>
 </template>
 

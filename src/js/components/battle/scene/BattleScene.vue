@@ -217,14 +217,21 @@
 
             currentPokemon() {
                 return {
-                    foe: this.battleData.foe.partyList[this.battleData.foe.currentPokemonIndex],
-                    trainer: this.battleData.trainer.partyList[this.battleData.trainer.currentPokemonIndex]
+                    foe: this.battleData?.foe.partyList[this.battleData.foe.currentPokemonIndex],
+                    trainer: this.battleData?.trainer.partyList[this.battleData.trainer.currentPokemonIndex]
                 }
             },
             
             ...mapGetters([
                 'getMovesByName'
             ]),
+        },
+
+        watch: {
+            currentPokemon(current, previous) {
+                if (current.foe && (current.foe.id !== previous?.foe?.id))
+                    this.encounterPokemon(current.foe.id)
+            }
         },
 
         async created() {
@@ -504,7 +511,8 @@
                 'updateBag',
                 'gainExperience',
                 'updatePokemonHappiness',
-                'toggleEvolutionCheck'
+                'toggleEvolutionCheck',
+                'encounterPokemon'
             ])
         }
     }

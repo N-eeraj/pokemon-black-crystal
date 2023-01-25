@@ -526,5 +526,56 @@
             "image": "trainers/jasmine.png",
             "name": "Florist Lola"
         }
+    },
+    {
+        "level": 33,
+        "party": [
+            {
+                "pokemon": 200,
+                "exp": 5500
+            },
+            {
+                "pokemon": 210,
+                "exp": 5500
+            }
+        ],
+        "details": {
+            "image": "trainers/caitin.png",
+            "name": "Baker Tina"
+        }
+    },
+    {
+        "level": 34,
+        "party": [
+            {
+                "pokemon": 120,
+                "exp": 5500
+            },
+            {
+                "pokemon": 200,
+                "exp": 5500
+            }
+        ],
+        "details": {
+            "image": "trainers/brycen.png",
+            "name": "Monk Nathan"
+        }
+    },
+    {
+        "level": 35,
+        "party": [
+            {
+                "pokemon": 180,
+                "exp": 5500
+            },
+            {
+                "pokemon": 310,
+                "exp": 5500
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Nerd Haris"
+        }
     }
 ]

@@ -131,7 +131,6 @@
                     exp
                 }
                 this.isLoading = false
-                this.encounterPokemon(pokemon)
             },
 
             retryLegendaryHunt() {
@@ -158,7 +157,6 @@
             ...mapActions([
                 'getWildPokemonByLocation',
                 'getLegendaryPokemon',
-                'encounterPokemon',
                 'addCaughtPokemon',
                 'setBattleData'
             ])
