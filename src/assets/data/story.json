@@ -241,13 +241,21 @@
         "level": 15,
         "party": [
             {
-                "pokemon": 43,
-                "exp": 1000
+                "pokemon": 12,
+                "exp": 1200
+            },
+            {
+                "pokemon": 15,
+                "exp": 1200
+            },
+            {
+                "pokemon": null,
+                "exp": 1800
             }
         ],
         "details": {
-            "image": "trainers/jasmine.png",
-            "name": "Florist Jasmine"
+            "image": "brendan.png",
+            "name": "Foe Brendan"
         }
     },
     {
@@ -618,6 +626,44 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Ann"
+        }
+    },
+    {
+        "level": 38,
+        "party": [
+            {
+                "pokemon": 269,
+                "exp": 6000
+            },
+            {
+                "pokemon": 267,
+                "exp": 6000
+            },
+            {
+                "pokemon": null,
+                "exp": 8000
+            }
+        ],
+        "details": {
+            "image": "brendan.png",
+            "name": "Foe Brendan"
+        }
+    },
+    {
+        "level": 39,
+        "party": [
+            {
+                "pokemon": 274,
+                "exp": 6000
+            },
+            {
+                "pokemon": 73,
+                "exp": 6000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Ricky"
         }
     }
 ]

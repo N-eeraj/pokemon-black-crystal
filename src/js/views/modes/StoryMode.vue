@@ -73,11 +73,26 @@
 
             initializeFoe() {
                 const foe = story.find(foe => foe.level === this.playerLevel)
-                this.foeParty = foe.party
                 this.foeDetails = {
                     image: require(`@/assets/images/characters/foe/${foe.details.image}`),
                     name: foe.details.name
                 }
+                this.foeParty = foe.party
+                const rivalPokemon = this.foeParty.find(pokemon => pokemon.pokemon === null)
+                if (!rivalPokemon) return
+                switch (this.getCaughtPokemon(1).id) {
+                    case 1:
+                        rivalPokemon.pokemon = 4
+                        break
+                    case 4:
+                        rivalPokemon.pokemon = 7
+                        break
+                    case 7:
+                        rivalPokemon.pokemon = 1
+                        break
+                }
+                if (this.playerLevel > 200) rivalPokemon.pokemon += 2
+                else if (this.playerLevel > 25) rivalPokemon.pokemon += 1
             },
 
             handleMatchCompleteion(result) {
