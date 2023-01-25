@@ -142,12 +142,13 @@ export default {
         encryptAndSave(state.gameData)
     },
 
-    addCaughtPokemon(state, data) {
+    addCaughtPokemon(state, { pokemon, exp }) {
+        state.gameData.pokemon.caughtList.push(pokemon)
         const pokemonData = state.gameData.pokemon
         pokemonData.caught[pokemonData.encountered.last] = {
-            id: data.pokemon,
-            exp: data.exp,
-            happiness: state.pokemonData[data.pokemon].baseHappiness
+            id: pokemon,
+            exp: exp,
+            happiness: state.pokemonData[pokemon].baseHappiness
         }
         if (pokemonData.party.length < 6)
             pokemonData.party.push(pokemonData.encountered.last)
@@ -177,6 +178,7 @@ export default {
     },
 
     evolvePokemon(state, { encounterId, evolutionId }) {
+        state.gameData.pokemon.caughtList.push(evolutionId)
         state.gameData.pokemon.caught[encounterId].id = evolutionId
         const encounters = state.gameData.pokemon.encountered
         if (!encounters.list.includes(evolutionId))

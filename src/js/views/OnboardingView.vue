@@ -202,6 +202,7 @@
                     last: 2
                 }
                 this.initData.pokemon.party.push(1)
+                this.initData.pokemon.caughtList = [this.onboarding.starter.id]
                 this.saveGameData(this.initData)
                 this.$router.push("/")
             },
