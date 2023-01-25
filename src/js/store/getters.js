@@ -58,7 +58,7 @@ export default {
     },
 
     getCaughtPokemonList(state) {
-        return Object.values(state.gameData.pokemon.caught).map(pokemon => pokemon.id)
+        return state.gameData.pokemon.caughtList
     },
 
     strongestPokemon(state) {
