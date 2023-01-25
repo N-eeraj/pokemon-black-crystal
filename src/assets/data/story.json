@@ -577,5 +577,47 @@
             "image": "trainers/throton.png",
             "name": "Nerd Haris"
         }
+    },
+    {
+        "level": 36,
+        "party": [
+            {
+                "pokemon": 180,
+                "exp": 5500
+            },
+            {
+                "pokemon": 181,
+                "exp": 5500
+            },
+            {
+                "pokemon": 182,
+                "exp": 5500
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Magnus"
+        }
+    },
+    {
+        "level": 37,
+        "party": [
+            {
+                "pokemon": 152,
+                "exp": 5500
+            },
+            {
+                "pokemon": 155,
+                "exp": 5500
+            },
+            {
+                "pokemon": 158,
+                "exp": 5500
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Ann"
+        }
     }
 ]

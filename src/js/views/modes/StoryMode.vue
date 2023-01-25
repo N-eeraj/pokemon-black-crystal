@@ -84,8 +84,8 @@
                 this.toggleNavBar()
                 this.initializeParty()
                 if (!result) return
-                this.initializeFoe()
                 this.levelUp()
+                this.initializeFoe()
             },
 
             toggleNavBar() {
