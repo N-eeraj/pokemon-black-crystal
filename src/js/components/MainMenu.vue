@@ -86,7 +86,7 @@
                     {
                         name: 'Arcade',
                         icon: 'arcade',
-                        to: ''
+                        to: 'mode/arcade'
                     },
                     {
                         name: 'PVP',
