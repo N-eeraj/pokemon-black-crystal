@@ -1,0 +1,77 @@
+[
+    {
+        "type": "Bug catcher",
+        "image": "bugsy.png",
+        "gender": "female"
+    },
+    {
+        "type": "School boy",
+        "image": "victor.png",
+        "gender": "male"
+    },
+    {
+        "type": "Nerd",
+        "image": "throton.png",
+        "gender": "male"
+    },
+    {
+        "type": "Lass",
+        "image": "whitney.png",
+        "gender": "female"
+    },
+    {
+        "type": "Goth",
+        "image": "lucy.png",
+        "gender": "female"
+    },
+    {
+        "type": "Diver",
+        "image": "marlon.png",
+        "gender": "male"
+    },
+    {
+        "type": "Rockstar",
+        "image": "gladion.png",
+        "gender": "male"
+    },
+    {
+        "type": "Explorer",
+        "image": "bianca.png",
+        "gender": "female"
+    },
+    {
+        "type": "Elder",
+        "image": "pryce.png",
+        "gender": "male"
+    },
+    {
+        "type": "Teacher",
+        "image": "cheren.png",
+        "gender": "male"
+    },
+    {
+        "type": "Baker",
+        "image": "caitin.png",
+        "gender": "female"
+    },
+    {
+        "type": "Surfer",
+        "image": "nessa.png",
+        "gender": "female"
+    },
+    {
+        "type": "Monk",
+        "image": "brycen.png",
+        "gender": "male"
+    },
+    {
+        "type": "Florist",
+        "image": "jasmine.png",
+        "gender": "female"
+    },
+    {
+        "type": "Teacher",
+        "image": "lorelei.png",
+        "gender": "female"
+    }
+]

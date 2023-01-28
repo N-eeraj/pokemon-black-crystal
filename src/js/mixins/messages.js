@@ -25,7 +25,7 @@ export const faintMessage = (pokemon, isFoe = false) => {
 }
 
 export const missedMove = (pokemon, isFoe = false) => {
-    let message = isFoe ? 'Foe' : 'Your'
+    let message = isFoe ? 'Your' : 'Foe'
     message += ` ${pokemon.name} missed the attack.`
     return message
 }

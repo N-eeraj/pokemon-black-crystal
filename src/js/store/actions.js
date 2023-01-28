@@ -307,6 +307,20 @@ export default {
         commit('updatePlayerCoins', amount)
     },
 
+    async getRandomPokemon({ dispatch }, { count, includeLegendary }) {
+        const randomPokemon = []
+        for (let i=0; i<count; i++) {
+            const pokemonData = await dispatch('getPokemonById', getInRange(1, 387))
+            if (pokemonData.isLegendary && !includeLegendary) {
+                --i
+                continue
+            }
+            randomPokemon.push(pokemonData)
+        }
+        if (count === 1) return randomPokemon[0]
+        return randomPokemon
+    },
+
     async getWildPokemonByLocation({ dispatch }, location) {
         // get all pokemons in the location
         const response = await fetch(`https://pokeapi.co/api/v2/pal-park-area/${location}`)
@@ -333,7 +347,11 @@ export default {
     },
 
     async getLegendaryPokemon({ dispatch }) {
-        const pokemonData = await dispatch('getPokemonById', getInRange(1, 387))
+        const options = {
+            count: 1,
+            includeLegendary: true
+        }
+        const pokemonData = await dispatch('getRandomPokemon', options)
         if (pokemonData.isLegendary) return pokemonData
         return null
     },
