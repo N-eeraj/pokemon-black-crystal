@@ -63,6 +63,9 @@ export default {
                 })
                 return level
             },
+            getExpByLevel(level) {
+                return state.growthRateData[this.growthRate][level - 1]
+            },
             getExpGained(canCatch, user, exp) {
                 const level = this.getLevel(exp)
                 return Math.round(((!canCatch || user ==='trainer') ? 1.5 : 1) * this.baseExp * level / 7)

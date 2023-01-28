@@ -17,6 +17,10 @@
             width: 40%;
             filter: grayscale(1);
             cursor: pointer;
+
+            &.selected {
+                filter: grayscale(0);
+            }
         }
     }
 

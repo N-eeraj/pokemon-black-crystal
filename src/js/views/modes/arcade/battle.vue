@@ -1,7 +1,9 @@
 <template>
     <div>
         
-        <div id="arcade_battle">
+        <div
+            id="arcade_battle"
+            class="arcade-event">
 
             <common-loader v-if="loading" />
 
@@ -18,8 +20,7 @@
                 v-if="showNavBar"
                 icon="cross-mark"
                 @iconEvent="$router.push('/mode/arcade')" />
-            
-            
+
             <pop-up
                 v-if="won"
                 close
@@ -158,9 +159,4 @@
     }
 </script>
 
-<style>
-    #arcade_battle .coin {
-        width: 30px;
-        margin: 7px;
-    }
-</style>
+<style lang="scss" src="@/styles/modes/arcade/coinPopUp.scss"></style>

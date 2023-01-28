@@ -13,14 +13,18 @@
 
             <div class="pokeballs-container">
                 <img
-                v-for="index in 6"
-                src="@/assets/images/pokeball.png"
-                class="pokeball"
-                :key="index" />
+                    v-for="index in 6"
+                    src="@/assets/images/pokeball.png"
+                    class="pokeball"
+                    :class="{ selected: selectedPokeballs.includes(index) }"
+                    :key="index"
+                    @click="addPokeBall(index)" />
             </div>
 
             <button
-                class="confirm">
+                v-if="selectedPokeballs.length === 3"
+                class="confirm"
+                @click="$emit('selectedPokeballs', selectedPokeballs)">
                 Continue
             </button>
 
@@ -38,6 +42,23 @@
 
         components: {
             NavigationBar
+        },
+
+        data() {
+            return {
+                selectedPokeballs: []
+            }
+        },
+
+        methods: {
+            addPokeBall(index) {
+                if (this.selectedPokeballs.includes(index)) {
+                    this.selectedPokeballs = this.selectedPokeballs.filter(pokeball => pokeball !== index)
+                    return
+                }
+                if (this.selectedPokeballs.length === 3) this.selectedPokeballs.shift()
+                this.selectedPokeballs.push(index)
+            }
         }
     }
 
