@@ -1,0 +1,27 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#tent_selection {
+    @include main.full-screen;
+    @include main.flex($direction: column, $justify: flex-start, $row: 20px);
+
+    .title {
+        text-align: center;
+        font-size: 1.1rem;
+    }
+
+    .pokeballs-container {
+        @include main.flex($wrap: wrap, $row: 25px, $col: 10%);
+
+        .pokeball {
+            width: 40%;
+            filter: grayscale(1);
+            cursor: pointer;
+        }
+    }
+
+    .confirm {
+        padding: 7px 10px;
+        background-color: palette.$accent;
+    }
+}

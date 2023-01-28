@@ -3,6 +3,8 @@
         
         <div id="arcade_tent">
 
+            <tent-selection />
+
         </div>
 
     </div>
@@ -10,7 +12,20 @@
 
 <script>
 
+    import TentSelection from '@/js/components/TentSelection.vue'
+
+    import { mapActions } from 'vuex'
+
     export default {
-        name: 'arcade-tent'
+        name: 'arcade-tent',
+
+        components: {
+            TentSelection
+        },
+
+        ...mapActions([
+            'startArcade',
+            'winArcade'
+        ])
     }
 </script>
