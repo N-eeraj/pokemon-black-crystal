@@ -82,12 +82,18 @@
                 if (!rivalPokemon) return
                 switch (this.getCaughtPokemon(1).id) {
                     case 1:
+                    case 2:
+                    case 3:
                         rivalPokemon.pokemon = 4
                         break
                     case 4:
+                    case 5:
+                    case 6:
                         rivalPokemon.pokemon = 7
                         break
                     case 7:
+                    case 8:
+                    case 9:
                         rivalPokemon.pokemon = 1
                         break
                 }

@@ -9,7 +9,7 @@
         ],
         "details": {
             "image": "trainers/bugsy.png",
-            "name": "Bug-catcher Bugsy"
+            "name": "Bug catcher Bugsy"
         }
     },
     {
@@ -532,7 +532,7 @@
         ],
         "details": {
             "image": "trainers/jasmine.png",
-            "name": "Florist Lola"
+            "name": "Florist Jasmine"
         }
     },
     {
@@ -664,6 +664,31 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Ricky"
+        }
+    },
+    {
+        "level": 40,
+        "party": [
+            {
+                "pokemon": 12,
+                "exp": 4000
+            },
+            {
+                "pokemon": 15,
+                "exp": 4000
+            },
+            {
+                "pokemon": 267,
+                "exp": 4000
+            },
+            {
+                "pokemon": 269,
+                "exp": 4000
+            }
+        ],
+        "details": {
+            "image": "trainers/bugsy.png",
+            "name": "Bug catcher Martha"
         }
     }
 ]

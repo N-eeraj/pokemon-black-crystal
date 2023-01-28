@@ -1,6 +1,11 @@
 <template>
     <div>
-        <div id="pokedex">
+
+        <common-loader v-if="loading" />
+
+        <div
+            id="pokedex"
+            v-else>
 
             <header>
                 <navigation-bar
@@ -31,7 +36,7 @@
                 class="pokemon-list">
 
                 <div
-                    v-for="pokemon in (searchQuery ? filteredDexList : pokedex)"
+                    v-for="pokemon in currentPokemonList"
                     :key="pokemon.id"
                     class="pokemon-card"
                     :class="{ uncaught: !pokemon.caught }"
@@ -149,6 +154,7 @@
 
     import NavigationBar from "@/js/components/UI/NavigationBar.vue"
     import TypeIcon from "@/js/components/TypeIcon.vue"
+    import CommonLoader from "@/js/components/screens/loading/CommonLoader.vue"
 
     import { mapGetters, mapActions } from "vuex"
 
@@ -157,7 +163,8 @@
 
         components: {
             NavigationBar,
-            TypeIcon
+            TypeIcon,
+            CommonLoader
         },
 
         data() {
@@ -187,11 +194,18 @@
                         label: 'not-caught',
                         value: 2
                     }
-                ]
+                ],
+                loading: true
             }
         },
 
         computed: {
+            currentPokemonList() {
+                const pokemonList = this.searchQuery ? this.filteredDexList : this.pokedex
+                const sortedList = pokemonList.sort((first, second) => first.id - second.id)
+                return sortedList
+            },
+
             filteredDexList() {
                 return this.pokedex.filter(pokemon => pokemon.name.toLowerCase().includes(this.searchQuery.toLowerCase()))
             },
@@ -211,6 +225,8 @@
                     ...await this.getPokemonById(pokemon.id)
                 }
                 this.originalPokedex.push(details)
+                if (this.originalPokedex.length === dexList.length)
+                    this.loading = false
             })
             this.pokedex = this.originalPokedex
         },
