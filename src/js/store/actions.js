@@ -382,5 +382,13 @@ export default {
 
     levelUp({ commit }) {
         commit('levelUp')
+    },
+
+    startArcade({ commit }, arcadeEvent) {
+        commit('startArcade', arcadeEvent)
+    },
+
+    winArcade({ commit }, arcadeEvent) {
+        commit('winArcade', arcadeEvent)
     }
 }

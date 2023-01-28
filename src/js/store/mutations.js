@@ -189,5 +189,15 @@ export default {
     levelUp(state) {
         ++state.gameData.progress.level
         encryptAndSave(state.gameData)
+    },
+
+    startArcade(state, arcadeEvent) {
+        ++state.gameData.progress.arcade[arcadeEvent].attempts
+        encryptAndSave(state.gameData)
+    },
+
+    winArcade(state, arcadeEvent) {
+        ++state.gameData.progress.arcade[arcadeEvent].victories
+        encryptAndSave(state.gameData)
     }
 }

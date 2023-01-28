@@ -11,7 +11,7 @@
                 :foe-party="foeParty"
                 :foe-details="foeDetails"
                 save-battle
-                @battleStarted="toggleNavBar"
+                @battleStarted="startMatch"
                 @completedMatch="handleMatchCompleteion" />
 
             <navigation-bar
@@ -130,6 +130,7 @@
             handleVictory() {
                 this.won = true
                 this.updatePlayerCoins(50)
+                this.winArcade('battle')
             },
 
             handleMatchCompleteion(result) {
@@ -142,9 +143,16 @@
                 this.showNavBar = !this.showNavBar
             },
 
+            startMatch() {
+                this.startArcade('battle')
+                this.toggleNavBar()
+            },
+
             ...mapActions([
                 'getRandomPokemon',
-                'updatePlayerCoins'
+                'updatePlayerCoins',
+                'startArcade',
+                'winArcade'
             ])
         }
     }
