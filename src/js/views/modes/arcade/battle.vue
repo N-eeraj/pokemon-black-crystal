@@ -18,6 +18,22 @@
                 v-if="showNavBar"
                 icon="cross-mark"
                 @iconEvent="$router.push('/mode/arcade')" />
+            
+            
+            <pop-up
+                v-if="won"
+                close
+                class="modal"
+                @close-pop-up="$router.push('/mode/arcade')">
+                <template #body>
+                    You won
+                    <img
+                        src="@/assets/images/coin.svg"
+                        alt="Pokécoins"
+                        class="coin" />
+                    50.
+                </template>
+            </pop-up>
         </div>
 
     </div>
@@ -28,6 +44,7 @@
     import BattleWrapper from '@/js/components/battle/BattleWrapper.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -39,7 +56,8 @@
         components: {
             BattleWrapper,
             NavigationBar,
-            CommonLoader
+            CommonLoader,
+            PopUp
         },
 
         data() {
@@ -48,7 +66,8 @@
                 foeParty: null,
                 foeDetails: null,
                 showNavBar: true,
-                loading: true
+                loading: true,
+                won: null
             }
         },
 
@@ -78,28 +97,39 @@
                 this.initializeFoe()
             },
 
-            async initializeFoe() {
-                const { name, image } = await getRandomOpponent()
-                this.foeDetails = {
-                    image: require(`@/assets/images/${image}`),
-                    name
-                }
+            async getFoeParty() {
                 const options = {
                     count: 6,
                     includeLegendary: false
                 }
                 const randomParty = await this.getRandomPokemon(options)
+                return randomParty
+            },
+
+            async initializeFoe() {
+                const [{ name, image }, randomParty] = await Promise.all([
+                    getRandomOpponent(),
+                    this.getFoeParty()
+                ])
+
+                this.foeDetails = {
+                    image: require(`@/assets/images/${image}`),
+                    name
+                }
+
                 this.foeParty = randomParty.map(pokemon => {
                     return {
                         pokemon : pokemon.id,
-                        exp: getInRange(this.strongestPokemon.exp * 0.8, this.strongestPokemon.exp)
+                        exp: getInRange(this.strongestPokemon.exp * 0.9, this.strongestPokemon.exp)
                     }
                 })
+
                 this.loading = false
             },
 
             handleVictory() {
-
+                this.won = true
+                this.updatePlayerCoins(50)
             },
 
             handleMatchCompleteion(result) {
@@ -113,8 +143,16 @@
             },
 
             ...mapActions([
-                'getRandomPokemon'
+                'getRandomPokemon',
+                'updatePlayerCoins'
             ])
         }
     }
 </script>
+
+<style>
+    #arcade_battle .coin {
+        width: 30px;
+        margin: 7px;
+    }
+</style>

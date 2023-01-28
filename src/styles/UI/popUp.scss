@@ -17,6 +17,7 @@
         left: 5%;
         @include main.flex($direction: column, $row: 20px);
         width: 90%;
+        min-height: 150px;
         padding: 30px;
         background-color: palette.$secondary;
         border-radius: 7px;
