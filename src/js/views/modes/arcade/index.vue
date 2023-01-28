@@ -58,7 +58,7 @@
                         this.$router.push('/mode/arcade/battle')
                         break
                     case 2:
-                        this.$router.push('/mode/arcade/tent/selection')
+                        this.$router.push('/mode/arcade/tent')
                         break
                     case 3:
                         this.$router.push('/mode/arcade/tower')

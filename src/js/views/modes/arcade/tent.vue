@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <div id="tent_selection">
+        <div id="arcade_tent">
 
         </div>
 
@@ -11,6 +11,6 @@
 <script>
 
     export default {
-        name: 'tent-selection'
+        name: 'arcade-tent'
     }
 </script>
