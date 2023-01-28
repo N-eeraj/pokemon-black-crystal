@@ -11,6 +11,8 @@ import PokemonDetails from '@/js/views/PokemonDetails.vue'
 import StoryMode from '@/js/views/modes/StoryMode.vue'
 import ExplorationMode from '@/js/views/modes/ExplorationMode.vue'
 import ArcadeMode from '@/js/views/modes/arcade/index.vue'
+import ArcadeBattle from '@/js/views/modes/arcade/battle.vue'
+import TentSelection from '@/js/views/modes/arcade/TentSelection.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 
@@ -64,6 +66,16 @@ const routes = [
         path: '/mode/arcade',
         name: 'ArcadeMode',
         component: ArcadeMode
+    },
+    {
+        path: '/mode/arcade/:event',
+        name: 'ArcadeBattle',
+        component: ArcadeBattle
+    },
+    {
+        path: '/mode/arcade/tent/selection',
+        name: 'TentSelection',
+        component: TentSelection
     },
     {
         path: '/shop',

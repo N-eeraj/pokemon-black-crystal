@@ -1,0 +1,28 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#arcade_home {
+    @include main.full-screen;
+    @include main.flex($direction: column);
+
+    .arcade-items-container {
+        @include main.flex($direction: column, $justify: flex-start, $row: 20px);
+        height: 92vh;
+        padding: 2vh 5%;
+        overflow-y: auto;
+
+        .arcade-card .banner-card {
+            height: unset;
+            
+            .overlay {
+                row-gap: 5px;
+                padding: 10px;
+                color: palette.$primary;
+                
+                .description {
+                    font-size: 0.7rem;
+                }
+            }
+        }
+    }
+}

@@ -14,8 +14,9 @@
                     :image="`images/arcade/${item.image}`"
                     :title="item.title"
                     overlay="linear-gradient(90deg, #0AF, #FFF7)"
+                    class="arcade-card"
                     :key="item.id"
-                    @click="$emit('legendaryHunt')">
+                    @click="handleArcadeItem(item.id)">
 
                     <p class="description">
                         {{ item.description }}
@@ -49,6 +50,24 @@
                 arcade
             }
         },
+
+        methods: {
+            handleArcadeItem(id) {
+                switch (id) {
+                    case 1:
+                        this.$router.push('/mode/arcade/battle')
+                        break
+                    case 2:
+                        this.$router.push('/mode/arcade/tent/selection')
+                        break
+                    case 3:
+                        this.$router.push('/mode/arcade/tower')
+                        break
+                }
+            }
+        }
     }
 
 </script>
+
+<style lang="scss" src="@/styles/modes/arcade/main.scss"></style>
