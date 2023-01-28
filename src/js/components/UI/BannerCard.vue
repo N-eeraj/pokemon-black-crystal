@@ -1,22 +1,29 @@
 <template>
-    <div class="location-container">
+    <div class="banner-container">
         <div
-            class="location-banner"
+            class="banner-card"
             :style="backgroundImage">
             <div
                 class="overlay"
                 :style="`background-image: ${overlay};`">
-                <strong>
+
+                <strong
+                    v-if="title"
+                    class="card-title">
                     {{ $filters.toTitleCase(title) }}
                 </strong>
+
+                <slot></slot>
+
             </div>
+
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'location-banner',
+        name: 'banner-card',
 
         props: {
             image: {
@@ -25,7 +32,7 @@
             },
             title: {
                 type: String,
-                required: true
+                required: false
             },
             overlay: {
                 type: String,
@@ -41,4 +48,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/locationBanner.scss"></style>
+<style lang="scss" src="@/styles/bannerCard.scss"></style>

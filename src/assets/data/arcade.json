@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Battle",
+        "description": "Here you’ll battle against a trainer with 6 Pokémons. The level of the opponent’s Pokémon will be set according to that of your own.",
+        "image": "battle.png"
+    },
+    {
+        "id": 2,
+        "title": "Tent",
+        "description": "You’ll be provided with 6 Pokéballs, each contains a mystery Pokémon. You’ll need to choose 3, the rest will belong to your opponent.",
+        "image": "tent.png"
+    },
+    {
+        "id": 3,
+        "title": "Tower",
+        "description": "There are several trainers in the tower. Beat all of them to win the grand prize. You’ll also be rewarded as you clear different stages of the tower.",
+        "image": "tower.png"
+    }
+]
