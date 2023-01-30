@@ -61,7 +61,8 @@
 
                     <img
                         :src="pokemon.image"
-                        :alt="pokemon.name" />
+                        :alt="pokemon.name"
+                        loading="lazy" />
 
                 </div>
 

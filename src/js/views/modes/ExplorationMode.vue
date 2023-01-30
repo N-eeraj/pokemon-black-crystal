@@ -101,7 +101,7 @@
                         encounterId: id
                     }
                 })
-                this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.5, this.strongestPokemon.exp)
+                this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.4, this.strongestPokemon.exp * 0.6)
             },
 
             async handleLocation(location) {

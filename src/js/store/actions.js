@@ -1,6 +1,6 @@
 import { Pokemon, PokemonObject } from '@/js/mixins/Pokemon'
 
-import { getIdFromUrl, deepCopy, decryptAndLoad } from "@/js/mixins/common"
+import { getIdFromUrl, deepCopy, clamp, decryptAndLoad } from "@/js/mixins/common"
 import { getInRange } from "@/js/mixins/randomGenerator"
 
 export default {
@@ -47,11 +47,12 @@ export default {
             const response = await fetch(url)
                 .then(response => response.json())
                 .then(data => data)
+            const pp = clamp(5, Math.round(response.pp / 2), 20)
             const moveData = {
                 name: response.name,
                 type: response.type.name,
                 power: response.power,
-                pp: response.pp,
+                pp,
                 accuracy: response.accuracy || 100,
                 priority: response.priority,
                 category: response.meta.category.name,
@@ -60,6 +61,8 @@ export default {
                 min: response.meta.min_hits,
                 max: response.meta.max_hits
             }
+            if (moveData.name === 'self-destruct')
+                moveData.healing = -100
             return moveData
         }
         catch {
@@ -220,9 +223,10 @@ export default {
         encounterDetails.forEach(pokemon => {
             if (pokemon.id > 386) return
             for (let i=0; i<pokemon.rate; i++)
-                encounterPossibilities.push(pokemon.id)
+                encounterPossibilities.splice(encounterPossibilities.length, 0, ...Array.from({length: 100}, () => pokemon.id))
         })
 
+        
         const randomPokemon = encounterPossibilities[getInRange(0, encounterPossibilities.length)]
         const pokemonDetails = await dispatch('getPokemonById', randomPokemon)
         if (pokemonDetails.isLegendary) return dispatch('getWildPokemonByLocation', location)

@@ -18,3 +18,5 @@ export const deepCopy = (value) => {
 }
 
 export const getIdFromUrl = (url) => Number(url.split('/').slice(-2, -1)[0])
+
+export const clamp = (min, num, max) => Math.min(Math.max(num, min), max)
