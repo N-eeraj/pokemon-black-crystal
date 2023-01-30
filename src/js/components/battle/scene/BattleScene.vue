@@ -227,13 +227,6 @@
             ]),
         },
 
-        watch: {
-            currentPokemon(current, previous) {
-                if (current.foe && (current.foe.id !== previous?.foe?.id))
-                    this.encounterPokemon(current.foe.id)
-            }
-        },
-
         async created() {
             await this.setBattleParty(this.playerParty, 'trainer')
             await this.setBattleParty(this.foeParty, 'foe')
@@ -511,8 +504,7 @@
                 'updateBag',
                 'gainExperience',
                 'updatePokemonHappiness',
-                'toggleEvolutionCheck',
-                'encounterPokemon'
+                'toggleEvolutionCheck'
             ])
         }
     }

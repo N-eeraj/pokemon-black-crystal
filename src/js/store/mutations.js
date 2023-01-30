@@ -8,22 +8,32 @@ export default {
     
     saveGameData(state, data) {
         state.gameData = data
-        encryptAndSave(data)
+        encryptAndSave()
     },
 
     savePlayerInfo(state, playerInfo) {
         state.gameData.playerInfo = playerInfo
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     toggleSound(state) {
         state.gameData.sound = !state.gameData.sound
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
-    cachePokemonData(state, pokemonData) {
+    setPokemonData(state, data) {
+        state.pokemonData = data
+    },
+
+    storePokemonDataByPokemon(state, pokemonData) {
         const {id, ...data} = pokemonData
         state.pokemonData[id] = data
+        if (!state.gameData) return
+        const encounters = state.gameData.pokemon.encountered
+        ++encounters.last
+        if (!encounters.list.includes(id))
+            encounters.list.push(id)
+        encryptAndSave()
     },
 
     cacheMovesData(state, moveData) {
@@ -51,31 +61,31 @@ export default {
         }
         
         [pokemonList[currentIndex], pokemonList[newIndex]] = [pokemonList[newIndex], pokemonList[currentIndex]]
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     movePokemon(state, { id, from, to }) {
         const pokemonData = state.gameData.pokemon
         pokemonData[from] = pokemonData[from].filter(caughtId => caughtId !== id)
         pokemonData[to].push(id)
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     releasePokemon(state, { id, list }) {
         const pokemonData = state.gameData.pokemon
         pokemonData[list] = pokemonData[list].filter(caughtId => caughtId !== id)
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     updateBag(state, { itemId, count }) {
         if (state.gameData.progress.bag[itemId]) state.gameData.progress.bag[itemId] += count
         else state.gameData.progress.bag[itemId] = count
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     updatePlayerCoins(state, amount) {
         state.gameData.progress.coins += amount
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     setBattleData(state, data) {
@@ -133,15 +143,6 @@ export default {
         })
     },
 
-    enounterNewPokemon(state, id) {
-        if (!state.gameData) return
-        const encounters = state.gameData.pokemon.encountered
-        ++encounters.last
-        if (!encounters.list.includes(id))
-            encounters.list.push(id)
-        encryptAndSave(state.gameData)
-    },
-
     addCaughtPokemon(state, { pokemon, exp }) {
         state.gameData.pokemon.caughtList.push(pokemon)
         const pokemonData = state.gameData.pokemon
@@ -154,7 +155,7 @@ export default {
             pokemonData.party.push(pokemonData.encountered.last)
         else
             pokemonData.pc.push(pokemonData.encountered.last)
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     gainExperience(state, { totalExp, encounterIds }) {
@@ -162,7 +163,7 @@ export default {
         encounterIds.forEach(id => {
             state.gameData.pokemon.caught[id].exp += sharedExp
         })
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     updatePokemonHappiness(state, { id, happiness }) {
@@ -170,7 +171,7 @@ export default {
         pokemon.happiness += happiness
         if (pokemon.happiness < 0)
             pokemon.happiness = 0
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     toggleEvolutionCheck(state) {
@@ -183,21 +184,21 @@ export default {
         const encounters = state.gameData.pokemon.encountered
         if (!encounters.list.includes(evolutionId))
             encounters.list.push(evolutionId)
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     levelUp(state) {
         ++state.gameData.progress.level
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     startArcade(state, arcadeEvent) {
         ++state.gameData.progress.arcade[arcadeEvent].attempts
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     },
 
     winArcade(state, arcadeEvent) {
         ++state.gameData.progress.arcade[arcadeEvent].victories
-        encryptAndSave(state.gameData)
+        encryptAndSave()
     }
 }
