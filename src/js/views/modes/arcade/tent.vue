@@ -29,7 +29,7 @@
                         src="@/assets/images/coin.svg"
                         alt="Pokécoins"
                         class="coin" />
-                    50.
+                    25.
                 </template>
             </pop-up>
 
@@ -126,9 +126,8 @@
             handleMatchCompleteion(result) {
                 if (!result) return this.$router.push('/mode/arcade')
                 this.won = true
-                this.updatePlayerCoins(50)
+                this.updatePlayerCoins(25)
                 this.winArcade('tent')
-                
             },
 
             ...mapActions([
