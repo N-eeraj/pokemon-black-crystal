@@ -56,6 +56,7 @@
     import { mapActions, mapGetters } from 'vuex'
 
     import { getInRange } from '@/js/mixins/randomGenerator'
+    import { clamp } from '@/js/mixins/common'
 
     export default {
         name: 'exploration-mode',
@@ -101,14 +102,19 @@
                         encounterId: id
                     }
                 })
-                this.wildPokemonLevel = getInRange(this.strongestPokemon.exp * 0.4, this.strongestPokemon.exp * 0.6)
             },
 
             async handleLocation(location) {
                 this.isLoading = true
                 this.battleOngoing = true
                 const encounteredPokemon = await this.getWildPokemonByLocation(location)
+
+                const strongestPokemonExp = getInRange(this.strongestPokemon.exp * 0.4, this.strongestPokemon.exp * 0.6)
+                const minExp = encounteredPokemon.getExpByLevel(3)
+                const maxExp = encounteredPokemon.getExpByLevel(50)
+                this.wildPokemonLevel = clamp(minExp, strongestPokemonExp, maxExp)
                 const exp = this.wildPokemonLevel
+
                 this.setWildPokemon(encounteredPokemon.id, exp)
             },
 
@@ -117,7 +123,7 @@
                 const legendaryPokemon = await this.getLegendaryPokemon()
                 if (legendaryPokemon) {
                     this.battleOngoing = true
-                    const exp = Math.max(this.wildPokemonLevel, 160000)
+                    const exp = legendaryPokemon.getExpByLevel(70)
                     this.setWildPokemon(legendaryPokemon.id, exp)
                     return
                 }
