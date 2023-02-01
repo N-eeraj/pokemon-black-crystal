@@ -137,6 +137,7 @@
                     exp
                 }
                 this.isLoading = false
+                this.encounterNewPokemon()
             },
 
             retryLegendaryHunt() {
@@ -164,7 +165,8 @@
                 'getWildPokemonByLocation',
                 'getLegendaryPokemon',
                 'addCaughtPokemon',
-                'setBattleData'
+                'setBattleData',
+                'encounterNewPokemon'
             ])
         }
     }

@@ -98,6 +98,10 @@
                 return Math.floor(this.won / 4)
             },
 
+            foePartySize() {
+                return this.won < 4 ? 6 : this.completedStages + 3
+            },
+
             reward() {
                 return 250 * this.completedStages
             },
@@ -129,7 +133,7 @@
 
             async getFoeParty() {
                 const options = {
-                    count: this.won < 4 ? 6 : this.completedStages + 3,
+                    count: this.foePartySize,
                     includeLegendary: false
                 }
                 const randomParty = await this.getRandomPokemon(options)
@@ -183,13 +187,15 @@
             startMatch() {
                 this.startArcade('tower')
                 this.toggleNavBar()
+                this.encounterNewPokemon(this.foePartySize)
             },
 
             ...mapActions([
                 'getRandomPokemon',
                 'updatePlayerCoins',
                 'startArcade',
-                'winArcade'
+                'winArcade',
+                'encounterNewPokemon'
             ])
         }
     }

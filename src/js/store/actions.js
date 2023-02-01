@@ -193,6 +193,10 @@ export default {
         commit('updatePlayerCoins', amount)
     },
 
+    encounterNewPokemon({ commit }, count = 1) {
+        commit('encounteredNewPokemon', count)
+    },
+
     async getRandomPokemon({ dispatch }, { count, includeLegendary }) {
         const randomPokemon = []
         for (let i=0; i<count; i++) {

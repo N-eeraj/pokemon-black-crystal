@@ -25,12 +25,16 @@ export default {
         state.pokemonData = data
     },
 
+    encounteredNewPokemon(state, count) {
+        state.gameData.pokemon.encountered.last += count
+        encryptAndSave()
+    },
+
     storePokemonDataByPokemon(state, pokemonData) {
         const {id, ...data} = pokemonData
         state.pokemonData[id] = data
         if (!state.gameData) return
         const encounters = state.gameData.pokemon.encountered
-        ++encounters.last
         if (!encounters.list.includes(id))
             encounters.list.push(id)
         encryptAndSave()

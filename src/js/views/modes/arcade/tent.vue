@@ -121,6 +121,7 @@
                 })
                 this.startArcade('tent')
                 this.showSelection = false
+                this.encounterNewPokemon(6)
             },
 
             handleMatchCompleteion(result) {
@@ -134,7 +135,8 @@
                 'getRandomPokemon',
                 'startArcade',
                 'updatePlayerCoins',
-                'winArcade'
+                'winArcade',
+                'encounterNewPokemon'
             ])
         }
     }
