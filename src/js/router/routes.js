@@ -12,6 +12,7 @@ import ArcadeMode from '@/js/views/modes/arcade/index.vue'
 import ArcadeBattle from '@/js/views/modes/arcade/battle.vue'
 import ArcadeTent from '@/js/views/modes/arcade/tent.vue'
 import ArcadeTower from '@/js/views/modes/arcade/tower.vue'
+import TradeMode from '@/js/views/modes/TradeMode.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 
@@ -112,6 +113,14 @@ export const routes = [
         component: ArcadeTower,
         meta: {
             title: 'Arcade Tower'
+        }
+    },
+    {
+        path: '/mode/trade',
+        name: 'TradeMode',
+        component: TradeMode,
+        meta: {
+            title: 'Trade'
         }
     },
     {

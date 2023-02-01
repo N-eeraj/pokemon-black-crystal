@@ -96,7 +96,7 @@
                     {
                         name: 'Trade',
                         icon: 'trade',
-                        to: ''
+                        to: '/mode/trade'
                     },
                     {
                         name: 'Carnival',
