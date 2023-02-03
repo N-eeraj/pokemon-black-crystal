@@ -32,7 +32,7 @@ export const routes = [
         name: 'Pokedex',
         component: PokedexView,
         meta: {
-            title: 'Pokedex'
+            title: 'Pokédex'
         }
     },
     {

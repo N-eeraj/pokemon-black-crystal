@@ -1,12 +1,15 @@
 <template>
     <div>
         <button v-if="peer" @click="sendDataToPeer({})">Test</button>
+        <router-link to="/">Exit</router-link>
     </div>
 </template>
 
 <script>
 
     import { Peer } from 'peerjs'
+
+    import { mapGetters } from 'vuex'
 
     export default {
         name: 'trade-mode',
@@ -16,6 +19,12 @@
                 client: null,
                 peer: null
             }
+        },
+
+        computed: {
+            ...mapGetters([
+                'playerInfo'
+            ])
         },
 
         created() {
@@ -39,11 +48,21 @@
             },
 
             initializeHost() {
-                this.client.on('open', key => {
+                this.client.on('open', async key => {
                     this.$router.replace({
                         ...this.$route,
                         query: { key }
                     })
+                    try {
+                        const shareData = {
+                            title: 'Pokémon Black Crystal',
+                            text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal\n`,
+                            url: `${this.$route.fullPath}?key=${key}`
+                        }
+                        await navigator.share(shareData)
+                    } catch {
+                        console.log('Share failed')
+                    }
                 })
                 this.client.on('connection', (connection) => {
                     connection.on('open', () => this.peer = connection)
