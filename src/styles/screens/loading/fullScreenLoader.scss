@@ -1,0 +1,37 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+.loading-screen {
+    @include main.full-screen;
+
+    &#trade_loader {
+        background-image: url('@/assets/images/loading/trade.png');
+        background-size: cover;
+
+        .nav-bar .icon {
+            filter: invert(1);
+        }
+    }
+
+    .nav-bar {
+        position: relative;
+        z-index: 2;
+    }
+
+    .overlay {
+        @include main.full-screen;
+        @include main.flex($direction: column, $justify: flex-end, $row: 30px);
+        padding: 10%;
+        background-image: linear-gradient(rgba(palette.$primary, 0), palette.$primary);
+
+        .message {
+            align-self: flex-end;
+        }
+
+        .invite-button {
+            padding: 7px 10px;
+            background-color: palette.$accent;
+            border-radius: 20px;
+        }
+    }
+}
