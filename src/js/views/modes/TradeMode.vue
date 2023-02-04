@@ -8,13 +8,20 @@
                 @shareLink="inviteFriend"
                 :canInvite="!!(isHost && key)" />
 
-            <template v-else>
+            <!-- <template v-else>
                 <input v-model="test.send">
                 <br>
                 <button @click="sendDataToPeer({type: test, message: test.send})">Test</button>
                 <br>
                 {{ test.receive }}
-            </template>
+            </template> -->
+
+            <pokemon-list
+                :list="party"
+                title="Select Pokémon to trade"
+                icon="cross-mark"
+                @navIconAction="$router.push('/')"
+                @selectedPokemon="selectPokemon" />
 
             <pop-up
                 v-if="showDisconnectPopUp"
@@ -32,17 +39,19 @@
 
     import TradeLoader from '@/js/components/screens/loading/TradeLoader.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
+    import PokemonList from '@/js/components/PokemonList.vue'
 
     import { Peer } from 'peerjs'
 
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: 'trade-mode',
 
         components: {
             TradeLoader,
-            PopUp
+            PopUp,
+            PokemonList
         },
 
         data() {
@@ -52,6 +61,7 @@
                 isHost: null,
                 connected: false,
                 showDisconnectPopUp: false,
+                party: [],
                 test: {send: '', receive: ''}
             }
         },
@@ -68,12 +78,29 @@
             },
 
             ...mapGetters([
-                'playerInfo'
+                'playerInfo',
+                'partyPokemon',
+                'getCaughtPokemon'
             ])
         },
 
         created() {
             this.initalizePeer2PeerConnectionn()
+            const pokemonList = this.partyPokemon.map(id => {
+                return {
+                    caughtId: id,
+                    ...this.getCaughtPokemon(id)
+                }
+            })
+            pokemonList.map(async (pokemon) => {
+                const pokemonDetails = await this.getPokemonById(pokemon.id)
+                this.party.push({
+                    caughtId: pokemon.caughtId,
+                    exp: pokemon.exp,
+                    level: pokemonDetails.getLevel(pokemon.exp),
+                    ...pokemonDetails
+                })
+            })
         },
 
         methods: {
@@ -153,7 +180,15 @@
                 if (!type) return this.handleDisconnect()
                 if (type === 'connection') this.connected = true
                 this.test.receive = message
-            }
+            },
+
+            selectPokemon() {
+
+            },
+
+            ...mapActions([
+                'getPokemonById'
+            ])
         }
     }
 

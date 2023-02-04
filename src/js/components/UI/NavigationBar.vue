@@ -5,7 +5,7 @@
             :src="require(`@/assets/icons/${icon}.svg`)"
             class="icon"
             @click="$emit('iconEvent')" />
-        <h3>
+        <h3 class="title">
             {{ title }}
         </h3>
         <div class="right-action">
