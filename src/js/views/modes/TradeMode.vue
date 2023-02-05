@@ -8,15 +8,8 @@
                 @shareLink="inviteFriend"
                 :canInvite="!!(isHost && key)" />
 
-            <!-- <template v-else>
-                <input v-model="test.send">
-                <br>
-                <button @click="sendDataToPeer({type: test, message: test.send})">Test</button>
-                <br>
-                {{ test.receive }}
-            </template> -->
-
             <pokemon-list
+                v-else
                 :list="party"
                 title="Select Pokémon to trade"
                 icon="cross-mark"
@@ -24,11 +17,11 @@
                 @selectedPokemon="selectPokemon" />
 
             <pop-up
-                v-if="showDisconnectPopUp"
+                v-if="disconnectPopUp.show"
                 close
                 @close-pop-up="disconnectFromPeer">
                 <template #body>
-                    You have been disconnected.
+                    {{ disconnectPopUp.text }}
                 </template>
             </pop-up>
         </div>
@@ -58,19 +51,18 @@
             return {
                 client: null,
                 peer: null,
+                key: null,
                 isHost: null,
                 connected: false,
-                showDisconnectPopUp: false,
+                disconnectPopUp: {
+                    show: false,
+                    text: null
+                },
                 party: [],
-                test: {send: '', receive: ''}
             }
         },
 
         computed: {
-            key() {
-                return this.$route.query.key
-            },
-
             loadingText() {
                 if (this.key)
                     return 'Waiting to connect to a friend'
@@ -107,13 +99,14 @@
             initalizePeer2PeerConnectionn() {
                 this.client = new Peer()
 
-                if (this.key)
+                if (this.$route.query.key)
                     this.initializePeer()
                 else this.initializeHost()
             },
 
             initializePeer() {
                 this.isHost = false
+                this.key = this.$route.query.key
                 setTimeout(() => {
                     this.peer = this.client.connect(this.key)
                     this.peer.on('open', () => 
@@ -129,12 +122,7 @@
 
             initializeHost() {
                 this.isHost = true
-                this.client.on('open', async key => {
-                    this.$router.replace({
-                        ...this.$route,
-                        query: { key }
-                    })
-                })
+                this.client.on('open', async key => this.key = key)
                 this.client.on('connection', (connection) => {
                     connection.on('open', () => {
                         this.peer = connection
@@ -154,7 +142,7 @@
                     const shareData = {
                         title: 'Pokémon Black Crystal',
                         text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal.\n`,
-                        url: this.$route.fullPath
+                        url: `${this.$route.fullPath}?key=${this.key}`
                     }
                     await navigator.share(shareData)
                 } catch {
@@ -162,8 +150,9 @@
                 }
             },
 
-            handleDisconnect() {
-                this.showDisconnectPopUp = true
+            handleDisconnect(message) {
+                this.disconnectPopUp.show = true
+                this.disconnectPopUp.text = message ? message : 'Connection with friend lost.'
             },
 
             async disconnectFromPeer() {
@@ -176,14 +165,21 @@
             },
 
             handleDataFromPeer(data) {
-                const { type, message } = JSON.parse(data)
+                const { type } = JSON.parse(data)
                 if (!type) return this.handleDisconnect()
-                if (type === 'connection') this.connected = true
-                this.test.receive = message
+                if (type === 'connection') {
+                    const broadcastChannel = new BroadcastChannel('test_channel')
+                    broadcastChannel.postMessage('')
+                    broadcastChannel.onmessage = () => {
+                        broadcastChannel.postMessage('')
+                        this.handleDisconnect('Cannot connect to yourself')
+                    }
+                    this.connected = true
+                }
             },
 
-            selectPokemon() {
-
+            selectPokemon(index) {
+                console.log(this.party[index])
             },
 
             ...mapActions([
