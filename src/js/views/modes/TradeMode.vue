@@ -5,17 +5,20 @@
             <trade-loader
                 v-if="!connected"
                 :loadingText="loadingText"
-                @shareLink="inviteFriend"
-                :canInvite="!!(isHost && key)" />
+                :canInvite="!!(isHost && key)"
+                @shareLink="inviteFriend" />
 
+            <template v-else>
             <pokemon-list
-                v-else
                 :list="party"
                 title="Select Trade Pokémon"
                 icon="cross-mark"
                 class="pokemon-list"
                 @navIconAction="$router.push('/')"
                 @selectedPokemon="selectPokemon" />
+
+                <trade-chat />
+            </template>
 
             <pop-up
                 v-if="disconnectPopUp.show"
@@ -32,6 +35,7 @@
 <script>
 
     import TradeLoader from '@/js/components/screens/loading/TradeLoader.vue'
+    import TradeChat from '@/js/components/trade/TradeChat.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import PokemonList from '@/js/components/PokemonList.vue'
 
@@ -44,6 +48,7 @@
 
         components: {
             TradeLoader,
+            TradeChat,
             PopUp,
             PokemonList
         },

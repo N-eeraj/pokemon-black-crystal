@@ -3,11 +3,42 @@
 
 #trade_chat {
     @include main.full-screen;
+    @include main.flex($direction: column);
     background-color: palette.$primary;
 
     #navigation_bar .icon {
         right: 10px;
         left: unset;
+    }
+
+    .messages-container {
+        height: calc(92vh - 50px);
+        padding: 10px;
+        overflow-y: auto
+    }
+
+    .message-input-container {
+        @include main.flex;
+        width: 100%;
+        height: 50px;
+
+        .input {
+            width: calc(100% - 50px);
+            height: 100%;
+            padding: 10px;
+            background-color: palette.$secondary;
+            color: palette.$white;
+        }
+
+        .send-button {
+            width: 50px;
+            aspect-ratio: 1;
+            background-color: palette.$accent;
+
+            .icon {
+                width: 60%;
+            }
+        }
     }
 }
 

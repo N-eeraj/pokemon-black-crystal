@@ -2,10 +2,29 @@
     <div
         v-if="openChat"
         id="trade_chat">
+
         <navigation-bar
             icon="cross-mark"
             @iconEvent="toggleChatVisibility" />
+
+        <div class="messages-container">
+
+        </div>
+
+        <div class="message-input-container">
+            <input
+                placeholder="Enter your message"
+                class="input">
+            <button
+                class="send-button">
+                <img
+                    src="@/assets/icons/send.svg"
+                    alt="Send"
+                    class="icon" />
+            </button>
+        </div>
     </div>
+
     <img
         v-else
         id="trade_chat_fab"
