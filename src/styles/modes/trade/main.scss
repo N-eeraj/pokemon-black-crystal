@@ -1,0 +1,19 @@
+#trade_mode .pokemon-list {
+
+    #navigation_bar {
+        flex-direction: column;
+        row-gap: 5px;
+        height: max-content;
+        padding: 10px;
+
+        .icon {
+            position: static;
+            align-self: flex-start;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 1rem;
+        }
+    }
+}

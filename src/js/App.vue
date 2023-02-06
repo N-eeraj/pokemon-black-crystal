@@ -52,6 +52,8 @@
             const broadcastChannel = new BroadcastChannel('duplicateTab')
             broadcastChannel.addEventListener("message", ({ data }) => {
                 if (data === 'initialize')
+                    broadcastChannel.postMessage('duplicate')
+                else if (data === 'duplicate')
                     this.duplicate = true
             })
             broadcastChannel.postMessage('initialize')

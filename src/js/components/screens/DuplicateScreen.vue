@@ -9,7 +9,7 @@
 
 <script>
     export default {
-        name: 'offline-screen'
+        name: 'duplicate-screen'
     }
 </script>
 

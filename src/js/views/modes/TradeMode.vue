@@ -11,8 +11,9 @@
             <pokemon-list
                 v-else
                 :list="party"
-                title="Select Pokémon to trade"
+                title="Select Trade Pokémon"
                 icon="cross-mark"
+                class="pokemon-list"
                 @navIconAction="$router.push('/')"
                 @selectedPokemon="selectPokemon" />
 
@@ -182,3 +183,6 @@
     }
 
 </script>
+
+<style lang="scss" src="@/styles/modes/trade/main.scss">
+</style>
