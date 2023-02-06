@@ -167,15 +167,8 @@
             handleDataFromPeer(data) {
                 const { type } = JSON.parse(data)
                 if (!type) return this.handleDisconnect()
-                if (type === 'connection') {
-                    const broadcastChannel = new BroadcastChannel('test_channel')
-                    broadcastChannel.postMessage('')
-                    broadcastChannel.onmessage = () => {
-                        broadcastChannel.postMessage('')
-                        this.handleDisconnect('Cannot connect to yourself')
-                    }
+                if (type === 'connection')
                     this.connected = true
-                }
             },
 
             selectPokemon(index) {

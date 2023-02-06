@@ -28,6 +28,15 @@
     }
 }
 
+@keyframes float {
+    from {
+        transform: translateY(-5vh);
+    }
+    to {
+        transform: translateY(5vh);
+    }
+}
+
 @keyframes wiggle {
     from {
         transform: rotate(1deg);

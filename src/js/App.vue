@@ -1,18 +1,21 @@
 <template>
-    <offline-screen v-if="isOffline" />
+    <duplicate-screen v-if="duplicate" />
     <template v-else>
-        <splash-screen
-            v-if="showSplashScreen"
-            @loading-complete="startGame" />
-        <router-view
-            v-else
-            id="main" />
-        <evolution-pop-up
-            v-if="evolutionReadyPokemon.length"
-            :pokemonList="evolutionReadyPokemon"
-            class="global-evolution-pop-up"
-            @completedEvolutions="handleCompletedEvolutions" />
-        <rotate-screen v-if="isSmallScreen" />
+        <offline-screen v-if="isOffline" />
+        <template v-else>
+            <splash-screen
+                v-if="showSplashScreen"
+                @loading-complete="startGame" />
+            <router-view
+                v-else
+                id="main" />
+            <evolution-pop-up
+                v-if="evolutionReadyPokemon.length"
+                :pokemonList="evolutionReadyPokemon"
+                class="global-evolution-pop-up"
+                @completedEvolutions="handleCompletedEvolutions" />
+            <rotate-screen v-if="isSmallScreen" />
+        </template>
     </template>
 </template>
 
@@ -21,6 +24,7 @@
     import SplashScreen from '@/js/components/screens/SplashScreen.vue'
     import RotateScreen from '@/js/components/screens/RotateScreen.vue'
     import OfflineScreen from '@/js/components/screens/OfflineScreen.vue'
+    import DuplicateScreen from '@/js/components/screens/DuplicateScreen.vue'
     import EvolutionPopUp from '@/js/components/EvolutionPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
@@ -31,6 +35,7 @@
             SplashScreen,
             RotateScreen,
             OfflineScreen,
+            DuplicateScreen,
             EvolutionPopUp
         },
 
@@ -38,11 +43,18 @@
             return {
                 showSplashScreen: true,
                 isSmallScreen: false,
-                evolutionReadyPokemon: []
+                evolutionReadyPokemon: [],
+                duplicate: false
             }
         },
 
         beforeCreate() {
+            const broadcastChannel = new BroadcastChannel('duplicateTab')
+            broadcastChannel.addEventListener("message", ({ data }) => {
+                if (data === 'initialize')
+                    this.duplicate = true
+            })
+            broadcastChannel.postMessage('initialize')
             window.visualViewport.addEventListener('resize', event => {
                 if (event.target) {
                     const { height } = event.target
