@@ -1,35 +1,31 @@
 <template>
-    <div>
-        
-        <div id="tent_selection">
+    <div id="tent_selection">
 
-            <navigation-bar
-                icon="cross-mark"
-                @click="$router.push('/mode/arcade')" />
+        <navigation-bar
+            icon="cross-mark"
+            @click="$router.push('/mode/arcade')" />
 
-            <h3 class="title">
-                Select 3 Pokéballs
-            </h3>
+        <h3 class="title">
+            Select 3 Pokéballs
+        </h3>
 
-            <div class="pokeballs-container">
-                <img
-                    v-for="index in 6"
-                    src="@/assets/images/pokeball.png"
-                    class="pokeball"
-                    :class="{ selected: selectedPokeballs.includes(index) }"
-                    :key="index"
-                    @click="addPokeBall(index)" />
-            </div>
-
-            <button
-                v-if="selectedPokeballs.length === 3"
-                class="confirm"
-                @click="$emit('selectedPokeballs', selectedPokeballs)">
-                Continue
-            </button>
-
+        <div class="pokeballs-container">
+            <img
+                v-for="index in 6"
+                src="@/assets/images/pokeball.png"
+                class="pokeball"
+                :class="{ selected: selectedPokeballs.includes(index) }"
+                :key="index"
+                @click="addPokeBall(index)" />
         </div>
-        
+
+        <button
+            v-if="selectedPokeballs.length === 3"
+            class="confirm"
+            @click="$emit('selectedPokeballs', selectedPokeballs)">
+            Continue
+        </button>
+
     </div>
 </template>
 

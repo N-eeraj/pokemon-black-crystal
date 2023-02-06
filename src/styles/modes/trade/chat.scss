@@ -1,0 +1,24 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#trade_chat {
+    @include main.full-screen;
+    background-color: palette.$primary;
+
+    #navigation_bar .icon {
+        right: 10px;
+        left: unset;
+    }
+}
+
+#trade_chat_fab {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 50px;
+    aspect-ratio: 1;
+    padding: 8px;
+    background-color: palette.$accent;
+    border-radius: 25px;
+    cursor: pointer;
+}

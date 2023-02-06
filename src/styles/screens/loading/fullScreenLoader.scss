@@ -20,18 +20,21 @@
 
     .overlay {
         @include main.full-screen;
-        @include main.flex($direction: column, $justify: flex-end, $row: 30px);
+        @include main.flex($direction: column, $justify: flex-end, $row: 25px);
         padding: 10%;
         background-image: linear-gradient(rgba(palette.$primary, 0), palette.$primary);
 
         .message {
             align-self: flex-end;
+            text-align: end;
+            font-size: 1rem;
         }
 
         .invite-button {
             padding: 7px 10px;
             background-color: palette.$accent;
             border-radius: 20px;
+            font-weight: 600;
         }
     }
 }

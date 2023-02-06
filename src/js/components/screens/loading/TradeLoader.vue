@@ -1,30 +1,28 @@
 <template>
-    <div>
-        <div
-            id="trade_loader"
-            class="loading-screen">
+    <div
+        id="trade_loader"
+        class="loading-screen">
+        
+        <navigation-bar
+            icon="cross-mark"
+            class="nav-bar"
+            @iconEvent="$router.push('/')" />
             
-            <navigation-bar
-                icon="cross-mark"
-                class="nav-bar"
-                @iconEvent="$router.push('/')" />
-                
-            <div class="overlay">
-                
-                <span class="message">
-                    {{ loadingText }}
-                </span>
+        <div class="overlay">
+            
+            <span class="message">
+                {{ loadingText }}
+            </span>
 
-                <button
-                    v-if="canInvite"
-                    class="invite-button"
-                    @click="$emit('shareLink')">
-                    Invite Friend
-                </button>
-
-            </div>
+            <button
+                v-if="canInvite"
+                class="invite-button"
+                @click="$emit('shareLink')">
+                Invite Friend
+            </button>
 
         </div>
+
     </div>
 </template>
 

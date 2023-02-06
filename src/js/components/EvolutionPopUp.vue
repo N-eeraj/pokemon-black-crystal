@@ -1,52 +1,50 @@
 <template>
-    <div>
-        <pop-up
-            v-if="evolutionList.length && currentPokemon.evolution"
-            class="evolution-modal">
+    <pop-up
+        v-if="evolutionList.length && currentPokemon.evolution"
+        class="evolution-modal">
 
-            <template #body>
-                <div class="images-container">
-                    <img
-                        v-if="status === 0 || status === 2"
-                        :src="currentPokemon.image"
-                        :alt="currentPokemon.name"
-                        class="pokemon-img"
-                        :class="{ 'evolution-progress': (status === 0), shrink: (showEvolution && status === 0 ) }" />
-                    <img
-                        v-if="status === 0 || status === 1"
-                        :src="currentPokemon.evolution.image"
-                        :alt="currentPokemon.evolution.name"
-                        class="pokemon-img"
-                        :class="{ 'evolution-progress': (status === 0), shrink: (!showEvolution && status === 0 ) }" />
-                </div>
-                <progress
-                    v-if="status === 0"
-                    :value="currentTime"
-                    :max="500"
-                    class="timer" />
-                <p class="message">
-                    {{ currentMessage }}
-                </p>
-            </template>
+        <template #body>
+            <div class="images-container">
+                <img
+                    v-if="status === 0 || status === 2"
+                    :src="currentPokemon.image"
+                    :alt="currentPokemon.name"
+                    class="pokemon-img"
+                    :class="{ 'evolution-progress': (status === 0), shrink: (showEvolution && status === 0 ) }" />
+                <img
+                    v-if="status === 0 || status === 1"
+                    :src="currentPokemon.evolution.image"
+                    :alt="currentPokemon.evolution.name"
+                    class="pokemon-img"
+                    :class="{ 'evolution-progress': (status === 0), shrink: (!showEvolution && status === 0 ) }" />
+            </div>
+            <progress
+                v-if="status === 0"
+                :value="currentTime"
+                :max="500"
+                class="timer" />
+            <p class="message">
+                {{ currentMessage }}
+            </p>
+        </template>
 
-            <template
-                #actions>
-                <button
-                    v-if="status === 0"
-                    class="cancel"
-                    @click="handleStopEvolution">
-                    Stop
-                </button>
-                <button
-                    v-else
-                    class="confirm"
-                    @click="removeFirstPokemon">
-                    OK
-                </button>
-            </template>
+        <template
+            #actions>
+            <button
+                v-if="status === 0"
+                class="cancel"
+                @click="handleStopEvolution">
+                Stop
+            </button>
+            <button
+                v-else
+                class="confirm"
+                @click="removeFirstPokemon">
+                OK
+            </button>
+        </template>
 
-        </pop-up>
-    </div>
+    </pop-up>
 </template>
 
 <script>
