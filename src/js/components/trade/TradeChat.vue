@@ -13,10 +13,13 @@
 
         <div class="message-input-container">
             <input
+                v-model="newMessage"
                 placeholder="Enter your message"
-                class="input">
+                class="input"
+                @keydown.enter="sendMessage" />
             <button
-                class="send-button">
+                class="send-button"
+                @click="sendMessage">
                 <img
                     src="@/assets/icons/send.svg"
                     alt="Send"
@@ -43,15 +46,27 @@
             NavigationBar
         },
 
+        props: {
+            messages: {
+                type: Array,
+                required: true
+            }
+        },
+
         data() {
             return {
-                openChat: false
+                openChat: false,
+                newMessage: ''
             }
         },
 
         methods: {
             toggleChatVisibility() {
                 this.openChat = !this.openChat
+            },
+
+            sendMessage() {
+                this.$emit('send', this.newMessage)
             }
         }
     }

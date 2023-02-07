@@ -9,15 +9,17 @@
                 @shareLink="inviteFriend" />
 
             <template v-else>
-            <pokemon-list
-                :list="party"
-                title="Select Trade Pokémon"
-                icon="cross-mark"
-                class="pokemon-list"
-                @navIconAction="$router.push('/')"
-                @selectedPokemon="selectPokemon" />
+                <pokemon-list
+                    :list="party"
+                    title="Select Trade Pokémon"
+                    icon="cross-mark"
+                    class="pokemon-list"
+                    @navIconAction="$router.push('/')"
+                    @selectedPokemon="selectPokemon" />
 
-                <trade-chat />
+                <trade-chat
+                    :messages="messages"
+                    @send="sendMessage" />
             </template>
 
             <pop-up
@@ -65,6 +67,7 @@
                     text: null
                 },
                 party: [],
+                messages: []
             }
         },
 
@@ -171,14 +174,28 @@
             },
 
             handleDataFromPeer(data) {
-                const { type } = JSON.parse(data)
-                if (!type) return this.handleDisconnect()
-                if (type === 'connection')
-                    this.connected = true
+                const { type, message } = JSON.parse(data)
+                switch (type) {
+                    case 'connection':
+                        this.connected = true
+                        break
+                    case 'message':
+                        console.log(message)
+                        break
+                    default:
+                        this.handleDisconnect()
+                }
             },
 
             selectPokemon(index) {
                 console.log(this.party[index])
+            },
+
+            sendMessage(message) {
+                this.sendDataToPeer({
+                    type: 'message',
+                    message
+                })
             },
 
             ...mapActions([
