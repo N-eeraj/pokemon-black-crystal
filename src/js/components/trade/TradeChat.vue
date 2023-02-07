@@ -8,7 +8,13 @@
             @iconEvent="toggleChatVisibility" />
 
         <div class="messages-container">
-
+            <div
+                v-for="({ message, client }, index) in messages"
+                :key="index"
+                class="chat-bubble"
+                :class="client ? 'client' : 'peer'">
+                {{ message }}
+            </div>
         </div>
 
         <div class="message-input-container">
@@ -66,7 +72,9 @@
             },
 
             sendMessage() {
+                if (!this.newMessage) return
                 this.$emit('send', this.newMessage)
+                this.newMessage = ''
             }
         }
     }

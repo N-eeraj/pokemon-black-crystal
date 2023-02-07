@@ -147,11 +147,12 @@
             },
 
             async inviteFriend() {
+                const basePath = process.env.BASE_URL.slice(0, -1)
                 try {
                     const shareData = {
                         title: 'Pokémon Black Crystal',
                         text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal.\n`,
-                        url: `${this.$route.fullPath}?key=${this.key}`
+                        url: `${this.$route.fullPath}${basePath}?key=${this.key}`
                     }
                     await navigator.share(shareData)
                 } catch {
@@ -173,6 +174,13 @@
                 this.peer.send(JSON.stringify(data))
             },
 
+            handleMessage(message, client) {
+                this.messages.push({
+                    client,
+                    message
+                })
+            },
+
             handleDataFromPeer(data) {
                 const { type, message } = JSON.parse(data)
                 switch (type) {
@@ -180,7 +188,7 @@
                         this.connected = true
                         break
                     case 'message':
-                        console.log(message)
+                        this.handleMessage(message, false)
                         break
                     default:
                         this.handleDisconnect()
@@ -192,6 +200,7 @@
             },
 
             sendMessage(message) {
+                this.handleMessage(message, true)
                 this.sendDataToPeer({
                     type: 'message',
                     message

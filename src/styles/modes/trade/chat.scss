@@ -12,9 +12,51 @@
     }
 
     .messages-container {
-        height: calc(92vh - 50px);
+        @include main.flex($direction: column, $justify: flex-start, $row: 15px);
+        width: 100%;
+        height: calc(92vh - 60px);
+        margin-bottom: 10px;
         padding: 10px;
-        overflow-y: auto
+        overflow-y: auto;
+
+        .chat-bubble {
+            position: relative;
+            min-width: 50px;
+            width: fit-content;
+            max-width: 80%;
+            padding: 5px;
+            color: palette.$primary;
+            border-radius: 10px;
+            word-break: break-all;
+            font-size: 0.8rem;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: calc(100% - 10px);
+                border: 10px solid transparent;
+            }
+            
+            &.client {
+                align-self: flex-end;
+                background-color: palette.$accent;
+                
+                &::after {
+                    right: 0;
+                    border-right-color: palette.$accent;
+                }
+            }
+            
+            &.peer {
+                align-self: flex-start;
+                background-color: palette.$white-secondary;
+                
+                &::after {
+                    left: 0;
+                    border-left-color: palette.$white-secondary;
+                }
+            }
+        }
     }
 
     .message-input-container {
