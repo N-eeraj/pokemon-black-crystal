@@ -152,7 +152,7 @@
                     const shareData = {
                         title: 'Pokémon Black Crystal',
                         text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal.\n`,
-                        url: `${this.$route.fullPath}${basePath}?key=${this.key}`
+                        url: `${basePath}${this.$route.fullPath}?key=${this.key}`
                     }
                     await navigator.share(shareData)
                 } catch {
