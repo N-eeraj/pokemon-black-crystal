@@ -8,14 +8,6 @@
         background-image: url('@/assets/images/loading/trade.png');
         background-size: cover;
 
-        .nav-bar .icon {
-            filter: invert(1);
-        }
-    }
-
-    .nav-bar {
-        position: relative;
-        z-index: 2;
     }
 
     .overlay {

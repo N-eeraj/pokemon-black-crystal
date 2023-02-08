@@ -2,11 +2,6 @@
     <div
         id="trade_loader"
         class="loading-screen">
-        
-        <navigation-bar
-            icon="cross-mark"
-            class="nav-bar"
-            @iconEvent="$router.push('/')" />
             
         <div class="overlay">
             
@@ -27,15 +22,8 @@
 </template>
 
 <script>
-
-    import NavigationBar from '@/js/components/UI/NavigationBar.vue';
-
     export default {
         name: 'trade-loader',
-
-        components: {
-            NavigationBar
-        },
 
         props: {
             loadingText: {
@@ -48,7 +36,6 @@
             }
         }
     }
-
 </script>
 
 <style lang="scss" src="@/styles/screens/loading/fullScreenLoader.scss"></style>

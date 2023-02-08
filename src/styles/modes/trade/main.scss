@@ -1,19 +1,25 @@
-#trade_mode .pokemon-list {
+#trade_mode {
 
-    #navigation_bar {
-        flex-direction: column;
-        row-gap: 5px;
-        height: max-content;
-        padding: 10px;
+    .nav-bar {
+        position: relative;
+        z-index: 2;
 
-        .icon {
-            position: static;
-            align-self: flex-start;
+        &.invert .icon {
+            filter: invert(1);
         }
+    }
 
-        .title {
-            text-align: center;
-            font-size: 1rem;
+    .pokemon-list {
+        #navigation_bar {
+            flex-direction: column;
+            row-gap: 5px;
+            height: max-content;
+            padding: 10px;
+
+            .title {
+                text-align: center;
+                font-size: 1rem;
+            }
         }
     }
 }

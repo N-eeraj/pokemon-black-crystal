@@ -2,6 +2,12 @@
     <div>
         <div id="trade_mode">
 
+        <navigation-bar
+            icon="cross-mark"
+            class="nav-bar"
+            :class="{ invert: !connected }"
+            @iconEvent="$router.push('/')" />
+
             <trade-loader
                 v-if="!connected"
                 :loadingText="loadingText"
@@ -9,12 +15,16 @@
                 @shareLink="inviteFriend" />
 
             <template v-else>
+                <trade-pokemon
+                    v-if="tradePokemon.client"
+                    :client="tradePokemon.client"
+                    :peer="tradePokemon.peer" />
+
                 <pokemon-list
+                    v-else
                     :list="party"
                     title="Select Trade Pokémon"
-                    icon="cross-mark"
                     class="pokemon-list"
-                    @navIconAction="$router.push('/')"
                     @selectedPokemon="selectPokemon" />
 
                 <trade-chat
@@ -38,6 +48,8 @@
 
     import TradeLoader from '@/js/components/screens/loading/TradeLoader.vue'
     import TradeChat from '@/js/components/trade/TradeChat.vue'
+    import TradePokemon from '@/js/components/trade/TradePokemon.vue'
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import PokemonList from '@/js/components/PokemonList.vue'
 
@@ -51,6 +63,8 @@
         components: {
             TradeLoader,
             TradeChat,
+            TradePokemon,
+            NavigationBar,
             PopUp,
             PokemonList
         },
@@ -67,7 +81,11 @@
                     text: null
                 },
                 party: [],
-                messages: []
+                messages: [],
+                tradePokemon: {
+                    client: null,
+                    peer: null
+                }
             }
         },
 
@@ -182,7 +200,7 @@
             },
 
             handleDataFromPeer(data) {
-                const { type, message } = JSON.parse(data)
+                const { type, message, pokemon } = JSON.parse(data)
                 switch (type) {
                     case 'connection':
                         this.connected = true
@@ -190,13 +208,21 @@
                     case 'message':
                         this.handleMessage(message, false)
                         break
+                    case 'pokemon':
+                        this.tradePokemon.peer = pokemon
+                        break
                     default:
                         this.handleDisconnect()
                 }
             },
 
             selectPokemon(index) {
-                console.log(this.party[index])
+                const pokemon = this.party[index]
+                this.sendDataToPeer({
+                    type: 'pokemon',
+                    pokemon
+                })
+                this.tradePokemon.client = pokemon
             },
 
             sendMessage(message) {
