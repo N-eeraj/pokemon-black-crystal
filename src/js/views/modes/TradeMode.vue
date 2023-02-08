@@ -6,7 +6,7 @@
             icon="cross-mark"
             class="nav-bar"
             :class="{ invert: !connected }"
-            @iconEvent="$router.push('/')" />
+            @iconEvent="disconnectFromPeer" />
 
             <trade-loader
                 v-if="!connected"
@@ -159,7 +159,7 @@
                     this.peer.on('close', () => this.handleDisconnect())
                     this.peer.on('disconnected', () => this.handleDisconnect())
                     this.peer.on('error', () => this.handleDisconnect())
-                }, 3000)
+                }, 2000)
             },
 
             initializeHost() {
@@ -195,11 +195,11 @@
 
             handleDisconnect(message) {
                 this.disconnectPopUp.show = true
-                this.disconnectPopUp.text = message ? message : 'Connection with friend lost.'
+                this.disconnectPopUp.text = message ? message : 'Lost connection with friend.'
             },
 
             async disconnectFromPeer() {
-                await this.client.disconnect()
+                this.client.destroy()
                 this.$router.push('/')
             },
 
@@ -225,6 +225,7 @@
                         break
                     case 'pokemon':
                         this.tradePokemon.peer = pokemon
+                        this.cachePokemonById(pokemon.id)
                         break
                     case 'accept':
                         this.accepted.peer = true
@@ -259,11 +260,28 @@
             },
 
             handleTrade() {
-                console.log('trade success')
+                const { caughtId } = this.tradePokemon.client
+                const { exp, ...peerPokemonDetails } = this.tradePokemon.peer
+                this.encounterNewPokemon()
+                this.releasePokemon({
+                    list: 'party',
+                    id: caughtId
+                })
+                this.addCaughtPokemon({
+                    pokemon: peerPokemonDetails.id,
+                    exp: exp
+                });
+                [ this.tradePokemon.client, this.tradePokemon.peer ] = [ this.tradePokemon.peer, this.tradePokemon.client ]
+                this.disconnectPopUp.show = true
+                this.disconnectPopUp.text = 'Completed trade.'
             },
 
             ...mapActions([
-                'getPokemonById'
+                'getPokemonById',
+                'encounterNewPokemon',
+                'cachePokemonById',
+                'releasePokemon',
+                'addCaughtPokemon'
             ])
         }
     }

@@ -5,6 +5,7 @@
     @include main.full-screen;
     @include main.flex($direction: column);
     background-color: palette.$primary;
+    z-index: 2;
 
     #navigation_bar .icon {
         right: 10px;

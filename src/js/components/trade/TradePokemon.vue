@@ -3,7 +3,8 @@
         class="trade-pokemon"
         :class="{ 'is-peer': isPeer }">
         <img
-            :src="pokemon.image" />
+            :src="pokemon.image"
+            class="pokemon-image" />
         <strong class="pokemon-name">
             {{ $filters.toTitleCase(pokemon.name) }}
         </strong>
