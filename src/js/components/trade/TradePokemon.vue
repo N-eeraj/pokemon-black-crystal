@@ -1,38 +1,46 @@
 <template>
-    <div id="trade_pokemon">
-        
-        <div
-            class="accept-trade"
-            :class="{ active: client && peer}">
-            <hr class="divider">
-            <button
-                class="accept-button"
-                @click="acceptTrade">
-                Accept
-            </button>
+    <div
+        class="trade-pokemon"
+        :class="{ 'is-peer': isPeer }">
+        <img
+            :src="pokemon.image" />
+        <strong class="pokemon-name">
+            {{ $filters.toTitleCase(pokemon.name) }}
+        </strong>
+        <span class="level">
+            Level
+            {{ pokemon.level }}
+        </span>
+        <div class="types-container">
+            <type-icon
+                v-for="(type, index) in pokemon.types"
+                :type="type"
+                :key="`pokemon-type-${index}`" />
         </div>
-
     </div>
 </template>
 
 <script>
+
+    import TypeIcon from '@/js/components/TypeIcon.vue'
+
     export default {
         name: 'trade-pokemon',
 
+
+        components: {
+            TypeIcon
+        },
+
         props: {
-            client: {
+            pokemon: {
                 type: Object,
                 required: true
             },
-            peer: {
-                type: Object,
-                required: false
-            }
-        },
-
-        methods: {
-            acceptTrade() {
-                this.$emit('acceptTrade')
+            isPeer: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         }
     }

@@ -1,35 +1,16 @@
 @use "@/styles/mixins/main";
-@use "@/styles/colors/palette";
 
-#trade_pokemon {
-    @include main.full-screen;
+.trade-pokemon {
+    @include main.flex($direction: column, $align: flex-start);
+    align-self: flex-start;
+    width: 60%;
+    
+    &.is-peer {
+        align-items: flex-end;
+        align-self: flex-end;
+    }
 
-    .accept-trade {
-        position: fixed;
-        top: 50%;
+    img {
         width: 100%;
-        transform: translateY(-50%);
-
-        &:not(.active) {
-            filter: grayscale(1);
-        }
-
-        .divider {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            height: 3px;
-            background-color: palette.$accent;
-            color: palette.$primary;
-        }
-
-        .accept-button {
-            position: relative;
-            left: 50%;
-            padding: 5px;
-            background-color: palette.$accent;
-            border-radius: 7px;
-            transform: translateX(-50%);
-        }
     }
 }

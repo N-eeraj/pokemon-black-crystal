@@ -10,15 +10,16 @@
 
             <trade-loader
                 v-if="!connected"
-                :loadingText="loadingText"
-                :canInvite="!!(isHost && key)"
+                :loading-text="loadingText"
+                :can-invite="!!(isHost && key)"
                 @shareLink="inviteFriend" />
 
             <template v-else>
-                <trade-pokemon
+                <trade-pokemon-view
                     v-if="tradePokemon.client"
                     :client="tradePokemon.client"
                     :peer="tradePokemon.peer"
+                    :show-accept="!accepted.client"
                     @acceptTrade="sendTradeConfirmation" />
 
                 <pokemon-list
@@ -49,7 +50,7 @@
 
     import TradeLoader from '@/js/components/screens/loading/TradeLoader.vue'
     import TradeChat from '@/js/components/trade/TradeChat.vue'
-    import TradePokemon from '@/js/components/trade/TradePokemon.vue'
+    import TradePokemonView from '@/js/components/trade/TradePokemonView.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import PokemonList from '@/js/components/PokemonList.vue'
@@ -64,7 +65,7 @@
         components: {
             TradeLoader,
             TradeChat,
-            TradePokemon,
+            TradePokemonView,
             NavigationBar,
             PopUp,
             PokemonList
