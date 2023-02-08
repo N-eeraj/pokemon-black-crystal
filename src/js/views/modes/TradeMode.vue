@@ -18,7 +18,8 @@
                 <trade-pokemon
                     v-if="tradePokemon.client"
                     :client="tradePokemon.client"
-                    :peer="tradePokemon.peer" />
+                    :peer="tradePokemon.peer"
+                    @acceptTrade="sendTradeConfirmation" />
 
                 <pokemon-list
                     v-else
@@ -85,6 +86,10 @@
                 tradePokemon: {
                     client: null,
                     peer: null
+                },
+                accepted: {
+                    client: false,
+                    peer: false
                 }
             }
         },
@@ -101,6 +106,15 @@
                 'partyPokemon',
                 'getCaughtPokemon'
             ])
+        },
+
+        watch: {
+            accepted: {
+                deep: true,
+                handler({ client, peer }) {
+                    if (client && peer) this.handleTrade()
+                }
+            }
         },
 
         created() {
@@ -211,6 +225,9 @@
                     case 'pokemon':
                         this.tradePokemon.peer = pokemon
                         break
+                    case 'accept':
+                        this.accepted.peer = true
+                        break
                     default:
                         this.handleDisconnect()
                 }
@@ -233,6 +250,17 @@
                 })
             },
 
+            sendTradeConfirmation() {
+                this.accepted.client = true
+                this.sendDataToPeer({
+                    type: 'accept'
+                })
+            },
+
+            handleTrade() {
+                console.log('trade success')
+            },
+
             ...mapActions([
                 'getPokemonById'
             ])
@@ -241,5 +269,4 @@
 
 </script>
 
-<style lang="scss" src="@/styles/modes/trade/main.scss">
-</style>
+<style lang="scss" src="@/styles/modes/trade/main.scss"></style>
