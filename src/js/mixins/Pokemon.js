@@ -68,26 +68,26 @@ export const Pokemon = async (id) => {
         if (evolvedPokemonId > 386) return
         evolution.evolution_details.forEach(evolutionObject => {
             switch (evolutionObject.trigger.name) {
-            case 'level-up':
-            if (evolutionObject.min_level) {
-                nextEvolutionObj.levelUp.minLevel = evolutionObject.min_level
-                nextEvolutionObj.levelUp.pokemon.push(evolvedPokemonId)
-            }
-            else if (evolutionObject.min_happiness) {
-                nextEvolutionObj.happinessUp.minLevel = evolutionObject.min_happiness
-                nextEvolutionObj.happinessUp.pokemon.push(evolvedPokemonId)
-            }
-                break
-            case 'use-item':
-            if (evolutionObject.item.name)
-                nextEvolutionObj.useItem.push({
-                    itemName: evolutionObject.item.name,
-                    pokemon: evolvedPokemonId
-                })
-                break
-            case 'trade':
-                nextEvolutionObj.trade.push(evolvedPokemonId)
-                break
+                case 'level-up':
+                    if (evolutionObject.min_level) {
+                        nextEvolutionObj.levelUp.minLevel = evolutionObject.min_level
+                        nextEvolutionObj.levelUp.pokemon.push(evolvedPokemonId)
+                    }
+                    else if (evolutionObject.min_happiness) {
+                        nextEvolutionObj.happinessUp.minLevel = evolutionObject.min_happiness
+                        nextEvolutionObj.happinessUp.pokemon.push(evolvedPokemonId)
+                    }
+                        break
+                case 'use-item':
+                    if (evolutionObject.item.name)
+                        nextEvolutionObj.useItem.push({
+                            itemName: evolutionObject.item.name,
+                            pokemon: evolvedPokemonId
+                        })
+                        break
+                case 'trade':
+                    nextEvolutionObj.trade.push(evolvedPokemonId)
+                    break
             }
         })
     })

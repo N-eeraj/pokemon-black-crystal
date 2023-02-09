@@ -147,6 +147,7 @@
                 pokemon: null,
                 stats: [],
                 listType: null,
+                usableItems:  [],
                 backPath: null,
                 actions: null,
                 showActions: false,
@@ -203,6 +204,10 @@
                     {
                         label: 'Release',
                         action: this.confirmRelease
+                    },
+                    {
+                        label: 'Use Item',
+                        action: this.showItems
                     }
                 ]
 
@@ -234,6 +239,7 @@
                 this.actions = this.getActions(isParty)
 
                 this.setStats('stat', this.pokemon.getLevel(pokemon.exp))
+                this.setUsableItems()
             },
 
             getMaxStat(statValue, level, isHp = false) {
@@ -285,6 +291,29 @@
                 ]
             },
 
+            setEvolutionItem() {
+                const evolutionStones = {
+                    'fire-stone': 6,
+                    'water-stone': 7,
+                    'thunder-stone': 8,
+                    'leaf-stone': 9,
+                    'sun-stone': 10,
+                    'moon-stone': 11
+                }
+                this.pokemon.evolution.useItem.forEach(({ itemName, pokemon }) => {
+                    this.usableItems.push({
+                        itemId: evolutionStones[itemName],
+                        type: 'evolution',
+                        pokemon
+                    })
+                })
+            },
+
+            setUsableItems() {
+                this.setEvolutionItem()
+                console.log(this.usableItems)
+            },
+
             confirmRelease() {
                 this.showReleaseModal = true
             },
@@ -298,7 +327,11 @@
                 this.$router.push(`/pokemon/list/${this.listType}`)
             },
 
-        handleMovePokemon() {
+            showItems() {
+                console.log(123)
+            },
+
+            handleMovePokemon() {
                 const from = this.listType
                 const to = (from === 'party') ? 'pc' : 'party'
                 this.movePokemon({
