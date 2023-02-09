@@ -1,46 +1,16 @@
 <template>
     <div>
-        <div id="bag">
-            
-            <navigation-bar
-                title="Bag"
-                icon="cross-mark"
-                @iconEvent="$router.push('/')" />
-
-            <div class="items-list">
-                <div
-                    v-for="item in bagItemsList"
-                    :key="item.id"
-                    class="item-container">
-
-                    <img
-                        :src="require(`@/assets/images/items${item.image}`)"
-                        :alt="item.name"
-                        class="item-image" />
-
-                    <div class="item-details">
-                        <strong>
-                            {{ item.name }}
-                        </strong>
-                        <span class="description">
-                            {{ item.description }}
-                        </span>
-                    </div>
-
-                    <div class="item-count">
-                        {{ item.count }}
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
+        <items-list
+            v-if="bagItemsList.length"
+            :items-list="bagItemsList"
+            :title="Bag"
+            @iconEvent="$router.push('/')" />
     </div>
 </template>
 
 <script>
 
-    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
+    import ItemsList from "@/js/components/ItemsList.vue"
 
     import { mapGetters } from "vuex"
 
@@ -50,7 +20,7 @@
         name: 'bag-view',
 
         components: {
-            NavigationBar
+            ItemsList
         },
 
         data() {
@@ -80,5 +50,3 @@
 
     }
 </script>
-
-<style lang="scss" src="@/styles/items/bag.scss"></style>

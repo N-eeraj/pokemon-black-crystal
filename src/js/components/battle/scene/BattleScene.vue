@@ -456,10 +456,12 @@
                 if (this.saveBattle) {
                     let totalExpGained = 0
                     this.battleData.faintedPokemon.forEach(pokemon => {
-                        if (pokemon.encounterId) return this.updatePokemonHappiness({
-                            id: pokemon.encounterId,
-                            happiness: -5
-                        })
+                        if (pokemon.encounterId) {
+                            return this.updatePokemonHappiness({
+                                id: pokemon.encounterId,
+                                happiness: -5
+                            })
+                        }
                         totalExpGained += pokemon.exp
                     })
                     this.gainExperience({

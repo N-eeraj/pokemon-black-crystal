@@ -175,6 +175,8 @@ export default {
         pokemon.happiness += happiness
         if (pokemon.happiness < 0)
             pokemon.happiness = 0
+        else if (pokemon.happiness > 255)
+            pokemon.happiness = 255
         encryptAndSave()
     },
 

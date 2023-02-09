@@ -46,7 +46,8 @@
                         <type-icon
                             v-for="(type, index) in pokemon?.types"
                             :type="type"
-                            :key="`type-${index}`" />
+                            :key="`type-${index}`"
+                            class="type-icon" />
                     </div>
 
                     <div class="height-weight">
@@ -121,22 +122,32 @@
                 </template>
             </pop-up>
 
+            <items-list
+                v-if="usableItems.length && showItems"
+                :items-list="usableItems"
+                selectable
+                @iconEvent="toggleShowItems"
+                @selectItem="useItem" />
         </div>
     </div>
 </template>
 
 <script>
 
+    import ItemsList from "@/js/components/ItemsList.vue"
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import TypeIcon from '@/js/components/TypeIcon.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
+    import items from '@/assets/data/items'
+
     export default {
         name: 'pokemon-details',
 
         components: {
+            ItemsList,
             NavigationBar,
             PopUp,
             TypeIcon
@@ -151,7 +162,8 @@
                 backPath: null,
                 actions: null,
                 showActions: false,
-                showReleaseModal: false
+                showReleaseModal: false,
+                showItems: false
             }
         },
 
@@ -159,7 +171,8 @@
             ...mapGetters([
                 'getCaughtPokemon',
                 'partyPokemon',
-                'getCaughtPokemonList'
+                'getCaughtPokemonList',
+                'bagItems'
             ])
         },
 
@@ -207,7 +220,7 @@
                     },
                     {
                         label: 'Use Item',
-                        action: this.showItems
+                        action: this.toggleShowItems
                     }
                 ]
 
@@ -300,18 +313,25 @@
                     'sun-stone': 10,
                     'moon-stone': 11
                 }
-                this.pokemon.evolution.useItem.forEach(({ itemName, pokemon }) => {
-                    this.usableItems.push({
-                        itemId: evolutionStones[itemName],
-                        type: 'evolution',
-                        pokemon
-                    })
-                })
+                this.pokemon.evolution.useItem
+                    .forEach(({ itemName }) => this.usableItems.push(evolutionStones[itemName]))
             },
 
             setUsableItems() {
+                this.usableItems = [5, 12]
                 this.setEvolutionItem()
-                console.log(this.usableItems)
+                this.usableItems = this.usableItems
+                    .map(itemId => {
+                        const { id, name, image, description } = items.find(item => item.id === itemId)
+                        return {
+                            id,
+                            name,
+                            description,
+                            image,
+                            count: this.bagItems[id]
+                        }
+                    })
+                    .filter(({ count }) => count)
             },
 
             confirmRelease() {
@@ -327,8 +347,8 @@
                 this.$router.push(`/pokemon/list/${this.listType}`)
             },
 
-            showItems() {
-                console.log(123)
+            toggleShowItems() {
+                this.showItems = !this.showItems
             },
 
             handleMovePokemon() {
@@ -342,11 +362,52 @@
                 this.$router.push(`/pokemon/list/${this.listType}`)
             },
 
+            feedPokeblock() {
+                this.updatePokemonHappiness({
+                    id: this.pokemon.caughtId,
+                    happiness: 30
+                })
+                this.updateBag({
+                    itemId: 5,
+                    count: -1
+                })
+                this.toggleShowItems()
+            },
+
+            feedRareCandy() {
+                console.log('Rare Candy')
+            },
+
+            useEvoutionItem(id) {
+                console.log(id)
+            },
+
+            useItem(itemId) {
+                switch (itemId) {
+                    case 5:
+                        this.feedPokeblock()
+                        break
+                    case 12:
+                        this.feedRareCandy()
+                        break
+                    case 6:
+                    case 7:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                        this.useEvoutionItem(itemId)
+                }
+                this.setUsableItems()
+            },
+
             ...mapActions([
                 'getPokemonById',
                 'getPokemonByEncounterId',
                 'movePokemon',
-                'releasePokemon'
+                'releasePokemon',
+                'updatePokemonHappiness',
+                'updateBag'
             ])
         }
     }

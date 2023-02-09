@@ -1,7 +1,10 @@
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
 
-#bag {
+#bag_items {
+    @include main.full-screen;
+    background-color: palette.$primary;
+
     .items-list {
         @include main.flex($direction: column, $justify: flex-start, $row: 25px);
         max-height: 92vh;
@@ -12,6 +15,10 @@
             position: relative;
             @include main.flex($justify: space-between);
             width: 95%;
+
+            &.selectable {
+                cursor: pointer;
+            }
 
             .item-image {
                 width: 25%;
