@@ -94,6 +94,21 @@
                                     :max="stat.max"
                                     :class="getClass(stat)" />
                             </div>
+
+                            <div
+                                v-if="pokemon.happiness"
+                                class="stat-value">
+                                <span class="stat-label">
+                                    Happiness
+                                </span>
+                                <span>
+                                    {{ pokemon.happiness.value }}
+                                </span>
+                                <progress
+                                    :value="pokemon.happiness.value"
+                                    :max="pokemon.happiness.max"
+                                    :class="getClass(pokemon.happiness)" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -244,6 +259,10 @@
                 await this.setPokemonDetails(pokemon.id)
                 this.pokemon.stat = this.pokemon.getStat(pokemon.exp)
                 this.pokemon.caughtId = id
+                this.pokemon.happiness = {
+                    value: pokemon.happiness,
+                    max: 255
+                }
 
                 const isInParty = this.partyPokemon.includes(id)
                 // check if this is party pokemon & if pokemon is in party
@@ -363,6 +382,9 @@
             },
 
             feedPokeblock() {
+                this.pokemon.happiness.value += 30
+                if (this.pokemon.happiness.value > 255)
+                    this.pokemon.happiness.value = 255
                 this.updatePokemonHappiness({
                     id: this.pokemon.caughtId,
                     happiness: 30
@@ -371,7 +393,6 @@
                     itemId: 5,
                     count: -1
                 })
-                this.toggleShowItems()
             },
 
             feedRareCandy() {
@@ -399,6 +420,7 @@
                         this.useEvoutionItem(itemId)
                 }
                 this.setUsableItems()
+                this.toggleShowItems()
             },
 
             ...mapActions([
