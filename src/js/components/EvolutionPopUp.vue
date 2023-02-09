@@ -107,7 +107,7 @@
         },
 
         async created() {
-            this.pokemonList.forEach(async ({data, possibilities}) => {
+            this.pokemonList.forEach(async ({ data, possibilities }) => {
                 const details = {
                     id: data.encounterId,
                     name: data.name,

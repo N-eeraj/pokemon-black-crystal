@@ -88,5 +88,9 @@ export default {
 
     checkEvolution(state) {
         return state.checkEvolution
+    },
+
+    lastEncountered(state) {
+        return state.gameData.pokemon.encountered.last
     }
 }

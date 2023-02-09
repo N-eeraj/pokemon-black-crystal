@@ -42,6 +42,11 @@
                     {{ disconnectPopUp.text }}
                 </template>
             </pop-up>
+
+            <evolution-pop-up
+                v-if="triggerEvolution.trigger"
+                :pokemonList="triggerEvolution.pokemon"
+                @completedEvolutions="disconnectFromPeer" />
         </div>
     </div>
 </template>
@@ -54,6 +59,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import PokemonList from '@/js/components/PokemonList.vue'
+    import EvolutionPopUp from '@/js/components/EvolutionPopUp.vue'
 
     import { Peer } from 'peerjs'
 
@@ -68,7 +74,8 @@
             TradePokemonView,
             NavigationBar,
             PopUp,
-            PokemonList
+            PokemonList,
+            EvolutionPopUp
         },
 
         data() {
@@ -91,6 +98,10 @@
                 accepted: {
                     client: false,
                     peer: false
+                },
+                triggerEvolution: {
+                    trigger: false,
+                    pokemon: null
                 }
             }
         },
@@ -105,7 +116,8 @@
             ...mapGetters([
                 'playerInfo',
                 'partyPokemon',
-                'getCaughtPokemon'
+                'getCaughtPokemon',
+                'lastEncountered'
             ])
         },
 
@@ -194,6 +206,7 @@
             },
 
             handleDisconnect(message) {
+                if (this.accepted.client && this.accepted.peer) return
                 this.disconnectPopUp.show = true
                 this.disconnectPopUp.text = message ? message : 'Lost connection with friend.'
             },
@@ -259,6 +272,25 @@
                 })
             },
 
+            async checkTradeEvolution(pokemon) {
+                const data = {
+                    encounterId: this.lastEncountered,
+                    exp: pokemon.exp,
+                    happiness: pokemon.happiness,
+                    ...await this.getPokemonById(pokemon.id)
+                }
+                let evolutionReadyPokemon
+                const evolutionData = data.evolution
+                if (evolutionData.trade.length)
+                    evolutionReadyPokemon = {
+                        data,
+                        possibilities: evolutionData.trade
+                    }
+                if (!evolutionReadyPokemon) return
+                this.triggerEvolution.trigger = true
+                this.triggerEvolution.pokemon = [evolutionReadyPokemon]
+            },
+
             handleTrade() {
                 const { caughtId } = this.tradePokemon.client
                 const { exp, ...peerPokemonDetails } = this.tradePokemon.peer
@@ -272,8 +304,11 @@
                     exp: exp
                 });
                 [ this.tradePokemon.client, this.tradePokemon.peer ] = [ this.tradePokemon.peer, this.tradePokemon.client ]
-                this.disconnectPopUp.show = true
-                this.disconnectPopUp.text = 'Completed trade.'
+                setTimeout(() => {
+                    this.checkTradeEvolution(peerPokemonDetails)
+                    this.disconnectPopUp.text = 'Completed trade.'                    
+                    this.disconnectPopUp.show = true
+                }, 2000)
             },
 
             ...mapActions([
