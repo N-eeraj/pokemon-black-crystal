@@ -1,6 +1,7 @@
 <template>
     <div>
         <div
+            v-if="pokemon"
             id="pokemon_details"
             @click="showActions = false">
 
@@ -33,18 +34,23 @@
             <div class="details-container">
 
                 <img
-                    :src="pokemon?.image"
-                    :alt="pokemon?.name"
+                    :src="pokemon.image"
+                    :alt="pokemon.name"
                     class="image" />
                 
                 <div class="details">
-                    <strong v-if="pokemon?.name">
-                        {{ $filters.toTitleCase(pokemon?.name) }}
+                    <strong>
+                        {{ $filters.toTitleCase(pokemon.name) }}
                     </strong>
+
+                    <span>
+                        Level
+                        {{ pokemon.level }}
+                    </span>
 
                     <div class="types-container">
                         <type-icon
-                            v-for="(type, index) in pokemon?.types"
+                            v-for="(type, index) in pokemon.types"
                             :type="type"
                             :key="`type-${index}`"
                             class="type-icon" />
@@ -53,7 +59,7 @@
                     <div class="height-weight">
                         <div>
                             <span>
-                                {{ pokemon?.height }} m
+                                {{ pokemon.height }} m
                             </span>
                             <span class="label">
                                 Height
@@ -61,7 +67,7 @@
                         </div>
                         <div>
                             <span>
-                                {{ pokemon?.weight }} Kg
+                                {{ pokemon.weight }} Kg
                             </span>
                             <span class="label">
                                 Weight
@@ -71,7 +77,7 @@
 
                     <div class="stats-container">
                         <span class="label">
-                            <template v-if="!pokemon?.stat">
+                            <template v-if="!pokemon.stat">
                                 Base
                             </template>
                             Stats
@@ -97,7 +103,7 @@
 
                             <div
                                 v-if="pokemon.happiness"
-                                class="stat-value">
+                                class="stat-value happiness">
                                 <span class="stat-label">
                                     Happiness
                                 </span>
@@ -259,6 +265,8 @@
                 await this.setPokemonDetails(pokemon.id)
                 this.pokemon.stat = this.pokemon.getStat(pokemon.exp)
                 this.pokemon.caughtId = id
+                this.pokemon.exp = pokemon.exp
+                this.pokemon.level = this.pokemon.getLevel(pokemon.exp)
                 this.pokemon.happiness = {
                     value: pokemon.happiness,
                     max: 255
@@ -282,6 +290,7 @@
             },
 
             getClass(stat) {
+                if (!stat) return null
                 const percentage = stat.value / stat.max
                 if (percentage > 0.65) return 'high'
                 if (percentage > 0.25) return 'medium'
@@ -389,14 +398,16 @@
                     id: this.pokemon.caughtId,
                     happiness: 30
                 })
-                this.updateBag({
-                    itemId: 5,
-                    count: -1
-                })
             },
 
             feedRareCandy() {
-                console.log('Rare Candy')
+                const expToLevelUp = this.pokemon.getExpByLevel(this.pokemon.level + 1) - this.pokemon.exp
+                this.gainExperience({
+                    totalExp: expToLevelUp,
+                    encounterIds: [this.pokemon.caughtId]
+                })
+                this.pokemon.exp += expToLevelUp
+                this.pokemon.level++
             },
 
             useEvoutionItem(id) {
@@ -419,6 +430,10 @@
                     case 11:
                         this.useEvoutionItem(itemId)
                 }
+                this.updateBag({
+                    itemId,
+                    count: -1
+                })
                 this.setUsableItems()
                 this.toggleShowItems()
             },
@@ -429,7 +444,8 @@
                 'movePokemon',
                 'releasePokemon',
                 'updatePokemonHappiness',
-                'updateBag'
+                'updateBag',
+                'gainExperience'
             ])
         }
     }
