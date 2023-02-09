@@ -149,6 +149,11 @@
                 selectable
                 @iconEvent="toggleShowItems"
                 @selectItem="useItem" />
+
+            <evolution-pop-up
+                v-if="triggerEvolution.trigger"
+                :pokemonList="triggerEvolution.pokemon"
+                @completedEvolutions="handleCompletedEvolution" />
         </div>
     </div>
 </template>
@@ -159,6 +164,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import TypeIcon from '@/js/components/TypeIcon.vue'
+    import EvolutionPopUp from '@/js/components/EvolutionPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -171,7 +177,8 @@
             ItemsList,
             NavigationBar,
             PopUp,
-            TypeIcon
+            TypeIcon,
+            EvolutionPopUp
         },
 
         data() {
@@ -184,7 +191,19 @@
                 actions: null,
                 showActions: false,
                 showReleaseModal: false,
-                showItems: false
+                showItems: false,
+                triggerEvolution: {
+                    trigger: false,
+                    pokemon: null
+                },
+                evolutionStones: {
+                    'fire-stone': 6,
+                    'water-stone': 7,
+                    'thunder-stone': 8,
+                    'leaf-stone': 9,
+                    'sun-stone': 10,
+                    'moon-stone': 11
+                }
             }
         },
 
@@ -264,7 +283,7 @@
                 if (!pokemon) return this.$router.push('/page-not-found')
                 await this.setPokemonDetails(pokemon.id)
                 this.pokemon.stat = this.pokemon.getStat(pokemon.exp)
-                this.pokemon.caughtId = id
+                this.pokemon.encounterId = id
                 this.pokemon.exp = pokemon.exp
                 this.pokemon.level = this.pokemon.getLevel(pokemon.exp)
                 this.pokemon.happiness = {
@@ -332,31 +351,20 @@
                 ]
             },
 
-            setEvolutionItem() {
-                const evolutionStones = {
-                    'fire-stone': 6,
-                    'water-stone': 7,
-                    'thunder-stone': 8,
-                    'leaf-stone': 9,
-                    'sun-stone': 10,
-                    'moon-stone': 11
-                }
-                this.pokemon.evolution.useItem
-                    .forEach(({ itemName }) => this.usableItems.push(evolutionStones[itemName]))
-            },
-
             setUsableItems() {
                 this.usableItems = [5, 12]
-                this.setEvolutionItem()
+                this.pokemon.evolution.useItem
+                    .forEach(({ itemName }) => {
+                        if (this.evolutionStones[itemName])
+                            this.usableItems.push(this.evolutionStones[itemName])
+                    })
                 this.usableItems = this.usableItems
                     .map(itemId => {
-                        const { id, name, image, description } = items.find(item => item.id === itemId)
+                        const { id, ...details } = items.find(item => item.id === itemId)
                         return {
                             id,
-                            name,
-                            description,
-                            image,
-                            count: this.bagItems[id]
+                            count: this.bagItems[id],
+                            ...details
                         }
                     })
                     .filter(({ count }) => count)
@@ -368,7 +376,7 @@
 
             release() {
                 this.releasePokemon({
-                    id: this.pokemon.caughtId,
+                    id: this.pokemon.encounterId,
                     list: this.$route.params.type
                 })
                 this.showReleaseModal = false
@@ -383,7 +391,7 @@
                 const from = this.listType
                 const to = (from === 'party') ? 'pc' : 'party'
                 this.movePokemon({
-                    id: this.pokemon.caughtId,
+                    id: this.pokemon.encounterId,
                     from,
                     to
                 })
@@ -395,7 +403,7 @@
                 if (this.pokemon.happiness.value > 255)
                     this.pokemon.happiness.value = 255
                 this.updatePokemonHappiness({
-                    id: this.pokemon.caughtId,
+                    id: this.pokemon.encounterId,
                     happiness: 30
                 })
             },
@@ -404,14 +412,30 @@
                 const expToLevelUp = this.pokemon.getExpByLevel(this.pokemon.level + 1) - this.pokemon.exp
                 this.gainExperience({
                     totalExp: expToLevelUp,
-                    encounterIds: [this.pokemon.caughtId]
+                    encounterIds: [this.pokemon.encounterId]
                 })
                 this.pokemon.exp += expToLevelUp
                 this.pokemon.level++
             },
 
             useEvoutionItem(id) {
-                console.log(id)
+                const evolutionStone = Object.keys(this.evolutionStones)
+                    .find(itemName => this.evolutionStones[itemName] === id)
+                const { pokemon } = this.pokemon.evolution.useItem
+                    .find(({ itemName }) => itemName === evolutionStone)
+                this.triggerEvolution.trigger = true
+                this.triggerEvolution.pokemon = [
+                    {
+                        data: this.pokemon,
+                        possibilities: [pokemon]
+                    }
+                ]
+            },
+
+            handleCompletedEvolution() {
+                this.triggerEvolution.trigger = false
+                this.triggerEvolution.pokemon = null
+                this.initialize()
             },
 
             useItem(itemId) {
