@@ -3,11 +3,13 @@
 
 .loading-screen {
     @include main.full-screen;
+    background-size: cover;
 
     &#trade_loader {
         background-image: url('@/assets/images/loading/trade.png');
-        background-size: cover;
-
+    }
+    &#pvp_loader {
+        background-image: url('@/assets/images/loading/pvp.png');
     }
 
     .overlay {

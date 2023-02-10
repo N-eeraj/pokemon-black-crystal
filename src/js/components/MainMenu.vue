@@ -91,7 +91,7 @@
                     {
                         name: 'PVP',
                         icon: 'pvp',
-                        to: ''
+                        to: '/mode/pvp'
                     },
                     {
                         name: 'Trade',

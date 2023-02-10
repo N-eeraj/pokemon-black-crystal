@@ -13,6 +13,7 @@ import ArcadeBattle from '@/js/views/modes/arcade/battle.vue'
 import ArcadeTent from '@/js/views/modes/arcade/tent.vue'
 import ArcadeTower from '@/js/views/modes/arcade/tower.vue'
 import TradeMode from '@/js/views/modes/TradeMode.vue'
+import PVPMode from '@/js/views/modes/PVPMode.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 
@@ -121,6 +122,14 @@ export const routes = [
         component: TradeMode,
         meta: {
             title: 'Trade'
+        }
+    },
+    {
+        path: '/mode/pvp',
+        name: 'PVPMode',
+        component: PVPMode,
+        meta: {
+            title: 'PVP'
         }
     },
     {
