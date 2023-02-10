@@ -14,6 +14,15 @@
                     @shareLink="inviteFriend" />
             </template>
 
+
+            <pop-up
+                v-if="disconnectPopUp.show"
+                close
+                @close-pop-up="disconnectFromPeer">
+                <template #body>
+                    {{ disconnectPopUp.text }}
+                </template>
+            </pop-up>
         </div>
     </div>
 </template>
@@ -22,6 +31,7 @@
 
     import PvpLoader from '@/js/components/screens/loading/PvpLoader.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { Peer } from 'peerjs'
 
@@ -32,7 +42,8 @@
 
         components: {
             PvpLoader,
-            NavigationBar
+            NavigationBar,
+            PopUp
         },
 
         data() {
