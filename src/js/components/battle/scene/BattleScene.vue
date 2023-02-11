@@ -254,10 +254,8 @@
                     if (!this.isMultiplayer) return
                     const { client, peer } = action
             
-                    if (peer?.action === 'reArrangePokemon') {
-                        console.log('handle foe rearrange')
-                        this.$emit('resetPeerActions')
-                    }
+                    if (peer?.action === 'reArrangePokemon') 
+                        return this.changeFoePartyOrder(peer.positions)
 
                     if (!(client && peer)) return
 
@@ -341,6 +339,15 @@
 
             toggleShowPokeballs() {
                 this.show.pokeballs = !this.show.pokeballs
+            },
+
+            changeFoePartyOrder({ currentIndex, newIndex }) {
+                this.reArrangePartyPokemon({
+                    currentIndex,
+                    newIndex,
+                    isOpponent: true
+                })
+                this.$emit('resetPeerActions')
             },
 
             changePartyOrder({ currentIndex, newIndex }) {
