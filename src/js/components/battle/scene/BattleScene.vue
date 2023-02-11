@@ -257,20 +257,8 @@
                     if (peer?.action === 'reArrangePokemon') 
                         return this.changeFoePartyOrder(peer.positions)
 
-                    if (!(client && peer)) return
-
-                    if (peer.action === 'changePokemon') {
-                        this.changeCurrentFoePokemon(peer.index)
-                        peer.action = 'attack'
-                        peer.moveData = null
-                        this.battleMessage = changePokemon(true)
-                    }
-
-                    setTimeout(() => {
-                        this.performMove(client.moveData, peer.moveData)
-                        this.startCountdown()
-                        this.$emit('resetActions')
-                    }, 2000)
+                    if (client && peer)
+                        this.handlePVPTurn(action)
                 }
             }
         },
@@ -362,7 +350,7 @@
                     isOpponent: false
                 })
                 if (this.isMultiplayer)
-                    this.handlePVP('reArrangePokemon', { currentIndex, newIndex })
+                    this.handlePVPEvent('reArrangePokemon', { currentIndex, newIndex })
             },
 
             changeCurrentFoePokemon(newIndex) {
@@ -381,7 +369,7 @@
                 this.hidePartyPokemon()
                 this.battleMessage = changePokemon(false)
                 if (this.isMultiplayer)
-                    return this.handlePVP('changePokemon', newIndex)
+                    return this.handlePVPEvent('changePokemon', newIndex)
                 setTimeout(() => {
                     this.useMove(null)
                 }, 2000)
@@ -420,7 +408,7 @@
             useMove(moveData) {
                 this.hidePokemonMoves()
                 if (this.isMultiplayer)
-                    return this.handlePVP('useMove', moveData)
+                    return this.handlePVPEvent('useMove', moveData)
                 const foeMove = getRandomMove(this.currentPokemon.foe)
                 this.performMove(moveData, foeMove)
             },
@@ -532,7 +520,20 @@
                 this.pokemonFaintedBattleDataUpdate(user)
             },
 
-            handlePVP(event, data) {
+            handlePVPTurn({ client, peer }) {
+                if (peer.action === 'changePokemon') {
+                    this.changeCurrentFoePokemon(peer.index)
+                    this.battleMessage = changePokemon(true)
+                }
+
+                setTimeout(() => {
+                    this.performMove(client.moveData, peer.moveData)
+                    this.$emit('resetActions')
+                    this.startCountdown()
+                }, 2000)
+            },
+
+            handlePVPEvent(event, data) {
                 if (event !== 'reArrangePokemon') {
                     clearInterval(this.pvp.countdownInterval)
                     this.pvp.countdown = 0

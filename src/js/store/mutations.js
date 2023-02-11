@@ -116,7 +116,6 @@ export default {
     },
 
     useMoveBattleDataUpdate(state, { moveData, inCommingAttack }) {
-
         const attacker = state.battle[inCommingAttack ? 'foe' : 'trainer']
         const defender = state.battle[inCommingAttack ? 'trainer' : 'foe']
 
