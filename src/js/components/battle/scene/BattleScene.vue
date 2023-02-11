@@ -253,19 +253,24 @@
                 handler(action) {
                     if (!this.isMultiplayer) return
                     const { client, peer } = action
-            
+
                     if (peer?.action === 'reArrangePokemon') 
                         return this.changeFoePartyOrder(peer.positions)
 
                     if (!(client && peer)) return
 
-                    const { action: clientAction, moveData: clientMove, index: clientIndex } = client
-                    const { action: peerAction, moveData: peerMove, index: peerIndex } = peer
+                    if (peer.action === 'changePokemon') {
+                        this.changeCurrentFoePokemon(peer.index)
+                        peer.action = 'attack'
+                        peer.moveData = null
+                        this.battleMessage = changePokemon(true)
+                    }
 
-                    console.log(clientAction, clientMove, clientIndex)
-                    console.log(peerAction, peerMove, peerIndex)
-
-                    this.$emit('resetActions')
+                    setTimeout(() => {
+                        this.performMove(client.moveData, peer.moveData)
+                        this.startCountdown()
+                        this.$emit('resetActions')
+                    }, 2000)
                 }
             }
         },
@@ -360,6 +365,13 @@
                     this.handlePVP('reArrangePokemon', { currentIndex, newIndex })
             },
 
+            changeCurrentFoePokemon(newIndex) {
+                this.switchBattlePokemon({
+                    newIndex,
+                    isOpponent: true
+                })
+            },
+
             changeCurrentPokemon(newIndex) {
                 if (newIndex === this.battleData.trainer.currentPokemonIndex) return
                 this.switchBattlePokemon({
@@ -410,10 +422,10 @@
                 if (this.isMultiplayer)
                     return this.handlePVP('useMove', moveData)
                 const foeMove = getRandomMove(this.currentPokemon.foe)
-                this.performTurn(moveData, foeMove)
+                this.performMove(moveData, foeMove)
             },
 
-            performTurn(moveData, foeMove) {
+            performMove(moveData, foeMove) {
                 const trainerMessage = moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData, false)
                 const foeMessage = moveMessage(this.currentPokemon.foe, this.currentPokemon.trainer, foeMove, true)
 
@@ -504,6 +516,7 @@
 
             canAttackFirst(trainerMove, foeMove) {
                 if (!trainerMove) return false
+                if (!foeMove) return false
                 if (trainerMove.priority > foeMove.priority) return true
                 if (trainerMove.priority < foeMove.priority) return false
                 const { trainer, foe } = this.currentPokemon
@@ -528,6 +541,8 @@
             },
 
             startCountdown() {
+                if (this.pvp.countdownInterval)
+                    clearInterval(this.pvp.countdownInterval)
                 this.pvp.countdown = 60
                 this.pvp.countdownInterval = setInterval(() => this.handlePVPInterval(), 1000)
             },

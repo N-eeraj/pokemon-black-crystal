@@ -226,8 +226,8 @@
 
             handleChangePokemon(index) {
                 this.action.client = {
-                    action: 'changePokemon',
-                    index
+                    action: 'attack',
+                    moveData: null
                 }
                 this.sendDataToPeer({
                     type: 'changePokemon',
