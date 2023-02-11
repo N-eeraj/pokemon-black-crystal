@@ -14,6 +14,13 @@
                     @shareLink="inviteFriend" />
             </template>
 
+            <battle-scene
+                v-else
+                :player-party="party.client"
+                :foe-party="party.peer"
+                save-battle
+                @gameOver="handleGameOver" />
+
 
             <pop-up
                 v-if="disconnectPopUp.show"
@@ -30,6 +37,7 @@
 <script>
 
     import PvpLoader from '@/js/components/screens/loading/PvpLoader.vue'
+    import BattleScene from "@/js/components/battle/scene/BattleScene.vue"
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
 
@@ -42,6 +50,7 @@
 
         components: {
             PvpLoader,
+            BattleScene,
             NavigationBar,
             PopUp
         },
@@ -56,6 +65,10 @@
                 disconnectPopUp: {
                     show: false,
                     text: null
+                },
+                party: {
+                    client: null,
+                    peer: null
                 }
             }
         },
@@ -69,11 +82,23 @@
 
             ...mapGetters([
                 'playerInfo',
+                'partyPokemon',
+                'getCaughtPokemon'
             ])
         },
 
         created() {
             this.initalizePeer2PeerConnectionn()
+
+            this.party.client = this.partyPokemon.map(id => {
+                const pokemon = this.getCaughtPokemon(id)
+                return {
+                    pokemon: pokemon.id,
+                    exp: pokemon.exp,
+                    happiness: pokemon.happiness,
+                    encounterId: id
+                }
+            })
         },
 
         methods: {
@@ -92,7 +117,8 @@
                     this.peer = this.client.connect(this.key)
                     this.peer.on('open', () => 
                         this.sendDataToPeer({
-                            type: 'connection'
+                            type: 'connection',
+                            party: this.party.client
                         }))
                     this.peer.on('data', data => this.handleDataFromPeer(data))
                     this.peer.on('close', () => this.handleDisconnect())
@@ -108,7 +134,8 @@
                     connection.on('open', () => {
                         this.peer = connection
                         this.sendDataToPeer({
-                            type: 'connection'
+                            type: 'connection',
+                            party: this.party.client
                         })
                     })
                     connection.on('data', data => this.handleDataFromPeer(data))
@@ -147,15 +174,20 @@
             },
 
             handleDataFromPeer(data) {
-                const { type } = JSON.parse(data)
+                const { type, party } = JSON.parse(data)
                 switch (type) {
                     case 'connection':
                         this.connected = true
+                        this.party.peer = party
                         break
                     default:
                         this.handleDisconnect()
                 }
             },
+
+            handleGameOver(victory) {
+                console.log('Game over', victory)
+            }
         }
     }
 
