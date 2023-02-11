@@ -16,6 +16,7 @@ import TradeMode from '@/js/views/modes/TradeMode.vue'
 import PVPMode from '@/js/views/modes/PVPMode.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
+import InfoView from '@/js/views/InfoView.vue'
 
 export const routes = [
     {
@@ -146,6 +147,14 @@ export const routes = [
         component: BagView,
         meta: {
             title: 'Bag'
+        }
+    },
+    {
+        path: '/info',
+        name: 'InfoView',
+        component: InfoView,
+        meta: {
+            title: 'Info'
         }
     },
     {

@@ -18,7 +18,8 @@
             <img
                 src="@/assets/icons/info.svg"
                 alt="Info"
-                class="icon" />
+                class="icon"
+                @click="$router.push('/info')" />
         </header>
 
         <main class="menu-actions-container">

@@ -944,5 +944,43 @@
             "image": "gym-leaders/misty.png",
             "name": "Gym Leader Misty"
         }
+    },
+    {
+        "level": 55,
+        "party": [
+            {
+                "pokemon": 2,
+                "exp": 1000
+            },
+            {
+                "pokemon": 5,
+                "exp": 1000
+            },
+            {
+                "pokemon": 8,
+                "exp": 1000
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "School boy Shwartz"
+        }
+    },
+    {
+        "level": 56,
+        "party": [
+            {
+                "pokemon": 130,
+                "exp": 20000
+            },
+            {
+                "pokemon": null,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "brendan.png",
+            "name": "Foe Brendan"
+        }
     }
 ]
