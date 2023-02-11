@@ -20,8 +20,13 @@
                 :foe-party="party.peer"
                 save-battle
                 is-multiplayer
+                :turn-action="action"
+                @useMove="handleUseMove"
+                @changePokemon="handleChangePokemon"
+                @reArrangePokemon="handleReArrangePokemon"
+                @resetPeerActions="handleResetPeerAction"
+                @resetActions="handleResetAction"
                 @gameOver="handleGameOver" />
-
 
             <pop-up
                 v-if="disconnectPopUp.show"
@@ -68,6 +73,10 @@
                     text: null
                 },
                 party: {
+                    client: null,
+                    peer: null
+                },
+                action: {
                     client: null,
                     peer: null
                 }
@@ -175,15 +184,71 @@
             },
 
             handleDataFromPeer(data) {
-                const { type, party } = JSON.parse(data)
+                const { type, party, moveData, index, positions } = JSON.parse(data)
                 switch (type) {
                     case 'connection':
                         this.connected = true
                         this.party.peer = party
                         break
+                    case 'attack':
+                        this.action.peer = {
+                            action: 'attack',
+                            moveData
+                        }
+                        break
+                    case 'changePokemon':
+                        this.action.peer = {
+                            action: 'changePokemon',
+                            index
+                        }
+                        break
+                    case 'reArrangePokemon':
+                        this.action.peer = {
+                            action: 'reArrangePokemon',
+                            positions
+                        }
+                        break
                     default:
                         this.handleDisconnect()
                 }
+            },
+
+            handleUseMove(moveData) {
+                this.action.client = {
+                    action: 'attack',
+                    moveData
+                }
+                this.sendDataToPeer({
+                    type: 'attack',
+                    moveData
+                })
+            },
+
+            handleChangePokemon(index) {
+                this.action.client = {
+                    action: 'changePokemon',
+                    index
+                }
+                this.sendDataToPeer({
+                    type: 'changePokemon',
+                    index
+                })
+            },
+
+            handleReArrangePokemon(positions) {
+                this.sendDataToPeer({
+                    type: 'reArrangePokemon',
+                    positions
+                })
+            },
+
+            handleResetPeerAction() {
+                this.action.peer = null
+            },
+
+            handleResetAction() {
+                this.action.client = null
+                this.action.peer = null
             },
 
             handleGameOver(victory) {

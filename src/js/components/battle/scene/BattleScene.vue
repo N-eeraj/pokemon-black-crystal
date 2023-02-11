@@ -65,7 +65,7 @@
         </div>
 
         <div
-            v-else
+            v-else-if="!isMultiplayer || pvp.countdown"
             class="actions">
             <button
                 class="moves"
@@ -173,6 +173,10 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            turnAction: {
+                type: Object,
+                required: false
             }
         },
 
@@ -241,6 +245,31 @@
             ...mapGetters([
                 'getMovesByName'
             ]),
+        },
+
+        watch: {
+            turnAction: {
+                deep: true,
+                handler(action) {
+                    if (!this.isMultiplayer) return
+                    const { client, peer } = action
+            
+                    if (peer?.action === 'reArrangePokemon') {
+                        console.log('handle foe rearrange')
+                        this.$emit('resetPeerActions')
+                    }
+
+                    if (!(client && peer)) return
+
+                    const { action: clientAction, moveData: clientMove, index: clientIndex } = client
+                    const { action: peerAction, moveData: peerMove, index: peerIndex } = peer
+
+                    console.log(clientAction, clientMove, clientIndex)
+                    console.log(peerAction, peerMove, peerIndex)
+
+                    this.$emit('resetActions')
+                }
+            }
         },
 
         async created() {
@@ -320,6 +349,8 @@
                     newIndex,
                     isOpponent: false
                 })
+                if (this.isMultiplayer)
+                    this.handlePVP('reArrangePokemon', { currentIndex, newIndex })
             },
 
             changeCurrentPokemon(newIndex) {
@@ -330,6 +361,8 @@
                 })
                 this.hidePartyPokemon()
                 this.battleMessage = changePokemon(false)
+                if (this.isMultiplayer)
+                    return this.handlePVP('changePokemon', newIndex)
                 setTimeout(() => {
                     this.useMove(null)
                 }, 2000)
@@ -367,9 +400,14 @@
 
             useMove(moveData) {
                 this.hidePokemonMoves()
-                const trainerMessage = moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData, false)
-                
+                if (this.isMultiplayer)
+                    return this.handlePVP('useMove', moveData)
                 const foeMove = getRandomMove(this.currentPokemon.foe)
+                this.performTurn(moveData, foeMove)
+            },
+
+            performTurn(moveData, foeMove) {
+                const trainerMessage = moveMessage(this.currentPokemon.trainer, this.currentPokemon.foe, moveData, false)
                 const foeMessage = moveMessage(this.currentPokemon.foe, this.currentPokemon.trainer, foeMove, true)
 
                 let firstPokemon, firstMove, firstMoveMessage, secondPokemon, secondMove, secondMoveMessage
@@ -461,11 +499,25 @@
                 if (!trainerMove) return false
                 if (trainerMove.priority > foeMove.priority) return true
                 if (trainerMove.priority < foeMove.priority) return false
-                return this.currentPokemon.trainer.stat.speed > this.currentPokemon.foe.stat.speed
+                const { trainer, foe } = this.currentPokemon
+                if (trainer.stat.speed > foe.stat.speed) return true
+                if (trainer.stat.speed < foe.stat.speed) return false
+                if (trainer.level > foe.level) return true
+                if (trainer.level < foe.level) return false
+                if (trainer.exp > foe.exp) return true
+                if (trainer.exp < foe.exp) return false
             },
 
             handleFaint(user) {
                 this.pokemonFaintedBattleDataUpdate(user)
+            },
+
+            handlePVP(event, data) {
+                if (event !== 'reArrangePokemon') {
+                    clearInterval(this.pvp.countdownInterval)
+                    this.pvp.countdown = 0
+                }
+                this.$emit(event, data)
             },
 
             startCountdown() {
@@ -473,9 +525,15 @@
                 this.pvp.countdownInterval = setInterval(() => this.handlePVPInterval(), 1000)
             },
 
+            skipTurn() {
+                clearInterval(this.pvp.countdownInterval)
+                this.useMove(null)
+                this.startCountdown
+            },
+
             handlePVPInterval() {
                 if (--this.pvp.countdown) return
-                clearInterval(this.pvp.countdownInterval)
+                this.skipTurn()
             },
 
             checkGameOver() {

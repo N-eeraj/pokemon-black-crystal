@@ -5,6 +5,7 @@
 #moveset_container {
     @include main.full-screen;
     background-color: palette.$primary;
+    z-index: 1;
 
     #moves_list {
         @include main.flex($direction: column, $justify: flex-start, $row: 20px);
