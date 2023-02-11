@@ -34,6 +34,23 @@
                     padding: 10px;
                 }
             }
+
+            &.pvp-countdown {
+                right: 10px;
+                bottom: 10px;
+                width: 50px;
+                height: 50px;
+                background-color: palette.$primary;
+                border-radius: 50%;
+ 
+                .value {
+                    font-size: 0.7rem;
+                }
+
+                .chart circle {
+                    stroke-width: 7%;
+                }
+            }
         }
 
         .battle-pokemon {

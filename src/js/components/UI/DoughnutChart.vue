@@ -1,7 +1,9 @@
 <template>
     <div class="doughnut-chart">
         <strong class="value">
-            {{ value }}%
+            <slot name="value">
+                {{ value }}%
+            </slot>
         </strong>
         <svg class="chart">
             <circle

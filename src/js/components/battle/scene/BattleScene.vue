@@ -11,12 +11,22 @@
                     :src="require(`@/assets/icons/escape.svg`)"
                     class="icon escape"
                     @click="confirmEscape" />
+
                 <img
                     v-if="showPokeballAction && !battleMessage"
                     :src="require(`@/assets/icons/${ show.pokeballs ? 'cross-mark' : 'pokeball' }.svg`)"
                     class="icon pokeball"
                     :class="{ close : show.pokeballs }"
                     @click="toggleShowPokeballs" />
+
+                <doughnut-chart
+                    v-if="isMultiplayer && pvp.countdown"
+                    :value="Math.floor(pvp.countdown / 60 * 100)"
+                    class="icon pvp-countdown">
+                    <template #value>
+                        {{ pvp.countdown }}
+                    </template>
+                </doughnut-chart>
 
                 <battle-pokemon
                     v-if="currentPokemon.foe"
@@ -113,6 +123,7 @@
     import MovesList from "@/js/components/battle/MovesList.vue"
     import PokemonList from "@/js/components/PokemonList.vue"
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
+    import DoughnutChart from '@/js/components/UI/DoughnutChart.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -130,6 +141,7 @@
             BattlePokemon,
             MovesList,
             PokemonList,
+            DoughnutChart,
             CommonLoader
         },
 
@@ -189,7 +201,11 @@
                     ballUsed: null,
                     caught: false
                 },
-                loading: true
+                loading: true,
+                pvp: {
+                    countdown: null,
+                    countdownInterval: null
+                }
             }
         },
 
@@ -232,6 +248,11 @@
             await this.setBattleParty(this.foeParty, 'foe')
             this.setBattleData(this.battle)
             this.loading = false
+        },
+
+        mounted() {
+            if (!this.isMultiplayer) return
+            this.startCountdown()
         },
 
         methods: {
@@ -445,6 +466,16 @@
 
             handleFaint(user) {
                 this.pokemonFaintedBattleDataUpdate(user)
+            },
+
+            startCountdown() {
+                this.pvp.countdown = 60
+                this.pvp.countdownInterval = setInterval(() => this.handlePVPInterval(), 1000)
+            },
+
+            handlePVPInterval() {
+                if (--this.pvp.countdown) return
+                clearInterval(this.pvp.countdownInterval)
             },
 
             checkGameOver() {

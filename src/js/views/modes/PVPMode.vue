@@ -19,6 +19,7 @@
                 :player-party="party.client"
                 :foe-party="party.peer"
                 save-battle
+                is-multiplayer
                 @gameOver="handleGameOver" />
 
 
