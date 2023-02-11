@@ -5,30 +5,30 @@
     },
     {
         "name": "water",
-        "level": 86
+        "level": 54
     },
     {
         "name": "fighting",
-        "level": 204
+        "level": 108
     },
     {
         "name": "electric",
-        "level": 372
+        "level": 176
     },
     {
         "name": "fire",
-        "level": 590
+        "level": 256
     },
     {
         "name": "normal",
-        "level": 858
+        "level": 346
     },
     {
         "name": "flying",
-        "level": 1176
+        "level": 444
     },
     {
         "name": "fairy",
-        "level": 1544
+        "level": 548
     }
 ]

@@ -36,6 +36,15 @@
                     {{ disconnectPopUp.text }}
                 </template>
             </pop-up>
+
+            <pop-up
+                v-if="gameOverPopUp.show"
+                close
+                @close-pop-up="disconnectFromPeer">
+                <template #body>
+                    {{ gameOverPopUp.text }}
+                </template>
+            </pop-up>
         </div>
     </div>
 </template>
@@ -69,6 +78,10 @@
                 isHost: null,
                 connected: false,
                 disconnectPopUp: {
+                    show: false,
+                    text: null
+                },
+                gameOverPopUp: {
                     show: false,
                     text: null
                 },
@@ -252,7 +265,8 @@
             },
 
             handleGameOver(victory) {
-                console.log('Game over', victory)
+                this.gameOverPopUp.show = true
+                this.gameOverPopUp.text = `You ${ victory ? 'won' : 'lost' } the match`
             }
         }
     }
