@@ -6,12 +6,12 @@
                 <navigation-bar
                     icon="cross-mark"
                     class="nav-bar"
-                    @iconEvent="disconnectFromPeer" />
+                    @icon-event="disconnectFromPeer" />
                     
                 <pvp-loader
                     :loading-text="loadingText"
                     :can-invite="!!(isHost && key)"
-                    @shareLink="inviteFriend" />
+                    @share-link="inviteFriend" />
             </template>
 
             <battle-scene
@@ -21,12 +21,12 @@
                 save-battle
                 is-multiplayer
                 :turn-action="action"
-                @useMove="handleUseMove"
-                @changePokemon="handleChangePokemon"
-                @reArrangePokemon="handleReArrangePokemon"
-                @resetPeerActions="handleResetPeerAction"
-                @resetActions="handleResetAction"
-                @gameOver="handleGameOver" />
+                @use-move="handleUseMove"
+                @change-pokemon="handleChangePokemon"
+                @re-arrange-pokemon="handleReArrangePokemon"
+                @reset-peer-actions="handleResetPeerAction"
+                @reset-actions="handleResetAction"
+                @game-over="handleGameOver" />
 
             <pop-up
                 v-if="disconnectPopUp.show"

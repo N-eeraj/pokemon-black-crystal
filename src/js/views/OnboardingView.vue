@@ -85,7 +85,7 @@
             :player-party="battle.player"
             :foe-party="battle.foe"
             :foe-details="battle.foeDetails"
-            @completedMatch="handleMatchCompleteion" />
+            @completed-match="handleMatchCompleteion" />
 
     </div>
 </template>

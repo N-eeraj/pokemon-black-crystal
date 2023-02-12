@@ -12,7 +12,7 @@
                     title="Pokédex"
                     icon="cross-mark"
                     class="nav-bar"
-                    @iconEvent="$router.push('/')">
+                    @icon-event="$router.push('/')">
                     <template #right-action>
                         <img
                             src="@/assets/icons/filter.svg"
@@ -75,7 +75,7 @@
                 <navigation-bar
                     title="Filter"
                     icon="cross-mark"
-                    @iconEvent="openFilter = false">
+                    @icon-event="openFilter = false">
                     <template #right-action>
                         <button
                             class="apply-filter-btn"

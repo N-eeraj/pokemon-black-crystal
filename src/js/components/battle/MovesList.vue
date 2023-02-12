@@ -4,7 +4,7 @@
         <navigation-bar
             title="Moves"
             icon="back"
-            @iconEvent="$emit('closeMoveset')" />
+            @icon-event="$emit('closeMoveset')" />
 
         <div id="moves_list">
             <div

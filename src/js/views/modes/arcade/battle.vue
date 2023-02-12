@@ -13,13 +13,13 @@
                 :foe-party="foeParty"
                 :foe-details="foeDetails"
                 save-battle
-                @battleStarted="startMatch"
-                @completedMatch="handleMatchCompleteion" />
+                @battle-started="startMatch"
+                @completed-match="handleMatchCompleteion" />
 
             <navigation-bar
                 v-if="showNavBar"
                 icon="cross-mark"
-                @iconEvent="$router.push('/mode/arcade')" />
+                @icon-event="$router.push('/mode/arcade')" />
 
             <pop-up
                 v-if="won"

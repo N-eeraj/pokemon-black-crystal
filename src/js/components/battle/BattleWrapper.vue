@@ -6,7 +6,7 @@
         :save-battle="saveBattle"
         :can-escape="canEscape"
         @escape="endBattle"
-        @gameOver="handleGameOver" />
+        @game-over="handleGameOver" />
 
     <div
         v-else

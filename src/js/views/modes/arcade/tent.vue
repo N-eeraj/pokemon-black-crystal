@@ -9,14 +9,14 @@
 
             <tent-selection
                 v-else-if="showSelection"
-                @selectedPokeballs="handlePokemonSelection" />
+                @selected-pokeballs="handlePokemonSelection" />
 
             <battle-wrapper
                 v-else
                 :player-party="playerParty"
                 :foe-party="foeParty"
                 :foe-details="foeDetails"
-                @completedMatch="handleMatchCompleteion" />
+                @completed-match="handleMatchCompleteion" />
 
             <pop-up
                 v-if="won"

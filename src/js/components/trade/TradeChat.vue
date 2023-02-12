@@ -5,7 +5,7 @@
 
         <navigation-bar
             icon="cross-mark"
-            @iconEvent="toggleChatVisibility" />
+            @icon-event="toggleChatVisibility" />
 
         <div class="messages-container">
             <div

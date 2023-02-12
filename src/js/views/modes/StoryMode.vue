@@ -7,13 +7,13 @@
                 :foe-details="foeDetails"
                 save-battle
                 can-escape
-                @battleStarted="toggleNavBar"
-                @completedMatch="handleMatchCompleteion" />
+                @battle-started="toggleNavBar"
+                @completed-match="handleMatchCompleteion" />
 
             <navigation-bar
                 v-if="showNavBar"
                 icon="cross-mark"
-                @iconEvent="$router.push('/')" />
+                @icon-event="$router.push('/')" />
  </div>
     </div>
 </template>

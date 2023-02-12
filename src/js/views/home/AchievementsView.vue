@@ -4,7 +4,7 @@
             <navigation-bar
                 title="Achievements"
                 icon="cross-mark"
-                @iconEvent="$router.push('/')" />
+                @icon-event="$router.push('/')" />
 
             <div class="achievements-list">
                 <div

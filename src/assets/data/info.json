@@ -1,0 +1,36 @@
+[
+    {
+        "image": "/pokemon-logo.png",
+        "text": [
+            "Pokémon and Pokémon character names are trademarks of Nintendo.",
+            "Assets used in the game includes characters, music and items from several Pokémon games and shows."
+        ]
+    },
+    {
+        "image": "/pokemon-company-logos.png",
+        "text": [
+            "The Pokémon Company is an organization owned by Nintendo, Game Freak, and Creatures Inc., who all share ownership of the Pokémon franchise."
+        ]
+    },
+    {
+        "image": "/pokeapi-logo.png",
+        "text": [
+            "Created by Paul Hallett and other PokéAPI contributors around the world."
+        ]
+    },
+    {
+        "text": [
+            "This game is a non commercial project made just to have some fun & for educational purpose."
+        ],
+        "actions": [
+            {
+                "text": "Help",
+                "type": "primary"
+            },
+            {
+                "text": "Contact Me",
+                "type": "secondary"
+            }
+        ]
+    }
+]

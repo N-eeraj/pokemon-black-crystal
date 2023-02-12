@@ -81,8 +81,8 @@
 
         <moves-list
             v-if="show.moveset && battleData"
-            @useMove="useMove"
-            @closeMoveset="hidePokemonMoves" />
+            @use-move="useMove"
+            @close-moveset="hidePokemonMoves" />
 
         <pokemon-list
             v-if="show.party && battleData"
@@ -91,9 +91,9 @@
             icon="cross-mark"
             show-hp
             rearrangeable
-            @navIconAction="hidePartyPokemon"
-            @selectedPokemon="changeCurrentPokemon"
-            @rearrangePokemon="changePartyOrder" />
+            @nav-icon-action="hidePartyPokemon"
+            @selected-pokemon="changeCurrentPokemon"
+            @rearrange-pokemon="changePartyOrder" />
 
         <pop-up
             v-if="modal.confirmEscape"
@@ -108,7 +108,9 @@
                 </div>
             </template>
             <template #actions>
-                <button class="confirm" @click="escape">
+                <button
+                    class="confirm"
+                    @click="escape">
                     Yes
                 </button>
             </template>

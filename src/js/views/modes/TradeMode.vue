@@ -6,13 +6,13 @@
             icon="cross-mark"
             class="nav-bar"
             :class="{ invert: !connected }"
-            @iconEvent="disconnectFromPeer" />
+            @icon-event="disconnectFromPeer" />
 
             <trade-loader
                 v-if="!connected"
                 :loading-text="loadingText"
                 :can-invite="!!(isHost && key)"
-                @shareLink="inviteFriend" />
+                @share-link="inviteFriend" />
 
             <template v-else>
                 <trade-pokemon-view
@@ -20,14 +20,14 @@
                     :client="tradePokemon.client"
                     :peer="tradePokemon.peer"
                     :show-accept="!accepted.client"
-                    @acceptTrade="sendTradeConfirmation" />
+                    @accept-trade="sendTradeConfirmation" />
 
                 <pokemon-list
                     v-else
                     :list="party"
                     title="Select Trade Pokémon"
                     class="pokemon-list"
-                    @selectedPokemon="selectPokemon" />
+                    @selected-pokemon="selectPokemon" />
 
                 <trade-chat
                     :messages="messages"
@@ -45,8 +45,8 @@
 
             <evolution-pop-up
                 v-if="triggerEvolution.trigger"
-                :pokemonList="triggerEvolution.pokemon"
-                @completedEvolutions="disconnectFromPeer" />
+                :pokemon-list="triggerEvolution.pokemon"
+                @completed-evolutions="disconnectFromPeer" />
         </div>
     </div>
 </template>

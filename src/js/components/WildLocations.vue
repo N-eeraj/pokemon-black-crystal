@@ -3,7 +3,7 @@
 
         <navigation-bar
             icon="cross-mark"
-            @iconEvent="$router.push('/')" />
+            @icon-event="$router.push('/')" />
 
             <div class="locations-list">
                 <banner-card

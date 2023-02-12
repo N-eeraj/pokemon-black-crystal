@@ -5,7 +5,7 @@
             <navigation-bar
                 title="Shop"
                 icon="cross-mark"
-                @iconEvent="$router.push('/')" />
+                @icon-event="$router.push('/')" />
 
             <div class="items-container">
                 <div
@@ -36,7 +36,7 @@
                 v-if="selectedItem"
                 :close="true"
                 class="selected-item"
-                @closePopUp="selectedItem = null">
+                @close-pop-up="selectedItem = null">
 
                 <template #title>
                     {{ selectedItem.name }}

@@ -3,7 +3,7 @@
         <navigation-bar
             :title="title"
             :icon="icon"
-            @iconEvent="$emit('navIconAction')" />
+            @icon-event="$emit('navIconAction')" />
         
         <div id="pokemon_list">
             <pokemon-card

@@ -6,9 +6,9 @@
                 :title="listTitle"
                 icon="cross-mark"
                 rearrangeable
-                @navIconAction="$router.push('/')"
-                @selectedPokemon="handleSelectPokemon"
-                @rearrangePokemon="changeListOrder" />
+                @nav-icon-action="$router.push('/')"
+                @selected-pokemon="handleSelectPokemon"
+                @rearrange-pokemon="changeListOrder" />
         </div>
     </div>
 </template>

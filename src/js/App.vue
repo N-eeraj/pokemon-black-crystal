@@ -11,9 +11,9 @@
                 id="main" />
             <evolution-pop-up
                 v-if="evolutionReadyPokemon.length"
-                :pokemonList="evolutionReadyPokemon"
+                :pokemon-list="evolutionReadyPokemon"
                 class="global-evolution-pop-up"
-                @completedEvolutions="handleCompletedEvolutions" />
+                @completed-evolutions="handleCompletedEvolutions" />
             <rotate-screen v-if="isSmallScreen" />
         </template>
     </template>

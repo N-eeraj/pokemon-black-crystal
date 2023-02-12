@@ -5,7 +5,7 @@
             <navigation-bar
                 title="Arcade"
                 icon="cross-mark"
-                @iconEvent="$router.push('/')" />
+                @icon-event="$router.push('/')" />
 
             <div class="arcade-items-container">
 

@@ -5,7 +5,7 @@
             <navigation-bar
                 title="Badges"
                 icon="cross-mark"
-                @iconEvent="$router.push('/')" />
+                @icon-event="$router.push('/')" />
 
             <div class="gym-bages-container">
                 <div

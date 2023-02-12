@@ -3,7 +3,7 @@
         <navigation-bar
             :title="title"
             icon="cross-mark"
-            @iconEvent="$emit('iconEvent')" />
+            @icon-event="$emit('iconEvent')" />
 
         <div class="items-list">
             <div

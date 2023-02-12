@@ -13,13 +13,13 @@
                 :foe-party="foeParty"
                 :foe-details="foeDetails"
                 save-battle
-                @battleStarted="startMatch"
-                @completedMatch="handleMatchCompleteion" />
+                @battle-started="startMatch"
+                @completed-match="handleMatchCompleteion" />
 
             <navigation-bar
                 v-if="showNavBar"
                 icon="cross-mark"
-                @iconEvent="confirmExit = true" />
+                @icon-event="confirmExit = true" />
 
             <pop-up
                 v-if="gameOver && reward"

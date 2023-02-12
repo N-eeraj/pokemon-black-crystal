@@ -8,7 +8,7 @@
             <navigation-bar
                 icon="back"
                 class="nav-bar"
-                @iconEvent="$router.push(backPath)">
+                @icon-event="$router.push(backPath)">
                 <template
                     #right-action
                     v-if="actions?.length">
@@ -147,13 +147,13 @@
                 v-if="usableItems.length && showItems"
                 :items-list="usableItems"
                 selectable
-                @iconEvent="toggleShowItems"
-                @selectItem="useItem" />
+                @icon-event="toggleShowItems"
+                @select-item="useItem" />
 
             <evolution-pop-up
                 v-if="triggerEvolution.trigger"
-                :pokemonList="triggerEvolution.pokemon"
-                @completedEvolutions="handleCompletedEvolution" />
+                :pokemon-list="triggerEvolution.pokemon"
+                @completed-evolutions="handleCompletedEvolution" />
         </div>
     </div>
 </template>

@@ -11,14 +11,14 @@
 
             <battle-scene
                 v-else
-                :playerParty="playerPokemon"
-                :foeParty="[wildPokemon]"
-                saveBattle
-                canCatch
-                canEscape
+                :player-party="playerPokemon"
+                :foe-party="[wildPokemon]"
+                save-battle
+                can-catch
+                can-escape
                 @escape="battleOver"
-                @caughtPokemon="handleCaughtPokemon"
-                @gameOver="handleGameOver" />
+                @caught-pokemon="handleCaughtPokemon"
+                @game-over="handleGameOver" />
 
             <pop-up
                 v-if="legendaryNotFound">

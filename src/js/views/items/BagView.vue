@@ -3,8 +3,8 @@
         <items-list
             v-if="bagItemsList.length"
             :items-list="bagItemsList"
-            :title="Bag"
-            @iconEvent="$router.push('/')" />
+            title="Bag"
+            @icon-event="$router.push('/')" />
     </div>
 </template>
 
