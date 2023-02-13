@@ -1,0 +1,24 @@
+@use "@/styles/mixins/main";
+
+#info_view {
+    @include main.full-screen;
+    
+    .page-container {
+        @include main.flex($justify: space-between, $col: 5%);
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        padding: 10px;
+        transform: translateY(-50%);
+
+        .change-page-icon {
+            width: 25px;
+            filter: invert(1);
+            cursor: pointer;
+
+            &.hide {
+                visibility: hidden;
+            }
+        }
+    }
+}
