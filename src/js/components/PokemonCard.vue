@@ -3,15 +3,15 @@
     <div
         draggable="true"
         class="pokemon-card"
-        :class="{ wiggle: (startPosition && canMove) }"
-        @touchstart="handleTouchStart"
-        @dragstart="handleDragStart"
-        @touchend="handleTouchEnd"
-        @dragend="handleDragEnd">
+        :class="{ wiggle: (startPosition && canMove) }">
 
         <div
             class="image"
-            :style="`background-image: url(${pokemon.image});`">
+            :style="`background-image: url(${pokemon.image});`"
+            @touchstart="handleTouchStart"
+            @dragstart="handleDragStart"
+            @touchend="handleTouchEnd"
+            @dragend="handleDragEnd">
         </div>
 
         <div class="details">
@@ -107,6 +107,7 @@
 
             handleStart(startValue) {
                 if (!this.rearrangeable) return
+                event.preventDefault()
                 this.startPosition = startValue
                 this.startTime = Date.now()
             },

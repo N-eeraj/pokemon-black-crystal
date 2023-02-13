@@ -86,7 +86,14 @@
 
     methods: {
         handleButtonAction(action) {
-            console.log(action)
+            switch (action) {
+                case 'issues':
+                    window.open('https://github.com/N-eeraj/pokemon-black-crystal/issues')
+                    break
+                case 'help':
+                    this.$router.push('/help')
+                    break
+            }
         }
     }
 }

@@ -24,14 +24,9 @@
         ],
         "actions": [
             {
-                "text": "Help",
-                "type": "primary",
-                "action": "help"
-            },
-            {
-                "text": "Contact Me",
+                "text": "Report Issue",
                 "type": "secondary",
-                "action": "contact"
+                "action": "issues"
             }
         ]
     }
