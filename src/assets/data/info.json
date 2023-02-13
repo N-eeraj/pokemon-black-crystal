@@ -25,11 +25,13 @@
         "actions": [
             {
                 "text": "Help",
-                "type": "primary"
+                "type": "primary",
+                "action": "help"
             },
             {
                 "text": "Contact Me",
-                "type": "secondary"
+                "type": "secondary",
+                "action": "contact"
             }
         ]
     }

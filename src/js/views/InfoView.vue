@@ -14,9 +14,40 @@
                     class="change-page-icon"
                     :class="{ hide: !currentPage }"
                     @click="currentPage--" />
+
                 <div class="content-container">
-                    {{ pageData[currentPage] }}
+
+                    <img
+                        v-if="pageData[currentPage].image"
+                        :src="require(`@/assets/images${pageData[currentPage].image}`)"
+                        class="image" />
+
+                    <div
+                        v-if="pageData[currentPage].text"
+                        class="text-container">
+                        <p
+                            v-for="(text, index) in pageData[currentPage].text"
+                            :key="`text-${index}`"
+                            class="text">
+                            {{ text }}
+                        </p>
+                    </div>
+
+                    <div
+                        v-if="pageData[currentPage].actions"
+                        class="actions-container">
+                        <button
+                            v-for="(button, index) in pageData[currentPage].actions"
+                            :key="`button-${index}`"
+                            class="button"
+                            :class="button.type"
+                            @click="handleButtonAction(button.action)">
+                            {{ button.text }}
+                        </button>
+                    </div>
+
                 </div>
+
                 <img
                     src="@/assets/icons/next.svg"
                     alt="Next"
@@ -51,6 +82,12 @@
 
     created() {
         this.pageData = info
+    },
+
+    methods: {
+        handleButtonAction(action) {
+            console.log(action)
+        }
     }
 }
 </script>
