@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Who’s that Pokémon ?",
+        "background": "linear-gradient(90deg, #C00, #F33)",
+        "image": "/whos-that-pokemon.png"
+    },
+    {
+        "name": "Finding Ditto",
+        "background": "linear-gradient(90deg, #9FCADF, #0AF)",
+        "image": "/finding-ditto.png"
+    },
+    {
+        "name": "Berry Crusher",
+        "background": "linear-gradient(90deg, #FF007F, #FFD500)",
+        "image": "/berry-crusher.png"
+    },
+    {
+        "name": "Pokémon Roulette",
+        "background": "linear-gradient(90deg, #4C0, #0C8)",
+        "image": "/pokemon-roulette.png"
+    },
+    {
+        "name": "Pokémon Dash",
+        "background": "linear-gradient(90deg, #F80, #FF0)",
+        "image": "/pokemon-dash.png"
+    },
+    {
+        "name": "Block Smash",
+        "background": "linear-gradient(90deg, #39F, #01C)",
+        "image": "/block-smash.png"
+    }
+]

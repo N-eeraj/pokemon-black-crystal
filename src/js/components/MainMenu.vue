@@ -102,7 +102,7 @@
                     {
                         name: 'Carnival',
                         icon: 'carnival',
-                        to: ''
+                        to: '/mode/carnival'
                     }
                 ]
             }
