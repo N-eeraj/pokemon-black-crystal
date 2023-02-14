@@ -92,5 +92,12 @@ export default {
 
     lastEncountered(state) {
         return state.gameData.pokemon.encountered.last
+    },
+
+    getCoinAndBerry(state) {
+        return {
+            coin: state.gameData.progress.coins,
+            berry: state.gameData.progress.bag[4]
+        }
     }
 }

@@ -3,36 +3,44 @@
         "name": "Who’s that Pokémon ?",
         "background": "linear-gradient(90deg, #C00, #F33)",
         "image": "/whos-that-pokemon.png",
-        "route": "/whos-that-pokemon"
+        "route": "whos-that-pokemon"
     },
     {
         "name": "Finding Ditto",
         "background": "linear-gradient(90deg, #9FCADF, #0AF)",
         "image": "/finding-ditto.png",
-        "route": "/finding-ditto"
+        "route": "finding-ditto",
+        "item": "coin",
+        "count": 30
     },
     {
         "name": "Berry Crusher",
         "background": "linear-gradient(90deg, #FF007F, #FFD500)",
         "image": "/berry-crusher.png",
-        "route": "/berry-crusher"
+        "route": "berry-crusher",
+        "item": "berry",
+        "count": 6
     },
     {
         "name": "Pokémon Roulette",
         "background": "linear-gradient(90deg, #4C0, #0C8)",
         "image": "/pokemon-roulette.png",
-        "route": "/pokemon-roulette"
+        "route": "pokemon-roulette"
     },
     {
         "name": "Pokémon Dash",
         "background": "linear-gradient(90deg, #F80, #FF0)",
         "image": "/pokemon-dash.png",
-        "route": "/pokemon-dash"
+        "route": "pokemon-dash",
+        "item": "coin",
+        "count": 80
     },
     {
         "name": "Block Smash",
         "background": "linear-gradient(90deg, #39F, #01C)",
         "image": "/block-smash.png",
-        "route": "/block-smash"
+        "route": "block-smash",
+        "item": "coin",
+        "count": 100
     }
 ]
