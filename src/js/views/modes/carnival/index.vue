@@ -128,7 +128,7 @@
         methods: {
             carnivalTicket({ route, item, count }) {
                 if (!item)
-                    return this.$router.push(`mode/carnival/${route}`)
+                    return this.$router.push(`/mode/carnival/${route}`)
 
                 if (this.getCoinAndBerry[item] && this.getCoinAndBerry[item] > count)
                     this.popUp.canEnter = true
@@ -150,6 +150,7 @@
             },
 
             attendEvent() {
+                console.log(this.popUp.event)
                 this.$router.push(`/mode/carnival/${this.popUp.event}`)
             }
         }

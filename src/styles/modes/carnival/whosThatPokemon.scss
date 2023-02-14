@@ -1,0 +1,6 @@
+@use "@/styles/mixins/main";
+
+#whos_that_pokemon {
+    @include main.full-screen;
+    background-color: #FC3030;
+}

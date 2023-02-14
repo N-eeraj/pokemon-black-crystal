@@ -201,7 +201,7 @@ export default {
         const randomPokemon = []
         for (let i=0; i<count; i++) {
             const pokemonData = await dispatch('getPokemonById', getInRange(1, 387))
-            if (pokemonData.isLegendary && !includeLegendary) {
+            if ((pokemonData.isLegendary && !includeLegendary) || randomPokemon.map(pokemon => pokemon.id).includes(pokemonData.id)) {
                 --i
                 continue
             }
@@ -243,7 +243,8 @@ export default {
             includeLegendary: true
         }
         const pokemonData = await dispatch('getRandomPokemon', options)
-        if (pokemonData.isLegendary) return pokemonData
+        if (pokemonData.isLegendary)
+            return pokemonData
         return null
     },
 
@@ -277,5 +278,20 @@ export default {
 
     winArcade({ commit }, arcadeEvent) {
         commit('winArcade', arcadeEvent)
+    },
+
+    async getCarnivalPokemon(context, count) {
+        const randomPokemon = []
+        for (let i=0; i<count; i++) {
+            const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${getInRange(1, 387)}`)
+            .then(response => response.json())
+            .then(data => data)
+            if (pokemonData.isLegendary || randomPokemon.map(pokemon => pokemon.id).includes(pokemonData.id)) {
+                --i
+                continue
+            }
+            randomPokemon.push(pokemonData)
+        }
+        return randomPokemon
     }
 }

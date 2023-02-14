@@ -1,9 +1,11 @@
 @use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
 @use "@/styles/animation";
 
 #common_loader {
     @include main.full-screen;
     @include main.flex($direction: column, $row: 3vh);
+    background-color: palette.$primary;
 
     .image {
         width: 50%;

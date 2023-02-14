@@ -15,6 +15,7 @@ import ArcadeTower from '@/js/views/modes/arcade/tower.vue'
 import PVPMode from '@/js/views/modes/PVPMode.vue'
 import TradeMode from '@/js/views/modes/TradeMode.vue'
 import CarnivalMode from '@/js/views/modes/carnival/index.vue'
+import CarnivalWhosThatPokemon from '@/js/views/modes/carnival/WhosThatPokemon.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 import InfoView from '@/js/views/InfoView.vue'
@@ -140,6 +141,14 @@ export const routes = [
         component: CarnivalMode,
         meta: {
             title: 'Carnival Mode'
+        }
+    },
+    {
+        path: '/mode/carnival/whos-that-pokemon',
+        name: 'CarnivalWhosThatPokemon',
+        component: CarnivalWhosThatPokemon,
+        meta: {
+            title: "Who's that Pokémon"
         }
     },
     {
