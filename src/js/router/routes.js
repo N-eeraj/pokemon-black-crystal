@@ -12,8 +12,9 @@ import ArcadeMode from '@/js/views/modes/arcade/index.vue'
 import ArcadeBattle from '@/js/views/modes/arcade/battle.vue'
 import ArcadeTent from '@/js/views/modes/arcade/tent.vue'
 import ArcadeTower from '@/js/views/modes/arcade/tower.vue'
-import TradeMode from '@/js/views/modes/TradeMode.vue'
 import PVPMode from '@/js/views/modes/PVPMode.vue'
+import TradeMode from '@/js/views/modes/TradeMode.vue'
+import CarnivalMode from '@/js/views/modes/carnival/index.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 import InfoView from '@/js/views/InfoView.vue'
@@ -118,6 +119,14 @@ export const routes = [
         }
     },
     {
+        path: '/mode/pvp',
+        name: 'PVPMode',
+        component: PVPMode,
+        meta: {
+            title: 'PVP'
+        }
+    },
+    {
         path: '/mode/trade',
         name: 'TradeMode',
         component: TradeMode,
@@ -126,11 +135,11 @@ export const routes = [
         }
     },
     {
-        path: '/mode/pvp',
-        name: 'PVPMode',
-        component: PVPMode,
+        path: '/mode/carnival',
+        name: 'CarnivalMode',
+        component: CarnivalMode,
         meta: {
-            title: 'PVP'
+            title: 'Carnival Mode'
         }
     },
     {

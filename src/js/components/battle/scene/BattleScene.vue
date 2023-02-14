@@ -129,7 +129,7 @@
 
     import { mapGetters, mapActions } from 'vuex'
 
-    import { getRandomMove, checkMoveAccuracy } from "@/js/mixins/randomGenerator"
+    import { getRandomMove, checkMoveAccuracy, getInRange } from "@/js/mixins/randomGenerator"
     import { getCaptureRate } from "@/js/mixins/calculations"
     import { changePokemon, moveMessage, missedMove, faintMessage, useItem, caughtPokemon, pokemonBrokeFree } from "@/js/mixins/messages"
 
@@ -407,12 +407,27 @@
                 }, 4000)
             },
 
+            manipulateMoveData(moveData) {
+                return {
+                    evaded: checkMoveAccuracy(moveData),
+                    randomFactor: {
+                        speed: Math.random(),
+                        damage: Math.random() * 0.2 + 0.8
+                    },
+                    times: getInRange(moveData.min, moveData.max) || 1,
+                    ...moveData
+                }
+            },
+
             useMove(moveData) {
                 this.hidePokemonMoves()
+                let trainerMove 
+                if (moveData) 
+                    trainerMove = this.manipulateMoveData(moveData)
                 if (this.isMultiplayer)
-                    return this.handlePVPEvent('useMove', moveData)
-                const foeMove = getRandomMove(this.currentPokemon.foe)
-                this.performMove(moveData, foeMove)
+                    return this.handlePVPEvent('useMove', trainerMove)
+                const foeMove = this.manipulateMoveData(getRandomMove(this.currentPokemon.foe))
+                this.performMove(trainerMove, foeMove)
             },
 
             performMove(moveData, foeMove) {
@@ -454,11 +469,11 @@
                 }
 
                 // Make the first attack and display message
-                if (firstMove.moveData && checkMoveAccuracy(firstMove)) {
+                if (firstMove.moveData && firstMove.moveData.evaded) {
                     this.useMoveBattleDataUpdate(firstMove)
                     this.battleMessage = firstMoveMessage
                 }
-                else if (firstMove.moveData) {
+                else if (!firstMove.moveData?.evaded) {
                     this.battleMessage = missedMove(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
                 }
 
@@ -466,12 +481,12 @@
                     // the Pokémon to make the second move doesn't faint
                     setTimeout(() => {
                         // Make the second attack and display message
-                        if (secondMove.moveData && checkMoveAccuracy(secondMove)) {
+                        if (secondMove.moveData && secondMove.moveData.evaded) {
                             this.useMoveBattleDataUpdate(secondMove)
                             this.battleMessage = secondMoveMessage
                         }
-                        else if (secondMove.moveData) {
-                            this.battleMessage = missedMove(this.currentPokemon[secondPokemon], firstPokemon === 'foe')
+                        else if (!secondMove.moveData?.evaded) {
+                            this.battleMessage = missedMove(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
                         }
 
                         setTimeout(() => {
@@ -516,6 +531,7 @@
                 if (trainer.level < foe.level) return false
                 if (trainer.exp > foe.exp) return true
                 if (trainer.exp < foe.exp) return false
+                return trainerMove.randomFactor.speed > foeMove.randomFactor.speed
             },
 
             handleFaint(user) {
