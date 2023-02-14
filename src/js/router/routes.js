@@ -177,5 +177,5 @@ export const routes = [
     {
         path: '/:catchAll(.*)',
         redirect: '/page-not-found',
-    },
+    }
 ]

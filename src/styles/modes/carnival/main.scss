@@ -10,10 +10,16 @@
         padding: 30px 15px;
 
         .event {
-            @include main.flex($col: 10px);
+            @include main.flex($col: 5%);
             width: 100%;
             padding: 10px;
             border-radius: 10px;
+            text-align: right;
+
+            &.alternate {
+                flex-direction: row-reverse;
+                text-align: left;
+            }
 
             .name {
                 width: 45%;

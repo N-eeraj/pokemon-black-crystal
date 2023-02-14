@@ -9,10 +9,12 @@
 
             <div class="event-container">
                 <div
-                    v-for="({ name, image, background }, index) in events"
+                    v-for="({ name, image, background, route }, index) in events"
                     :key="index"
                     class="event"
-                    :style="`background-image: ${background};`">
+                    :class="{ alternate: index % 2 }"
+                    :style="`background-image: ${background};`"
+                    @click="$router.push(`/mode/carnival${route}`)">
                     
                     <span class="name">
                         {{ name }}
