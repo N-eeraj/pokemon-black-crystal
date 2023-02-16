@@ -61,7 +61,7 @@
             view() {
                 return this.isFoe ? 'front' : 'back'
             },
-            
+
             hpClass() {
                 const healthPercentage = this.pokemon.currentHp / this.pokemon.stat.hp
                 if (healthPercentage > 0.65) return 'high'

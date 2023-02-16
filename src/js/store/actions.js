@@ -1,4 +1,4 @@
-import { Pokemon, PokemonObject } from '@/js/mixins/Pokemon'
+import { Pokemon, PokemonObject, PokemonData } from '@/js/mixins/Pokemon'
 
 import { getIdFromUrl, deepCopy, clamp, decryptAndLoad } from "@/js/mixins/common"
 import { getInRange } from "@/js/mixins/randomGenerator"
@@ -283,9 +283,7 @@ export default {
     async getCarnivalPokemon(context, count) {
         const randomPokemon = []
         for (let i=0; i<count; i++) {
-            const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${getInRange(1, 387)}`)
-            .then(response => response.json())
-            .then(data => data)
+            const pokemonData = await PokemonData(getInRange(1, 387))
             if (pokemonData.isLegendary || randomPokemon.map(pokemon => pokemon.id).includes(pokemonData.id)) {
                 --i
                 continue

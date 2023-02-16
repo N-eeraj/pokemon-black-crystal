@@ -13,9 +13,7 @@ export const Pokemon = async (id) => {
         evolvesTo.evolves_to.forEach(evolution => getNextPokemon(evolution))
     }
 
-    const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        .then(response => response.json())
-        .then(data => data)
+    const pokemonData = await PokemonData(id)
     const pokemonSpeciesData = await fetch(pokemonData.species.url)
         .then(response => response.json())
         .then(data => data)
@@ -154,4 +152,11 @@ export const PokemonObject = data => {
             return filteredMoves
         }
     }
+}
+
+export const PokemonData = async (id) => {
+    const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        .then(response => response.json())
+        .then(data => data)
+    return pokemonData
 }

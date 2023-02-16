@@ -1,6 +1,33 @@
 @use "@/styles/mixins/main";
+@use "@/styles/mixins/progress";
+@use "@/styles/colors/palette";
 
 #whos_that_pokemon {
     @include main.full-screen;
+    @include main.flex($direction: column, $justify: space-between);
     background-color: #FC3030;
+
+    .question-container {
+        @include main.flex($direction: column);
+        margin-top: 3vh;
+
+        .title {
+            color: palette.$primary;
+            text-align: center;
+        }
+
+        .image {
+            width: 75%;
+            filter: brightness(0);
+        }
+    }
+
+    .answers-container {
+        @include main.flex($direction: column);
+        width: 100%;
+
+        .timer {
+            @include progress.progress-value;
+        }
+    }
 }
