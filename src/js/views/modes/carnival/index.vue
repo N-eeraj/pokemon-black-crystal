@@ -68,7 +68,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
 
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     import carnival from '@/assets/data/carnival'
 
@@ -150,9 +150,24 @@
             },
 
             attendEvent() {
-                console.log(this.popUp.event)
-                this.$router.push(`/mode/carnival/${this.popUp.event}`)
-            }
+                const { item, count, event } = this.popUp
+                const cost = count * -1
+
+                if (item === 'coin')
+                    this.updatePlayerCoins(cost)
+                else
+                    this.updateBag({
+                        itemId: 4,
+                        count: cost
+                    })
+
+                this.$router.push(`/mode/carnival/${event}`)
+            },
+
+            ...mapActions([
+                'updateBag',
+                'updatePlayerCoins'
+            ])
         }
     }
 
