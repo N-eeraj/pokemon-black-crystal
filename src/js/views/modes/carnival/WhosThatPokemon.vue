@@ -12,20 +12,25 @@
                 </h1>
 
                 <img
-                    :src="choices[correct].image"
-                    class="image">
+                    :src="choices[correctOption].image"
+                    class="image"
+                    :class="{ hide: timer.timeLeft }">
             </div>
 
             <div class="answers-container">
                 <progress
-                    :value="timeLeft"
+                    v-if="timer.timeLeft"
+                    :value="timer.timeLeft"
                     :max="30"
                     class="timer" />
                 
                 <button
-                    v-for="({ name, id }) in choices"
+                    v-for="({ name, id }, index) in choices"
                     :key="id"
-                    class="options">
+                    class="options"
+                    :class="{ 'correct-option': victory !== null && index === correctOption }"
+                    @click="chooseOption(index)"
+                    :disabled="victory !== null">
                     {{ $filters.toTitleCase(name) }}
                 </button>
             </div>
@@ -53,25 +58,40 @@
             return {
                 loading: true,
                 choices: null,
-                correct: null,
-                timeLeft: 30
+                correctOption: null,
+                timer: {
+                    counter: null,
+                    timeLeft: 30
+                },
+                victory: null
             }
         },
 
         async created() {
             this.choices = await this.getCarnivalPokemon(4)
             this.loading = false
-            this.correct = getInRange(0, 4)
-            setInterval(() => {
-                if (this.timeLeft)
-                    return this.timeLeft -= 0.1
+            this.correctOption = getInRange(0, 4)
+            this.timer.counter = setInterval(() => {
+                if (this.timer.timeLeft > 0)
+                    return this.timer.timeLeft -= 0.1
                 this.handleTimeOut()
             }, 100)
         },
 
         methods: {
             handleTimeOut() {
-                console.log('time up')
+                this.victory = false
+                this.handleComplete()
+            },
+
+            chooseOption(index) {
+                this.victory = index === this.correctOption
+                this.handleComplete()
+            },
+
+            handleComplete() {
+                this.timer.timeLeft = 0
+                clearInterval(this.timer.counter)
             },
 
             ...mapActions([

@@ -1,11 +1,12 @@
 @use "@/styles/mixins/main";
 @use "@/styles/mixins/progress";
 @use "@/styles/colors/palette";
+@use "@/styles/colors/carnival";
 
 #whos_that_pokemon {
     @include main.full-screen;
     @include main.flex($direction: column, $justify: space-between);
-    background-color: #FC3030;
+    background-color: carnival.$whos-that-pokemon-background;
 
     .question-container {
         @include main.flex($direction: column);
@@ -18,7 +19,11 @@
 
         .image {
             width: 75%;
-            filter: brightness(0);
+            transition: 1s;
+
+            &.hide {
+                filter: brightness(0);
+            }
         }
     }
 
@@ -40,6 +45,10 @@
             color: palette.$white;
             border-top: $option-border;
             border-bottom: $option-border;
+
+            &.correct-option {
+                background-color: carnival.$whos-that-pokemon-correct-option;
+            }
         }
     }
 }
