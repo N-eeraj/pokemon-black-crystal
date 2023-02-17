@@ -130,7 +130,7 @@
                 if (!item)
                     return this.$router.push(`/mode/carnival/${route}`)
 
-                if (this.getCoinAndBerry[item] && this.getCoinAndBerry[item] > count)
+                if (this.getCoinAndBerry[item] && this.getCoinAndBerry[item] >= count)
                     this.popUp.canEnter = true
                 else
                     this.popUp.canEnter = false

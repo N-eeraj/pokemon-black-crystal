@@ -35,6 +35,23 @@
                 </button>
             </div>
 
+            <pop-up
+                v-if="popUp.show"
+                close
+                class="game-over-pop-up"
+                @close-pop-up="$router.push('/mode/carnival')">
+                <template #body>
+                    <img
+                        v-if="victory"
+                        src="@/assets/images/items/razz-berry.webp"
+                        alt="Razz Berry"
+                        class="berry-image">
+                    <span class="message">
+                        {{ popUp.text }}
+                    </span>
+                </template>
+            </pop-up>
+
         </div>
     </div>
 </template>
@@ -42,6 +59,7 @@
 <script>
 
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { mapActions } from 'vuex'
 
@@ -51,7 +69,8 @@
         name: 'whos-that-pokemon',
 
         components: {
-            CommonLoader
+            CommonLoader,
+            PopUp
         },
 
         data() {
@@ -63,7 +82,11 @@
                     counter: null,
                     timeLeft: 30
                 },
-                victory: null
+                victory: null,
+                popUp: {
+                    show: false,
+                    text: null
+                }
             }
         },
 
@@ -81,21 +104,35 @@
         methods: {
             handleTimeOut() {
                 this.victory = false
+                this.popUp.text = "You've ran out of time"
                 this.handleComplete()
             },
 
             chooseOption(index) {
                 this.victory = index === this.correctOption
+                if (this.victory) {
+                    this.popUp.text = "You've won a Razz Berry"
+                    this.updateBag({
+                        itemId: 4,
+                        count: 1
+                    })
+                }
+                else
+                    this.popUp.text = 'Better luck next time'
                 this.handleComplete()
             },
 
             handleComplete() {
                 this.timer.timeLeft = 0
                 clearInterval(this.timer.counter)
+                setTimeout(() => {
+                    this.popUp.show = true
+                }, 1000)
             },
 
             ...mapActions([
-                'getCarnivalPokemon'
+                'getCarnivalPokemon',
+                'updateBag'
             ])
         }
     }

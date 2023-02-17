@@ -36,19 +36,31 @@
         }
 
         .options {
-            $option-border: 1px solid palette.$white;
+            $border: 1px solid palette.$white;
 
             width: 100%;
             height: 50px;
             font-size: 1rem;
             background-color: palette.$primary;
             color: palette.$white;
-            border-top: $option-border;
-            border-bottom: $option-border;
+            border-top: $border;
+            border-bottom: $border;
 
             &.correct-option {
                 background-color: carnival.$whos-that-pokemon-correct-option;
             }
+        }
+    }
+
+    .game-over-pop-up .body-container {
+        flex-direction: column;
+
+        .berry-image {
+            width: 125px;
+        }
+
+        .message {
+            text-align: center;
         }
     }
 }
