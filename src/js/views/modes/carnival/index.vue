@@ -161,12 +161,14 @@
                         count: cost
                     })
 
+                this.updateCarnivalEntry(event)
                 this.$router.push(`/mode/carnival/${event}`)
             },
 
             ...mapActions([
                 'updateBag',
-                'updatePlayerCoins'
+                'updatePlayerCoins',
+                'updateCarnivalEntry'
             ])
         }
     }

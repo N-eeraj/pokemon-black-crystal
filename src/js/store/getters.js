@@ -99,5 +99,9 @@ export default {
             coin: state.gameData.progress.coins,
             berry: state.gameData.progress.bag[4]
         }
+    },
+
+    currentCarnivalEntry(state) {
+        return state.carnivalEntry
     }
 }

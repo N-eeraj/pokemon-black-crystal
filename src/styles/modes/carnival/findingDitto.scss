@@ -1,0 +1,13 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+@use "@/styles/colors/carnival";
+
+#finding_ditto {
+    @include main.full-screen;
+    background-color: palette.$primary;
+
+    .title {
+        margin-top: 3vh;
+        text-align: center;
+    }
+}

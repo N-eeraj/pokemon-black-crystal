@@ -16,6 +16,7 @@ import PVPMode from '@/js/views/modes/PVPMode.vue'
 import TradeMode from '@/js/views/modes/TradeMode.vue'
 import CarnivalMode from '@/js/views/modes/carnival/index.vue'
 import CarnivalWhosThatPokemon from '@/js/views/modes/carnival/WhosThatPokemon.vue'
+import CarnivalFindingDitto from '@/js/views/modes/carnival/FindingDitto.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 import InfoView from '@/js/views/InfoView.vue'
@@ -149,6 +150,14 @@ export const routes = [
         component: CarnivalWhosThatPokemon,
         meta: {
             title: "Who's that Pokémon"
+        }
+    },
+    {
+        path: '/mode/carnival/finding-ditto',
+        name: 'CarnivalFindingDitto',
+        component: CarnivalFindingDitto,
+        meta: {
+            title: "Finding Ditto"
         }
     },
     {

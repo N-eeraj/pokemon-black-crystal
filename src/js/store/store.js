@@ -13,7 +13,8 @@ export default createStore({
             typesData: {},
             growthRateData: {},
             battle: null,
-            checkEvolution: false
+            checkEvolution: false,
+            carnivalEntry: null
         }
     },
     getters,

@@ -205,5 +205,9 @@ export default {
     winArcade(state, arcadeEvent) {
         ++state.gameData.progress.arcade[arcadeEvent].victories
         encryptAndSave()
+    },
+
+    updateCarnivalEntry(state, eventName = null) {
+        state.carnivalEntry = eventName
     }
 }

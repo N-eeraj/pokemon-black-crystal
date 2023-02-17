@@ -298,5 +298,9 @@ export default {
             randomPokemon.push(pokemonData)
         }
         return randomPokemon
+    },
+
+    updateCarnivalEntry({ commit  }, eventName) {
+        commit('updateCarnivalEntry', eventName)
     }
 }

@@ -7,7 +7,7 @@
         @include main.flex($direction: column, $justify: flex-start, $row: 15px);
         max-height: 92vh;
         overflow-y: auto;
-        padding: 30px 15px;
+        padding: 15px 15px 60px 15px;
 
         .event {
             @include main.flex($col: 5%);
