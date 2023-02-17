@@ -20,8 +20,7 @@
                 <progress
                     :value="timeLeft"
                     :max="30"
-                    class="timer"
-                    :class="timerClass" />
+                    class="timer" />
                 
                 <button
                     v-for="({ name, id }) in choices"
@@ -56,15 +55,6 @@
                 correct: null,
                 timeLeft: 30
             }
-        },
-
-        computed: {
-            timerClass() {
-                const timerPercentage = this.timeLeft / 30
-                if (timerPercentage > 0.65) return 'high'
-                if (timerPercentage > 0.25) return 'medium'
-                return 'low'
-            },
         },
 
         async created() {

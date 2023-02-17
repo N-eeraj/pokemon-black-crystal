@@ -1,4 +1,4 @@
-import { Pokemon, PokemonObject, PokemonData } from '@/js/mixins/Pokemon'
+import { Pokemon, PokemonObject } from '@/js/mixins/Pokemon'
 
 import { getIdFromUrl, deepCopy, clamp, decryptAndLoad } from "@/js/mixins/common"
 import { getInRange } from "@/js/mixins/randomGenerator"
@@ -280,10 +280,17 @@ export default {
         commit('winArcade', arcadeEvent)
     },
 
-    async getCarnivalPokemon(context, count) {
+    async getCarnivalPokemon({ getters }, count) {
         const randomPokemon = []
         for (let i=0; i<count; i++) {
-            const pokemonData = await PokemonData(getInRange(1, 387))
+            const id = getInRange(1, 387)
+            const data = getters.getPokemon[id]
+            if (data) {
+                data.id = id
+                randomPokemon.push(deepCopy(data))
+                continue
+            }
+            const pokemonData = await Pokemon(id)
             if (pokemonData.isLegendary || randomPokemon.map(pokemon => pokemon.id).includes(pokemonData.id)) {
                 --i
                 continue

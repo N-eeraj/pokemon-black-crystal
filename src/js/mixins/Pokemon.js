@@ -13,7 +13,9 @@ export const Pokemon = async (id) => {
         evolvesTo.evolves_to.forEach(evolution => getNextPokemon(evolution))
     }
 
-    const pokemonData = await PokemonData(id)
+    const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        .then(response => response.json())
+        .then(data => data)
     const pokemonSpeciesData = await fetch(pokemonData.species.url)
         .then(response => response.json())
         .then(data => data)
@@ -37,6 +39,7 @@ export const Pokemon = async (id) => {
         isLegendary: pokemonSpeciesData.is_legendary,
         evolution: null
     }
+
     pokemonData.stats.forEach(stat => data.baseStat[stat.stat.name] = stat.base_stat)
 
     data.moves = pokemonData.moves
@@ -49,6 +52,7 @@ export const Pokemon = async (id) => {
         })
 
     getNextPokemon(pokemonEvolutionData)
+
     const nextEvolutionObj = {
         levelUp: {
             minLevel: null,
@@ -152,11 +156,4 @@ export const PokemonObject = data => {
             return filteredMoves
         }
     }
-}
-
-export const PokemonData = async (id) => {
-    const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
-        .then(response => response.json())
-        .then(data => data)
-    return pokemonData
 }
