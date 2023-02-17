@@ -24,7 +24,8 @@
                 
                 <button
                     v-for="({ name, id }) in choices"
-                    :key="id">
+                    :key="id"
+                    class="options">
                     {{ $filters.toTitleCase(name) }}
                 </button>
             </div>
