@@ -1,0 +1,23 @@
+@use "@/styles/mixins/main.scss";
+
+
+.game-over-pop-up.pop-up-wrapper .pop-up-card .body-container {
+    @include main.flex($direction: column, $row: 20px);
+
+    .prize {
+        @include main.flex($col: 20px);
+
+        .image {
+            width: 50px;
+        }
+
+        .count {
+            font-size: 1.25rem;
+        }
+    }
+
+    .message {
+        font-size: 0.8rem;
+        text-align: center;
+    }
+}

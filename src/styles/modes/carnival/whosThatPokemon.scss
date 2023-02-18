@@ -15,6 +15,7 @@
         .title {
             color: palette.$primary;
             text-align: center;
+            font-size: 1.5rem;
         }
 
         .image {
@@ -49,18 +50,6 @@
             &.correct-option {
                 background-color: carnival.$whos-that-pokemon-correct-option;
             }
-        }
-    }
-
-    .game-over-pop-up .body-container {
-        flex-direction: column;
-
-        .berry-image {
-            width: 125px;
-        }
-
-        .message {
-            text-align: center;
         }
     }
 }

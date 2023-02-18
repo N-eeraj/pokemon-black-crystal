@@ -35,22 +35,12 @@
                 </button>
             </div>
 
-            <pop-up
+            <carnival-event-pop-up
                 v-if="popUp.show"
-                close
-                class="game-over-pop-up"
-                @close-pop-up="$router.push('/mode/carnival')">
-                <template #body>
-                    <img
-                        v-if="victory"
-                        src="@/assets/images/items/razz-berry.webp"
-                        alt="Razz Berry"
-                        class="berry-image">
-                    <span class="message">
-                        {{ popUp.text }}
-                    </span>
-                </template>
-            </pop-up>
+                :image="require('@/assets/images/items/razz-berry.webp')"
+                item="Razz Berry"
+                :victory="victory"
+                :text="popUp.text" />
 
         </div>
     </div>
@@ -59,7 +49,7 @@
 <script>
 
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
-    import PopUp from '@/js/components/UI/PopUp.vue'
+    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
 
     import { mapActions } from 'vuex'
 
@@ -70,7 +60,7 @@
 
         components: {
             CommonLoader,
-            PopUp
+            CarnivalEventPopUp
         },
 
         data() {
