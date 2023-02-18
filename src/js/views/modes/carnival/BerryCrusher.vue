@@ -6,17 +6,21 @@
                 Berry Crusher
             </h1>
 
-            <div class="crusher-container">
+            <div
+                class="crusher-container"
+                @click="handleCrusherPress">
                 <img
                     src="@/assets/images/carnival/berry-crusher/rotar.png"
-                    class="rotar">
+                    class="rotar"
+                    :style="`transform: rotate(${angle}deg);`" />
                 <img
                     src="@/assets/images/carnival/berry-crusher/pointer.png"
-                    class="pointer">
+                    :class="{ disabled: !chance }" />
             </div>
 
             <p class="instructions">
-                Click on the rotating berry crusher when the points meet. You can only press once per rotation.
+                Click on the rotating berry crusher when the points meet.
+                You'll have 5 chances.
             </p>
 
 
@@ -44,11 +48,40 @@
 
         data() {
             return {
+                angle: 0,
+                speed: 0.5,
+                points: 0,
                 victory: null,
+                chance: 5,
                 popUp: {
                     show: false,
                     text: null
                 }
+            }
+        },
+
+        created() {
+            const crusherRotation = setInterval(() => {
+                this.angle += this.speed
+                if (this.angle >= 1800)
+                    clearInterval(crusherRotation)
+            }, 10)
+        },
+
+        methods: {
+            updatePoints(points) {
+                this.points += points
+                this.speed = Number((this.speed + (0.3 * points)).toFixed(2))
+            },
+
+            handleCrusherPress() {
+                if (!this.chance) return
+                --this.chance
+                const currentAngle = this.angle % 360
+                if (currentAngle > 177.5 && currentAngle < 182.5)
+                    this.updatePoints(2)
+                else if (currentAngle > 170 && currentAngle < 190)
+                    this.updatePoints(1)
             }
         }
     }

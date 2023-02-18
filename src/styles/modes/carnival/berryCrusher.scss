@@ -13,13 +13,14 @@
     .crusher-container {
         @include main.flex($direction: column, $row: 10px);
         height: 50%;
+        cursor: pointer;
 
         .rotar {
             width: 72%;
         }
 
-        .pointer {
-
+        .disabled {
+            filter: grayscale(1);
         }
     }
 
