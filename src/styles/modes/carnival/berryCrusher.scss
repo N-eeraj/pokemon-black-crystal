@@ -1,6 +1,6 @@
 @use "@/styles/mixins/main";
 
-#finding_ditto {
+#berry_crusher {
     @include main.full-screen;
     @include main.flex($direction: column, $justify: space-around);
     padding: 1vh 10px;
@@ -10,17 +10,20 @@
         font-size: 1.5rem;
     }
 
-    .pokemon-container {
-        @include main.flex($justify: space-around, $wrap: wrap);
-        height: 40%;
+    .crusher-container {
+        @include main.flex($direction: column, $row: 10px);
+        height: 50%;
 
-        .pokemon-image {
-            width: 40%;
-            cursor: pointer;
+        .rotar {
+            width: 72%;
+        }
+
+        .pointer {
+
         }
     }
 
     .instructions {
-        text-align: center;
+        font-size: 0.9rem;
     }
 }

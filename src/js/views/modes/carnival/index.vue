@@ -21,7 +21,7 @@
                     </span>
 
                     <img
-                        :src="require(`@/assets/images/carnival${event.image}`)"
+                        :src="require(`@/assets/images/carnival/banner-image${event.image}`)"
                         :alt="event.image"
                         class="image" />
                 </div>

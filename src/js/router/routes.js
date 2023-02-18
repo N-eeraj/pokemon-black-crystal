@@ -17,6 +17,7 @@ import TradeMode from '@/js/views/modes/TradeMode.vue'
 import CarnivalMode from '@/js/views/modes/carnival/index.vue'
 import CarnivalWhosThatPokemon from '@/js/views/modes/carnival/WhosThatPokemon.vue'
 import CarnivalFindingDitto from '@/js/views/modes/carnival/FindingDitto.vue'
+import CarnivalBerryCrusher from '@/js/views/modes/carnival/BerryCrusher.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 import InfoView from '@/js/views/InfoView.vue'
@@ -158,6 +159,14 @@ export const routes = [
         component: CarnivalFindingDitto,
         meta: {
             title: "Finding Ditto"
+        }
+    },
+    {
+        path: '/mode/carnival/berry-crusher',
+        name: 'CarnivalBerryCrusher',
+        component: CarnivalBerryCrusher,
+        meta: {
+            title: "Berry Crusher"
         }
     },
     {
