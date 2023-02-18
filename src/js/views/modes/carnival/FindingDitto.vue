@@ -10,6 +10,29 @@
                 Finding Ditto
             </h1>
 
+            <div class="pokemon-container">
+                <img
+                    v-for="({ name, image, id }, index) in choices"
+                    :key="id"
+                    :src="(correctOption === index && victory !== null) ? 'https://img.pokemondb.net/sprites/home/normal/ditto.png' : image"
+                    :alt="name"
+                    class="pokemon-image"
+                    @click="guessPokemon(index)">
+            </div>
+
+            <p class="instructions">
+                Click on the Pokémon that you think is a Ditto.
+            </p>
+
+
+            <carnival-event-pop-up
+                v-if="popUp.show"
+                :image="require('@/assets/images/coin.svg')"
+                :count="50"
+                item="Pokécoins"
+                :victory="victory"
+                :text="popUp.text" />
+
         </div>
     </div>
 </template>
@@ -17,19 +40,30 @@
 <script>
     
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
+    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
 
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
+
+    import { getInRange } from '@/js/mixins/randomGenerator'
 
     export default {
         name: 'finding-ditto',
 
         components: {
             CommonLoader,
+            CarnivalEventPopUp
         },
 
         data() {
             return {
                 loading: true,
+                choices: null,
+                correctOption: null,
+                victory: null,
+                popUp: {
+                    show: false,
+                    text: null
+                }
             }
         },
 
@@ -39,15 +73,38 @@
             ])
         },
 
-        created() {
+        async created() {
             if (this.currentCarnivalEntry !== 'finding-ditto')
-                return this.handleInvalidEntry()
+                return this.$router.push('/mode/carnival')
+            this.choices = await this.getCarnivalPokemon(3)
+            this.loading = false
+            this.correctOption = getInRange(0, 3)
+        },
+
+        beforeUnmount() {
+            this.updateCarnivalEntry()
         },
 
         methods: {
-            handleInvalidEntry() {
-                this.$router.push('/mode/carnival')
-            }
+            guessPokemon(index) {
+                if (this.victory !== null) return
+                this.victory = index === this.correctOption
+                if (this.victory) {
+                    this.popUp.text = "You've won Pokécoins"
+                    this.updatePlayerCoins(50)
+                }
+                else
+                    this.popUp.text = 'Better luck next time'
+                setTimeout(() => {
+                    this.popUp.show = true
+                }, 1000)
+            },
+
+            ...mapActions([
+                'getCarnivalPokemon',
+                'updateCarnivalEntry',
+                'updatePlayerCoins'
+            ])
         }
     }
 
