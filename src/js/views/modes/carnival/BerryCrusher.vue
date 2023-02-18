@@ -23,12 +23,12 @@
                 You'll have 5 chances.
             </p>
 
-
             <carnival-event-pop-up
                 v-if="popUp.show"
                 :image="require('@/assets/images/items/pokeblock.png')"
                 item="Pokéblock"
-                :victory="victory"
+                :count="count"
+                :victory="!!count"
                 :text="popUp.text" />
 
         </div>
@@ -38,6 +38,8 @@
 <script>
 
     import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
+
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: 'berry-crusher',
@@ -51,7 +53,6 @@
                 angle: 0,
                 speed: 0.5,
                 points: 0,
-                victory: null,
                 chance: 5,
                 popUp: {
                     show: false,
@@ -60,12 +61,30 @@
             }
         },
 
+        computed: {
+            count() {
+                return Math.floor(this.points / 3)
+            },
+
+            ...mapGetters([
+                'currentCarnivalEntry'
+            ])
+        },
+
         created() {
+            if (this.currentCarnivalEntry !== 'berry-crusher')
+                return this.$router.push('/mode/carnival')
             const crusherRotation = setInterval(() => {
                 this.angle += this.speed
-                if (this.angle >= 1800)
+                if (this.angle >= 1800) {
                     clearInterval(crusherRotation)
+                    this.gameOver()
+                }
             }, 10)
+        },
+
+        beforeUnmount() {
+            this.updateCarnivalEntry()
         },
 
         methods: {
@@ -82,7 +101,23 @@
                     this.updatePoints(2)
                 else if (currentAngle > 170 && currentAngle < 190)
                     this.updatePoints(1)
-            }
+            },
+
+            gameOver() {
+                this.popUp.text = this.points ? "You've won Pokéblock" : 'Better luck next time'
+                this.updateBag({
+                    itemId: 5,
+                    count: this.count
+                })
+                setTimeout(() => {
+                    this.popUp.show = true
+                }, 1000)
+            },
+
+            ...mapActions([
+                'updateCarnivalEntry',
+                'updateBag'
+            ])
         }
     }
 

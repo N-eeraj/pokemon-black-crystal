@@ -24,7 +24,6 @@
                 Click on the Pokémon that you think is a Ditto.
             </p>
 
-
             <carnival-event-pop-up
                 v-if="popUp.show"
                 :image="require('@/assets/images/coin.svg')"
