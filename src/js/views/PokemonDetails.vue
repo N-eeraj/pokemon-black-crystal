@@ -251,18 +251,20 @@
             },
 
             getActions(isParty) {
-                if (isParty && this.partyPokemon.length < 2) return
-
                 const actions = [
-                    {
-                        label: 'Release',
-                        action: this.confirmRelease
-                    },
                     {
                         label: 'Use Item',
                         action: this.toggleShowItems
                     }
+                
                 ]
+                if (isParty && this.partyPokemon.length < 2)
+                    return actions
+
+                actions.unshift({
+                        label: 'Release',
+                        action: this.confirmRelease
+                    })
 
                 if (!isParty && this.partyPokemon.length > 5) return actions
 

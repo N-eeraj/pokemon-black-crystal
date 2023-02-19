@@ -7,7 +7,7 @@
 
         <div class="items-list">
             <div
-                v-for="item in itemsList"
+                v-for="item in itemsList.filter(item => item.count)"
                 :key="item.id"
                 class="item-container"
                 :class="{ selectable }"
