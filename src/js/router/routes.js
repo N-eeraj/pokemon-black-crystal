@@ -18,6 +18,7 @@ import CarnivalMode from '@/js/views/modes/carnival/index.vue'
 import CarnivalWhosThatPokemon from '@/js/views/modes/carnival/WhosThatPokemon.vue'
 import CarnivalFindingDitto from '@/js/views/modes/carnival/FindingDitto.vue'
 import CarnivalBerryCrusher from '@/js/views/modes/carnival/BerryCrusher.vue'
+import CarnivalPokemonRoulette from '@/js/views/modes/carnival/PokemonRoulette.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 import InfoView from '@/js/views/InfoView.vue'
@@ -158,7 +159,7 @@ export const routes = [
         name: 'CarnivalFindingDitto',
         component: CarnivalFindingDitto,
         meta: {
-            title: "Finding Ditto"
+            title: 'Finding Ditto'
         }
     },
     {
@@ -166,7 +167,15 @@ export const routes = [
         name: 'CarnivalBerryCrusher',
         component: CarnivalBerryCrusher,
         meta: {
-            title: "Berry Crusher"
+            title: 'Berry Crusher'
+        }
+    },
+    {
+        path: '/mode/carnival/pokemon-roulette',
+        name: 'CarnivalPokemonRoulette',
+        component: CarnivalPokemonRoulette,
+        meta: {
+            title: 'Pokémon Roulette'
         }
     },
     {

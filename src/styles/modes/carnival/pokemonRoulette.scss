@@ -1,0 +1,73 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+@use "@/styles/colors/carnival";
+
+#pokemon_roulette {
+    @include main.full-screen;
+    @include main.flex($direction: column, $justify: space-between);
+
+    .wheel-container {
+        @include main.flex;
+        position: relative;
+        
+        .pointer {
+            position: absolute;
+            top: -20px;
+            border: 10px solid transparent;
+            border-top: 30px solid palette.$white;
+        }
+        .wheel {
+            width: 75%;
+            transition: 10s ease-out;
+        }
+    }
+
+    .board-container {
+        width: 100%;
+
+        .board {
+            display: grid;
+            grid-template-columns: auto auto auto;
+
+            .board-button {
+                height: 70px;
+                background-size: auto 75%;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                &.yellow {
+                    background-color: carnival.$pokemon-roulette-yellow;
+                }
+                &.blue {
+                    background-color: carnival.$pokemon-roulette-blue;
+                }
+                &.red {
+                    background-color: carnival.$pokemon-roulette-red;
+                }
+
+                &.instinct {
+                    background-image: url("@/assets/images/carnival/pokemon-roulette/insignia/instinct.png");
+                }
+                &.mystic {
+                    background-image: url("@/assets/images/carnival/pokemon-roulette/insignia/mystic.png");
+                }
+                &.valor {
+                    background-image: url("@/assets/images/carnival/pokemon-roulette/insignia/valor.png");
+                }
+            }
+        }
+
+        .place-bet {
+            width: 100%;
+            height: 50px;
+            background-color: #00B85C;
+            font-size: 1.25rem;
+            font-weight: 600;
+
+            &:not(.active) {
+                cursor: default;
+                filter: grayscale(1);
+            }
+        }
+    }
+}
