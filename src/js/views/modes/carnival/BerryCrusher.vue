@@ -104,7 +104,7 @@
             },
 
             gameOver() {
-                this.popUp.text = this.points ? "You've won Pokéblock" : 'Better luck next time'
+                this.popUp.text = this.count ? "You've won Pokéblock" : 'Better luck next time'
                 this.updateBag({
                     itemId: 5,
                     count: this.count

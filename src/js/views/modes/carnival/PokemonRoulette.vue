@@ -4,7 +4,8 @@
 
             <navigation-bar
                 icon="cross-mark"
-                title="Pokémon Roulette" />
+                title="Pokémon Roulette"
+                @icon-event="$router.push('/mode/carnival')" />
 
             <div class="wheel-container">
                 <img
@@ -23,12 +24,18 @@
                             v-for="(insignia, insigniaIndex) in insignias"
                             :key="`insignia-${insigniaIndex}`"
                             class="board-button"
-                            :class="`${color} ${insignia}`">
+                            :class="`${color} ${insignia} ${ isSelected({ color, insignia }) }`"
+                            :disabled="angle"
+                            @click="selectOption({ color, insignia })">
                         </button>
                     </template>
                 </div>
 
-                <button class="place-bet">
+                <button
+                    class="place-bet"
+                    :class="{ active: selections.length && !angle }"
+                    :disabled="!selections.length || angle"
+                    @click="startRotation">
                     Place Bet
                 </button>
             </div>
@@ -61,17 +68,37 @@
                     'instinct',
                     'mystic',
                     'valor'
-                ]
+                ],
+                selections: []
             }
         },
 
-        created() {setTimeout(() => {
-            this.startRotation()
-        }, 1000);},
-
         methods: {
+            selectOption({ color, insignia }) {
+                for (const [index, selection] of this.selections.entries()) {
+                    if (color === selection.color && insignia === selection.insignia) {
+                        this.selections.splice(index, 1)
+                        return
+                    }
+                }
+                if (this.selections.length === 3) this.selections.shift()
+                this.selections.push({ color, insignia })
+            },
+
+            isSelected({ color, insignia }) {
+                for (const selection of this.selections) {
+                    if (color === selection.color && insignia === selection.insignia) {
+                        return 'selected'
+                    }
+                }
+                return ''
+            },
+
             startRotation() {
-                this.angle = getInRange(0, 1800)
+                this.angle = getInRange(18, 45) * 40
+                setTimeout(() => {
+                    console.log(this.angle, this.selections)
+                }, 12000)
             }
         }
     }

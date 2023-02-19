@@ -54,6 +54,10 @@
                 &.valor {
                     background-image: url("@/assets/images/carnival/pokemon-roulette/insignia/valor.png");
                 }
+
+                &.selected {
+                    filter: contrast(0.5) brightness(1.5);
+                }
             }
         }
 
