@@ -69,6 +69,14 @@
                     </button>
                 </template>
             </pop-up>
+
+            <carnival-event-pop-up
+                v-if="popUp.show"
+                :image="require('@/assets/images/coin.svg')"
+                :count="coins"
+                item="Pokécoins"
+                :victory="!!coins"
+                :text="popUp.text" />
         </div>
     </div>
 </template>
@@ -77,6 +85,7 @@
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
+    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
 
     import { getInRange } from '@/js/mixins/randomGenerator'
 
@@ -85,25 +94,31 @@
 
         components: {
             NavigationBar,
-            PopUp
+            PopUp,
+            CarnivalEventPopUp
         },
 
         data() {
             return {
                 angle: 0,
                 colors: [
-                    'yellow',
+                    'red',
                     'blue',
-                    'red'
+                    'yellow'
                 ],
                 insignias: [
-                    'instinct',
+                    'valor',
                     'mystic',
-                    'valor'
+                    'instinct'
                 ],
                 selections: [],
                 betAmount: null,
-                showBetCollector: false
+                showBetCollector: false,
+                coins: 0,
+                popUp: {
+                    show: false,
+                    text: null
+                }
             }
         },
 
@@ -141,14 +156,44 @@
                 this.showBetCollector = !this.showBetCollector
             },
 
+            getColorAndInsignia(index) {
+                const result = {}
+
+                if (index < 3)
+                    result.insignia = 'valor'
+                else if (index < 6)
+                    result.insignia = 'mystic'
+                else
+                    result.insignia = 'instinct'
+
+                switch (index % 3) {
+                    case 0:
+                        result.color = 'red'
+                        break
+                    case 1:
+                        result.color = 'blue'
+                        break
+                    case 2:
+                        result.color = 'yelow'
+                        break
+                }
+                return result
+            },
+
             startRotation() {
                 this.toggleBetCollector()
                 this.angle = getInRange(18, 45) * 40
+
                 setTimeout(() => {
-                    console.log((this.angle / 40) % 9)
-                    console.log(this.selections)
-                    console.log(Number(this.betAmount))
-                }, 12000)
+                    const result = this.getColorAndInsignia((this.angle / 40) % 9)
+                    if (this.selections.some(({ color, insignia }) => color === result.color && insignia === result.insignia)) {
+                        this.coins = 9 * this.betAmount / this.selections.length
+                        this.popUp.text = "You've won Pokécoins"
+                    }
+                    else
+                        this.popUp.text = 'Better luck next time'
+                    this.popUp.show = true
+                }, 11500)
             }
         }
     }
