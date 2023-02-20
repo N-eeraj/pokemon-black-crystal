@@ -5,7 +5,9 @@
             :src="require(`@/assets/icons/${icon}.svg`)"
             class="icon"
             @click="$emit('iconEvent')" />
-        <h3 class="title">
+        <h3
+            class="title"
+            :class="{ 'move-left': icon }">
             {{ title }}
         </h3>
         <div class="right-action">

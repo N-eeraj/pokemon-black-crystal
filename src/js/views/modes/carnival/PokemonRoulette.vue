@@ -3,8 +3,9 @@
         <div id="pokemon_roulette">
 
             <navigation-bar
-                icon="cross-mark"
+                :icon="angle ? '' : 'cross-mark'"
                 title="Pokémon Roulette"
+                :class="{ hide: !angle }"
                 @icon-event="$router.push('/mode/carnival')" />
 
             <div class="wheel-container">
@@ -35,10 +36,39 @@
                     class="place-bet"
                     :class="{ active: selections.length && !angle }"
                     :disabled="!selections.length || angle"
-                    @click="startRotation">
+                    @click="toggleBetCollector">
                     Place Bet
                 </button>
             </div>
+
+            <pop-up
+                v-if="showBetCollector"
+                close
+                class="bet-modal"
+                @close-pop-up="toggleBetCollector">
+                <template #body>
+                    <div class="body">
+                        <img
+                            src="@/assets/images/coin.svg"
+                            alt="Pokécoin"
+                            class="image" />
+                        <input
+                            v-model="betAmount"
+                            placeholder="Bet Amount"
+                            class="bet-input"
+                            @keyup.enter="startRotation" />
+                    </div>
+                </template>
+                <template #actions>
+                    <button
+                        class="confirm"
+                        :class="{ disabled: invalidBetAmount }"
+                        :disabled="invalidBetAmount"
+                        @click="startRotation">
+                        Confirm
+                    </button>
+                </template>
+            </pop-up>
         </div>
     </div>
 </template>
@@ -46,6 +76,7 @@
 <script>
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { getInRange } from '@/js/mixins/randomGenerator'
 
@@ -53,7 +84,8 @@
         name: 'pokemon-roulette',
 
         components: {
-            NavigationBar
+            NavigationBar,
+            PopUp
         },
 
         data() {
@@ -69,7 +101,18 @@
                     'mystic',
                     'valor'
                 ],
-                selections: []
+                selections: [],
+                betAmount: null,
+                showBetCollector: false
+            }
+        },
+
+        computed: {
+            invalidBetAmount() {
+                if (isNaN(this.betAmount) || !this.betAmount)
+                    return true
+                return !Number.isInteger(Number(this.betAmount))
+                
             }
         },
 
@@ -94,10 +137,17 @@
                 return ''
             },
 
+            toggleBetCollector() {
+                this.showBetCollector = !this.showBetCollector
+            },
+
             startRotation() {
+                this.toggleBetCollector()
                 this.angle = getInRange(18, 45) * 40
                 setTimeout(() => {
-                    console.log(this.angle, this.selections)
+                    console.log((this.angle / 40) % 9)
+                    console.log(this.selections)
+                    console.log(Number(this.betAmount))
                 }, 12000)
             }
         }

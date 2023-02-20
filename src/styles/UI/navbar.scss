@@ -16,7 +16,10 @@
     .title {
         max-width: 80%;
         text-align: center;
-        translate: 15px;
+
+        &.move-left {
+            translate: 15px;
+        }
     }
 
     .right-action {

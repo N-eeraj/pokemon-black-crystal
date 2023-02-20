@@ -74,4 +74,26 @@
             }
         }
     }
+    
+    .bet-modal {
+        .body {
+            @include main.flex($col: 15px);
+    
+            .image {
+                width: 50px;
+            }
+    
+            .bet-input {
+                width: 60%;
+                background-color: transparent;
+                color: palette.$white;
+                text-align: center;
+            }
+        }
+
+        .disabled {
+            filter: grayscale(1);
+            cursor: default;
+        }
+    }
 }
