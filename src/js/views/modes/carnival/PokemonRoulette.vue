@@ -87,6 +87,8 @@
     import PopUp from '@/js/components/UI/PopUp.vue'
     import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
 
+    import { mapGetters, mapActions } from 'vuex'
+
     import { getInRange } from '@/js/mixins/randomGenerator'
 
     export default {
@@ -126,9 +128,12 @@
             invalidBetAmount() {
                 if (isNaN(this.betAmount) || !this.betAmount)
                     return true
-                return !Number.isInteger(Number(this.betAmount))
-                
-            }
+                return !Number.isInteger(Number(this.betAmount)) || this.playerCoins < this.betAmount
+            },
+
+            ...mapGetters([
+                'playerCoins'
+            ])
         },
 
         methods: {
@@ -183,18 +188,25 @@
             startRotation() {
                 this.toggleBetCollector()
                 this.angle = getInRange(18, 45) * 40
+                const betAmount = Number(this.betAmount)
+                this.updatePlayerCoins(-1 * betAmount)
 
                 setTimeout(() => {
                     const result = this.getColorAndInsignia((this.angle / 40) % 9)
                     if (this.selections.some(({ color, insignia }) => color === result.color && insignia === result.insignia)) {
-                        this.coins = 9 * this.betAmount / this.selections.length
+                        this.coins = 9 * betAmount / this.selections.length
                         this.popUp.text = "You've won Pokécoins"
+                        this.updatePlayerCoins(this.coins)
                     }
                     else
                         this.popUp.text = 'Better luck next time'
                     this.popUp.show = true
                 }, 11500)
-            }
+            },
+
+            ...mapActions([
+                'updatePlayerCoins'
+            ])
         }
     }
 
