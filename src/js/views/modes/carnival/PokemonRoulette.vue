@@ -194,7 +194,7 @@
                 setTimeout(() => {
                     const result = this.getColorAndInsignia((this.angle / 40) % 9)
                     if (this.selections.some(({ color, insignia }) => color === result.color && insignia === result.insignia)) {
-                        this.coins = 9 * betAmount / this.selections.length
+                        this.coins = Math.ceil(9 * betAmount / this.selections.length)
                         this.popUp.text = "You've won Pokécoins"
                         this.updatePlayerCoins(this.coins)
                     }

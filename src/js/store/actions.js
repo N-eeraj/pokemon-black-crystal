@@ -284,6 +284,10 @@ export default {
         const randomPokemon = []
         for (let i=0; i<count; i++) {
             const id = getInRange(1, 387)
+            if (id === 212) {
+                i--
+                continue
+            }
             const data = getters.getPokemon[id]
             if (data) {
                 data.id = id
