@@ -11,12 +11,12 @@
                 v-for="(move, index) in moveList"
                 :key="index"
                 class="move-card"
-                :class="move.type"
                 @click="$emit('useMove', move)">
 
                 <span>
                     {{ $filters.toTitleCase(move.name) }}
                 </span>
+
                 <span v-if="move.healing > 0">
                     Heal:
                     {{ move.healing }}%
@@ -25,17 +25,21 @@
                     Power:
                     {{ move.power || 'KO' }}
                 </span>
+
                 <span>
                     PP:
                     {{ move.pp }}
                 </span>
+
                 <span>
                     Accuracy:
-                    {{ move.accuracy }}
+                    {{ move.accuracy }}%
                 </span>
+
                 <span>
                     Type:
                     {{ $filters.toTitleCase(move.type) }}
+                    <type-icon :type="move.type" />
                 </span>
                 
             </div>
@@ -46,6 +50,7 @@
 <script>
 
     import NavigationBar from "@/js/components/UI/NavigationBar.vue"
+    import TypeIcon from '@/js/components/TypeIcon.vue'
 
     import { mapGetters } from 'vuex'
 
@@ -54,7 +59,8 @@
         name: 'moves-list',
 
         components: {
-            NavigationBar
+            NavigationBar,
+            TypeIcon
         },
 
         computed: {
@@ -66,7 +72,7 @@
             ...mapGetters([
                 'getBattleData'
             ]),
-        },
+        }
     }
 </script>
 

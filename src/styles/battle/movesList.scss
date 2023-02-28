@@ -1,6 +1,5 @@
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
-@use "@/styles/colors/types";
 
 #moveset_container {
     @include main.full-screen;
@@ -18,8 +17,10 @@
             @include main.flex($direction: column, $align: flex-start, $row: 5px);
             width: 90%;
             padding: 15px;
+            background-color: palette.$secondary;
+            border: 1px solid palette.$white-secondary;
             border-radius: 15px;
-            color: palette.$primary;
+            color: palette.$white;
             cursor: pointer;
         }
     }

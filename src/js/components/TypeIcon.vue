@@ -24,6 +24,7 @@
 
 <style scoped>
     div {
+        display: inline-block;
         width: 25px;
         aspect-ratio: 1;
         background-size: contain;
