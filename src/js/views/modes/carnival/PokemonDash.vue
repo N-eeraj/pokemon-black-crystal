@@ -11,9 +11,8 @@
                 :key="id"
                 class="participant">
                 <div class="track">
-                    <div
-                        class="progress"
-                        :style="`height: ${completed}%;`">
+                    <div class="progress"></div>
+                    <div :style="`height: ${completed}%;`">
                     </div>
                 </div>
 
