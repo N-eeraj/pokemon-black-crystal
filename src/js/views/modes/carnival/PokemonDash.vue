@@ -7,17 +7,30 @@
             id="pokemon_dash">
 
             <div
-                v-for="({ id }) in participants"
+                v-for="({ id, completed, name, sprite }) in participants"
                 :key="id"
                 class="participant">
                 <div class="track">
-
+                    <div
+                        class="progress"
+                        :style="`height: ${completed}%;`">
+                    </div>
                 </div>
 
-                <div class="image">
-
+                <div class="image-container">
+                    <img
+                        :src="sprite.front"
+                        :alt="name" />
                 </div>
             </div>
+
+            <carnival-event-pop-up
+                v-if="popUp.show"
+                :image="require('@/assets/images/coin.svg')"
+                :count="150"
+                item="Pokécoins"
+                :victory="victory"
+                :text="popUp.text" />
 
         </div>
 
@@ -35,22 +48,31 @@
 
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
     import PokemonList from '@/js/components/PokemonList.vue'
+    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
+
+    import { getInRange } from '@/js/mixins/randomGenerator'
 
     export default {
         name: 'pokemon-dash',
 
         components: {
             CommonLoader,
-            PokemonList
+            PokemonList,
+            CarnivalEventPopUp
         },
 
         data() {
             return {
                 loading: true,
                 pokemonList: null,
-                participants: null
+                participants: null,
+                victory: null,
+                popUp: {
+                    show: false,
+                    text: null
+                }
             }
         },
 
@@ -89,19 +111,67 @@
                         caughtId: pokemon.caughtId,
                         exp: pokemon.exp,
                         level: pokemonDetails.getLevel(pokemon.exp),
+                        stats: pokemonDetails.getStat(pokemon.exp),
                         ...pokemonDetails
                     })
                 })
             },
 
+            handleRaceCompleted() {
+                const completions = this.participants.map(({ completed}) => completed)
+                this.victory = completions.indexOf(Math.max(...completions)) === 3
+                if (this.victory) {
+                    this.popUp.text = "You've won Pokécoins"
+                    this.updatePlayerCoins(150)
+                }
+                else
+                    this.popUp.text = 'Better luck next time'
+                setTimeout(() => {
+                    this.popUp.show = true
+                }, 1000)
+            },
+
+            startRace() {
+                const race = setInterval(() => {
+                    this.participants
+                        .forEach(pokemon => {
+                            pokemon.completed += (pokemon.stats.speed * Math.random() * 0.9 + 1.1) / 125
+                        })
+                    if (this.participants.some(({ completed }) => completed >= 100)) {
+                        clearInterval(race)
+                        this.handleRaceCompleted()
+                    }
+                }, 10)
+            },
+
+            setOpponentStats(selectedPokemonLevel) {
+                this.participants.forEach(pokemon => 
+                    pokemon.stats = pokemon.getStat(
+                        pokemon.getExpByLevel(
+                            getInRange(
+                                Math.max(Math.floor(selectedPokemonLevel * 0.8), 5),
+                                Math.min(Math.floor(selectedPokemonLevel * 1.5), 100)
+                            )
+                        )
+                    )
+                )
+            },
+
             handleSelectPokemon(index) {
-                this.participants.push(this.pokemonList[index])
+                const selectedPokemon = this.pokemonList[index]
+                this.setOpponentStats(selectedPokemon.level)
+                this.participants.push(selectedPokemon)
+                this.participants.forEach(pokemon => pokemon.completed = 0)
+                setTimeout(() => {
+                    this.startRace()
+                }, 3000)
             },
 
             ...mapActions([
                 'getCarnivalPokemon',
                 'getPokemonById',
-                'updateCarnivalEntry'
+                'updateCarnivalEntry',
+                'updatePlayerCoins'
             ])
         }
     }

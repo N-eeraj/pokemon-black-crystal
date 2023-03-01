@@ -11,15 +11,30 @@
         height: 100%;
 
         .track {
+            @include main.flex($align: flex-end);
             width: 100%;
             height: calc(100% - clamp(75px, 10%, 100px));
             border: 0px dashed carnival.$pokemon-dash-white;
+
+            .progress {
+                width: 5px;
+                border-radius: 10px 10px 0 0;
+                background-color: carnival.$pokemon-dash-white;
+            }
         }
     
-        .image {
+        .image-container {
             width: 100%;
             height: clamp(75px, 10%, 100px);
+            padding: 5%;
             background-color: carnival.$pokemon-dash-white;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: center;
+            }
         }
         
         &:not(:last-of-type) .track {
