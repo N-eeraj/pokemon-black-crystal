@@ -3,9 +3,22 @@
         <common-loader v-if="loading" />
 
         <div
-            v-else-if="selectedPokemon"
+            v-else-if="participants.length === 4"
             id="pokemon_dash">
-            {{ selectedPokemon }}
+
+            <div
+                v-for="({ id }) in participants"
+                :key="id"
+                class="participant">
+                <div class="track">
+
+                </div>
+
+                <div class="image">
+
+                </div>
+            </div>
+
         </div>
 
         <pokemon-list
@@ -37,8 +50,7 @@
             return {
                 loading: true,
                 pokemonList: null,
-                participants: null,
-                selectedPokemon: null
+                participants: null
             }
         },
 
@@ -83,12 +95,13 @@
             },
 
             handleSelectPokemon(index) {
-                this.selectedPokemon = this.pokemonList[index]
+                this.participants.push(this.pokemonList[index])
             },
 
             ...mapActions([
                 'getCarnivalPokemon',
-                'getPokemonById'
+                'getPokemonById',
+                'updateCarnivalEntry'
             ])
         }
     }
