@@ -6,6 +6,29 @@
             v-else-if="participants.length === 4"
             id="block_smash">
 
+            <div class="participants-container">
+                <div
+                    v-for="({ id, blocks, name, sprite }) in participants"
+                    :key="id"
+                    class="participant">
+
+                    <div class="image-container">
+                        <img
+                            :src="sprite.front"
+                            :alt="name" />
+                    </div>
+                    <div
+                        v-for="(block, index) in blocks"
+                        :key="index"
+                        class="block">
+                    </div>
+                </div>
+            </div>
+
+            <button class="smash">
+                Smash
+            </button>
+
             <carnival-event-pop-up
                 v-if="popUp.show"
                 :image="require('@/assets/images/coin.svg')"
@@ -115,7 +138,7 @@
                 const selectedPokemon = this.pokemonList[index]
                 this.setOpponentStats(selectedPokemon.level)
                 this.participants.push(selectedPokemon)
-                this.participants.forEach(pokemon => pokemon.completed = 0)
+                this.participants.forEach(pokemon => pokemon.blocks = 100)
                 console.log(this.participants)
             },
 
