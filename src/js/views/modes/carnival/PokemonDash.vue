@@ -117,7 +117,7 @@
             },
 
             handleRaceCompleted() {
-                const completions = this.participants.map(({ completed}) => completed)
+                const completions = this.participants.map(({ completed }) => completed)
                 this.victory = completions.indexOf(Math.max(...completions)) === 3
                 if (this.victory) {
                     this.popUp.text = "You've won Pokécoins"

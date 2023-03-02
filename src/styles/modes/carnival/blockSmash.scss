@@ -7,18 +7,18 @@
     @include main.flex($direction: column);
 
     .participants-container {
-        @include main.flex;
+        @include main.flex($align: flex-end);
         width: 100%;
         height: 90%;
 
         .participant {
             @include main.flex($direction: column, $justify: flex-end);
             width: 25%;
+            height: 100%;
 
             .image-container {
                 object-fit: contain;
                 object-position: center;
-                padding: 5%;
 
                 img {
                     width: 100%;
@@ -28,7 +28,7 @@
 
             .block {
                 width: 100%;
-                height: 1%;
+                height: 2.5%;
                 background-color: carnival.$block-smash-block-background;
                 border: 1px solid carnival.$block-smash-block-border;
             }
