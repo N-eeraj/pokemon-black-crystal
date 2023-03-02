@@ -1,0 +1,7 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/carnival";
+
+#block_smash {
+    @include main.full-screen;
+    @include main.flex;
+}
