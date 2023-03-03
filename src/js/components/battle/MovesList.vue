@@ -65,13 +65,13 @@
 
         computed: {
             moveList() {
-                const trainer = this.getBattleData.trainer
+                const trainer = this.battleData.trainer
                 return trainer.partyList[trainer.currentPokemonIndex].movesList.filter(move => move.pp)
             },
 
             ...mapGetters([
-                'getBattleData'
-            ]),
+                'battleData'
+            ])
         }
     }
 </script>

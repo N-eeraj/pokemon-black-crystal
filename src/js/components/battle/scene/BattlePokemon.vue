@@ -3,6 +3,15 @@
         class="battle-pokemon"
         :class="view">
 
+        <div v-if="showPartySize">
+            <img
+                v-for="(index) of partySize"
+                src="@/assets/images/pokeball-icon.png"
+                :key="index"
+                class="party-size-icon"
+                :class="{ fainted: index <= partySize - currentPartySize }"
+                :alt="index" />
+        </div>
         <div
             class="status"
             :class="{ caught: catchStatus?.caught }">
@@ -38,6 +47,8 @@
 
     import items from "@/assets/data/items"
 
+    import { mapGetters } from 'vuex'
+
     export default {
         name: 'battle-pokemon',
 
@@ -54,12 +65,20 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            partySize: {
+                type: Number,
+                required: true
             }
         },
 
         computed: {
             view() {
                 return this.isFoe ? 'front' : 'back'
+            },
+
+            trainer() {
+                return this.isFoe ? 'foe' : 'trainer'
             },
 
             hpClass() {
@@ -71,7 +90,19 @@
 
             pokeball() {
                 return items.find(item => item.id == this.catchStatus.ballUsed).image
-            }
+            },
+
+            showPartySize() {
+                return !this.isFoe || this.partySize > 1
+            },
+
+            currentPartySize() {
+                return this.battleData[this.trainer].partyList.length
+            },
+
+            ...mapGetters([
+                'battleData'
+            ])
         }
     }
 </script>

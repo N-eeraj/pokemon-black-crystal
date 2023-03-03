@@ -32,11 +32,13 @@
                     v-if="currentPokemon.foe"
                     :pokemon="currentPokemon.foe"
                     isFoe
-                    :catchStatus="catchStatus" />
+                    :catch-status="catchStatus"
+                    :party-size="foeParty.length" />
                 <div v-else></div> <!-- to leave space for foe -->
                 <battle-pokemon
                     v-if="currentPokemon.trainer"
-                    :pokemon="currentPokemon.trainer"/>
+                    :pokemon="currentPokemon.trainer"
+                    :party-size="playerParty.length" />
             </div>
         </template>
 
@@ -222,7 +224,7 @@
 
             availablePokeballs() {
                 const availableBalls = {}
-                Object.entries(this.getAvailableBalls()).forEach(([id, count]) => {
+                Object.entries(this.getAvailableBalls).forEach(([id, count]) => {
                     const { name, image } = items.find(item => item.id == id)
                     availableBalls[id] = {
                         count,
@@ -233,10 +235,6 @@
                 return availableBalls
             },
 
-            battleData() {
-                return this.getBattleData()
-            },
-
             currentPokemon() {
                 return {
                     foe: this.battleData?.foe.partyList[this.battleData.foe.currentPokemonIndex],
@@ -245,7 +243,9 @@
             },
             
             ...mapGetters([
-                'getMovesByName'
+                'getMovesByName',
+                'getAvailableBalls',
+                'battleData'
             ]),
         },
 
@@ -620,11 +620,6 @@
                     }, 2000)
                 }, 2000)
             },
-
-            ...mapGetters([
-                'getAvailableBalls',
-                'getBattleData'
-            ]),
 
             ...mapActions([
                 'getPokemonById',

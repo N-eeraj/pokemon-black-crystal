@@ -15,6 +15,15 @@
         align-self: flex-start
     }
 
+    .party-size-icon {
+        width: 25px;
+        transition: 200ms;
+
+        &.fainted {
+            filter: brightness(0.1);
+        }
+    }
+
     .status{
         @include main.flex($direction: column, $align: flex-start, $row: 5px);
         width: 100%;

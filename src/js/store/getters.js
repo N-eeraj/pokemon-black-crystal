@@ -7,7 +7,7 @@ export default {
         return state.pokemonData
     },
 
-    getBattleData(state) {
+    battleData(state) {
         return state.battle
     },
 
