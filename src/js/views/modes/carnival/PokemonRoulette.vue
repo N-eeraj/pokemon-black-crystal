@@ -126,9 +126,12 @@
 
         computed: {
             invalidBetAmount() {
-                if (isNaN(this.betAmount) || !this.betAmount)
-                    return true
-                return !Number.isInteger(Number(this.betAmount)) || this.playerCoins < this.betAmount
+                return (
+                    !Number.isInteger(Number(this.betAmount)) ||
+                    this.playerCoins < this.betAmount ||
+                    isNaN(this.betAmount) ||
+                    !Number(this.betAmount)
+                )
             },
 
             ...mapGetters([
@@ -186,6 +189,7 @@
             },
 
             startRotation() {
+                if (this.invalidBetAmount) return
                 this.toggleBetCollector()
                 this.angle = getInRange(18, 45) * 40
                 const betAmount = Number(this.betAmount)
