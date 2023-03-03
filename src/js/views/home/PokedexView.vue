@@ -218,6 +218,7 @@
         },
 
         async created() {
+            this.updateAudio('pokemon-list.mp3')
             const dexList = this.getPokedexList
             dexList.forEach(async pokemon => {
                 const details = {
@@ -260,6 +261,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'getPokemonById'
             ])
         }

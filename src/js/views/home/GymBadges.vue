@@ -25,7 +25,7 @@
 
     import NavigationBar from "@/js/components/UI/NavigationBar.vue"
 
-    import { mapGetters } from "vuex"
+    import { mapGetters, mapActions } from "vuex"
 
     import data from "@/assets/data/gym-levels.json"
 
@@ -50,6 +50,13 @@
 
         created() {
             this.badges = data
+            this.updateAudio('gym-badges.mp3')
+        },
+
+        methods: {
+            ...mapActions([
+                'updateAudio'
+            ])
         }
     }
 </script>

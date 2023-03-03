@@ -45,7 +45,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import DoughnutChart from '@/js/components/UI/DoughnutChart.vue'
 
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
 
     export default {
@@ -62,11 +62,19 @@
             ])
         },
 
+        created() {
+            this.updateAudio('achievements.mp3')
+        },
+
         methods: {
             getPecentage(achievement) {
                 return Math.round(achievement.victories / achievement.attempts * 100, 2) || 0
-            }
-        },
+            },
+
+            ...mapActions([
+                'updateAudio'
+            ])
+        }
     }
 </script>
 

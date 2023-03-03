@@ -46,6 +46,7 @@
         },
 
         created() {
+            this.updateAudio('pokemon-list.mp3')
             this.listType = this.$route.params.type
             this.setList()
         },
@@ -85,6 +86,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'getPokemonById',
                 'rearrangePlayerPokemon'
             ])

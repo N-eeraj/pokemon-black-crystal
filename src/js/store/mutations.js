@@ -14,6 +14,7 @@ export default {
         if (currentAudio)
             currentAudio.pause()
         currentAudio = new Audio(audioFile)
+        currentAudio.muted = !state.gameData.sound
         currentAudio.loop = true
         currentAudio.play()
     },
@@ -30,6 +31,7 @@ export default {
 
     toggleSound(state) {
         state.gameData.sound = !state.gameData.sound
+        currentAudio.muted = !state.gameData.sound
         encryptAndSave()
     },
 

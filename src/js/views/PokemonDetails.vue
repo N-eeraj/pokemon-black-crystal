@@ -217,6 +217,7 @@
         },
 
         created() {
+            this.updateAudio('pokemon-details.mp3')
             this.initialize()
         },
 
@@ -465,6 +466,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'getPokemonById',
                 'getPokemonByEncounterId',
                 'movePokemon',

@@ -22,7 +22,8 @@ export default {
         else commit('updateOfflineStats', isOffline)
     },
 
-    updateAudio({ commit }, audio) {
+    updateAudio({ commit, state }, audio) {
+        if (state.audio === audio) return
         commit('updateAudio', audio)
     },
 

@@ -115,6 +115,10 @@
             ])
         },
 
+        mounted() {
+            this.updateAudio('home.mp3')
+        },
+
         methods: {
             editPlayer() {
                 if (this.editView) return
@@ -143,6 +147,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'savePlayerInfo'
             ])
         }
