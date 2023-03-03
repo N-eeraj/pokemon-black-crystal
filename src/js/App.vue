@@ -1,19 +1,24 @@
 <template>
     <duplicate-screen v-if="duplicate" />
+
     <template v-else>
         <offline-screen v-if="isOffline" />
+
         <template v-else>
             <splash-screen
                 v-if="showSplashScreen"
                 @loading-complete="startGame" />
+
             <router-view
                 v-else
                 id="main" />
+
             <evolution-pop-up
                 v-if="evolutionReadyPokemon.length"
                 :pokemon-list="evolutionReadyPokemon"
                 class="global-evolution-pop-up"
                 @completed-evolutions="handleCompletedEvolutions" />
+
             <rotate-screen v-if="isSmallScreen" />
         </template>
     </template>
@@ -73,8 +78,9 @@
         },
 
         watch: {
-            $route(to) {
-                if (to.name === 'NotFound') return this.showSplashScreen = false
+            $route({ name }) {
+                if (name === 'NotFound')
+                    return this.showSplashScreen = false
             },
 
             checkEvolution(to) {

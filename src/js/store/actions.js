@@ -22,6 +22,10 @@ export default {
         else commit('updateOfflineStats', isOffline)
     },
 
+    updateAudio({ commit }, audio) {
+        commit('updateAudio', audio)
+    },
+
     async cachePokemonById({ commit }, id) {
         const pokemon = await Pokemon(id)
         commit('storePokemonDataByPokemon', pokemon)

@@ -3,7 +3,7 @@
         class="battle-pokemon"
         :class="view">
 
-        <div v-if="showPartySize">
+        <div>
             <img
                 v-for="(index) of partySize"
                 src="@/assets/images/pokeball-icon.png"
@@ -90,10 +90,6 @@
 
             pokeball() {
                 return items.find(item => item.id == this.catchStatus.ballUsed).image
-            },
-
-            showPartySize() {
-                return !this.isFoe || this.partySize > 1
             },
 
             currentPartySize() {

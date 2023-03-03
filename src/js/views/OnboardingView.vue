@@ -172,6 +172,7 @@
         },
 
         created() {
+            this.updateAudio('introduction.mp3')
             this.story = data.story
             this.starters = data.starters
             this.initData = data.gameData
@@ -268,12 +269,14 @@
             },
 
             handleMatchCompleteion(victory) {
+                this.updateAudio('introduction.mp3')
                 this.onboarding.rivalBattle = victory
                 this.battle.start = false
                 this.nextDialogue()
             },
 
             ...mapActions([
+                'updateAudio',
                 'cachePokemonById',
                 'saveGameData'
             ])

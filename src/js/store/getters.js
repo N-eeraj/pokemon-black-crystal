@@ -3,6 +3,10 @@ export default {
         return state.isOffline
     },
 
+    currentAudio(state) {
+        return state.audio
+    },
+
     getPokemon(state) {
         return state.pokemonData
     },

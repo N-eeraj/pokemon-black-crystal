@@ -273,6 +273,7 @@
         },
 
         mounted() {
+            this.updateAudio('battle.mp3')
             if (!this.isMultiplayer) return
             this.startCountdown()
         },
@@ -622,6 +623,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'getPokemonById',
                 'setBattleData',
                 'reArrangePartyPokemon',

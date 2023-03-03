@@ -12,6 +12,7 @@ export default createStore({
             movesData: {},
             typesData: {},
             growthRateData: {},
+            audio: null,
             battle: null,
             checkEvolution: false,
             carnivalEntry: null

@@ -91,6 +91,10 @@
             }
         },
 
+        mounted() {
+            this.updateAudio('foe-trainer.mp3')
+        },
+
         methods: {
             emitClose() {
                 this.$emit('close')
@@ -112,6 +116,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'setBattleData'
             ])
         },

@@ -1,9 +1,21 @@
 import { encryptAndSave } from "@/js/mixins/common"
 import { moveDamage } from "@/js/mixins/calculations"
 
+let currentAudio
+
 export default {
     updateOfflineStats(state, status) {
         state.isOffline = status
+    },
+
+    updateAudio(state, audio) {
+        state.audio = audio
+        const audioFile = require(`@/assets/audio/${audio}`)
+        if (currentAudio)
+            currentAudio.pause()
+        currentAudio = new Audio(audioFile)
+        currentAudio.loop = true
+        currentAudio.play()
     },
     
     saveGameData(state, data) {
