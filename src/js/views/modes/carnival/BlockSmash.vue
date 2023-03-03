@@ -149,12 +149,20 @@
                 this.start = false
                 const completions = this.participants.map(({ balance }) => balance)
                 this.victory = completions.indexOf(Math.min(...completions)) === 3
+                let happiness
                 if (this.victory) {
                     this.popUp.text = "You've won Pokécoins"
                     this.updatePlayerCoins(200)
+                    happiness = 20
                 }
-                else
+                else {
                     this.popUp.text = 'Better luck next time'
+                    happiness = 10
+                }
+                this.updatePokemonHappiness({
+                    id: this.participants[3].caughtId,
+                    happiness
+                })
                 setTimeout(() => {
                     this.popUp.show = true
                 }, 1000)
@@ -200,6 +208,7 @@
                 'getCarnivalPokemon',
                 'getPokemonById',
                 'updateCarnivalEntry',
+                'updatePokemonHappiness',
                 'updatePlayerCoins'
             ])
         }
