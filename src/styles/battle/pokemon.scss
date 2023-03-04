@@ -17,10 +17,10 @@
 
     .party-size-icon {
         width: 25px;
-        transition: 200ms;
 
         &.fainted {
             filter: brightness(0.1);
+            transition: 200ms;
         }
     }
 

@@ -1236,5 +1236,519 @@
             "image": "trainers/brycen.png",
             "name": "Monk Sang"
         }
+    },
+    {
+        "level": 71,
+        "party": [
+            {
+                "pokemon": 162,
+                "exp": 20000
+            },
+            {
+                "pokemon": 114,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Florist Loris"
+        }
+    },
+    {
+        "level": 72,
+        "party": [
+            {
+                "pokemon": 57,
+                "exp": 26000
+            },
+            {
+                "pokemon": 175,
+                "exp": 28000
+            }
+        ],
+        "details": {
+            "image": "trainers/cheren.png",
+            "name": "Teacher Clark"
+        }
+    },
+    {
+        "level": 73,
+        "party": [
+            {
+                "pokemon": 37,
+                "exp": 20000
+            },
+            {
+                "pokemon": 38,
+                "exp": 28000
+            }
+        ],
+        "details": {
+            "image": "trainers/caitin.png",
+            "name": "Baker Fiona"
+        }
+    },
+    {
+        "level": 74,
+        "party": [
+            {
+                "pokemon": 95,
+                "exp": 20000
+            },
+            {
+                "pokemon": 259,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/bianca.png",
+            "name": "Explorer Selina"
+        }
+    },
+    {
+        "level": 75,
+        "party": [
+            {
+                "pokemon": 65,
+                "exp": 32000
+            }
+        ],
+        "details": {
+            "image": "trainers/brycen.png",
+            "name": "Monk Luther"
+        }
+    },
+    {
+        "level": 76,
+        "party": [
+            {
+                "pokemon": 100,
+                "exp": 4000
+            },
+            {
+                "pokemon": 100,
+                "exp": 6000
+            },
+            {
+                "pokemon": 100,
+                "exp": 15000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Nerd Nick"
+        }
+    },
+    {
+        "level": 77,
+        "party": [
+            {
+                "pokemon": 172,
+                "exp": 10000
+            },
+            {
+                "pokemon": 173,
+                "exp": 10000
+            },
+            {
+                "pokemon": 174,
+                "exp": 10000
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Teacher Katty"
+        }
+    },
+    {
+        "level": 78,
+        "party": [
+            {
+                "pokemon": 261,
+                "exp": 2000
+            },
+            {
+                "pokemon": 261,
+                "exp": 7000
+            },
+            {
+                "pokemon": 262,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/lucy.png",
+            "name": "Goth Victora"
+        }
+    },
+    {
+        "level": 79,
+        "party": [
+            {
+                "pokemon": 281,
+                "exp": 29000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Courtney"
+        }
+    },
+    {
+        "level": 80,
+        "party": [
+            {
+                "pokemon": 46,
+                "exp": 10000
+            },
+            {
+                "pokemon": 43,
+                "exp": 10000
+            },
+            {
+                "pokemon": 192,
+                "exp": 10000
+            },
+            {
+                "pokemon": 315,
+                "exp": 18000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Florist Liz"
+        }
+    },
+    {
+        "level": 81,
+        "party": [
+            {
+                "pokemon": 342,
+                "exp": 32000
+            }
+        ],
+        "details": {
+            "image": "trainers/marlon.png",
+            "name": "Diver Marlon"
+        }
+    },
+    {
+        "level": 82,
+        "party": [
+            {
+                "pokemon": 25,
+                "exp": 10000
+            },
+            {
+                "pokemon": 125,
+                "exp": 15000
+            },
+            {
+                "pokemon": 299,
+                "exp": 18000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Nerd Throton"
+        }
+    },
+    {
+        "level": 83,
+        "party": [
+            {
+                "pokemon": 41,
+                "exp": 12500
+            },
+            {
+                "pokemon": 42,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Hugh"
+        }
+    },
+    {
+        "level": 84,
+        "party": [
+            {
+                "pokemon": 31,
+                "exp": 28000
+            },
+            {
+                "pokemon": 34,
+                "exp": 28000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Ross"
+        }
+    },
+    {
+        "level": 85,
+        "party": [
+            {
+                "pokemon": 92,
+                "exp": 32000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Siri"
+        }
+    },
+    {
+        "level": 86,
+        "party": [
+            {
+                "pokemon": 122,
+                "exp": 19000
+            },
+            {
+                "pokemon": 127,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Nerd Brian"
+        }
+    },
+    {
+        "level": 87,
+        "party": [
+            {
+                "pokemon": 123,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/bugsy.png",
+            "name": "Bug catcher Lucy"
+        }
+    },
+    {
+        "level": 88,
+        "party": [
+            {
+                "pokemon": 218,
+                "exp": 20000
+            },
+            {
+                "pokemon": 220,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/cheren.png",
+            "name": "Teacher Michael"
+        }
+    },
+    {
+        "level": 89,
+        "party": [
+            {
+                "pokemon": 228,
+                "exp": 12500
+            },
+            {
+                "pokemon": 231,
+                "exp": 24000
+            },
+            {
+                "pokemon": 241,
+                "exp": 28000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Gladion"
+        }
+    },
+    {
+        "level": 90,
+        "party": [
+            {
+                "pokemon": 289,
+                "exp": 40000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Walter"
+        }
+    },
+    {
+        "level": 91,
+        "party": [
+            {
+                "pokemon": 292,
+                "exp": 12500
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Teacher Hannah"
+        }
+    },
+    {
+        "level": 92,
+        "party": [
+            {
+                "pokemon": 106,
+                "exp": 24000
+            },
+            {
+                "pokemon": 107,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/brycen.png",
+            "name": "Monk Brycen"
+        }
+    },
+    {
+        "level": 93,
+        "party": [
+            {
+                "pokemon": 105,
+                "exp": 32000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Larry"
+        }
+    },
+    {
+        "level": 94,
+        "party": [
+            {
+                "pokemon": 214,
+                "exp": 28000
+            }
+        ],
+        "details": {
+            "image": "trainers/bugsy.png",
+            "name": "Bug catcher Ann"
+        }
+    },
+    {
+        "level": 95,
+        "party": [
+            {
+                "pokemon": 286,
+                "exp": 14000
+            },
+            {
+                "pokemon": 57,
+                "exp": 24000
+            },
+            {
+                "pokemon": 67,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/cheren.png",
+            "name": "Teacher Pierce"
+        }
+    },
+    {
+        "level": 96,
+        "party": [
+            {
+                "pokemon": 307,
+                "exp": 12500
+            },
+            {
+                "pokemon": 308,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/brycen.png",
+            "name": "Monk Chun"
+        }
+    },
+    {
+        "level": 97,
+        "party": [
+            {
+                "pokemon": 108,
+                "exp": 18000
+            },
+            {
+                "pokemon": 109,
+                "exp": 24000
+            },
+            {
+                "pokemon": 111,
+                "exp": 36000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Nua"
+        }
+    },
+    {
+        "level": 98,
+        "party": [
+            {
+                "pokemon": 69,
+                "exp": 10000
+            },
+            {
+                "pokemon": 70,
+                "exp": 20000
+            },
+            {
+                "pokemon": 71,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Florist Jasmine"
+        }
+    },
+    {
+        "level": 99,
+        "party": [
+            {
+                "pokemon": 213,
+                "exp": 12000
+            },
+            {
+                "pokemon": 130,
+                "exp": 30000
+            },
+            {
+                "pokemon": null,
+                "exp": 36000
+            }
+        ],
+        "details": {
+            "image": "brendan.png",
+            "name": "Foe Brendan"
+        }
+    },
+    {
+        "level": 100,
+        "party": [
+            {
+                "pokemon": 248,
+                "exp": 36000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Ash"
+        }
     }
 ]

@@ -14,7 +14,8 @@ export default {
         if (currentAudio)
             currentAudio.pause()
         currentAudio = new Audio(audioFile)
-        currentAudio.muted = !state.gameData.sound
+        if (state.gameData)
+            currentAudio.muted = !state.gameData.sound
         currentAudio.loop = true
         currentAudio.play()
     },
