@@ -12,7 +12,7 @@
 
     import ItemsList from "@/js/components/ItemsList.vue"
 
-    import { mapGetters } from "vuex"
+    import { mapGetters, mapActions } from "vuex"
 
     import items from "@/assets/data/items"
 
@@ -36,6 +36,7 @@
         },
 
         created() {
+            this.updateAudio('shop.mp3')
             Object.entries(this.bagItems).forEach(([id, count]) => {
                 const { name, description, image } = items.find(item => item.id == id)
                 this.bagItemsList.push({
@@ -46,6 +47,12 @@
                     image
                 })
             })
+        },
+
+        methods: {
+        ...mapActions([
+                'updateAudio'
+            ])
         }
 
     }

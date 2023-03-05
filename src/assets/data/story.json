@@ -1750,5 +1750,121 @@
             "image": "trainers/pryce.png",
             "name": "Elder Ash"
         }
+    },
+    {
+        "level": 101,
+        "party": [
+            {
+                "pokemon": 296,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/marlon.png",
+            "name": "Gym Member Will"
+        }
+    },
+    {
+        "level": 102,
+        "party": [
+            {
+                "pokemon": 307,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Gym Member Garp"
+        }
+    },
+    {
+        "level": 103,
+        "party": [
+            {
+                "pokemon": 297,
+                "exp": 28500
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Gym Member Neha"
+        }
+    },
+    {
+        "level": 104,
+        "party": [
+            {
+                "pokemon": 62,
+                "exp": 32000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Gym Member Sanjay"
+        }
+    },
+    {
+        "level": 105,
+        "party": [
+            {
+                "pokemon": 66,
+                "exp": 10000
+            },
+            {
+                "pokemon": 67,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Minnie"
+        }
+    },
+    {
+        "level": 106,
+        "party": [
+            {
+                "pokemon": 106,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Gym Member Luca"
+        }
+    },
+    {
+        "level": 107,
+        "party": [
+            {
+                "pokemon": 107,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "Gym Member Dann"
+        }
+    },
+    {
+        "level": 108,
+        "party": [
+            {
+                "pokemon": 286,
+                "exp": 25000
+            },
+            {
+                "pokemon": 237,
+                "exp": 32000
+            },
+            {
+                "pokemon": 68,
+                "exp": 36000
+            }
+        ],
+        "details": {
+            "image": "gym-leaders/bruno.png",
+            "name": "Gym Leader Bruno"
+        }
     }
 ]

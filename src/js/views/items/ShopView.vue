@@ -128,6 +128,7 @@
         },
 
         created() {
+            this.updateAudio('shop.mp3')
             this.shopItems = items.sort((first, second) => first.price - second.price)
         },
 
@@ -158,6 +159,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'updateBag',
                 'updatePlayerCoins'
             ])
