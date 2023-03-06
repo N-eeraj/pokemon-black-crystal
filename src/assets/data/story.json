@@ -1866,5 +1866,200 @@
             "image": "gym-leaders/bruno.png",
             "name": "Gym Leader Bruno"
         }
+    },
+    {
+        "level": 109,
+        "party": [
+            {
+                "pokemon": 43,
+                "exp": 3000
+            },
+            {
+                "pokemon": 102,
+                "exp": 7500
+            },
+            {
+                "pokemon": 271,
+                "exp": 10000
+            },
+            {
+                "pokemon": 274,
+                "exp": 15000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Shuri"
+        }
+    },
+    {
+        "level": 110,
+        "party": [
+            {
+                "pokemon": 329,
+                "exp": 7000
+            },
+            {
+                "pokemon": 331,
+                "exp": 10000
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "School boy Shane"
+        }
+    },
+    {
+        "level": 111,
+        "party": [
+            {
+                "pokemon": 241,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Nerd Sinclair"
+        }
+    },
+    {
+        "level": 112,
+        "party": [
+            {
+                "pokemon": 290,
+                "exp": 20000
+            },
+            {
+                "pokemon": 287,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/caitin.png",
+            "name": "Baker Laura"
+        }
+    },
+    {
+        "level": 113,
+        "party": [
+            {
+                "pokemon": 12,
+                "exp": 10000
+            },
+            {
+                "pokemon": 15,
+                "exp": 10000
+            },
+            {
+                "pokemon": 269,
+                "exp": 10000
+            },
+            {
+                "pokemon": 267,
+                "exp": 10000
+            }
+        ],
+        "details": {
+            "image": "trainers/bugsy.png",
+            "name": "Bug catcher Joyce"
+        }
+    },
+    {
+        "level": 114,
+        "party": [
+            {
+                "pokemon": 325,
+                "exp": 28000
+            }
+        ],
+        "details": {
+            "image": "trainers/brycen.png",
+            "name": "Monk Bruce"
+        }
+    },
+    {
+        "level": 115,
+        "party": [
+            {
+                "pokemon": 109,
+                "exp": 27500
+            },
+            {
+                "pokemon": 50,
+                "exp": 27500
+            }
+        ],
+        "details": {
+            "image": "trainers/bianca.png",
+            "name": "Explorer Bianca"
+        }
+    },
+    {
+        "level": 116,
+        "party": [
+            {
+                "pokemon": 216,
+                "exp": 18500
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "School boy Jimmy"
+        }
+    },
+    {
+        "level": 117,
+        "party": [
+            {
+                "pokemon": 81,
+                "exp": 20000
+            },
+            {
+                "pokemon": 101,
+                "exp": 26000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Julian"
+        }
+    },
+    {
+        "level": 118,
+        "party": [
+            {
+                "pokemon": 116,
+                "exp": 7500
+            },
+            {
+                "pokemon": 131,
+                "exp": 12000
+            },
+            {
+                "pokemon": 184,
+                "exp": 18000
+            }
+        ],
+        "details": {
+            "image": "trainers/nessa.png",
+            "name": "Surfer Rachel"
+        }
+    },
+    {
+        "level": 119,
+        "party": [
+            {
+                "pokemon": 139,
+                "exp": 20000
+            },
+            {
+                "pokemon": 141,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Rowan"
+        }
     }
 ]
