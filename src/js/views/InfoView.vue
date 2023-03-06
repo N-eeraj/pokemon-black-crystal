@@ -64,6 +64,8 @@
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
 
+    import { mapActions } from 'vuex'
+
     import info from '@/assets/data/info'
 
     export default {
@@ -81,6 +83,7 @@
     },
 
     created() {
+        this.updateAudio('info.mp3')
         this.pageData = info
     },
 
@@ -94,7 +97,11 @@
                     this.$router.push('/help')
                     break
             }
-        }
+        },
+
+        ...mapActions([
+            'updateAudio'
+        ])
     }
 }
 </script>

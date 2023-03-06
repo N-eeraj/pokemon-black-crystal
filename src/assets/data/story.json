@@ -2061,5 +2061,94 @@
             "image": "trainers/pryce.png",
             "name": "Elder Rowan"
         }
+    },
+    {
+        "level": 120,
+        "party": [
+            {
+                "pokemon": 81,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Florist Luna"
+        }
+    },
+    {
+        "level": 121,
+        "party": [
+            {
+                "pokemon": 186,
+                "exp": 15000
+            },
+            {
+                "pokemon": 159,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/nessa.png",
+            "name": "Surfer Nessa"
+        }
+    },
+    {
+        "level": 122,
+        "party": [
+            {
+                "pokemon": 203,
+                "exp": 10000
+            },
+            {
+                "pokemon": 234,
+                "exp": 15000
+            },
+            {
+                "pokemon": 207,
+                "exp": 10000
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Teacher Fashua"
+        }
+    },
+    {
+        "level": 123,
+        "party": [
+            {
+                "pokemon": 79,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/marlon.png",
+            "name": "Diver Luke"
+        }
+    },
+    {
+        "level": 124,
+        "party": [
+            {
+                "pokemon": 193,
+                "exp": 3600
+            },
+            {
+                "pokemon": 291,
+                "exp": 12500
+            },
+            {
+                "pokemon": 127,
+                "exp": 12000
+            },
+            {
+                "pokemon": 214,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/bugsy.png",
+            "name": "Bug catcher Vanessa"
+        }
     }
 ]

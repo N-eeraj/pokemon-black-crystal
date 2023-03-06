@@ -106,6 +106,7 @@
             },
 
             endBattle(victory) {
+                this.updateAudio('foe-trainer.mp3')
                 this.battle.ongoing = false
                 this.$emit('completedMatch', victory)
             },

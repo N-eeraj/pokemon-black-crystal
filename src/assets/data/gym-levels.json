@@ -13,22 +13,22 @@
     },
     {
         "name": "electric",
-        "level": 176
+        "level": 168
     },
     {
         "name": "fire",
-        "level": 256
+        "level": 234
     },
     {
         "name": "normal",
-        "level": 346
+        "level": 306
     },
     {
         "name": "flying",
-        "level": 444
+        "level": 386
     },
     {
         "name": "fairy",
-        "level": 548
+        "level": 476
     }
 ]
