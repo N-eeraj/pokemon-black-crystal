@@ -29,6 +29,8 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import BannerCard from '@/js/components/UI/BannerCard.vue'
 
+    import { mapActions } from 'vuex'
+
     import locations from '@/assets/data/locations.json'
 
     export default {
@@ -43,6 +45,16 @@
             return {
                 locations
             }
+        },
+
+        mounted() {
+            this.updateAudio('wild.mp3')
+        },
+
+        methods: {
+            ...mapActions([
+                'updateAudio'
+            ])
         }
     }
 

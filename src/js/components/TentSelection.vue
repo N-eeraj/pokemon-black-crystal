@@ -33,6 +33,8 @@
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue';
 
+    import { mapActions } from 'vuex'
+
     export default {
         name: 'tent-selection',
 
@@ -46,6 +48,10 @@
             }
         },
 
+        mounted() {
+            this.updateAudio('arcade.mp3')
+        },
+
         methods: {
             addPokeBall(index) {
                 if (this.selectedPokeballs.includes(index)) {
@@ -54,7 +60,11 @@
                 }
                 if (this.selectedPokeballs.length === 3) this.selectedPokeballs.shift()
                 this.selectedPokeballs.push(index)
-            }
+            },
+
+            ...mapActions([
+                'updateAudio'
+            ])
         }
     }
 

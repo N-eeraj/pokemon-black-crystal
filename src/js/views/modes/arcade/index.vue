@@ -35,6 +35,8 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import BannerCard from '@/js/components/UI/BannerCard.vue'
 
+    import { mapActions } from 'vuex'
+
     import arcade from '@/assets/data/arcade.json'
 
     export default {
@@ -51,6 +53,10 @@
             }
         },
 
+        mounted() {
+            this.updateAudio('arcade.mp3')
+        },
+
         methods: {
             handleArcadeItem(id) {
                 switch (id) {
@@ -64,7 +70,11 @@
                         this.$router.push('/mode/arcade/tower')
                         break
                 }
-            }
+            },
+
+            ...mapActions([
+                'updateAudio'
+            ])
         }
     }
 
