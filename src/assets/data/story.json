@@ -4,7 +4,7 @@
         "party": [
             {
                 "pokemon": 10,
-                "exp": 100
+                "exp": 50
             }
         ],
         "details": {
@@ -17,11 +17,11 @@
         "party": [
             {
                 "pokemon": 10,
-                "exp": 100
+                "exp": 50
             },
             {
                 "pokemon": 13,
-                "exp": 100
+                "exp": 50
             }
         ],
         "details": {
@@ -34,15 +34,11 @@
         "party": [
             {
                 "pokemon": 10,
-                "exp": 180
+                "exp": 125
             },
             {
-                "pokemon": 11,
-                "exp": 240
-            },
-            {
-                "pokemon": 12,
-                "exp": 400
+                "pokemon": 13,
+                "exp": 125
             }
         ],
         "details": {
@@ -55,11 +51,11 @@
         "party": [
             {
                 "pokemon": 16,
-                "exp": 400
+                "exp": 200
             },
             {
                 "pokemon": 69,
-                "exp": 400
+                "exp": 200
             }
         ],
         "details": {
@@ -72,11 +68,11 @@
         "party": [
             {
                 "pokemon": 23,
-                "exp": 600
+                "exp": 250
             },
             {
                 "pokemon": 336,
-                "exp": 600
+                "exp": 250
             }
         ],
         "details": {
@@ -89,11 +85,11 @@
         "party": [
             {
                 "pokemon": 118,
-                "exp": 800
+                "exp": 360
             },
             {
                 "pokemon": 183,
-                "exp": 800
+                "exp": 360
             }
         ],
         "details": {
@@ -106,15 +102,15 @@
         "party": [
             {
                 "pokemon": 311,
-                "exp": 800
+                "exp": 100
             },
             {
                 "pokemon": 312,
-                "exp": 800
+                "exp": 100
             },
             {
                 "pokemon": 100,
-                "exp": 800
+                "exp": 200
             }
         ],
         "details": {
@@ -127,15 +123,15 @@
         "party": [
             {
                 "pokemon": 52,
-                "exp": 800
+                "exp": 200
             },
             {
                 "pokemon": 300,
-                "exp": 800
+                "exp": 200
             },
             {
                 "pokemon": 270,
-                "exp": 1000
+                "exp": 250
             }
         ],
         "details": {
@@ -148,7 +144,7 @@
         "party": [
             {
                 "pokemon": 95,
-                "exp": 2400
+                "exp": 600
             }
         ],
         "details": {
@@ -161,7 +157,7 @@
         "party": [
             {
                 "pokemon": 77,
-                "exp": 2000
+                "exp": 500
             }
         ],
         "details": {
@@ -174,7 +170,7 @@
         "party": [
             {
                 "pokemon": 63,
-                "exp": 2000
+                "exp": 300
             }
         ],
         "details": {
@@ -187,11 +183,11 @@
         "party": [
             {
                 "pokemon": 177,
-                "exp": 1500
+                "exp": 750
             },
             {
                 "pokemon": 163,
-                "exp": 1500
+                "exp": 750
             }
         ],
         "details": {
@@ -204,15 +200,15 @@
         "party": [
             {
                 "pokemon": 129,
-                "exp": 1000
+                "exp": 420
             },
             {
                 "pokemon": 118,
-                "exp": 1000
+                "exp": 420
             },
             {
                 "pokemon": 129,
-                "exp": 1800
+                "exp": 800
             }
         ],
         "details": {
@@ -225,11 +221,11 @@
         "party": [
             {
                 "pokemon": 106,
-                "exp": 1000
+                "exp": 500
             },
             {
                 "pokemon": 107,
-                "exp": 1000
+                "exp": 500
             }
         ],
         "details": {
@@ -242,15 +238,11 @@
         "party": [
             {
                 "pokemon": 12,
-                "exp": 1200
-            },
-            {
-                "pokemon": 15,
-                "exp": 1200
+                "exp": 1000
             },
             {
                 "pokemon": null,
-                "exp": 1800
+                "exp": 1250
             }
         ],
         "details": {
@@ -263,7 +255,7 @@
         "party": [
             {
                 "pokemon": 74,
-                "exp": 1800
+                "exp": 500
             }
         ],
         "details": {
@@ -276,11 +268,11 @@
         "party": [
             {
                 "pokemon": 74,
-                "exp": 1800
+                "exp": 300
             },
             {
                 "pokemon": 95,
-                "exp": 3000
+                "exp": 1000
             }
         ],
         "details": {
@@ -293,15 +285,15 @@
         "party": [
             {
                 "pokemon": 74,
-                "exp": 2400
+                "exp": 1000
             },
             {
                 "pokemon": 299,
-                "exp": 4500
+                "exp": 1800
             },
             {
                 "pokemon": 95,
-                "exp": 6000
+                "exp": 3000
             }
         ],
         "details": {
@@ -366,7 +358,7 @@
         "party": [
             {
                 "pokemon": 101,
-                "exp": 3600
+                "exp": 4200
             }
         ],
         "details": {
@@ -379,11 +371,11 @@
         "party": [
             {
                 "pokemon": 349,
-                "exp": 2800
+                "exp": 2400
             },
             {
                 "pokemon": 318,
-                "exp": 2800
+                "exp": 2500
             }
         ],
         "details": {
@@ -395,12 +387,12 @@
         "level": 25,
         "party": [
             {
-                "pokemon": 307,
-                "exp": 2800
-            },
-            {
                 "pokemon": 333,
                 "exp": 3200
+            },
+            {
+                "pokemon": 307,
+                "exp": 2800
             }
         ],
         "details": {
@@ -412,12 +404,12 @@
         "level": 26,
         "party": [
             {
-                "pokemon": 312,
-                "exp": 2800
-            },
-            {
                 "pokemon": 129,
                 "exp": 3200
+            },
+            {
+                "pokemon": 312,
+                "exp": 2800
             }
         ],
         "details": {
@@ -430,11 +422,11 @@
         "party": [
             {
                 "pokemon": 114,
-                "exp": 3600
+                "exp": 2400
             },
             {
                 "pokemon": 213,
-                "exp": 3800
+                "exp": 2400
             }
         ],
         "details": {
@@ -447,11 +439,11 @@
         "party": [
             {
                 "pokemon": 231,
-                "exp": 3600
+                "exp": 2400
             },
             {
                 "pokemon": 273,
-                "exp": 4000
+                "exp": 2500
             }
         ],
         "details": {
@@ -464,15 +456,15 @@
         "party": [
             {
                 "pokemon": 1,
-                "exp": 5000
+                "exp": 1000
             },
             {
                 "pokemon": 4,
-                "exp": 5000
+                "exp": 1000
             },
             {
                 "pokemon": 7,
-                "exp": 5000
+                "exp": 1000
             }
         ],
         "details": {
@@ -484,16 +476,16 @@
         "level": 30,
         "party": [
             {
-                "pokemon": 98,
-                "exp": 5000
+                "pokemon": 90,
+                "exp": 750
             },
             {
-                "pokemon": 90,
-                "exp": 5000
+                "pokemon": 98,
+                "exp": 1000
             },
             {
                 "pokemon": 79,
-                "exp": 5000
+                "exp": 1250
             }
         ],
         "details": {
@@ -505,16 +497,16 @@
         "level": 31,
         "party": [
             {
-                "pokemon": 175,
-                "exp": 5000
+                "pokemon": 177,
+                "exp": 2000
             },
             {
-                "pokemon": 177,
-                "exp": 5000
+                "pokemon": 175,
+                "exp": 2000
             },
             {
                 "pokemon": 179,
-                "exp": 5000
+                "exp": 2000
             }
         ],
         "details": {
@@ -527,7 +519,7 @@
         "party": [
             {
                 "pokemon": 172,
-                "exp": 5500
+                "exp": 3200
             }
         ],
         "details": {
@@ -540,11 +532,11 @@
         "party": [
             {
                 "pokemon": 200,
-                "exp": 5500
+                "exp": 3200
             },
             {
                 "pokemon": 210,
-                "exp": 5500
+                "exp": 3600
             }
         ],
         "details": {
@@ -557,11 +549,11 @@
         "party": [
             {
                 "pokemon": 120,
-                "exp": 5500
+                "exp": 3000
             },
             {
                 "pokemon": 200,
-                "exp": 5500
+                "exp": 3000
             }
         ],
         "details": {
@@ -573,8 +565,8 @@
         "level": 35,
         "party": [
             {
-                "pokemon": 180,
-                "exp": 5500
+                "pokemon": 179,
+                "exp": 2000
             },
             {
                 "pokemon": 310,
@@ -590,46 +582,67 @@
         "level": 36,
         "party": [
             {
-                "pokemon": 180,
-                "exp": 5500
+                "pokemon": 7,
+                "exp": 2400
             },
             {
-                "pokemon": 181,
-                "exp": 5500
+                "pokemon": 158,
+                "exp": 2400
             },
             {
-                "pokemon": 182,
-                "exp": 5500
+                "pokemon": 258,
+                "exp": 2400
             }
         ],
         "details": {
             "image": "trainers/pryce.png",
-            "name": "Elder Magnus"
+            "name": "Gym Member Magnus"
         }
     },
     {
         "level": 37,
         "party": [
             {
-                "pokemon": 152,
-                "exp": 5500
+                "pokemon": 60,
+                "exp": 2400
             },
             {
-                "pokemon": 155,
-                "exp": 5500
+                "pokemon": 72,
+                "exp": 4800
             },
             {
-                "pokemon": 158,
-                "exp": 5500
+                "pokemon": 194,
+                "exp": 5000
             }
         ],
         "details": {
             "image": "trainers/whitney.png",
-            "name": "Lass Ann"
+            "name": "Gym Member Ann"
         }
     },
     {
         "level": 38,
+        "party": [
+            {
+                "pokemon": 79,
+                "exp": 7000
+            },
+            {
+                "pokemon": 119,
+                "exp": 7000
+            },
+            {
+                "pokemon": 130,
+                "exp": 10000
+            }
+        ],
+        "details": {
+            "image": "gym-leaders/misty.png",
+            "name": "Gym Leader Misty"
+        }
+    },
+    {
+        "level": 39,
         "party": [
             {
                 "pokemon": 269,
@@ -650,40 +663,23 @@
         }
     },
     {
-        "level": 39,
-        "party": [
-            {
-                "pokemon": 274,
-                "exp": 6000
-            },
-            {
-                "pokemon": 73,
-                "exp": 6000
-            }
-        ],
-        "details": {
-            "image": "trainers/gladion.png",
-            "name": "Rockstar Ricky"
-        }
-    },
-    {
         "level": 40,
         "party": [
             {
                 "pokemon": 12,
-                "exp": 4000
+                "exp": 2000
             },
             {
                 "pokemon": 15,
-                "exp": 4000
+                "exp": 2000
             },
             {
                 "pokemon": 267,
-                "exp": 4000
+                "exp": 2000
             },
             {
                 "pokemon": 269,
-                "exp": 4000
+                "exp": 2000
             }
         ],
         "details": {
@@ -709,11 +705,11 @@
         "party": [
             {
                 "pokemon": 129,
-                "exp": 4200
+                "exp": 5000
             },
             {
                 "pokemon": 349,
-                "exp": 4200
+                "exp": 6000
             }
         ],
         "details": {
@@ -726,11 +722,11 @@
         "party": [
             {
                 "pokemon": 118,
-                "exp": 4200
+                "exp": 6000
             },
             {
                 "pokemon": 120,
-                "exp": 4200
+                "exp": 8000
             }
         ],
         "details": {
@@ -743,11 +739,11 @@
         "party": [
             {
                 "pokemon": 119,
-                "exp": 4200
+                "exp": 10000
             },
             {
                 "pokemon": 121,
-                "exp": 4200
+                "exp": 15000
             }
         ],
         "details": {
@@ -759,20 +755,20 @@
         "level": 45,
         "party": [
             {
-                "pokemon": 118,
-                "exp": 4200
+                "pokemon": 120,
+                "exp": 10000
             },
             {
-                "pokemon": 120,
-                "exp": 4200
+                "pokemon": 118,
+                "exp": 10000
             },
             {
                 "pokemon": 119,
-                "exp": 4200
+                "exp": 10000
             },
             {
                 "pokemon": 121,
-                "exp": 4200
+                "exp": 12000
             }
         ],
         "details": {
@@ -785,15 +781,15 @@
         "party": [
             {
                 "pokemon": 119,
-                "exp": 5500
+                "exp": 10000
             },
             {
                 "pokemon": 121,
-                "exp": 5500
+                "exp": 12000
             },
             {
                 "pokemon": 8,
-                "exp": 7200
+                "exp": 10000
             }
         ],
         "details": {
@@ -805,16 +801,16 @@
         "level": 47,
         "party": [
             {
-                "pokemon": 7,
-                "exp": 2400
-            },
-            {
                 "pokemon": 130,
-                "exp": 8000
+                "exp": 10000
             },
             {
                 "pokemon": 8,
-                "exp": 6000
+                "exp": 7500
+            },
+            {
+                "pokemon": 259,
+                "exp": 7500
             }
         ],
         "details": {
@@ -827,33 +823,33 @@
         "party": [
             {
                 "pokemon": 129,
-                "exp": 8000
+                "exp": 10000
             },
             {
                 "pokemon": 130,
-                "exp": 9000
+                "exp": 15000
             }
         ],
         "details": {
             "image": "trainers/whitney.png",
-            "name": "Gym Member Whitney"
+            "name": "Lass Rosa"
         }
     },
     {
         "level": 49,
         "party": [
             {
-                "pokemon": 158,
+                "pokemon": 79,
                 "exp": 9000
             },
             {
-                "pokemon": 130,
+                "pokemon": 77,
                 "exp": 9000
             }
         ],
         "details": {
             "image": "trainers/lucy.png",
-            "name": "Gym Member Chirpy"
+            "name": "Goth Chirpy"
         }
     },
     {
@@ -861,50 +857,50 @@
         "party": [
             {
                 "pokemon": 350,
-                "exp": 9000
+                "exp": 17500
             }
         ],
         "details": {
             "image": "trainers/marlon.png",
-            "name": "Gym Member Chris"
+            "name": "Diver Chris"
         }
     },
     {
         "level": 51,
         "party": [
             {
-                "pokemon": 183,
-                "exp": 8000
+                "pokemon": 37,
+                "exp": 10000
             },
             {
-                "pokemon": 258,
-                "exp": 8000
+                "pokemon": 183,
+                "exp": 10000
             }
         ],
         "details": {
             "image": "trainers/gladion.png",
-            "name": "Gym Member Luke"
+            "name": "Rockstar Luke"
         }
     },
     {
         "level": 52,
         "party": [
             {
-                "pokemon": 7,
+                "pokemon": 39,
                 "exp": 6600
             },
             {
-                "pokemon": 158,
+                "pokemon": 209,
                 "exp": 6600
             },
             {
-                "pokemon": 258,
-                "exp": 6600
+                "pokemon": 261,
+                "exp": 8000
             }
         ],
         "details": {
             "image": "trainers/bianca.png",
-            "name": "Gym Member Robin"
+            "name": "Explorer Robin"
         }
     },
     {
@@ -912,37 +908,29 @@
         "party": [
             {
                 "pokemon": 79,
-                "exp": 15000
+                "exp": 10000
             }
         ],
         "details": {
             "image": "trainers/pryce.png",
-            "name": "Gym Member Jacob"
+            "name": "Elder Jacob"
         }
     },
     {
         "level": 54,
         "party": [
             {
-                "pokemon": 121,
-                "exp": 8000
-            },
-            {
-                "pokemon": 119,
-                "exp": 8000
-            },
-            {
-                "pokemon": 79,
+                "pokemon": 57,
                 "exp": 12000
             },
             {
-                "pokemon": 130,
-                "exp": 14000
+                "pokemon": null,
+                "exp": 10000
             }
         ],
         "details": {
-            "image": "gym-leaders/misty.png",
-            "name": "Gym Leader Misty"
+            "image": "brendan.png",
+            "name": "Foe Brendan"
         }
     },
     {
@@ -950,15 +938,15 @@
         "party": [
             {
                 "pokemon": 2,
-                "exp": 1000
+                "exp": 7500
             },
             {
                 "pokemon": 5,
-                "exp": 1000
+                "exp": 7500
             },
             {
                 "pokemon": 8,
-                "exp": 1000
+                "exp": 7500
             }
         ],
         "details": {
@@ -970,89 +958,81 @@
         "level": 56,
         "party": [
             {
-                "pokemon": 130,
-                "exp": 20000
+                "pokemon": 56,
+                "exp": 12000
             },
             {
-                "pokemon": null,
-                "exp": 24000
+                "pokemon": 60,
+                "exp": 10000
             }
         ],
         "details": {
-            "image": "brendan.png",
-            "name": "Foe Brendan"
+            "image": "trainers/throton.png",
+            "name": "Gym Member Rick"
         }
     },
     {
         "level": 57,
         "party": [
             {
-                "pokemon": 133,
-                "exp": 9000
-            },
-            {
-                "pokemon": 134,
+                "pokemon": 66,
                 "exp": 10000
             },
             {
-                "pokemon": 135,
-                "exp": 10000
-            },
-            {
-                "pokemon": 136,
-                "exp": 10000
+                "pokemon": 214,
+                "exp": 16000
             }
         ],
         "details": {
             "image": "trainers/pryce.png",
-            "name": "Elder Ronald"
+            "name": "Gym Member Ronald"
         }
     },
     {
         "level": 58,
         "party": [
             {
-                "pokemon": 29,
-                "exp": 8000
-            },
-            {
-                "pokemon": 32,
-                "exp": 8000
+                "pokemon": 236,
+                "exp": 12000
             }
         ],
         "details": {
             "image": "trainers/gladion.png",
-            "name": "Rockstar Pierce"
+            "name": "Gym Member Pierce"
         }
     },
     {
         "level": 59,
         "party": [
             {
-                "pokemon": 27,
-                "exp": 12000
-            },
-            {
-                "pokemon": 23,
+                "pokemon": 296,
                 "exp": 12000
             }
         ],
         "details": {
             "image": "trainers/caitin.png",
-            "name": "Baker Munroe"
+            "name": "Gym Member Munroe"
         }
     },
     {
         "level": 60,
         "party": [
             {
-                "pokemon": 185,
-                "exp": 18000
+                "pokemon": 106,
+                "exp": 16000
+            },
+            {
+                "pokemon": 107,
+                "exp": 16000
+            },
+            {
+                "pokemon": 237,
+                "exp": 16000
             }
         ],
         "details": {
-            "image": "trainers/jasmine.png",
-            "name": "Florist Vilma"
+            "image": "gym-leaders/bruno.png",
+            "name": "Gym Leader Bruno"
         }
     },
     {
@@ -1077,11 +1057,11 @@
         "party": [
             {
                 "pokemon": 339,
-                "exp": 18000
+                "exp": 16000
             },
             {
                 "pokemon": 341,
-                "exp": 18000
+                "exp": 16000
             }
         ],
         "details": {
@@ -1191,7 +1171,7 @@
         "party": [
             {
                 "pokemon": 330,
-                "exp": 30000
+                "exp": 17500
             }
         ],
         "details": {
@@ -1212,7 +1192,7 @@
             },
             {
                 "pokemon": 302,
-                "exp": 20000
+                "exp": 15000
             }
         ],
         "details": {
@@ -1225,11 +1205,11 @@
         "party": [
             {
                 "pokemon": 128,
-                "exp": 25000
+                "exp": 20000
             },
             {
                 "pokemon": 125,
-                "exp": 25000
+                "exp": 20000
             }
         ],
         "details": {
@@ -1242,11 +1222,11 @@
         "party": [
             {
                 "pokemon": 162,
-                "exp": 20000
+                "exp": 15000
             },
             {
                 "pokemon": 114,
-                "exp": 24000
+                "exp": 18000
             }
         ],
         "details": {
@@ -1259,11 +1239,11 @@
         "party": [
             {
                 "pokemon": 57,
-                "exp": 26000
+                "exp": 18000
             },
             {
                 "pokemon": 175,
-                "exp": 28000
+                "exp": 18000
             }
         ],
         "details": {
@@ -1276,11 +1256,11 @@
         "party": [
             {
                 "pokemon": 37,
-                "exp": 20000
+                "exp": 10000
             },
             {
                 "pokemon": 38,
-                "exp": 28000
+                "exp": 20000
             }
         ],
         "details": {
@@ -1294,10 +1274,6 @@
             {
                 "pokemon": 95,
                 "exp": 20000
-            },
-            {
-                "pokemon": 259,
-                "exp": 25000
             }
         ],
         "details": {
@@ -1310,7 +1286,7 @@
         "party": [
             {
                 "pokemon": 65,
-                "exp": 32000
+                "exp": 20000
             }
         ],
         "details": {
@@ -1323,11 +1299,11 @@
         "party": [
             {
                 "pokemon": 100,
-                "exp": 4000
+                "exp": 6000
             },
             {
                 "pokemon": 100,
-                "exp": 6000
+                "exp": 10000
             },
             {
                 "pokemon": 100,
@@ -1365,15 +1341,27 @@
         "party": [
             {
                 "pokemon": 261,
-                "exp": 2000
+                "exp": 3600
+            },
+            {
+                "pokemon": 263,
+                "exp": 3600
             },
             {
                 "pokemon": 261,
                 "exp": 7000
             },
             {
+                "pokemon": 263,
+                "exp": 7000
+            },
+            {
                 "pokemon": 262,
-                "exp": 20000
+                "exp": 12000
+            },
+            {
+                "pokemon": 264,
+                "exp": 12000
             }
         ],
         "details": {
@@ -1386,7 +1374,7 @@
         "party": [
             {
                 "pokemon": 281,
-                "exp": 29000
+                "exp": 24000
             }
         ],
         "details": {
@@ -1398,93 +1386,93 @@
         "level": 80,
         "party": [
             {
-                "pokemon": 46,
-                "exp": 10000
-            },
-            {
-                "pokemon": 43,
-                "exp": 10000
-            },
-            {
-                "pokemon": 192,
-                "exp": 10000
-            },
-            {
-                "pokemon": 315,
-                "exp": 18000
+                "pokemon": 81,
+                "exp": 15000
             }
         ],
         "details": {
             "image": "trainers/jasmine.png",
-            "name": "Florist Liz"
+            "name": "Gym Member Liz"
         }
     },
     {
         "level": 81,
         "party": [
             {
-                "pokemon": 342,
-                "exp": 32000
+                "pokemon": 81,
+                "exp": 16000
+            },
+            {
+                "pokemon": 170,
+                "exp": 20000
             }
         ],
         "details": {
             "image": "trainers/marlon.png",
-            "name": "Diver Marlon"
+            "name": "Gym Member Salman"
         }
     },
     {
         "level": 82,
         "party": [
             {
-                "pokemon": 25,
-                "exp": 10000
+                "pokemon": 172,
+                "exp": 12500
             },
             {
-                "pokemon": 125,
-                "exp": 15000
+                "pokemon": 81,
+                "exp": 18000
             },
             {
-                "pokemon": 299,
+                "pokemon": 100,
                 "exp": 18000
             }
         ],
         "details": {
             "image": "trainers/throton.png",
-            "name": "Nerd Throton"
+            "name": "Gym Member Louis"
         }
     },
     {
         "level": 83,
         "party": [
             {
-                "pokemon": 41,
-                "exp": 12500
+                "pokemon": 25,
+                "exp": 20000
             },
             {
-                "pokemon": 42,
-                "exp": 25000
+                "pokemon": 135,
+                "exp": 20000
             }
         ],
         "details": {
             "image": "trainers/gladion.png",
-            "name": "Rockstar Hugh"
+            "name": "Gym Member Hugh"
         }
     },
     {
         "level": 84,
         "party": [
             {
-                "pokemon": 31,
-                "exp": 28000
+                "pokemon": 309,
+                "exp": 18000
             },
             {
-                "pokemon": 34,
+                "pokemon": 125,
+                "exp": 20000
+            },
+            {
+                "pokemon": 310,
+                "exp": 32000
+            },
+            {
+                "pokemon": 82,
                 "exp": 28000
             }
         ],
         "details": {
-            "image": "trainers/pryce.png",
-            "name": "Elder Ross"
+            "image": "gym-leaders/lt_surge.png",
+            "name": "Gym Leader Lt. Surge"
         }
     },
     {
