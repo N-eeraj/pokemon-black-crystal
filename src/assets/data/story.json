@@ -1940,19 +1940,19 @@
         "party": [
             {
                 "pokemon": 12,
-                "exp": 10000
+                "exp": 25000
             },
             {
                 "pokemon": 15,
-                "exp": 10000
+                "exp": 25000
             },
             {
                 "pokemon": 269,
-                "exp": 10000
+                "exp": 25000
             },
             {
                 "pokemon": 267,
-                "exp": 10000
+                "exp": 25000
             }
         ],
         "details": {
@@ -2145,6 +2145,748 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Vanessa"
+        }
+    },
+    {
+        "level": 125,
+        "party": [
+            {
+                "pokemon": 322,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Teacher Cindy"
+        }
+    },
+    {
+        "level": 126,
+        "party": [
+            {
+                "pokemon": 212,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Jack"
+        }
+    },
+    {
+        "level": 127,
+        "party": [
+            {
+                "pokemon": 166,
+                "exp": 18000
+            }
+        ],
+        "details": {
+            "image": "trainers/brycen.png",
+            "name": "Monk Norman"
+        }
+    },
+    {
+        "level": 128,
+        "party": [
+            {
+                "pokemon": 132,
+                "exp": 18000
+            },
+            {
+                "pokemon": 34,
+                "exp": 18000
+            }
+        ],
+        "details": {
+            "image": "trainers/marlon.png",
+            "name": "Diver Shane"
+        }
+    },
+    {
+        "level": 129,
+        "party": [
+            {
+                "pokemon": 1,
+                "exp": 2500
+            },
+            {
+                "pokemon": 2,
+                "exp": 12000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Florist Jasmine"
+        }
+    },
+    {
+        "level": 130,
+        "party": [
+            {
+                "pokemon": 21,
+                "exp": 10000
+            },
+            {
+                "pokemon": 51,
+                "exp": 15000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Sharon"
+        }
+    },
+    {
+        "level": 131,
+        "party": [
+            {
+                "pokemon": 25,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "School boy Kyle"
+        }
+    },
+    {
+        "level": 132,
+        "party": [
+            {
+                "pokemon": 201,
+                "exp": 15000
+            }
+        ],
+        "details": {
+            "image": "trainers/caitin.png",
+            "name": "Baker Peggy"
+        }
+    },
+    {
+        "level": 133,
+        "party": [
+            {
+                "pokemon": 53,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/bugsy.png",
+            "name": "Gym Member Taylor"
+        }
+    },
+    {
+        "level": 134,
+        "party": [
+            {
+                "pokemon": 113,
+                "exp": 28500
+            }
+        ],
+        "details": {
+            "image": "trainers/brycen.png",
+            "name": "Gym Member Reese"
+        }
+    },
+    {
+        "level": 135,
+        "party": [
+            {
+                "pokemon": 128,
+                "exp": 30000
+            },
+            {
+                "pokemon": 190,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/bianca.png",
+            "name": "Gym Member Brandy"
+        }
+    },
+    {
+        "level": 136,
+        "party": [
+            {
+                "pokemon": 288,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Gym Member Frank"
+        }
+    },
+    {
+        "level": 137,
+        "party": [
+            {
+                "pokemon": 300,
+                "exp": 30000
+            },
+            {
+                "pokemon": 327,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Gym Member Shaun"
+        }
+    },
+    {
+        "level": 138,
+        "party": [
+            {
+                "pokemon": 277,
+                "exp": 30000
+            },
+            {
+                "pokemon": 335,
+                "exp": 50000
+            },
+            {
+                "pokemon": 289,
+                "exp": 66000
+            },
+            {
+                "pokemon": 143,
+                "exp": 72000
+            }
+        ],
+        "details": {
+            "image": "gym-leaders/norman.png",
+            "name": "Gym Leader Norman"
+        }
+    },
+    {
+        "level": 139,
+        "party": [
+            {
+                "pokemon": 19,
+                "exp": 5000
+            },
+            {
+                "pokemon": 20,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/lucy.png",
+            "name": "Goth Lia"
+        }
+    },
+    {
+        "level": 140,
+        "party": [
+            {
+                "pokemon": 83,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/marlon.png",
+            "name": "Diver Adam"
+        }
+    },
+    {
+        "level": 141,
+        "party": [
+            {
+                "pokemon": 246,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Harold"
+        }
+    },
+    {
+        "level": 142,
+        "party": [
+            {
+                "pokemon": 133,
+                "exp": 8000
+            },
+            {
+                "pokemon": 134,
+                "exp": 8000
+            },
+            {
+                "pokemon": 135,
+                "exp": 8000
+            },
+            {
+                "pokemon": 136,
+                "exp": 8000
+            },
+            {
+                "pokemon": 196,
+                "exp": 8000
+            },
+            {
+                "pokemon": 197,
+                "exp": 8000
+            }
+        ],
+        "details": {
+            "image": "trainers/bianca.png",
+            "name": "Explorer Jess"
+        }
+    },
+    {
+        "level": 143,
+        "party": [
+            {
+                "pokemon": 182,
+                "exp": 12500
+            },
+            {
+                "pokemon": 350,
+                "exp": 25000
+            },
+            {
+                "pokemon": 131,
+                "exp": 34000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Alice"
+        }
+    },
+    {
+        "level": 144,
+        "party": [
+            {
+                "pokemon": 352,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "School boy Samuel"
+        }
+    },
+    {
+        "level": 145,
+        "party": [
+            {
+                "pokemon": 357,
+                "exp": 36000
+            }
+        ],
+        "details": {
+            "image": "trainers/bianca.png",
+            "name": "Explorer Brittany"
+        }
+    },
+    {
+        "level": 146,
+        "party": [
+            {
+                "pokemon": 187,
+                "exp": 3000
+            },
+            {
+                "pokemon": 116,
+                "exp": 7000
+            },
+            {
+                "pokemon": 117,
+                "exp": 18000
+            }
+        ],
+        "details": {
+            "image": "trainers/caitin.png",
+            "name": "Baker Cherry"
+        }
+    },
+    {
+        "level": 147,
+        "party": [
+            {
+                "pokemon": 41,
+                "exp": 3000
+            },
+            {
+                "pokemon": 42,
+                "exp": 9000
+            },
+            {
+                "pokemon": 92,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/lucy.png",
+            "name": "Goth Trina"
+        }
+    },
+    {
+        "level": 148,
+        "party": [
+            {
+                "pokemon": 92,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/cheren.png",
+            "name": "Teacher Zach"
+        }
+    },
+    {
+        "level": 149,
+        "party": [
+            {
+                "pokemon": 166,
+                "exp": 10000
+            },
+            {
+                "pokemon": 123,
+                "exp": 25000
+            },
+            {
+                "pokemon": 284,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/bugsy.png",
+            "name": "Bug catcher Vicky"
+        }
+    },
+    {
+        "level": 150,
+        "party": [
+            {
+                "pokemon": 291,
+                "exp": 20000
+            },
+            {
+                "pokemon": 17,
+                "exp": 20000
+            },
+            {
+                "pokemon": 207,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Nerd Harry"
+        }
+    },
+    {
+        "level": 151,
+        "party": [
+            {
+                "pokemon": 333,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Mick"
+        }
+    },
+    {
+        "level": 152,
+        "party": [
+            {
+                "pokemon": 359,
+                "exp": 42000
+            }
+        ],
+        "details": {
+            "image": "trainers/cheren.png",
+            "name": "Teacher Nial"
+        }
+    },
+    {
+        "level": 153,
+        "party": [
+            {
+                "pokemon": 283,
+                "exp": 15000
+            },
+            {
+                "pokemon": 284,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/nessa.png",
+            "name": "Surfer Michelle"
+        }
+    },
+    {
+        "level": 154,
+        "party": [
+            {
+                "pokemon": 227,
+                "exp": 36000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Jason"
+        }
+    },
+    {
+        "level": 155,
+        "party": [
+            {
+                "pokemon": 207,
+                "exp": 32000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Garry"
+        }
+    },
+    {
+        "level": 156,
+        "party": [
+            {
+                "pokemon": 17,
+                "exp": 20000
+            },
+            {
+                "pokemon": 22,
+                "exp": 28000
+            },
+            {
+                "pokemon": 84,
+                "exp": 28000
+            },
+            {
+                "pokemon": 18,
+                "exp": 28000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Florist Ginne"
+        }
+    },
+    {
+        "level": 157,
+        "party": [
+            {
+                "pokemon": 142,
+                "exp": 56000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Yuri"
+        }
+    },
+    {
+        "level": 158,
+        "party": [
+            {
+                "pokemon": 84,
+                "exp": 25000
+            }
+        ],
+        "details": {
+            "image": "trainers/whitney.png",
+            "name": "Lass Jesse"
+        }
+    },
+    {
+        "level": 159,
+        "party": [
+            {
+                "pokemon": 163,
+                "exp": 7000
+            },
+            {
+                "pokemon": 164,
+                "exp": 20000
+            }
+        ],
+        "details": {
+            "image": "trainers/bianca.png",
+            "name": "Explorer Nua"
+        }
+    },
+    {
+        "level": 160,
+        "party": [
+            {
+                "pokemon": 357,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Teacher May"
+        }
+    },
+    {
+        "level": 161,
+        "party": [
+            {
+                "pokemon": 292,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Elder Matt"
+        }
+    },
+    {
+        "level": 162,
+        "party": [
+            {
+                "pokemon": 277,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Gym Member Felicity"
+        }
+    },
+    {
+        "level": 163,
+        "party": [
+            {
+                "pokemon": 22,
+                "exp": 24000
+            },
+            {
+                "pokemon": 18,
+                "exp": 24000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Gym Member Yash"
+        }
+    },
+    {
+        "level": 164,
+        "party": [
+            {
+                "pokemon": 85,
+                "exp": 36000
+            }
+        ],
+        "details": {
+            "image": "trainers/throton.png",
+            "name": "Gym Member Tommy"
+        }
+    },
+    {
+        "level": 165,
+        "party": [
+            {
+                "pokemon": 187,
+                "exp": 7000
+            },
+            {
+                "pokemon": 188,
+                "exp": 15000
+            },
+            {
+                "pokemon": 189,
+                "exp": 30000
+            }
+        ],
+        "details": {
+            "image": "trainers/jasmine.png",
+            "name": "Gym Member Kenzie"
+        }
+    },
+    {
+        "level": 166,
+        "party": [
+            {
+                "pokemon": 227,
+                "exp": 42000
+            }
+        ],
+        "details": {
+            "image": "trainers/pryce.png",
+            "name": "Gym Member William"
+        }
+    },
+    {
+        "level": 167,
+        "party": [
+            {
+                "pokemon": 277,
+                "exp": 30000
+            },
+            {
+                "pokemon": 333,
+                "exp": 50000
+            }
+        ],
+        "details": {
+            "image": "trainers/victor.png",
+            "name": "Gym Member Ben"
+        }
+    },
+    {
+        "level": 168,
+        "party": [
+            {
+                "pokemon": 277,
+                "exp": 48000
+            },
+            {
+                "pokemon": 357,
+                "exp": 80000
+            },
+            {
+                "pokemon": 227,
+                "exp": 92000
+            },
+            {
+                "pokemon": 334,
+                "exp": 96000
+            }
+        ],
+        "details": {
+            "image": "gym-leaders/winona.png",
+            "name": "Gym Leader Winona"
+        }
+    },
+    {
+        "level": 169,
+        "party": [
+            {
+                "pokemon": 198,
+                "exp": 40000
+            }
+        ],
+        "details": {
+            "image": "trainers/gladion.png",
+            "name": "Rockstar Tony"
+        }
+    },
+    {
+        "level": 170,
+        "party": [
+            {
+                "pokemon": 177,
+                "exp": 40000
+            }
+        ],
+        "details": {
+            "image": "trainers/lorelei.png",
+            "name": "Teacher Millie"
         }
     }
 ]
