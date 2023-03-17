@@ -97,8 +97,8 @@
                         rivalPokemon.pokemon = 1
                         break
                 }
-                if (this.playerLevel > 200) rivalPokemon.pokemon += 2
-                else if (this.playerLevel > 25) rivalPokemon.pokemon += 1
+                if (this.playerLevel > 120) rivalPokemon.pokemon += 2
+                else if (this.playerLevel > 20) rivalPokemon.pokemon += 1
             },
 
             handleMatchCompleteion(result) {

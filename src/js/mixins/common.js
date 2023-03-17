@@ -1,5 +1,10 @@
 import store from '@/js/store/store'
 
+export const toTitleCase = text => text
+    .split(' ')
+    .map(word => word[0].toUpperCase() + word.slice(1))
+    .join(' ')
+
 export const encryptAndSave = () => {
     const { gameData, pokemonData } = store.state
     localStorage.setItem('gameData', btoa(JSON.stringify(gameData)))
