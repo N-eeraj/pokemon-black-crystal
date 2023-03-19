@@ -1,7 +1,12 @@
 <template>
     <div>
         <div id="story">
+            <div v-if="playerLevel > 240">
+                Champion
+            </div>
+
             <battle-wrapper
+                v-else
                 :player-party="playerParty"
                 :foe-party="foeParty"
                 :foe-details="foeDetails"
@@ -54,7 +59,8 @@
         },
 
         created() {
-            this.initializeParty()
+            if (this.playerLevel <= 240)
+                this.initializeParty()
         },
 
         methods: {
@@ -104,7 +110,13 @@
             handleMatchCompleteion(result) {
                 this.toggleNavBar()
                 this.initializeParty()
-                if (!result) return
+                if (!result) {
+                    if (this.playerLevel > 236) {
+                        this.setLevel(236)
+                        this.initializeParty()
+                    }
+                    return
+                }
                 this.levelUp()
                 this.initializeFoe()
             },
@@ -114,7 +126,8 @@
             },
 
             ...mapActions([
-                'levelUp'
+                'levelUp',
+                'setLevel'
             ])
         }
     }

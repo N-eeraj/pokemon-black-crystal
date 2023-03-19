@@ -277,6 +277,10 @@ export default {
         commit('levelUp')
     },
 
+    setLevel({ commit }, level) {
+        commit('setLevel', level)
+    },
+
     startArcade({ commit }, arcadeEvent) {
         commit('startArcade', arcadeEvent)
     },

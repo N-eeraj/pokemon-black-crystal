@@ -212,6 +212,11 @@ export default {
         encryptAndSave()
     },
 
+    setLevel(state, level) {
+        state.gameData.progress.level = level
+        encryptAndSave()
+    },
+
     startArcade(state, arcadeEvent) {
         ++state.gameData.progress.arcade[arcadeEvent].attempts
         encryptAndSave()
