@@ -18,8 +18,30 @@
             <navigation-bar
                 v-if="showNavBar"
                 icon="cross-mark"
-                @icon-event="$router.push('/')" />
- </div>
+                @icon-event="exitStoryMode" />
+
+
+            <pop-up
+                v-if="confirmExit"
+                close
+                class="modal"
+                @close-pop-up="confirmExit=false">
+                <template #body>
+                    <div class="escape-confirmation">
+                        <p>
+                            If you exit now, you'll have to restart the Elite Four Challenge.
+                        </p>
+                    </div>
+                </template>
+                <template #actions>
+                    <button
+                        class="confirm"
+                        @click="$router.push('/')">
+                        Yes
+                    </button>
+                </template>
+            </pop-up>
+        </div>
     </div>
 </template>
 
@@ -28,6 +50,7 @@
 
     import BattleWrapper from '@/js/components/battle/BattleWrapper.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 
@@ -39,6 +62,7 @@
         components: {
             BattleWrapper,
             NavigationBar,
+            PopUp
         },
 
         data() {
@@ -46,7 +70,8 @@
                 playerParty: null,
                 foeParty: null,
                 foeDetails: null,
-                showNavBar: true
+                showNavBar: true,
+                confirmExit: false
             }
         },
 
@@ -126,6 +151,13 @@
 
             toggleNavBar() {
                 this.showNavBar = !this.showNavBar
+            },
+
+            exitStoryMode() {
+                if (this.playerLevel > 236)
+                    this.confirmExit = true
+                else
+                    this.$router.push('/')
             },
 
             ...mapActions([
