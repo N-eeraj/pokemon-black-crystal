@@ -59,8 +59,11 @@
         },
 
         created() {
-            if (this.playerLevel <= 240)
+            if (this.playerLevel <= 240) {
+                if (this.playerLevel > 236)
+                    this.setLevel(236)
                 this.initializeParty()
+            }
         },
 
         methods: {
