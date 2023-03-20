@@ -1,0 +1,19 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#champion_container {
+    @include main.full-screen;
+    background-size: contain;
+    background-position: center 90%;
+    background-repeat: no-repeat;
+    background-color: palette.$white;
+
+    #navigation_bar .icon {
+        filter: invert(1);
+    }
+
+    .message {
+        text-align: center;
+        color: palette.$primary;
+    }
+}
