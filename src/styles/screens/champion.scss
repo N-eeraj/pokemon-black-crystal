@@ -1,5 +1,6 @@
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
+@use "@/styles/fonts";
 
 #champion_container {
     @include main.full-screen;
@@ -15,5 +16,6 @@
     .message {
         text-align: center;
         color: palette.$primary;
+        font-family: fonts.$heading;
     }
 }

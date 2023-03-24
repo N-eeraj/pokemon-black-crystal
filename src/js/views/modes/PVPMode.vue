@@ -58,7 +58,7 @@
 
     import { Peer } from 'peerjs'
 
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: 'pvp-mode',
@@ -111,6 +111,7 @@
         },
 
         created() {
+            this.updateAudio('pvp.mp3')
             this.initalizePeer2PeerConnectionn()
 
             this.party.client = this.partyPokemon.map(id => {
@@ -267,7 +268,11 @@
             handleGameOver(victory) {
                 this.gameOverPopUp.show = true
                 this.gameOverPopUp.text = `You ${ victory ? 'won' : 'lost' } the match`
-            }
+            },
+
+            ...mapActions([
+                'updateAudio'
+            ])
         }
     }
 

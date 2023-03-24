@@ -131,7 +131,9 @@
         },
 
         created() {
+            this.updateAudio('trade.mp3')
             this.initalizePeer2PeerConnectionn()
+
             const pokemonList = this.partyPokemon.map(id => {
                 return {
                     caughtId: id,
@@ -312,6 +314,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'getPokemonById',
                 'encounterNewPokemon',
                 'cachePokemonById',

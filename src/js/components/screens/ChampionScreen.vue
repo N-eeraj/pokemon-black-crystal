@@ -16,13 +16,17 @@
 <script>
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
 
-    import { mapGetters } from 'vuex'
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: 'champion-screen',
 
         components: {
             NavigationBar
+        },
+
+        mounted() {
+            this.updateAudio('champion.mp3')
         },
 
         computed: {
@@ -33,6 +37,12 @@
 
             ...mapGetters([
                 'playerInfo'
+            ])
+        },
+
+        methods: {
+            ...mapActions([
+                'updateAudio'
             ])
         }
     }
