@@ -93,6 +93,10 @@
             }
         },
 
+        created() {
+            this.updateAudio('carnival.mp3')
+        },
+
         computed: {
             popUpText() {
                 let item
@@ -166,6 +170,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'updateBag',
                 'updatePlayerCoins',
                 'updateCarnivalEntry'

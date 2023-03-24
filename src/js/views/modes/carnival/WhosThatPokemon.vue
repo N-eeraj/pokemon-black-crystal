@@ -81,6 +81,7 @@
         },
 
         async created() {
+            this.updateAudio('carnival.mp3')
             this.choices = await this.getCarnivalPokemon(4)
             this.loading = false
             this.correctOption = getInRange(0, 4)
@@ -121,6 +122,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'getCarnivalPokemon',
                 'updateBag'
             ])

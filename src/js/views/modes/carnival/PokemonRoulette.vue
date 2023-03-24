@@ -124,6 +124,10 @@
             }
         },
 
+        created() {
+            this.updateAudio('carnival.mp3')
+        },
+
         computed: {
             invalidBetAmount() {
                 return (
@@ -209,6 +213,7 @@
             },
 
             ...mapActions([
+                'updateAudio',
                 'updatePlayerCoins'
             ])
         }
