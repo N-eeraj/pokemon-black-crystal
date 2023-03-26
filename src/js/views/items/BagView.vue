@@ -1,7 +1,6 @@
 <template>
     <div>
         <items-list
-            v-if="bagItemsList.length"
             :items-list="bagItemsList"
             title="Bag"
             @icon-event="$router.push('/')" />

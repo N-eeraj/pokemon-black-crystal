@@ -252,13 +252,14 @@
             },
 
             getActions(isParty) {
-                const actions = [
-                    {
+                const actions = []
+
+                if (this.usableItems?.length)
+                    actions.push({
                         label: 'Use Item',
                         action: this.toggleShowItems
-                    }
-                
-                ]
+                    })
+
                 if (isParty && this.partyPokemon.length < 2)
                     return actions
 
@@ -298,10 +299,10 @@
                 // check if this is party pokemon & if pokemon is in party
                 if (isParty ^ isInParty) this.$router.push('/page-not-found')
 
-                this.actions = this.getActions(isParty)
-
                 this.setStats('stat', this.pokemon.getLevel(pokemon.exp))
                 this.setUsableItems()
+
+                this.actions = this.getActions(isParty)
             },
 
             getMaxStat(statValue, level, isHp = false) {

@@ -3,7 +3,8 @@
 
 #tent_selection {
     @include main.full-screen;
-    @include main.flex($direction: column, $justify: flex-start, $row: 20px);
+    @include main.flex($direction: column, $justify: space-between, $row: 20px);
+    padding-bottom: 30px;
 
     .title {
         text-align: center;
@@ -26,7 +27,15 @@
     }
 
     .confirm {
+        visibility: hidden;
         padding: 7px 10px;
         background-color: palette.$accent;
+        color: palette.$primary;
+        border-radius: 5px;
+        font-weight: 600;
+
+        &.show {
+            visibility: visible;
+        }
     }
 }

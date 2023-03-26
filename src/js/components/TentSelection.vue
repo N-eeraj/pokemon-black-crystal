@@ -20,8 +20,8 @@
         </div>
 
         <button
-            v-if="selectedPokeballs.length === 3"
             class="confirm"
+            :class="{ show: selectedPokeballs.length === 3 }"
             @click="$emit('selectedPokeballs', selectedPokeballs)">
             Continue
         </button>
