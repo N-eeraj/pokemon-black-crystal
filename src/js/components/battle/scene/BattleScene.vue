@@ -496,6 +496,10 @@
                                 this.battleMessage = faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
                                 this.handleFaint(firstPokemon)
                             }
+                            if (this.currentPokemon[secondPokemon].currentHp <= 0) {
+                                this.battleMessage = faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
+                                this.handleFaint(secondPokemon)
+                            }
                             // if battle is not over reset battle message
                             if (!this.checkGameOver()) {
                                 setTimeout(() => {
@@ -510,6 +514,10 @@
                         // the Pokémon to make the second move faints
                         this.battleMessage = faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
                         this.handleFaint(secondPokemon)
+                        if (this.currentPokemon[firstPokemon].currentHp <= 0) {
+                            this.battleMessage = faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
+                            this.handleFaint(firstPokemon)
+                        }
                         // if battle is not over reset battle message
                         if (!this.checkGameOver()) {
                             setTimeout(() => {

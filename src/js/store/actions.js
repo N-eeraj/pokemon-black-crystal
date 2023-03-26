@@ -66,8 +66,6 @@ export default {
                 min: response.meta.min_hits,
                 max: response.meta.max_hits
             }
-            if (moveData.name === 'self-destruct')
-                moveData.healing = -100
             return moveData
         }
         catch {

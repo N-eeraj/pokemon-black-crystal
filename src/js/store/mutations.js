@@ -142,8 +142,12 @@ export default {
 
         // if move category is damage+heal set heal as half of the damage dealt else set use heal from move data as percentage
         let heal
-        if (moveData.category === 'damage+heal') heal = Math.ceil(moveData.healing / 2)
-        else heal = defendingPokemon.stat.hp * moveData.healing * 0.01
+        if (moveData.name === 'self-destruct')
+            heal = -attackingPokemon.currentHp
+        else if (moveData.category === 'damage+heal')
+            heal = Math.ceil(damage / 2)
+        else
+            heal = defendingPokemon.stat.hp * moveData.healing * 0.01
 
         defendingPokemon.currentHp -= damage
         attackingPokemon.currentHp += heal
