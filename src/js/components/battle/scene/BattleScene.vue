@@ -410,7 +410,7 @@
 
             manipulateMoveData(moveData) {
                 return {
-                    evaded: checkMoveAccuracy(moveData),
+                    contact: checkMoveAccuracy(moveData),
                     randomFactor: {
                         speed: Math.random(),
                         damage: Math.random() * 0.2 + 0.8
@@ -470,11 +470,11 @@
                 }
 
                 // Make the first attack and display message
-                if (firstMove.moveData && firstMove.moveData.evaded) {
+                if (firstMove.moveData && firstMove.moveData.contact) {
                     this.useMoveBattleDataUpdate(firstMove)
                     this.battleMessage = firstMoveMessage
                 }
-                else if (!firstMove.moveData?.evaded) {
+                else if (firstMove.moveData && !firstMove.moveData?.contact) {
                     this.battleMessage = missedMove(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
                 }
 
@@ -482,11 +482,11 @@
                     // the Pokémon to make the second move doesn't faint
                     setTimeout(() => {
                         // Make the second attack and display message
-                        if (secondMove.moveData && secondMove.moveData.evaded) {
+                        if (secondMove.moveData && secondMove.moveData.contact) {
                             this.useMoveBattleDataUpdate(secondMove)
                             this.battleMessage = secondMoveMessage
                         }
-                        else if (!secondMove.moveData?.evaded) {
+                        else if (secondMove.moveData && !secondMove.moveData?.contact) {
                             this.battleMessage = missedMove(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
                         }
 
