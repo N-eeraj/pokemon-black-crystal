@@ -43,7 +43,7 @@
                         {{ $filters.toTitleCase(pokemon.name) }}
                     </strong>
 
-                    <span>
+                    <span v-if="pokemon.level">
                         Level
                         {{ pokemon.level }}
                     </span>

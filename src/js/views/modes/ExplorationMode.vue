@@ -88,11 +88,11 @@
         },
 
         created() {
-            this.initializeParties()
+            this.initializeParty()
         },
 
         methods: {
-            initializeParties() {
+            initializeParty() {
                 this.playerPokemon = this.partyPokemon.map(id => {
                     const pokemon = this.getCaughtPokemon(id)
                     return {
@@ -159,6 +159,7 @@
                 this.battleOngoing = false
                 this.addCaughtPokemon(this.wildPokemon)
                 this.setBattleData(null)
+                this.initializeParty()
             },
 
             ...mapActions([
