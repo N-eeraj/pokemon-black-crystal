@@ -35,7 +35,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import BannerCard from '@/js/components/UI/BannerCard.vue'
 
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
 
     import arcade from '@/assets/data/arcade.json'
 
@@ -49,12 +49,22 @@
 
         data() {
             return {
-                arcade
+                arcade: []
             }
         },
 
+        computed: {
+            ...mapGetters([
+                'playerLevel'
+            ])
+        },
+
         mounted() {
+            this.arcade = [...arcade]
             this.updateAudio('arcade.mp3')
+            if (this.playerLevel > 200) return
+            this.arcade.pop()
+
         },
 
         methods: {
