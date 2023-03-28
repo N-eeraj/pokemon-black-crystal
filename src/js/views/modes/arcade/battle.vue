@@ -32,7 +32,7 @@
                         src="@/assets/images/coin.svg"
                         alt="Pokécoins"
                         class="coin" />
-                    50.
+                    100.
                 </template>
             </pop-up>
         </div>
@@ -130,7 +130,7 @@
 
             handleVictory() {
                 this.won = true
-                this.updatePlayerCoins(50)
+                this.updatePlayerCoins(100)
                 this.winArcade('battle')
             },
 

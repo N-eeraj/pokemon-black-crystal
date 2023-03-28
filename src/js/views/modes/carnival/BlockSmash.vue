@@ -172,7 +172,8 @@
                 if (this.participants.some(({ balance }) => balance < 1)) {
                     this.intervals.forEach((interval) => {
                         clearInterval(interval)
-                        this.handleCompletedSmashing()
+                        if (this.start)
+                            this.handleCompletedSmashing()
                     })
                 }
             },
