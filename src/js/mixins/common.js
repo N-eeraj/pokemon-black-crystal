@@ -12,10 +12,9 @@ export const encryptAndSave = () => {
 }
 
 export const decryptAndLoad = () => {
-    return {
-        gameData: JSON.parse(window.atob(localStorage.gameData)),
-        pokemonData: JSON.parse(localStorage.pokemonData),
-    }
+    const gameData = JSON.parse(window.atob(localStorage.gameData))
+    let pokemonData = JSON.parse(localStorage.pokemonData || '{}')
+    return { gameData, pokemonData }
 }
 
 export const deepCopy = (value) => {

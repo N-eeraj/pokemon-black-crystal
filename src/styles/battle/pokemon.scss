@@ -55,10 +55,6 @@
         background-size: contain;
         background-position: bottom;
 
-        .pokemon-image {
-            transform: scale(1.5);
-        }
-
         .pokeball-image {
             width: 50px;
             animation: pokeball-wiggle 400ms alternate infinite;

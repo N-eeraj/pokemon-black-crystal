@@ -134,8 +134,8 @@ export default {
 
     async loadGameData({ dispatch }) {
         const { gameData, pokemonData } = decryptAndLoad()
-        dispatch('saveGameData', gameData)
         dispatch('setPokemonData', pokemonData)
+        dispatch('saveGameData', gameData)
     },
 
     async getPokemonById({ getters, dispatch }, id) {

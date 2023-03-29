@@ -3,7 +3,7 @@ export const getImageUrl = (name) => `https://img.pokemondb.net/sprites/home/nor
 
 export function getSpriteUrl(name) {
     return {
-        front: `https://img.pokemondb.net/sprites/black-white/anim/normal/${name}.gif`,
-        back: `https://img.pokemondb.net/sprites/black-white/anim/back-normal/${name}.gif`
+        front: `https://play.pokemonshowdown.com/sprites/ani/${name}.gif`,
+        back: `https://play.pokemonshowdown.com/sprites/ani-back/${name}.gif`
     }
 }
