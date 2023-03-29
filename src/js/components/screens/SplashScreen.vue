@@ -35,6 +35,7 @@
         },
 
         created() {
+            this.versionMigrations()
             this.loadData()
         },
         
@@ -46,10 +47,23 @@
                     this.fetchTypes()
                 ])
 
-                if (localStorage.gameData) await this.loadGameData()
-                else this.$router.push('/welcome')
+                if (localStorage.gameData)
+                    await this.loadGameData()
+                else
+                    this.$router.push('/welcome')
 
                 this.isLoading = false
+            },
+
+            versionMigrations() {
+                const latestVersion = '1.8.0'
+                const currentVersion = localStorage.version
+                if (!(currentVersion && currentVersion === latestVersion)) {
+                    localStorage.setItem('version', latestVersion)
+
+                    if (localStorage.pokemonData && (!currentVersion || currentVersion < '1.8.0'))
+                        localStorage.removeItem('pokemonData')
+                }
             },
 
             emitLoaded() {
