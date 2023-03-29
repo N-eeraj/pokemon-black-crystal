@@ -15,8 +15,12 @@
             height: 25%;
             background-image: radial-gradient(50% 50% at 50% 50%, #333333 0%, #111111 100%);
 
-            img {
+            .badge {
                 width: 60%;
+
+                &.not-received {
+                    filter: brightness(0);
+                }
             }
         }
     }

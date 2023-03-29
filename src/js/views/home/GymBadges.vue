@@ -13,7 +13,8 @@
                     :key="index"
                     class="badge-container">
                     <img
-                        v-if="playerLevel > badge.level"
+                        class="badge"
+                        :class="{ 'not-received' : playerLevel <= badge.level }"
                         :src="require(`@/assets/images/gym-badges/${badge.name}.svg`)" />
                 </div>
             </div>
