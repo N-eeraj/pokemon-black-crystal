@@ -168,7 +168,7 @@
         },
 
         beforeCreate() {
-            if (localStorage.gameData) this.$router.push('/')
+            if (localStorage['pokemon-black-crystal']) this.$router.push('/')
         },
 
         created() {

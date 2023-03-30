@@ -24,7 +24,7 @@
 
         methods: {
             goHome() {
-                this.$router.push(localStorage.gameData ? '/' : '/welcome')
+                this.$router.push(localStorage['pokemon-black-crystal'] ? '/' : '/welcome')
             }
         }
     }

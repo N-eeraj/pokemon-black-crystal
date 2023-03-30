@@ -7,12 +7,12 @@ export const toTitleCase = text => text
 
 export const encryptAndSave = () => {
     const { gameData, pokemonData } = store.state
-    localStorage.setItem('gameData', btoa(JSON.stringify(gameData)))
+    localStorage.setItem('pokemon-black-crystal', window.btoa(JSON.stringify(gameData)))
     localStorage.setItem('pokemonData', JSON.stringify(pokemonData))
 }
 
 export const decryptAndLoad = () => {
-    const gameData = JSON.parse(window.atob(localStorage.gameData))
+    const gameData = JSON.parse(window.atob(localStorage['pokemon-black-crystal']))
     let pokemonData = JSON.parse(localStorage.pokemonData || '{}')
     return { gameData, pokemonData }
 }
