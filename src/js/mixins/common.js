@@ -1,3 +1,5 @@
+import appPackage from '@/../package.json'
+
 import store from '@/js/store/store'
 
 export const toTitleCase = text => text
@@ -7,12 +9,12 @@ export const toTitleCase = text => text
 
 export const encryptAndSave = () => {
     const { gameData, pokemonData } = store.state
-    localStorage.setItem('pokemon-black-crystal', window.btoa(JSON.stringify(gameData)))
+    localStorage.setItem(appPackage.name, window.btoa(JSON.stringify(gameData)))
     localStorage.setItem('pokemonData', JSON.stringify(pokemonData))
 }
 
 export const decryptAndLoad = () => {
-    const gameData = JSON.parse(window.atob(localStorage['pokemon-black-crystal']))
+    const gameData = JSON.parse(window.atob(localStorage[appPackage.name]))
     let pokemonData = JSON.parse(localStorage.pokemonData || '{}')
     return { gameData, pokemonData }
 }

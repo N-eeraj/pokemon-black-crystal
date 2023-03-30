@@ -91,6 +91,8 @@
 </template>
 
 <script>
+    import appPackage from '@/../package.json'
+
     import PopUp from "@/js/components/UI/PopUp.vue"
     import BattleWrapper from "@/js/components/battle/BattleWrapper.vue"
     
@@ -168,7 +170,7 @@
         },
 
         beforeCreate() {
-            if (localStorage['pokemon-black-crystal']) this.$router.push('/')
+            if (localStorage[appPackage.name]) this.$router.push('/')
         },
 
         created() {

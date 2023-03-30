@@ -19,12 +19,14 @@
 </template>
 
 <script>
+    import appPackage from '@/../package.json'
+
     export default {
         name: 'page-not-found',
 
         methods: {
             goHome() {
-                this.$router.push(localStorage['pokemon-black-crystal'] ? '/' : '/welcome')
+                this.$router.push(localStorage[appPackage.name] ? '/' : '/welcome')
             }
         }
     }

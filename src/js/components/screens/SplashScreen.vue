@@ -23,6 +23,7 @@
 </template>
 
 <script>
+    import appPackage from '@/../package.json'
     import { mapActions } from 'vuex'
 
     import updateVersion from '@/js/mixins/migrations'
@@ -49,7 +50,7 @@
                     this.fetchTypes()
                 ])
 
-                if (localStorage['pokemon-black-crystal'])
+                if (localStorage[appPackage.name])
                     await this.loadGameData()
                 else
                     this.$router.push('/welcome')
