@@ -97,6 +97,7 @@
     import BattleWrapper from "@/js/components/battle/BattleWrapper.vue"
     
     import { getImage } from "@/js/mixins/imageAndSprites"
+    import { getStorage } from "@/js/mixins/storage"
     import { mapActions } from 'vuex'
 
     import data from "@/assets/data/onboarding.json"
@@ -170,7 +171,8 @@
         },
 
         beforeCreate() {
-            if (localStorage[appPackage.name]) this.$router.push('/')
+            if (getStorage(appPackage.name))
+                this.$router.push('/')
         },
 
         created() {

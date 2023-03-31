@@ -1,5 +1,7 @@
 import appPackage from '@/../package.json'
 
+import { getStorage, setStorage } from "@/js/mixins/storage"
+
 import store from '@/js/store/store'
 
 export const toTitleCase = text => text
@@ -9,13 +11,13 @@ export const toTitleCase = text => text
 
 export const encryptAndSave = () => {
     const { gameData, pokemonData } = store.state
-    localStorage.setItem(appPackage.name, window.btoa(JSON.stringify(gameData)))
-    localStorage.setItem('pokemonData', JSON.stringify(pokemonData))
+    setStorage(appPackage.name, window.btoa(JSON.stringify(gameData)))
+    setStorage('pokemonData', JSON.stringify(pokemonData))
 }
 
 export const decryptAndLoad = () => {
-    const gameData = JSON.parse(window.atob(localStorage[appPackage.name]))
-    let pokemonData = JSON.parse(localStorage.pokemonData || '{}')
+    const gameData = JSON.parse(window.atob(getStorage(appPackage.name)))
+    let pokemonData = JSON.parse(getStorage('pokemonData') || '{}')
     return { gameData, pokemonData }
 }
 
