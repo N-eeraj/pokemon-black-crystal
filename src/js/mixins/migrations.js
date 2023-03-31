@@ -1,10 +1,15 @@
 import appPackage from '@/../package.json'
 
+import { getSprite } from "@/js/mixins/imageAndSprites"
+
 const migration_v_1_8_0 = version => {
     if (localStorage.pokemonData && (!version || version < '1.8.0')) {
+        const pokemonData = JSON.parse(localStorage.getItem('pokemonData'))
+        Object.entries(pokemonData).forEach(([id, { name }]) => pokemonData[id].sprite = getSprite(name))
         const gameData = localStorage.getItem('gameData')
+        localStorage.setItem('pokemonData', JSON.stringify(pokemonData))
+
         localStorage.removeItem('gameData')
-        localStorage.removeItem('pokemonData')
         localStorage.setItem(appPackage.name, gameData)
     }
 }

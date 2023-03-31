@@ -1,6 +1,6 @@
 import store from '@/js/store/store'
 
-import { getImageUrl, getSpriteUrl } from "@/js/mixins/imageAndSprites"
+import { getImage, getSprite } from "@/js/mixins/imageAndSprites"
 import { getIdFromUrl } from "@/js/mixins/common"
 
 
@@ -27,8 +27,8 @@ export const Pokemon = async (id) => {
         id: pokemonData.id,
         name: pokemonData.name,
         types: pokemonData.types.map(type => type.type.name),
-        image: getImageUrl(pokemonData.name),
-        sprite: getSpriteUrl(pokemonData.name),
+        image: getImage(pokemonData.name),
+        sprite: getSprite(pokemonData.name),
         height: pokemonData.height / 10,
         weight: pokemonData.weight / 10,
         baseStat: {},

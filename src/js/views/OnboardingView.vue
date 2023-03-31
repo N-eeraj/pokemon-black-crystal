@@ -96,7 +96,7 @@
     import PopUp from "@/js/components/UI/PopUp.vue"
     import BattleWrapper from "@/js/components/battle/BattleWrapper.vue"
     
-    import { getImageUrl } from "@/js/mixins/imageAndSprites"
+    import { getImage } from "@/js/mixins/imageAndSprites"
     import { mapActions } from 'vuex'
 
     import data from "@/assets/data/onboarding.json"
@@ -224,7 +224,7 @@
                 const pokemonName = pokemon.name.toLowerCase()
                 this.modal.selectStarter = true
                 this.currentStarter = pokemon
-                this.currentStarter.image = getImageUrl(pokemonName)
+                this.currentStarter.image = getImage(pokemonName)
             },
 
             getRivalStarter() {
