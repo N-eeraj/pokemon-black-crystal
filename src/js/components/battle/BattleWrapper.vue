@@ -35,7 +35,7 @@
 
 <script>
 
-    import BattleScene from "@/js/components/battle/scene/BattleScene.vue"
+    import BattleScene from '@/js/components/battle/scene/BattleScene.vue'
 
     import { mapActions } from 'vuex'
 

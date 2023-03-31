@@ -153,11 +153,11 @@
 
 <script>
 
-    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
-    import TypeIcon from "@/js/components/TypeIcon.vue"
-    import CommonLoader from "@/js/components/screens/loading/CommonLoader.vue"
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
+    import TypeIcon from '@/js/components/TypeIcon.vue'
+    import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
 
-    import { mapGetters, mapActions } from "vuex"
+    import { mapGetters, mapActions } from 'vuex'
 
     export default {
         name: 'pokedex-view',

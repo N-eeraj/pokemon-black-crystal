@@ -1,5 +1,5 @@
 function getAttackDefenseRatio(damageClass, attacker, defender) {
-    if (damageClass === "physical") return attacker.stat.attack / defender.stat.defense
+    if (damageClass === 'physical') return attacker.stat.attack / defender.stat.defense
     return attacker.stat['special-attack'] / defender.stat['special-defense']
 }
 

@@ -19,16 +19,15 @@
 </template>
 
 <script>
-    import appPackage from '@/../package.json'
-
-    import { getStorage } from "@/js/mixins/storage"
+    import { appName } from '@/js/mixins/common'
+    import { getStorage } from '@/js/mixins/storage'
 
     export default {
         name: 'page-not-found',
 
         methods: {
             goHome() {
-                this.$router.push(getStorage(appPackage.name) ? '/' : '/welcome')
+                this.$router.push(getStorage(appName) ? '/' : '/welcome')
             }
         }
     }

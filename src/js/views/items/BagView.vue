@@ -9,11 +9,11 @@
 
 <script>
 
-    import ItemsList from "@/js/components/ItemsList.vue"
+    import ItemsList from '@/js/components/ItemsList.vue'
 
-    import { mapGetters, mapActions } from "vuex"
+    import { mapGetters, mapActions } from 'vuex'
 
-    import items from "@/assets/data/items"
+    import items from '@/assets/data/items'
 
     export default {
         name: 'bag-view',

@@ -91,19 +91,20 @@
 </template>
 
 <script>
-    import appPackage from '@/../package.json'
 
-    import PopUp from "@/js/components/UI/PopUp.vue"
-    import BattleWrapper from "@/js/components/battle/BattleWrapper.vue"
+    import PopUp from '@/js/components/UI/PopUp.vue'
+    import BattleWrapper from '@/js/components/battle/BattleWrapper.vue'
     
-    import { getImage } from "@/js/mixins/imageAndSprites"
-    import { getStorage } from "@/js/mixins/storage"
+    import { appName } from '@/js/mixins/common'
+    import { getImage } from '@/js/mixins/imageAndSprites'
+    import { getStorage } from '@/js/mixins/storage'
     import { mapActions } from 'vuex'
 
-    import data from "@/assets/data/onboarding.json"
+    import data from '@/assets/data/onboarding.json'
+    
 
     export default {
-        name: "onboarding-view",
+        name: 'onboarding-view',
  
         components: {
             PopUp,
@@ -144,7 +145,7 @@
                 return {
                     img: this.story[this.currentDiaogue.index].characterImg,
                     text: this.formatDialogue(this.story[this.currentDiaogue.index].text),
-                    showNext: ["dialogue", "conditionalDialogue"].includes(this.currentDiaogue.type),
+                    showNext: ['dialogue', 'conditionalDialogue'].includes(this.currentDiaogue.type),
                 }
             },
 
@@ -154,16 +155,16 @@
         },
 
         watch: {
-            "currentDiaogue.index"(index) {
+            'currentDiaogue.index'(index) {
                 this.currentDiaogue.type = this.story[index].type
                 switch (this.currentDiaogue.type) {
-                case "askName":
+                case 'askName':
                     this.modal.askName = true
                     break
-                case "selectPokemon":
+                case 'selectPokemon':
                     this.selectStarter = true
                     break
-                case "battle":
+                case 'battle':
                     this.startBattle()
                     break
                 }
@@ -171,7 +172,7 @@
         },
 
         beforeCreate() {
-            if (getStorage(appPackage.name))
+            if (getStorage(appName))
                 this.$router.push('/')
         },
 
@@ -186,8 +187,8 @@
         methods: {
             formatDialogue(dialogue) {
                 if (!dialogue) return null
-                if (this.currentDiaogue.type === "conditionalDialogue")
-                dialogue = dialogue[this.onboarding.rivalBattle ? "win" : "lose"]
+                if (this.currentDiaogue.type === 'conditionalDialogue')
+                dialogue = dialogue[this.onboarding.rivalBattle ? 'win' : 'lose']
                 return dialogue
                     .replace(/<Player>/gi, this.onboarding.name)
                     .replace(/<Pokemon>/gi, this.onboarding.starter?.name || null)
@@ -209,7 +210,7 @@
                 this.initData.pokemon.party.push(1)
                 this.initData.pokemon.caughtList = [this.onboarding.starter.id]
                 this.saveGameData(this.initData)
-                this.$router.push("/")
+                this.$router.push('/')
             },
 
             closeModal(name) {
@@ -218,7 +219,7 @@
 
             setName() {
                 if (!this.onboarding.name?.trim()) return
-                this.closeModal("askName")
+                this.closeModal('askName')
                 this.nextDialogue()
             },
 
@@ -243,7 +244,7 @@
             async confirmPokemon() {
                 this.onboarding.starter = this.currentStarter
                 this.onboarding.rivalStarter = this.starters.find(pokemon => pokemon.id === this.getRivalStarter())
-                this.closeModal("selectStarter")
+                this.closeModal('selectStarter')
                 this.selectStarter = false
                 this.nextDialogue()
             },

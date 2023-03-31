@@ -24,11 +24,11 @@
 
 <script>
 
-    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
 
-    import { mapGetters, mapActions } from "vuex"
+    import { mapGetters, mapActions } from 'vuex'
 
-    import data from "@/assets/data/gym-levels.json"
+    import data from '@/assets/data/gym-levels.json'
 
     export default {
         name: 'gym-badges',

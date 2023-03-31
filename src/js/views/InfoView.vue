@@ -69,7 +69,7 @@
     import info from '@/assets/data/info'
 
     export default {
-    name: "info-view",
+    name: 'info-view',
 
     components: {
         NavigationBar

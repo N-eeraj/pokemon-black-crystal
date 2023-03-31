@@ -1,5 +1,5 @@
-import { encryptAndSave } from "@/js/mixins/common"
-import { moveDamage } from "@/js/mixins/calculations"
+import { encryptAndSave } from '@/js/mixins/common'
+import { moveDamage } from '@/js/mixins/calculations'
 
 let currentAudio
 

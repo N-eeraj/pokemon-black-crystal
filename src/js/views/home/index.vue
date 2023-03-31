@@ -86,7 +86,7 @@
     import { mapGetters, mapActions } from 'vuex'
 
     export default {
-        name: "home-view",
+        name: 'home-view',
 
         components: {
             MainMenu

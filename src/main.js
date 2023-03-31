@@ -3,7 +3,7 @@ import App from '@/js/App.vue'
 import router from '@/js/router'
 import store from '@/js/store/store'
 
-import { toTitleCase } from "@/js/mixins/common"
+import { toTitleCase } from '@/js/mixins/common'
 
 const app = createApp(App)
 

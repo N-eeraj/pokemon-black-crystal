@@ -160,7 +160,7 @@
 
 <script>
 
-    import ItemsList from "@/js/components/ItemsList.vue"
+    import ItemsList from '@/js/components/ItemsList.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import TypeIcon from '@/js/components/TypeIcon.vue'

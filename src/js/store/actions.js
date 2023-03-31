@@ -1,7 +1,7 @@
 import { Pokemon, PokemonObject } from '@/js/mixins/Pokemon'
 
-import { getIdFromUrl, deepCopy, clamp, decryptAndLoad } from "@/js/mixins/common"
-import { getInRange } from "@/js/mixins/randomGenerator"
+import { getIdFromUrl, deepCopy, clamp, decryptAndLoad } from '@/js/mixins/common'
+import { getInRange } from '@/js/mixins/randomGenerator'
 
 export default {
     async updateOfflineStats({ state, commit }) {

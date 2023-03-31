@@ -53,7 +53,7 @@
 
     import { mapActions } from 'vuex'
 
-    import { getInRange } from "@/js/mixins/randomGenerator"
+    import { getInRange } from '@/js/mixins/randomGenerator'
 
     export default {
         name: 'whos-that-pokemon',

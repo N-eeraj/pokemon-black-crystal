@@ -43,7 +43,7 @@
 
 <script>
 
-    import NavigationBar from '@/js/components/UI/NavigationBar.vue';
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
 
     export default {
         name: 'trade-chat',

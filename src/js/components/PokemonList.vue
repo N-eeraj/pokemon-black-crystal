@@ -20,8 +20,8 @@
 
 <script>
 
-    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
-    import PokemonCard from "@/js/components/PokemonCard.vue"
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
+    import PokemonCard from '@/js/components/PokemonCard.vue'
 
     export default {
         name: 'pokemon-list',

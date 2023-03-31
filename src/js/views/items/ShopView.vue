@@ -90,12 +90,12 @@
 
 <script>
 
-    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
-    import PopUp from "@/js/components/UI/PopUp.vue"
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
-    import { mapGetters, mapActions } from "vuex"
+    import { mapGetters, mapActions } from 'vuex'
 
-    import items from "@/assets/data/items"
+    import items from '@/assets/data/items'
 
     export default {
         name: 'shop-view',

@@ -25,7 +25,6 @@
 </template>
 
 <script>
-
     import PopUp from '@/js/components/UI/PopUp.vue'
 
     export default {

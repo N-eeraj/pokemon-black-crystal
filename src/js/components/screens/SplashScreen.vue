@@ -23,12 +23,12 @@
 </template>
 
 <script>
-    import appPackage from '@/../package.json'
 
     import { mapActions } from 'vuex'
 
+    import { appName } from '@/js/mixins/common'
     import updateVersion from '@/js/mixins/migrations'
-    import { getStorage } from "@/js/mixins/storage"
+    import { getStorage } from '@/js/mixins/storage'
 
     export default {
         name: 'splash-screen',
@@ -52,7 +52,7 @@
                     this.fetchTypes()
                 ])
 
-                if (getStorage(appPackage.name))
+                if (getStorage(appName))
                     await this.loadGameData()
                 else
                     this.$router.push('/welcome')

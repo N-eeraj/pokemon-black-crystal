@@ -45,7 +45,7 @@
 
 <script>
 
-    import items from "@/assets/data/items"
+    import items from '@/assets/data/items'
 
     import { mapGetters } from 'vuex'
 

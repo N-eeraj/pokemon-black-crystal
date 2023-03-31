@@ -49,7 +49,7 @@
 
 <script>
 
-    import NavigationBar from "@/js/components/UI/NavigationBar.vue"
+    import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import TypeIcon from '@/js/components/TypeIcon.vue'
 
     import { mapGetters } from 'vuex'

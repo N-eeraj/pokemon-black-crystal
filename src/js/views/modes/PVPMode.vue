@@ -52,7 +52,7 @@
 <script>
 
     import PvpLoader from '@/js/components/screens/loading/PvpLoader.vue'
-    import BattleScene from "@/js/components/battle/scene/BattleScene.vue"
+    import BattleScene from '@/js/components/battle/scene/BattleScene.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
 

@@ -1,4 +1,4 @@
-import { toTitleCase } from "@/js/mixins/common"
+import { toTitleCase } from '@/js/mixins/common'
 
 export const changePokemon = (isFoe = false) => `${isFoe ? 'Opponent' : 'You'} changed pokemon`
 

@@ -122,18 +122,18 @@
 
 <script>
 
-    import PopUp from "@/js/components/UI/PopUp.vue"
-    import BattlePokemon from "@/js/components/battle/scene/BattlePokemon.vue"
-    import MovesList from "@/js/components/battle/MovesList.vue"
-    import PokemonList from "@/js/components/PokemonList.vue"
+    import PopUp from '@/js/components/UI/PopUp.vue'
+    import BattlePokemon from '@/js/components/battle/scene/BattlePokemon.vue'
+    import MovesList from '@/js/components/battle/MovesList.vue'
+    import PokemonList from '@/js/components/PokemonList.vue'
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
     import DoughnutChart from '@/js/components/UI/DoughnutChart.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
-    import { getRandomMove, checkMoveAccuracy, getInRange } from "@/js/mixins/randomGenerator"
-    import { getCaptureRate } from "@/js/mixins/calculations"
-    import { changePokemon, moveMessage, missedMove, faintMessage, useItem, caughtPokemon, pokemonBrokeFree } from "@/js/mixins/messages"
+    import { getRandomMove, checkMoveAccuracy, getInRange } from '@/js/mixins/randomGenerator'
+    import { getCaptureRate } from '@/js/mixins/calculations'
+    import { changePokemon, moveMessage, missedMove, faintMessage, useItem, caughtPokemon, pokemonBrokeFree } from '@/js/mixins/messages'
 
     import items from "@/assets/data/items"
 

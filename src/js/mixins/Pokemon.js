@@ -1,7 +1,7 @@
 import store from '@/js/store/store'
 
-import { getImage, getSprite } from "@/js/mixins/imageAndSprites"
-import { getIdFromUrl } from "@/js/mixins/common"
+import { getImage, getSprite } from '@/js/mixins/imageAndSprites'
+import { getIdFromUrl } from '@/js/mixins/common'
 
 
 export const Pokemon = async (id) => {
