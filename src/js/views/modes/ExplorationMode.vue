@@ -11,7 +11,7 @@
 
             <battle-scene
                 v-else
-                :player-party="playerPokemon"
+                :player-party="partyPokemonData"
                 :foe-party="[wildPokemon]"
                 save-battle
                 can-catch
@@ -71,7 +71,6 @@
         data() {
             return {
                 battleOngoing: false,
-                playerPokemon: null,
                 wildPokemon: null,
                 wildPokemonLevel: null,
                 isLoading: false,
@@ -81,29 +80,13 @@
 
         computed: {
             ...mapGetters([
-                'partyPokemon',
+                'partyPokemonData',
                 'getCaughtPokemon',
                 'strongestPokemon'
             ])
         },
 
-        created() {
-            this.initializeParty()
-        },
-
         methods: {
-            initializeParty() {
-                this.playerPokemon = this.partyPokemon.map(id => {
-                    const pokemon = this.getCaughtPokemon(id)
-                    return {
-                        pokemon: pokemon.id,
-                        exp: pokemon.exp,
-                        happiness: pokemon.happiness,
-                        encounterId: id
-                    }
-                })
-            },
-
             async handleLocation(location) {
                 this.isLoading = true
                 this.battleOngoing = true
@@ -159,7 +142,6 @@
                 this.battleOngoing = false
                 this.addCaughtPokemon(this.wildPokemon)
                 this.setBattleData(null)
-                this.initializeParty()
             },
 
             ...mapActions([
