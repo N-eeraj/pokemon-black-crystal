@@ -9,7 +9,7 @@
 
             <battle-wrapper
                 v-else
-                :player-party="playerParty"
+                :player-party="partyPokemonData"
                 :foe-party="foeParty"
                 :foe-details="foeDetails"
                 save-battle
@@ -82,7 +82,6 @@
 
         data() {
             return {
-                playerParty: null,
                 foeParty: null,
                 foeDetails: null,
                 showNavBar: true,
@@ -107,30 +106,17 @@
             },
 
             ...mapGetters([
-                'partyPokemon',
+                'partyPokemonData',
                 'getCaughtPokemon',
                 'strongestPokemon'
             ])
         },
 
         created() {
-            this.initializeParty()
+            this.initializeFoe()
         },
 
         methods: {
-            initializeParty() {
-                this.playerParty = this.partyPokemon.map(id => {
-                    const pokemon = this.getCaughtPokemon(id)
-                    return {
-                        pokemon: pokemon.id,
-                        exp: pokemon.exp,
-                        happiness: pokemon.happiness,
-                        encounterId: id
-                    }
-                })
-                this.initializeFoe()
-            },
-
             async getFoeParty() {
                 const options = {
                     count: this.foePartySize,
@@ -169,7 +155,7 @@
                     return this.gameOver = true
                 }
                 this.loading = true
-                this.initializeParty()
+                this.initializeFoe()
             },
 
             handleMatchCompleteion(result) {
