@@ -3,9 +3,9 @@
         <div id="story">
             <champion-screen v-if="playerLevel > 240" />
 
-            <template v-else>
+            <template v-else-if="partyPokemonData?.length && foeParty?.length">
                 <battle-wrapper
-                    :player-party="playerParty"
+                    :player-party="partyPokemonData"
                     :foe-party="foeParty"
                     :foe-details="foeDetails"
                     save-battle
@@ -68,7 +68,6 @@
 
         data() {
             return {
-                playerParty: null,
                 foeParty: null,
                 foeDetails: null,
                 showNavBar: true,
@@ -79,7 +78,7 @@
         computed: {
             ...mapGetters([
                 'playerLevel',
-                'partyPokemon',
+                'partyPokemonData',
                 'getCaughtPokemon'
             ])
         },
@@ -88,24 +87,11 @@
             if (this.playerLevel <= 240) {
                 if (this.playerLevel > 236)
                     this.setLevel(236)
-                this.initializeParty()
+                this.initializeFoe()
             }
         },
 
         methods: {
-            initializeParty() {
-                this.playerParty = this.partyPokemon.map(id => {
-                    const pokemon = this.getCaughtPokemon(id)
-                    return {
-                        pokemon: pokemon.id,
-                        exp: pokemon.exp,
-                        happiness: pokemon.happiness,
-                        encounterId: id
-                    }
-                })
-                this.initializeFoe()
-            },
-
             initializeFoe() {
                 const foe = story.find(foe => foe.level === this.playerLevel)
                 this.foeDetails = {
@@ -138,11 +124,9 @@
 
             handleMatchCompleteion(result) {
                 this.toggleNavBar()
-                this.initializeParty()
                 if (!result) {
                     if (this.playerLevel > 236) {
                         this.setLevel(236)
-                        this.initializeParty()
                     }
                     return
                 }

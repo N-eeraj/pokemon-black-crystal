@@ -74,6 +74,18 @@ export default {
         return state.gameData.pokemon.party
     },
 
+    partyPokemonData(state, getters) {
+        return state.gameData.pokemon.party.map(id => {
+            const pokemon = getters.getCaughtPokemon(id)
+            return {
+                pokemon: pokemon.id,
+                exp: pokemon.exp,
+                happiness: pokemon.happiness,
+                encounterId: id
+            }
+        })
+    },
+
     pcPokemon(state) {
         return state.gameData.pokemon.pc
     },

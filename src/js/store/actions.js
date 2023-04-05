@@ -236,7 +236,8 @@ export default {
         
         const randomPokemon = encounterPossibilities[getInRange(0, encounterPossibilities.length)]
         const pokemonDetails = await dispatch('getPokemonById', randomPokemon)
-        if (pokemonDetails.isLegendary) return dispatch('getWildPokemonByLocation', location)
+        if (pokemonDetails.isLegendary)
+            return dispatch('getWildPokemonByLocation', location)
         return pokemonDetails
     },
 
