@@ -58,7 +58,7 @@
 		},
 		{
 			"type": "dialogue",
-			"characterImg": "characters/rival",
+			"characterImg": "characters/foe/brendan",
 			"text": "Hi, I'm Brendan. I'm a friend of Prof. Oak's.\nI see you got your first Pokémon.\nHow about a trainer battle?"
 		},
 		{
@@ -71,7 +71,7 @@
 		},
 		{
 			"type": "conditionalDialogue",
-			"characterImg": "characters/rival",
+			"characterImg": "characters/foe/brendan",
 			"text": {
 				"win": "That was a great battle. You may have won this time, but I'll beat you in our next battle. I'm gonna go train and become stronger.",
 				"lose": "That was a great battle. Don't worry, you just became a trainer. Train harder and grow stronger and we'll battle again."
@@ -94,17 +94,17 @@
 		},
 		{
 			"type": "dialogue",
-			"characterImg": "characters/rival",
+			"characterImg": "characters/foe/brendan",
 			"text": "<Player> you gotta enter the Pokémon League. If you can win it you'll be crowned as the champion.\nIsn't that exciting."
 		},
 		{
 			"type": "dialogue",
-			"characterImg": "characters/rival",
+			"characterImg": "characters/foe/brendan",
 			"text": "You'll have to defeat the 8 Gym Leaders & the Elite Four to battle against the champion."
 		},
 		{
 			"type": "dialogue",
-			"characterImg": "characters/rival",
+			"characterImg": "characters/foe/brendan",
 			"text": "I'll be competing, we'll see which one of us can be the champion."
 		}
 	],
