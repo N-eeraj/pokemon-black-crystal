@@ -1,24 +1,54 @@
-# pokemon-black-crystal
+# Pokémon Black Crystal
 
-## Project setup
-```
-npm install
-```
+### About
+**Pokémon Black Crystal** is a free to play fan made online Pokémon game that you can play with your friends.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Game Modes
 
-### Compiles and minifies for production
-```
-npm run build
-```
+<details>
+    <summary>
+        Story Mode
+    </summary>
+    Story mode consists of battles with several opponents.
+    </details>
 
-### Lints and fixes files
-```
-npm run lint
-```
+<details>
+    <summary>
+        Exploration Mode
+    </summary>
+    Catch and battle with wild Pokémon using the Exploration mode.
+</details>
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<details>
+    <summary>
+        Arcade Mode
+    </summary>
+    Battle against trainers outside the story mode.
+</details>
+
+<details>
+    <summary>
+        PVP Mode
+    </summary>
+    Battle with your friends in real time.
+</details>
+
+<details>
+    <summary>
+        Trade Mode
+    </summary>
+    Trade Pokémon with your friends.
+</details>
+
+<details>
+    <summary>
+        Carnival Mode
+    </summary>
+    Have fun playing mini-games.
+</details>
+
+
+<br>
+
+Check out the [Pokémon Black Crystal website](https://n-eeraj.github.io/about-pokemon-black-crystal).
+Or have a look at that repository [about-pokemon-black-crystal](https://github.com/N-eeraj/about-pokemon-black-crystal)
