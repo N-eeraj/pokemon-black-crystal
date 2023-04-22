@@ -123,6 +123,11 @@
                     encounterId: id
                 }
             })
+            window.onbeforeunload = () => true
+        },
+
+        beforeUnmount() {
+            window.onbeforeunload = null
         },
 
         methods: {

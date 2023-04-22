@@ -78,10 +78,12 @@
             this.choices = await this.getCarnivalPokemon(3)
             this.loading = false
             this.correctOption = getInRange(0, 3)
+            window.onbeforeunload = () => true
         },
 
         beforeUnmount() {
             this.updateCarnivalEntry()
+            window.onbeforeunload = null
         },
 
         methods: {

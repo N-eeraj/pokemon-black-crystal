@@ -99,10 +99,12 @@
             this.participants = await this.getCarnivalPokemon(3)
             this.setList()
             this.loading = false
+            window.onbeforeunload = () => true
         },
 
         beforeUnmount() {
             this.updateCarnivalEntry()
+            window.onbeforeunload = null
         },
 
         methods: {

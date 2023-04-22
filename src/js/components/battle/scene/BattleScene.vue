@@ -270,12 +270,17 @@
             await this.setBattleParty(this.foeParty, 'foe')
             this.setBattleData(this.battle)
             this.loading = false
+            window.onbeforeunload = () => true
         },
 
         mounted() {
             this.updateAudio('battle.mp3')
             if (!this.isMultiplayer) return
             this.startCountdown()
+        },
+
+        beforeUnmount() {
+            window.onbeforeunload = null
         },
 
         methods: {

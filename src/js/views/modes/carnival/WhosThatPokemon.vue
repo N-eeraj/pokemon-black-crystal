@@ -21,7 +21,7 @@
                 <progress
                     v-if="timer.timeLeft"
                     :value="timer.timeLeft"
-                    :max="30"
+                    :max="10"
                     class="timer" />
                 
                 <button
@@ -70,7 +70,7 @@
                 correctOption: null,
                 timer: {
                     counter: null,
-                    timeLeft: 30
+                    timeLeft: 10
                 },
                 victory: null,
                 popUp: {
@@ -90,6 +90,11 @@
                     return this.timer.timeLeft -= 0.1
                 this.handleTimeOut()
             }, 100)
+            window.onbeforeunload = () => true
+        },
+
+        beforeUnmount() {
+            window.onbeforeunload = null
         },
 
         methods: {

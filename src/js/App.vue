@@ -66,7 +66,6 @@
                     this.isSmallScreen = height < 360
                 }
             })
-            window.onbeforeunload = () => true
         },
 
         computed: {

@@ -81,10 +81,12 @@
                     this.gameOver()
                 }
             }, 10)
+            window.onbeforeunload = () => true
         },
 
         beforeUnmount() {
             this.updateCarnivalEntry()
+            window.onbeforeunload = null
         },
 
         methods: {

@@ -124,10 +124,6 @@
             }
         },
 
-        created() {
-            this.updateAudio('carnival.mp3')
-        },
-
         computed: {
             invalidBetAmount() {
                 return (
@@ -141,6 +137,15 @@
             ...mapGetters([
                 'playerCoins'
             ])
+        },
+
+        created() {
+            this.updateAudio('carnival.mp3')
+            window.onbeforeunload = () => true
+        },
+
+        beforeUnmount() {
+            window.onbeforeunload = null
         },
 
         methods: {
