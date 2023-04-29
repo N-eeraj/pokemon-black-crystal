@@ -53,7 +53,22 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            closable: {
+                type: Boolean,
+                required: false,
+                default: false
             }
+        },
+
+        mounted() {
+            if (this.closable)
+                this.$router.push({ hash: '#pokemon'})
+        },
+
+        beforeUnmount() {
+            if (this.closable)
+                this.$router.replace({ hash: null })
         },
 
         methods: {
@@ -63,7 +78,7 @@
                     newIndex: currentIndex + positions
                 })
             }
-        },
+        }
     }
 </script>
 

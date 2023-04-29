@@ -93,6 +93,7 @@
             icon="cross-mark"
             show-hp
             rearrangeable
+            closable
             @nav-icon-action="hidePartyPokemon"
             @selected-pokemon="changeCurrentPokemon"
             @rearrange-pokemon="changePartyOrder" />
