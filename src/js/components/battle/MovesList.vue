@@ -72,6 +72,14 @@
             ...mapGetters([
                 'battleData'
             ])
+        },
+
+        mounted() {
+            this.$router.push({ hash: '#moves'})
+        },
+
+        beforeUnmount() {
+            this.$router.replace({ hash: null })
         }
     }
 </script>

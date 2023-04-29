@@ -262,6 +262,15 @@
                     if (client && peer)
                         this.handlePVPTurn(action)
                 }
+            },
+
+            $route: {
+                deep: true,
+                handler({hash}) {
+                    if (hash) return
+                    this.show.moveset = false
+                    this.show.party = false
+                }
             }
         },
 
