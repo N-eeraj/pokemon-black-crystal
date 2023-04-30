@@ -1,8 +1,6 @@
 <template>
     <div class="pop-up-wrapper">
-
         <div class="pop-up-card">
-
             <img
                 v-if="close"
                 :src="require(`@/assets/icons/cross-mark.svg`)"
@@ -18,9 +16,7 @@
             <div class="actions-container">
                 <slot name="actions"></slot>
             </div>
-
         </div>
-
     </div>
 </template>
 
@@ -33,8 +29,29 @@
                 type: Boolean,
                 required: false,
                 default: false
+            },
+            hash: {
+                type: String,
+                required: false,
+                default: ''
+            },
+            preventRedirect: {
+                type: Boolean,
+                required: false,
+                default: false
             }
         },
+
+        mounted() {
+            if (this.preventRedirect)
+                this.$router.push({ hash: `#${this.hash}` })
+        },
+
+        beforeUnmount() {
+            if (this.preventRedirect)
+                this.$router.replace({ hash: null })
+        },
+
         methods: {
             closePopUp() {
                 this.$emit('closePopUp')

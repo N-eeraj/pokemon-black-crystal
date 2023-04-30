@@ -30,6 +30,7 @@
             <pop-up
                 v-if="popUp.show"
                 close
+                prevent-redirect
                 @close-pop-up="resetPopUp">
 
                 <template #body>
@@ -127,6 +128,16 @@
             ...mapGetters([
                 'getCoinAndBerry'
             ])
+        },
+
+        watch: {
+            $route: {
+                deep: true,
+                handler({ hash }) {
+                    if (!hash)
+                        this.resetPopUp()
+                }
+            }
         },
 
         methods: {
