@@ -86,6 +86,10 @@
             ])
         },
 
+        mounted() {
+            this.$router.replace({ hash: null })
+        },
+
         methods: {
             async handleLocation(location) {
                 this.isLoading = true

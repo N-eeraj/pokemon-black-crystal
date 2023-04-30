@@ -17,7 +17,7 @@
                     :src="require(`@/assets/icons/${ show.pokeballs ? 'cross-mark' : 'pokeball' }.svg`)"
                     class="icon pokeball"
                     :class="{ close : show.pokeballs }"
-                    @click="toggleShowPokeballs" />
+                    @click="togglePokeballs" />
 
                 <doughnut-chart
                     v-if="isMultiplayer && pvp.countdown"
@@ -267,10 +267,19 @@
 
             $route: {
                 deep: true,
-                handler({hash}) {
-                    if (hash) return
-                    this.show.moveset = false
-                    this.show.party = false
+                handler({ hash: toHash }, { hash: fromHash }) {
+                    if (toHash) return
+                    switch (fromHash) {
+                        case '#moves':
+                            this.hidePokemonMoves()
+                            break
+                        case '#pokemon':
+                            this.hidePartyPokemon()
+                            break
+                        case '#pokeballs':
+                            this.hidePokeballs()
+                            break
+                    }
                 }
             }
         },
@@ -335,6 +344,23 @@
                 this.show.party = false
             },
 
+            showPokeballs() {
+                this.show.pokeballs = true
+                this.$router.push({ hash: '#pokeballs' })
+            },
+
+            hidePokeballs() {
+                this.show.pokeballs = false
+                this.$router.replace({ hash: null })
+            },
+
+            togglePokeballs() {
+                if (this.show.pokeballs)
+                    this.hidePokeballs()
+                else
+                    this.showPokeballs()
+            },
+
             closePopUp(popUpName) {
                 this.modal[popUpName] = false
             },
@@ -346,10 +372,6 @@
             escape() {
                 this.closePopUp('confirmEscape')
                 this.$emit('escape')
-            },
-
-            toggleShowPokeballs() {
-                this.show.pokeballs = !this.show.pokeballs
             },
 
             changeFoePartyOrder({ currentIndex, newIndex }) {
@@ -406,7 +428,7 @@
                     count: -1,
                     itemId
                 })
-                this.toggleShowPokeballs()
+                this.hidePokeballs()
                 this.battleMessage = useItem(item.name)
                 this.catchStatus.ballUsed = itemId
 
