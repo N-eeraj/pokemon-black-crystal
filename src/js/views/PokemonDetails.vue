@@ -123,6 +123,8 @@
 
             <pop-up
                 v-if="showReleaseModal"
+                prevent-redirect
+                hash="release"
                 class="release-modal">
                 <template #body>
                     <div class="text">
@@ -137,7 +139,7 @@
                     </button>
                     <button
                         class="cancel"
-                        @click="showReleaseModal = false">
+                        @click="closeConfirmRelease">
                         No
                     </button>
                 </template>
@@ -214,6 +216,16 @@
                 'getCaughtPokemonList',
                 'bagItems'
             ])
+        },
+
+        watch: {
+            $route: {
+                deep: true,
+                handler({ hash: toHash }, { hash: fromHash }) {
+                    if (!toHash && fromHash === '#release')
+                        this.closeConfirmRelease()
+                }
+            }
         },
 
         created() {
@@ -378,12 +390,16 @@
                 this.showReleaseModal = true
             },
 
+            closeConfirmRelease() {
+                this.showReleaseModal = false
+            },
+
             release() {
                 this.releasePokemon({
                     id: this.pokemon.encounterId,
                     list: this.$route.params.type
                 })
-                this.showReleaseModal = false
+                this.closeConfirmRelease()
                 this.$router.push(`/pokemon/list/${this.listType}`)
             },
 

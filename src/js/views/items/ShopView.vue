@@ -35,8 +35,9 @@
             <pop-up
                 v-if="selectedItem"
                 :close="true"
+                prevent-redirect
                 class="selected-item"
-                @close-pop-up="selectedItem = null">
+                @close-pop-up="closePurchase">
 
                 <template #title>
                     {{ selectedItem.name }}
@@ -127,6 +128,16 @@
             ])
         },
 
+        watch: {
+            $route: {
+                deep: true,
+                handler({ hash }) {
+                    if (!hash)
+                        this.closePurchase()
+                }
+            }
+        },
+
         created() {
             this.updateAudio('shop.mp3')
             this.shopItems = items.sort((first, second) => first.price - second.price)
@@ -149,13 +160,17 @@
                 this.quantity--
             },
 
+            closePurchase() {
+                this.selectedItem = null
+            },
+
             handlePurchase() {
                 this.updateBag({
                     itemId: this.selectedItem.id,
                     count: this.quantity
                 })
                 this.updatePlayerCoins(this.selectedItem.price * this.quantity * -1)
-                this.selectedItem = null
+                this.closePurchase()
             },
 
             ...mapActions([

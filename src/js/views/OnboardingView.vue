@@ -52,6 +52,8 @@
 
             <pop-up
                 v-if="modal.selectStarter"
+                prevent-redirect
+                hash="starter"
                 class="modal">
                 <template #body>
                     <div class="starter-confirmation">
@@ -169,6 +171,14 @@
                     break
                 }
             },
+
+            $route: {
+                deep: true,
+                handler({ hash: toHash }, { hash: fromHash }) {
+                    if (!toHash && fromHash === '#starter')
+                        this.closeModal('selectStarter')
+                }
+            }
         },
 
         beforeCreate() {

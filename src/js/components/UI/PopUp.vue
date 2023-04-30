@@ -42,14 +42,21 @@
             }
         },
 
+        data() {
+            return {
+                prevHash: null
+            }
+        },
+
         mounted() {
-            if (this.preventRedirect)
-                this.$router.push({ hash: `#${this.hash}` })
+            if (!this.preventRedirect) return
+            this.prevHash = this.$route.hash
+            this.$router.push({ hash: `#${this.hash}` })
         },
 
         beforeUnmount() {
             if (this.preventRedirect)
-                this.$router.replace({ hash: null })
+                this.$router.replace({ hash: this.prevHash })
         },
 
         methods: {

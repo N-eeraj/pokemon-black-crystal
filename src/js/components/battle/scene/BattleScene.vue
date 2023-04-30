@@ -7,7 +7,7 @@
             <div class="battle-field">
 
                 <img
-                    v-if="canEscape && !battleMessage"
+                    v-if="canEscape && !battleMessage && !show.pokeballs"
                     :src="require(`@/assets/icons/escape.svg`)"
                     class="icon escape"
                     @click="confirmEscape" />
@@ -101,6 +101,8 @@
         <pop-up
             v-if="modal.confirmEscape"
             close
+            prevent-redirect
+            hash="escape"
             class="modal"
             @close-pop-up="closePopUp('confirmEscape')">
             <template #body>
@@ -278,6 +280,9 @@
                             break
                         case '#pokeballs':
                             this.hidePokeballs()
+                            break
+                        case '#escape':
+                            this.closePopUp('confirmEscape')
                             break
                     }
                 }

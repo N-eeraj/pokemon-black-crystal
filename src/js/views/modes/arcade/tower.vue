@@ -37,7 +37,9 @@
             </pop-up>
 
             <pop-up
-                v-if="confirmExit">
+                v-if="confirmExit"
+                prevent-redirect
+                hash="forfeit">
                 <template #body>
                     Are you sure you want to exit? You will lose the progress you made in the Tower.
                 </template>
@@ -49,7 +51,7 @@
                     </button>
                     <button
                         class="cancel"
-                        @click="confirmExit = false">
+                        @click="cancelForfeit">
                         No
                     </button>
                 </template>
@@ -112,6 +114,16 @@
             ])
         },
 
+        watch: {
+            $route: {
+                deep: true,
+                handler({ hash: toHash }, { hash: fromHash }) {
+                    if (!toHash && fromHash === '#forfeit')
+                        this.cancelForfeit()
+                }
+            }
+        },
+
         created() {
             this.initializeFoe()
         },
@@ -168,6 +180,10 @@
 
             toggleNavBar() {
                 this.showNavBar = !this.showNavBar
+            },
+
+            cancelForfeit() {
+                this.confirmExit = false
             },
 
             startMatch() {

@@ -1,6 +1,6 @@
 {
   "name": "pokemon-black-crystal",
-  "version": "1.8.8",
+  "version": "1.9.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

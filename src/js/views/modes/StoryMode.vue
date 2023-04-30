@@ -22,8 +22,10 @@
                 <pop-up
                     v-if="confirmExit"
                     close
+                    prevent-redirect
+                    hash="forfeit"
                     class="modal"
-                    @close-pop-up="confirmExit=false">
+                    @close-pop-up="closeForfeit">
                     <template #body>
                         <div class="escape-confirmation">
                             <p>
@@ -83,6 +85,16 @@
             ])
         },
 
+        watch: {
+            $route: {
+                deep: true,
+                handler({ hash: toHash }, { hash: fromHash }) {
+                    if (!toHash && fromHash === '#forfeit')
+                        this.closeForfeit()
+                }
+            }
+        },
+
         created() {
             if (this.playerLevel <= 240) {
                 if (this.playerLevel > 236)
@@ -136,6 +148,10 @@
 
             toggleNavBar() {
                 this.showNavBar = !this.showNavBar
+            },
+
+            closeForfeit() {
+                this.confirmExit=false
             },
 
             exitStoryMode() {

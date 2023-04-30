@@ -7,7 +7,7 @@
             <wild-locations
                 v-else-if="!battleOngoing"
                 @selectedLocation="handleLocation"
-                @legendaryHunt="handleLegendaryHunt" />
+                @legendaryHunt="startLegendaryHunt" />
 
             <battle-scene
                 v-else
@@ -21,7 +21,9 @@
                 @game-over="handleGameOver" />
 
             <pop-up
-                v-if="legendaryNotFound">
+                v-if="legendaryNotFound"
+                prevent-redirect
+                hash="failed-hunt">
                 <template #body>
                     <p>
                         No legendary Pokémon found.
@@ -31,7 +33,7 @@
                 <template #actions>
                     <button
                         class="cancel"
-                        @click="legendaryNotFound = false">
+                        @click="closeLegendaryHunt">
                         Cancel
                     </button>
                     <button
@@ -86,6 +88,16 @@
             ])
         },
 
+        watch: {
+            $route: {
+                deep: true,
+                handler({ hash: toHash }, { hash: fromHash }) {
+                    if (!toHash && fromHash === '#failed-hunt')
+                        this.closeLegendaryHunt()
+                }
+            }
+        },
+
         mounted() {
             this.$router.replace({ hash: null })
         },
@@ -105,7 +117,7 @@
                 this.setWildPokemon(encounteredPokemon.id, exp)
             },
 
-            async handleLegendaryHunt() {
+            async startLegendaryHunt() {
                 this.isLoading = true
                 const legendaryPokemon = await this.getLegendaryPokemon()
                 if (legendaryPokemon) {
@@ -127,9 +139,13 @@
                 this.encounterNewPokemon()
             },
 
-            retryLegendaryHunt() {
+            closeLegendaryHunt() {
                 this.legendaryNotFound = false
-                this.handleLegendaryHunt()
+            },
+
+            retryLegendaryHunt() {
+                this.closeLegendaryHunt()
+                this.startLegendaryHunt()
             },
 
             battleOver() {
