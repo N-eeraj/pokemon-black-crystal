@@ -24,9 +24,14 @@
         ],
         "actions": [
             {
+                "text": "Visit Website",
+                "type": "primary",
+                "url": "https://n-eeraj.github.io/about-pokemon-black-crystal"
+            },
+            {
                 "text": "Report Issue",
                 "type": "secondary",
-                "action": "issues"
+                "url": "https://github.com/N-eeraj/pokemon-black-crystal/issues"
             }
         ]
     }

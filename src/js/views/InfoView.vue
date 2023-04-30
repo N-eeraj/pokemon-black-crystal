@@ -37,12 +37,12 @@
                         v-if="pageData[currentPage].actions"
                         class="actions-container">
                         <button
-                            v-for="(button, index) in pageData[currentPage].actions"
+                            v-for="({ type, url, text }, index) in pageData[currentPage].actions"
                             :key="`button-${index}`"
                             class="button"
-                            :class="button.type"
-                            @click="handleButtonAction(button.action)">
-                            {{ button.text }}
+                            :class="type"
+                            @click="handleButtonAction(url)">
+                            {{ text }}
                         </button>
                     </div>
 
@@ -88,15 +88,8 @@
     },
 
     methods: {
-        handleButtonAction(action) {
-            switch (action) {
-                case 'issues':
-                    window.open('https://github.com/N-eeraj/pokemon-black-crystal/issues')
-                    break
-                case 'help':
-                    this.$router.push('/help')
-                    break
-            }
+        handleButtonAction(url) {
+            window.open(url)
         },
 
         ...mapActions([
