@@ -161,6 +161,8 @@
             },
 
             closePurchase() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.selectedItem = null
             },
 

@@ -162,6 +162,8 @@
                 this.popUp.count = null
                 this.popUp.event = null
                 this.popUp.canEnter = null
+                if (this.$route.hash)
+                    this.$router.back()
             },
 
             attendEvent() {

@@ -338,6 +338,8 @@
             },
 
             hidePokemonMoves() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.show.moveset = false
             },
 
@@ -346,6 +348,8 @@
             },
 
             hidePartyPokemon() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.show.party = false
             },
 
@@ -355,8 +359,10 @@
             },
 
             hidePokeballs() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.show.pokeballs = false
-                this.$router.replace({ hash: null })
+                // this.$router.replace({ hash: null })
             },
 
             togglePokeballs() {
@@ -367,6 +373,8 @@
             },
 
             closePopUp(popUpName) {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.modal[popUpName] = false
             },
 

@@ -391,6 +391,8 @@
             },
 
             closeConfirmRelease() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.showReleaseModal = false
             },
 

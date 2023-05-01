@@ -140,6 +140,8 @@
             },
 
             closeLegendaryHunt() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.legendaryNotFound = false
             },
 

@@ -224,6 +224,8 @@
             },
 
             closeModal(name) {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.modal[name] = false
             },
 

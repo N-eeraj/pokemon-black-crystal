@@ -183,6 +183,8 @@
             },
 
             cancelForfeit() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.confirmExit = false
             },
 
