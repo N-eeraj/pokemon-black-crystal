@@ -241,13 +241,13 @@ export default {
         return pokemonDetails
     },
 
-    async getLegendaryPokemon({ dispatch }) {
+    async getLegendaryPokemon({ dispatch, getters }) {
         const options = {
             count: 1,
             includeLegendary: true
         }
         const pokemonData = await dispatch('getRandomPokemon', options)
-        if (pokemonData.isLegendary)
+        if (pokemonData.isLegendary && !getters.getCaughtPokemonList.includes(pokemonData.id))
             return pokemonData
         return null
     },
