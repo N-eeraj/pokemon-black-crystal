@@ -24,7 +24,7 @@
             </p>
 
             <carnival-event-pop-up
-                v-if="popUp.show"
+                :show="popUp.show"
                 :image="require('@/assets/images/items/pokeblock.png')"
                 item="Pokéblock"
                 :count="count"

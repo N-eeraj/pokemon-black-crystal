@@ -1,5 +1,6 @@
 <template>
     <pop-up
+        :show="show"
         close
         class="game-over-pop-up"
         @close-pop-up="$router.push('/mode/carnival')">
@@ -35,6 +36,9 @@
         },
 
         props: {
+            show: {
+                required: true
+            },
             image: {
                 type: String,
                 required: true

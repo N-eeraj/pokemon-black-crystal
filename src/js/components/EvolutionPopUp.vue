@@ -1,6 +1,6 @@
 <template>
     <pop-up
-        v-if="evolutionList.length && currentPokemon.evolution"
+        :show="evolutionList.length && currentPokemon.evolution"
         class="evolution-modal">
 
         <template #body>

@@ -71,7 +71,7 @@
             </pop-up>
 
             <carnival-event-pop-up
-                v-if="popUp.show"
+                :show="popUp.show"
                 :image="require('@/assets/images/coin.svg')"
                 :count="coins"
                 item="Pokécoins"

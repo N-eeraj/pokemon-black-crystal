@@ -36,7 +36,7 @@
             </div>
 
             <carnival-event-pop-up
-                v-if="popUp.show"
+                :show="popUp.show"
                 :image="require('@/assets/images/items/razz-berry.webp')"
                 item="Razz Berry"
                 :victory="victory"

@@ -32,7 +32,7 @@
             </button>
 
             <carnival-event-pop-up
-                v-if="popUp.show"
+                :show="popUp.show"
                 :image="require('@/assets/images/coin.svg')"
                 :count="200"
                 item="Pokécoins"
