@@ -123,7 +123,9 @@
 		"progress": {
 			"level": 1,
 			"coins": 500,
-			"bag": {},
+			"bag": {
+				"1": 5
+			},
 			"arcade": {
 				"battle": {
 					"attempts": 0,
