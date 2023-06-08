@@ -122,7 +122,7 @@
             </div>
 
             <pop-up
-                v-if="showReleaseModal"
+                :show="showReleaseModal"
                 prevent-redirect
                 hash="release"
                 class="release-modal">

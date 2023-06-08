@@ -21,7 +21,7 @@
                 @game-over="handleGameOver" />
 
             <pop-up
-                v-if="legendaryNotFound"
+                :show="legendaryNotFound"
                 prevent-redirect
                 hash="failed-hunt">
                 <template #body>

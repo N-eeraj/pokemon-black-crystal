@@ -33,7 +33,7 @@
             </div>
 
             <pop-up
-                v-if="selectedItem"
+                :show="selectedItem"
                 :close="true"
                 prevent-redirect
                 class="selected-item"

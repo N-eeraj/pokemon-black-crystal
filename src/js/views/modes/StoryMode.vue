@@ -20,7 +20,7 @@
 
 
                 <pop-up
-                    v-if="confirmExit"
+                    :show="confirmExit"
                     close
                     prevent-redirect
                     hash="forfeit"

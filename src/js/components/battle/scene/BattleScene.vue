@@ -99,7 +99,7 @@
             @rearrange-pokemon="changePartyOrder" />
 
         <pop-up
-            v-if="modal.confirmEscape"
+            :show="modal.confirmEscape"
             close
             prevent-redirect
             hash="escape"

@@ -28,7 +28,7 @@
             </div>
 
             <pop-up
-                v-if="popUp.show"
+                :show="popUp.show"
                 close
                 prevent-redirect
                 @close-pop-up="resetPopUp">

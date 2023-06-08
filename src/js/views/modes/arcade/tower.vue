@@ -22,7 +22,7 @@
                 @icon-event="confirmExit = true" />
 
             <pop-up
-                v-if="gameOver && reward"
+                :show="gameOver && reward"
                 close
                 class="modal"
                 @close-pop-up="$router.push('/mode/arcade')">
@@ -37,7 +37,7 @@
             </pop-up>
 
             <pop-up
-                v-if="confirmExit"
+                :show="confirmExit"
                 prevent-redirect
                 hash="forfeit">
                 <template #body>

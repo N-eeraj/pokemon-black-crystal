@@ -42,7 +42,7 @@
             </div>
 
             <pop-up
-                v-if="showBetCollector"
+                :show="showBetCollector"
                 close
                 class="bet-modal"
                 @close-pop-up="toggleBetCollector">

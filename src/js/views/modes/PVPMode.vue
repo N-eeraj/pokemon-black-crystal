@@ -29,7 +29,7 @@
                 @game-over="handleGameOver" />
 
             <pop-up
-                v-if="disconnectPopUp.show"
+                :show="disconnectPopUp.show"
                 close
                 @close-pop-up="disconnectFromPeer">
                 <template #body>
@@ -38,7 +38,7 @@
             </pop-up>
 
             <pop-up
-                v-if="gameOverPopUp.show"
+                :show="gameOverPopUp.show"
                 close
                 @close-pop-up="disconnectFromPeer">
                 <template #body>

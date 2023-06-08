@@ -35,7 +35,7 @@
             </template>
 
             <pop-up
-                v-if="disconnectPopUp.show"
+                :show="disconnectPopUp.show"
                 close
                 @close-pop-up="disconnectFromPeer">
                 <template #body>

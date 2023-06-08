@@ -32,7 +32,7 @@
             </button>
 
             <pop-up
-                v-if="modal.askName"
+                :show="modal.askName"
                 class="modal">
                 <template #body>
                     <input
@@ -51,7 +51,7 @@
             </pop-up>
 
             <pop-up
-                v-if="modal.selectStarter"
+                :show="modal.selectStarter"
                 prevent-redirect
                 hash="starter"
                 class="modal">

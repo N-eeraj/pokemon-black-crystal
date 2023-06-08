@@ -19,7 +19,7 @@
                 @completed-match="handleMatchCompleteion" />
 
             <pop-up
-                v-if="won"
+                :show="won"
                 close
                 class="modal"
                 @close-pop-up="$router.push('/mode/arcade')">
