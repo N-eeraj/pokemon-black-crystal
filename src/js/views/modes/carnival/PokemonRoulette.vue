@@ -191,7 +191,7 @@
                         result.color = 'blue'
                         break
                     case 2:
-                        result.color = 'yelow'
+                        result.color = 'yellow'
                         break
                 }
                 return result
