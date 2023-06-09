@@ -18,6 +18,17 @@ export default {
             currentAudio.muted = !state.gameData.sound
         currentAudio.loop = true
         currentAudio.play()
+        let resume = false
+        window.addEventListener('blur', () => {
+            if (!state.gameData.sound) return
+            currentAudio.muted = true
+            resume = true
+        })
+        window.addEventListener('focus', () => {
+            if (!resume) return
+            currentAudio.muted = false
+            resume = false
+        })
     },
     
     saveGameData(state, data) {
