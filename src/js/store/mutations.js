@@ -21,12 +21,12 @@ export default {
         let resume = false
         window.addEventListener('blur', () => {
             if (!state.gameData.sound) return
-            currentAudio.muted = true
+            currentAudio.pause()
             resume = true
         })
         window.addEventListener('focus', () => {
             if (!resume) return
-            currentAudio.muted = false
+            currentAudio.play()
             resume = false
         })
     },
