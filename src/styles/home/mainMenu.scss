@@ -71,4 +71,15 @@
             }
         }
     }
-}   
+}
+
+.menu-enter-active,
+.menu-leave-active {
+    transition: 400ms;
+    transform-origin: bottom;
+}
+
+.menu-enter-from,
+.menu-leave-to {
+    transform: scale(0);
+}

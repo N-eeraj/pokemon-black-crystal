@@ -9,9 +9,11 @@
                 v-if="showSplashScreen"
                 @loading-complete="startGame" />
 
-            <router-view
-                v-else
-                id="main" />
+            <transition>
+                <router-view
+                    v-show="!showSplashScreen"
+                    id="main" />
+            </transition>
 
             <evolution-pop-up
                 v-if="evolutionReadyPokemon.length"

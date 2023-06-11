@@ -69,3 +69,13 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: palette.$white;
 }
+
+.v-enter-active,
+.v-leave-active {
+    transition: 400ms;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}

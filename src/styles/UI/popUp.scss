@@ -61,13 +61,12 @@
     }
 }
 
-
 .modal-enter-active,
 .modal-leave-active {
-  transition: 400ms;
+    transition: 400ms;
 }
 
 .modal-enter-from,
 .modal-leave-to {
-  transform: scale(0);
+    transform: scale(0);
 }

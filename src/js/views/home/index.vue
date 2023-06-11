@@ -1,9 +1,6 @@
 <template>
     <div>
-        <main-menu v-if="openMenu" />
-
         <div
-            v-else
             class="home-container"
             :class="{ 'edit-view': editView }"
             :style="`background-image: url(${characterImage});`"
@@ -76,7 +73,10 @@
             @click.stop="openMenu = !openMenu">
             <span></span>
         </button>
+
+        <main-menu :open="openMenu" />
     </div>
+
 </template>
 
 <script>
