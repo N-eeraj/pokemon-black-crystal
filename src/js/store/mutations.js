@@ -20,7 +20,7 @@ export default {
         currentAudio.play()
         let resume = false
         window.addEventListener('blur', () => {
-            if (!state.gameData.sound) return
+            if (state.gameData && !state.gameData.sound) return
             currentAudio.pause()
             resume = true
         })
