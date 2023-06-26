@@ -19,17 +19,22 @@
                 @completed-match="handleMatchCompleteion" />
 
             <pop-up
-                :show="won"
+                :show="showCompleteModal"
                 close
                 class="modal"
                 @close-pop-up="$router.push('/mode/arcade')">
                 <template #body>
-                    You won
-                    <img
-                        src="@/assets/images/coin.svg"
-                        alt="Pokécoins"
-                        class="coin" />
-                    40.
+                    <template v-if="won">
+                        You won
+                        <img
+                            src="@/assets/images/coin.svg"
+                            alt="Pokécoins"
+                            class="coin" />
+                        40.
+                    </template>
+                    <template v-else>
+                        You've lost. Better luck next time!
+                    </template>
                 </template>
             </pop-up>
 
@@ -65,7 +70,8 @@
                 allRandomPokemon: null,
                 showSelection: true,
                 loading: true,
-                won: null
+                won: false,
+                showCompleteModal: false
             }
         },
 
@@ -125,7 +131,8 @@
             },
 
             handleMatchCompleteion(result) {
-                if (!result) return this.$router.push('/mode/arcade')
+                this.showCompleteModal = true
+                if (!result) return
                 this.won = true
                 this.updatePlayerCoins(40)
                 this.winArcade('tent')

@@ -22,17 +22,23 @@
                 @icon-event="confirmExit = true" />
 
             <pop-up
-                :show="gameOver && reward"
+                :show="gameOver"
                 close
                 class="modal"
                 @close-pop-up="$router.push('/mode/arcade')">
                 <template #body>
-                    You won
-                    <img
+                    <template v-if="!!reward">
+                        You won
+                        <img
                         src="@/assets/images/coin.svg"
                         alt="Pokécoins"
                         class="coin" />
-                    {{ reward }}.
+                        {{ reward }}.
+                    </template>
+                    <template v-else>
+                        You couldn't complete the Tower challenge.
+                        Better luck next time!
+                    </template>
                 </template>
             </pop-up>
 
@@ -41,7 +47,8 @@
                 prevent-redirect
                 hash="forfeit">
                 <template #body>
-                    Are you sure you want to exit? You will lose the progress you made in the Tower.
+                    Are you sure you want to exit?
+                    You will lose the progress you made in the Tower.
                 </template>
                 <template #actions>
                     <button
@@ -173,9 +180,7 @@
             handleMatchCompleteion(result) {
                 this.toggleNavBar()
                 if (result) return this.handleVictory()
-                if (this.won) this.gameOver = true
-                if (!this.reward)
-                    this.$router.push('/mode/arcade')
+                this.gameOver = true
             },
 
             toggleNavBar() {

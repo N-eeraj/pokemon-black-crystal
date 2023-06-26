@@ -22,17 +22,22 @@
                 @icon-event="$router.push('/mode/arcade')" />
 
             <pop-up
-                :show="won"
+                :show="showCompleteModal"
                 close
                 class="modal"
                 @close-pop-up="$router.push('/mode/arcade')">
                 <template #body>
-                    You won
-                    <img
-                        src="@/assets/images/coin.svg"
-                        alt="Pokécoins"
-                        class="coin" />
-                    100.
+                    <template v-if="won">
+                        You won
+                        <img
+                            src="@/assets/images/coin.svg"
+                            alt="Pokécoins"
+                            class="coin" />
+                        100.
+                    </template>
+                    <template v-else>
+                        You've lost. Better luck next time!
+                    </template>
                 </template>
             </pop-up>
         </div>
@@ -68,7 +73,8 @@
                 foeDetails: null,
                 showNavBar: true,
                 loading: true,
-                won: null
+                won: false,
+                showCompleteModal: false
             }
         },
 
@@ -136,8 +142,8 @@
 
             handleMatchCompleteion(result) {
                 this.toggleNavBar()
-                if (result) return this.handleVictory()
-                this.$router.push('/mode/arcade')
+                this.showCompleteModal = true
+                if (result) this.handleVictory()
             },
 
             toggleNavBar() {
