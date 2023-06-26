@@ -55,15 +55,18 @@
             }
         },
 
+        watch: {
+            show(to) {
+                if(to)
+                    this.$router.push({ hash: `#${this.hash}` })
+                else
+                    this.$router.replace({ hash: this.prevHash })
+            }
+        },
+
         mounted() {
             if (!this.preventRedirect) return
             this.prevHash = this.$route.hash
-            this.$router.push({ hash: `#${this.hash}` })
-        },
-
-        beforeUnmount() {
-            if (this.preventRedirect)
-                this.$router.replace({ hash: this.prevHash })
         },
 
         methods: {
