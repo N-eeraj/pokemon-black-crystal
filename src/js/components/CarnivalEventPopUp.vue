@@ -65,6 +65,4 @@
 
 </script>
 
-<style lang="scss" src="@/styles/modes/carnival/eventPopUp.scss">
-    
-</style>
+<style lang="scss" src="@/styles/modes/carnival/eventPopUp.scss"></style>

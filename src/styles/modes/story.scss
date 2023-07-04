@@ -1,0 +1,9 @@
+@use "@/styles/mixins/main.scss";
+
+.battle-end-modal.pop-up-wrapper .pop-up-card .body-container {
+    @include main.flex($direction: column, $row: 25px);
+
+    .coins {
+        @include main.flex($col: 10px);
+    }
+}

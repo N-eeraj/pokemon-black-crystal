@@ -42,6 +42,12 @@
                     </template>
                 </pop-up>
             </template>
+
+            <StoryPopUp 
+                :show="showBattleEnd"
+                :foe-name="foeDetails.name"
+                :coins="foeDetails.payUp"
+                @ok="reInitializeFoe" />
         </div>
     </div>
 </template>
@@ -53,6 +59,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import ChampionScreen from '@/js/components/screens/ChampionScreen.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
+    import StoryPopUp from '@/js/components/StoryPopUp.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 
@@ -65,7 +72,8 @@
             BattleWrapper,
             NavigationBar,
             ChampionScreen,
-            PopUp
+            PopUp,
+            StoryPopUp
         },
 
         data() {
@@ -73,7 +81,8 @@
                 foeParty: null,
                 foeDetails: null,
                 showNavBar: true,
-                confirmExit: false
+                confirmExit: false,
+                showBattleEnd: false
             }
         },
 
@@ -108,7 +117,8 @@
                 const foe = story.find(foe => foe.level === this.playerLevel)
                 this.foeDetails = {
                     image: require(`@/assets/images/characters/foe/${foe.details.image}`),
-                    name: foe.details.name
+                    name: foe.details.name,
+                    payUp: foe.payUp
                 }
                 this.foeParty = foe.party
                 const rivalPokemon = this.foeParty.find(pokemon => pokemon.pokemon === null)
@@ -137,17 +147,21 @@
             handleMatchCompleteion(result) {
                 this.toggleNavBar()
                 if (!result) {
-                    if (this.playerLevel > 236) {
-                        this.setLevel(236)
-                    }
+                    if (this.playerLevel > 236)
+                    this.setLevel(236)
                     return
                 }
+                this.showBattleEnd = true
                 this.levelUp()
-                this.initializeFoe()
             },
 
             toggleNavBar() {
                 this.showNavBar = !this.showNavBar
+            },
+
+            reInitializeFoe() {
+                this.showBattleEnd = false
+                this.initializeFoe()
             },
 
             closeForfeit() {
