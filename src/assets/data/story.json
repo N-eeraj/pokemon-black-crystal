@@ -10,7 +10,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Bugsy"
-        }
+        },
+        "payUp": 50
     },
     {
         "level": 2,
@@ -27,7 +28,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Victor"
-        }
+        },
+        "payUp": 60
     },
     {
         "level": 3,
@@ -44,7 +46,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Thorton"
-        }
+        },
+        "payUp": 80
     },
     {
         "level": 4,
@@ -61,7 +64,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Whitney"
-        }
+        },
+        "payUp": 80
     },
     {
         "level": 5,
@@ -78,7 +82,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Lucy"
-        }
+        },
+        "payUp": 80
     },
     {
         "level": 6,
@@ -95,7 +100,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Marlon"
-        }
+        },
+        "payUp": 90
     },
     {
         "level": 7,
@@ -116,7 +122,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Gladion"
-        }
+        },
+        "payUp": 85
     },
     {
         "level": 8,
@@ -137,7 +144,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Bianca"
-        }
+        },
+        "payUp": 95
     },
     {
         "level": 9,
@@ -150,7 +158,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Pryce"
-        }
+        },
+        "payUp": 150
     },
     {
         "level": 10,
@@ -163,7 +172,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Cheren"
-        }
+        },
+        "payUp": 100
     },
     {
         "level": 11,
@@ -176,7 +186,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Caitlin"
-        }
+        },
+        "payUp": 100
     },
     {
         "level": 12,
@@ -193,7 +204,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Lorelei"
-        }
+        },
+        "payUp": 105
     },
     {
         "level": 13,
@@ -214,7 +226,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Nessa"
-        }
+        },
+        "payUp": 105
     },
     {
         "level": 14,
@@ -231,7 +244,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Brycen"
-        }
+        },
+        "payUp": 110
     },
     {
         "level": 15,
@@ -248,7 +262,8 @@
         "details": {
             "image": "brendan.png",
             "name": "Foe Brendan"
-        }
+        },
+        "payUp": 200
     },
     {
         "level": 16,
@@ -261,7 +276,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "Gym Member David"
-        }
+        },
+        "payUp": 120
     },
     {
         "level": 17,
@@ -278,7 +294,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Gym Member Daniel"
-        }
+        },
+        "payUp": 125
     },
     {
         "level": 18,
@@ -299,7 +316,8 @@
         "details": {
             "image": "gym-leaders/brock.png",
             "name": "Gym Leader Brock"
-        }
+        },
+        "payUp": 360
     },
     {
         "level": 19,
@@ -312,7 +330,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Helen"
-        }
+        },
+        "payUp": 130
     },
     {
         "level": 20,
@@ -325,7 +344,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Liz"
-        }
+        },
+        "payUp": 130
     },
     {
         "level": 21,
@@ -338,7 +358,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Lucas"
-        }
+        },
+        "payUp": 135
     },
     {
         "level": 22,
@@ -351,7 +372,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Mark"
-        }
+        },
+        "payUp": 135
     },
     {
         "level": 23,
@@ -364,7 +386,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Alen"
-        }
+        },
+        "payUp": 180
     },
     {
         "level": 24,
@@ -381,7 +404,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Vanessa"
-        }
+        },
+        "payUp": 140
     },
     {
         "level": 25,
@@ -398,7 +422,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Eve"
-        }
+        },
+        "payUp": 145
     },
     {
         "level": 26,
@@ -415,7 +440,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Julius"
-        }
+        },
+        "payUp": 145
     },
     {
         "level": 27,
@@ -432,7 +458,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Nail"
-        }
+        },
+        "payUp": 135
     },
     {
         "level": 28,
@@ -449,7 +476,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Lucky"
-        }
+        },
+        "payUp": 150
     },
     {
         "level": 29,
@@ -470,7 +498,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Adam"
-        }
+        },
+        "payUp": 200
     },
     {
         "level": 30,
@@ -491,7 +520,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Joma"
-        }
+        },
+        "payUp": 160
     },
     {
         "level": 31,
@@ -512,7 +542,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Gaga"
-        }
+        },
+        "payUp": 170
     },
     {
         "level": 32,
@@ -525,7 +556,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Jasmine"
-        }
+        },
+        "payUp": 165
     },
     {
         "level": 33,
@@ -542,7 +574,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Tina"
-        }
+        },
+        "payUp": 180
     },
     {
         "level": 34,
@@ -559,7 +592,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Nathan"
-        }
+        },
+        "payUp": 150
     },
     {
         "level": 35,
@@ -576,7 +610,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Haris"
-        }
+        },
+        "payUp": 170
     },
     {
         "level": 36,
@@ -597,7 +632,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Gym Member Magnus"
-        }
+        },
+        "payUp": 160
     },
     {
         "level": 37,
@@ -618,7 +654,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Gym Member Ann"
-        }
+        },
+        "payUp": 160
     },
     {
         "level": 38,
@@ -639,7 +676,8 @@
         "details": {
             "image": "gym-leaders/misty.png",
             "name": "Gym Leader Misty"
-        }
+        },
+        "payUp": 450
     },
     {
         "level": 39,
@@ -660,7 +698,8 @@
         "details": {
             "image": "brendan.png",
             "name": "Foe Brendan"
-        }
+        },
+        "payUp": 240
     },
     {
         "level": 40,
@@ -685,7 +724,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Martha"
-        }
+        },
+        "payUp": 180
     },
     {
         "level": 41,
@@ -698,7 +738,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Pryce"
-        }
+        },
+        "payUp": 240
     },
     {
         "level": 42,
@@ -715,7 +756,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Victor"
-        }
+        },
+        "payUp": 180
     },
     {
         "level": 43,
@@ -732,7 +774,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Lola"
-        }
+        },
+        "payUp": 160
     },
     {
         "level": 44,
@@ -749,7 +792,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Trish"
-        }
+        },
+        "payUp": 160
     },
     {
         "level": 45,
@@ -774,7 +818,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Susan"
-        }
+        },
+        "payUp": 180
     },
     {
         "level": 46,
@@ -795,7 +840,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Victus"
-        }
+        },
+        "payUp": 160
     },
     {
         "level": 47,
@@ -816,7 +862,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Jerry"
-        }
+        },
+        "payUp": 180
     },
     {
         "level": 48,
@@ -833,7 +880,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Rosa"
-        }
+        },
+        "payUp": 190
     },
     {
         "level": 49,
@@ -850,7 +898,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Chirpy"
-        }
+        },
+        "payUp": 190
     },
     {
         "level": 50,
@@ -863,7 +912,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Chris"
-        }
+        },
+        "payUp": 190
     },
     {
         "level": 51,
@@ -880,7 +930,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Luke"
-        }
+        },
+        "payUp": 200
     },
     {
         "level": 52,
@@ -901,7 +952,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Robin"
-        }
+        },
+        "payUp": 205
     },
     {
         "level": 53,
@@ -914,7 +966,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Jacob"
-        }
+        },
+        "payUp": 280
     },
     {
         "level": 54,
@@ -931,7 +984,8 @@
         "details": {
             "image": "brendan.png",
             "name": "Foe Brendan"
-        }
+        },
+        "payUp": 320
     },
     {
         "level": 55,
@@ -952,7 +1006,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Shwartz"
-        }
+        },
+        "payUp": 220
     },
     {
         "level": 56,
@@ -969,7 +1024,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Gym Member Rick"
-        }
+        },
+        "payUp": 230
     },
     {
         "level": 57,
@@ -986,7 +1042,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Gym Member Ronald"
-        }
+        },
+        "payUp": 230
     },
     {
         "level": 58,
@@ -999,7 +1056,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Gym Member Pierce"
-        }
+        },
+        "payUp": 240
     },
     {
         "level": 59,
@@ -1012,7 +1070,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Gym Member Munroe"
-        }
+        },
+        "payUp": 250
     },
     {
         "level": 60,
@@ -1033,7 +1092,8 @@
         "details": {
             "image": "gym-leaders/bruno.png",
             "name": "Gym Leader Bruno"
-        }
+        },
+        "payUp": 600
     },
     {
         "level": 61,
@@ -1050,7 +1110,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Alice"
-        }
+        },
+        "payUp": 250
     },
     {
         "level": 62,
@@ -1067,7 +1128,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Alexander"
-        }
+        },
+        "payUp": 250
     },
     {
         "level": 63,
@@ -1080,7 +1142,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Finola"
-        }
+        },
+        "payUp": 250
     },
     {
         "level": 64,
@@ -1097,7 +1160,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Reva"
-        }
+        },
+        "payUp": 240
     },
     {
         "level": 65,
@@ -1118,7 +1182,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Iris"
-        }
+        },
+        "payUp": 250
     },
     {
         "level": 66,
@@ -1139,7 +1204,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Arthur"
-        }
+        },
+        "payUp": 250
     },
     {
         "level": 67,
@@ -1164,7 +1230,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Joan"
-        }
+        },
+        "payUp": 280
     },
     {
         "level": 68,
@@ -1177,7 +1244,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Hawkins"
-        }
+        },
+        "payUp": 350
     },
     {
         "level": 69,
@@ -1198,7 +1266,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Russel"
-        }
+        },
+        "payUp": 280
     },
     {
         "level": 70,
@@ -1215,7 +1284,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Sang"
-        }
+        },
+        "payUp": 240
     },
     {
         "level": 71,
@@ -1232,7 +1302,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Loris"
-        }
+        },
+        "payUp": 275
     },
     {
         "level": 72,
@@ -1249,7 +1320,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Clark"
-        }
+        },
+        "payUp": 280
     },
     {
         "level": 73,
@@ -1266,7 +1338,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Fiona"
-        }
+        },
+        "payUp": 290
     },
     {
         "level": 74,
@@ -1279,7 +1352,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Selina"
-        }
+        },
+        "payUp": 300
     },
     {
         "level": 75,
@@ -1292,7 +1366,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Luther"
-        }
+        },
+        "payUp": 270
     },
     {
         "level": 76,
@@ -1313,7 +1388,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Nick"
-        }
+        },
+        "payUp": 280
     },
     {
         "level": 77,
@@ -1334,7 +1410,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Katty"
-        }
+        },
+        "payUp": 300
     },
     {
         "level": 78,
@@ -1367,7 +1444,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Victora"
-        }
+        },
+        "payUp": 290
     },
     {
         "level": 79,
@@ -1380,7 +1458,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Courtney"
-        }
+        },
+        "payUp": 310
     },
     {
         "level": 80,
@@ -1393,7 +1472,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Gym Member Liz"
-        }
+        },
+        "payUp": 310
     },
     {
         "level": 81,
@@ -1410,7 +1490,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Gym Member Salman"
-        }
+        },
+        "payUp": 310
     },
     {
         "level": 82,
@@ -1431,7 +1512,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Gym Member Louis"
-        }
+        },
+        "payUp": 340
     },
     {
         "level": 83,
@@ -1448,7 +1530,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Gym Member Hugh"
-        }
+        },
+        "payUp": 320
     },
     {
         "level": 84,
@@ -1473,7 +1556,8 @@
         "details": {
             "image": "gym-leaders/lt_surge.png",
             "name": "Gym Leader Lt. Surge"
-        }
+        },
+        "payUp": 800
     },
     {
         "level": 85,
@@ -1486,7 +1570,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Siri"
-        }
+        },
+        "payUp": 320
     },
     {
         "level": 86,
@@ -1503,7 +1588,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Brian"
-        }
+        },
+        "payUp": 310
     },
     {
         "level": 87,
@@ -1516,7 +1602,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Lucy"
-        }
+        },
+        "payUp": 300
     },
     {
         "level": 88,
@@ -1533,7 +1620,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Michael"
-        }
+        },
+        "payUp": 340
     },
     {
         "level": 89,
@@ -1554,7 +1642,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Gladion"
-        }
+        },
+        "payUp": 350
     },
     {
         "level": 90,
@@ -1567,7 +1656,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Walter"
-        }
+        },
+        "payUp": 420
     },
     {
         "level": 91,
@@ -1580,7 +1670,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Hannah"
-        }
+        },
+        "payUp": 340
     },
     {
         "level": 92,
@@ -1597,7 +1688,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Brycen"
-        }
+        },
+        "payUp": 300
     },
     {
         "level": 93,
@@ -1610,7 +1702,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Larry"
-        }
+        },
+        "payUp": 350
     },
     {
         "level": 94,
@@ -1623,7 +1716,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Ann"
-        }
+        },
+        "payUp": 340
     },
     {
         "level": 95,
@@ -1644,7 +1738,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Pierce"
-        }
+        },
+        "payUp": 360
     },
     {
         "level": 96,
@@ -1661,7 +1756,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Chun"
-        }
+        },
+        "payUp": 300
     },
     {
         "level": 97,
@@ -1682,7 +1778,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Nua"
-        }
+        },
+        "payUp": 340
     },
     {
         "level": 98,
@@ -1703,7 +1800,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Jasmine"
-        }
+        },
+        "payUp": 380
     },
     {
         "level": 99,
@@ -1724,7 +1822,8 @@
         "details": {
             "image": "brendan.png",
             "name": "Foe Brendan"
-        }
+        },
+        "payUp": 450
     },
     {
         "level": 100,
@@ -1737,7 +1836,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Ash"
-        }
+        },
+        "payUp": 480
     },
     {
         "level": 101,
@@ -1750,7 +1850,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Will"
-        }
+        },
+        "payUp": 370
     },
     {
         "level": 102,
@@ -1763,7 +1864,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Garp"
-        }
+        },
+        "payUp": 500
     },
     {
         "level": 103,
@@ -1776,7 +1878,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Nona"
-        }
+        },
+        "payUp": 350
     },
     {
         "level": 104,
@@ -1789,7 +1892,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Sanjay"
-        }
+        },
+        "payUp": 330
     },
     {
         "level": 105,
@@ -1806,7 +1910,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Minnie"
-        }
+        },
+        "payUp": 320
     },
     {
         "level": 106,
@@ -1823,7 +1928,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Gym Member Lucas"
-        }
+        },
+        "payUp": 370
     },
     {
         "level": 107,
@@ -1840,7 +1946,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "Gym Member Dann"
-        }
+        },
+        "payUp": 350
     },
     {
         "level": 108,
@@ -1853,7 +1960,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Gym Member Ray"
-        }
+        },
+        "payUp": 380
     },
     {
         "level": 109,
@@ -1878,7 +1986,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Gym Member Shuri"
-        }
+        },
+        "payUp": 370
     },
     {
         "level": 110,
@@ -1903,7 +2012,8 @@
         "details": {
             "image": "gym-leaders/flannery.png",
             "name": "Gym Leader Flannery"
-        }
+        },
+        "payUp": 1200
     },
     {
         "level": 111,
@@ -1916,7 +2026,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Sinclair"
-        }
+        },
+        "payUp": 390
     },
     {
         "level": 112,
@@ -1933,7 +2044,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Laura"
-        }
+        },
+        "payUp": 375
     },
     {
         "level": 113,
@@ -1958,7 +2070,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Joyce"
-        }
+        },
+        "payUp": 360
     },
     {
         "level": 114,
@@ -1971,7 +2084,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Bruce"
-        }
+        },
+        "payUp": 320
     },
     {
         "level": 115,
@@ -1988,7 +2102,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Bianca"
-        }
+        },
+        "payUp": 390
     },
     {
         "level": 116,
@@ -2001,7 +2116,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Jimmy"
-        }
+        },
+        "payUp": 370
     },
     {
         "level": 117,
@@ -2018,7 +2134,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Julian"
-        }
+        },
+        "payUp": 385
     },
     {
         "level": 118,
@@ -2039,7 +2156,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Rachel"
-        }
+        },
+        "payUp": 375
     },
     {
         "level": 119,
@@ -2056,7 +2174,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Rowan"
-        }
+        },
+        "payUp": 550
     },
     {
         "level": 120,
@@ -2069,7 +2188,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Luna"
-        }
+        },
+        "payUp": 345
     },
     {
         "level": 121,
@@ -2086,7 +2206,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Nessa"
-        }
+        },
+        "payUp": 355
     },
     {
         "level": 122,
@@ -2107,7 +2228,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Fashua"
-        }
+        },
+        "payUp": 365
     },
     {
         "level": 123,
@@ -2120,7 +2242,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Luke"
-        }
+        },
+        "payUp": 380
     },
     {
         "level": 124,
@@ -2145,7 +2268,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Vanessa"
-        }
+        },
+        "payUp": 370
     },
     {
         "level": 125,
@@ -2158,7 +2282,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Cindy"
-        }
+        },
+        "payUp": 390
     },
     {
         "level": 126,
@@ -2171,7 +2296,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Jack"
-        }
+        },
+        "payUp": 600
     },
     {
         "level": 127,
@@ -2184,7 +2310,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Norman"
-        }
+        },
+        "payUp": 350
     },
     {
         "level": 128,
@@ -2201,7 +2328,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Shane"
-        }
+        },
+        "payUp": 380
     },
     {
         "level": 129,
@@ -2218,7 +2346,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Jasmine"
-        }
+        },
+        "payUp": 375
     },
     {
         "level": 130,
@@ -2235,7 +2364,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Sharon"
-        }
+        },
+        "payUp": 380
     },
     {
         "level": 131,
@@ -2248,7 +2378,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Kyle"
-        }
+        },
+        "payUp": 380
     },
     {
         "level": 132,
@@ -2261,7 +2392,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Peggy"
-        }
+        },
+        "payUp": 390
     },
     {
         "level": 133,
@@ -2274,7 +2406,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Gym Member Taylor"
-        }
+        },
+        "payUp": 400
     },
     {
         "level": 134,
@@ -2287,7 +2420,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Gym Member Reese"
-        }
+        },
+        "payUp": 405
     },
     {
         "level": 135,
@@ -2304,7 +2438,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Gym Member Brandy"
-        }
+        },
+        "payUp": 410
     },
     {
         "level": 136,
@@ -2317,7 +2452,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Gym Member Frank"
-        }
+        },
+        "payUp": 420
     },
     {
         "level": 137,
@@ -2334,7 +2470,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Gym Member Shaun"
-        }
+        },
+        "payUp": 425
     },
     {
         "level": 138,
@@ -2359,7 +2496,8 @@
         "details": {
             "image": "gym-leaders/norman.png",
             "name": "Gym Leader Norman"
-        }
+        },
+        "payUp": 1400
     },
     {
         "level": 139,
@@ -2376,7 +2514,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Lia"
-        }
+        },
+        "payUp": 440
     },
     {
         "level": 140,
@@ -2389,7 +2528,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Adam"
-        }
+        },
+        "payUp": 420
     },
     {
         "level": 141,
@@ -2402,7 +2542,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Harold"
-        }
+        },
+        "payUp": 700
     },
     {
         "level": 142,
@@ -2435,7 +2576,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Jess"
-        }
+        },
+        "payUp": 490
     },
     {
         "level": 143,
@@ -2456,7 +2598,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Alice"
-        }
+        },
+        "payUp": 440
     },
     {
         "level": 144,
@@ -2469,7 +2612,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Samuel"
-        }
+        },
+        "payUp": 420
     },
     {
         "level": 145,
@@ -2482,7 +2626,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Brittany"
-        }
+        },
+        "payUp": 430
     },
     {
         "level": 146,
@@ -2503,7 +2648,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Cherry"
-        }
+        },
+        "payUp": 425
     },
     {
         "level": 147,
@@ -2524,7 +2670,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Trina"
-        }
+        },
+        "payUp": 420
     },
     {
         "level": 148,
@@ -2537,7 +2684,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Zach"
-        }
+        },
+        "payUp": 440
     },
     {
         "level": 149,
@@ -2558,7 +2706,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Vicky"
-        }
+        },
+        "payUp": 410
     },
     {
         "level": 150,
@@ -2579,7 +2728,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Harry"
-        }
+        },
+        "payUp": 415
     },
     {
         "level": 151,
@@ -2592,7 +2742,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Mick"
-        }
+        },
+        "payUp": 430
     },
     {
         "level": 152,
@@ -2605,7 +2756,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Nial"
-        }
+        },
+        "payUp": 440
     },
     {
         "level": 153,
@@ -2622,7 +2774,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Michelle"
-        }
+        },
+        "payUp": 430
     },
     {
         "level": 154,
@@ -2635,7 +2788,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Jason"
-        }
+        },
+        "payUp": 760
     },
     {
         "level": 155,
@@ -2648,7 +2802,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Garry"
-        }
+        },
+        "payUp": 470
     },
     {
         "level": 156,
@@ -2673,7 +2828,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Ginne"
-        }
+        },
+        "payUp": 450
     },
     {
         "level": 157,
@@ -2686,7 +2842,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Yuri"
-        }
+        },
+        "payUp": 800
     },
     {
         "level": 158,
@@ -2699,7 +2856,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Jesse"
-        }
+        },
+        "payUp": 420
     },
     {
         "level": 159,
@@ -2716,7 +2874,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Nua"
-        }
+        },
+        "payUp": 470
     },
     {
         "level": 160,
@@ -2729,7 +2888,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher May"
-        }
+        },
+        "payUp": 460
     },
     {
         "level": 161,
@@ -2742,7 +2902,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Matt"
-        }
+        },
+        "payUp": 820
     },
     {
         "level": 162,
@@ -2755,7 +2916,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Gym Member Felicity"
-        }
+        },
+        "payUp": 460
     },
     {
         "level": 163,
@@ -2772,7 +2934,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Gym Member Yash"
-        }
+        },
+        "payUp": 445
     },
     {
         "level": 164,
@@ -2785,7 +2948,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Gym Member Tommy"
-        }
+        },
+        "payUp": 470
     },
     {
         "level": 165,
@@ -2806,7 +2970,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Gym Member Kenzie"
-        }
+        },
+        "payUp": 480
     },
     {
         "level": 166,
@@ -2819,7 +2984,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Gym Member William"
-        }
+        },
+        "payUp": 440
     },
     {
         "level": 167,
@@ -2836,7 +3002,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "Gym Member Ben"
-        }
+        },
+        "payUp": 425
     },
     {
         "level": 168,
@@ -2861,7 +3028,8 @@
         "details": {
             "image": "gym-leaders/winona.png",
             "name": "Gym Leader Winona"
-        }
+        },
+        "payUp": 1600
     },
     {
         "level": 169,
@@ -2874,7 +3042,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Tony"
-        }
+        },
+        "payUp": 520
     },
     {
         "level": 170,
@@ -2887,7 +3056,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Millie"
-        }
+        },
+        "payUp": 490
     },
     {
         "level": 171,
@@ -2912,7 +3082,8 @@
         "details": {
             "image": "brendan.png",
             "name": "Foe Brendan"
-        }
+        },
+        "payUp": 600
     },
     {
         "level": 172,
@@ -2925,7 +3096,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Hannah"
-        }
+        },
+        "payUp": 470
     },
     {
         "level": 173,
@@ -2938,7 +3110,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Shane"
-        }
+        },
+        "payUp": 950
     },
     {
         "level": 174,
@@ -2951,7 +3124,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Sam"
-        }
+        },
+        "payUp": 530
     },
     {
         "level": 175,
@@ -2964,7 +3138,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Fred"
-        }
+        },
+        "payUp": 500
     },
     {
         "level": 176,
@@ -2977,7 +3152,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Chris"
-        }
+        },
+        "payUp": 460
     },
     {
         "level": 177,
@@ -2990,7 +3166,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Nico"
-        }
+        },
+        "payUp": 520
     },
     {
         "level": 178,
@@ -3007,7 +3184,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Dianne"
-        }
+        },
+        "payUp": 515
     },
     {
         "level": 179,
@@ -3028,7 +3206,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Henry"
-        }
+        },
+        "payUp": 980
     },
     {
         "level": 180,
@@ -3041,7 +3220,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Lois"
-        }
+        },
+        "payUp": 505
     },
     {
         "level": 181,
@@ -3058,7 +3238,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Elizabeth"
-        }
+        },
+        "payUp": 525
     },
     {
         "level": 182,
@@ -3071,7 +3252,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Scarlett"
-        }
+        },
+        "payUp": 515 
     },
     {
         "level": 183,
@@ -3084,7 +3266,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Taylor"
-        }
+        },
+        "payUp": 530
     },
     {
         "level": 184,
@@ -3101,7 +3284,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Jessica"
-        }
+        },
+        "payUp": 510
     },
     {
         "level": 185,
@@ -3114,7 +3298,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Isabella"
-        }
+        },
+        "payUp": 505
     },
     {
         "level": 186,
@@ -3131,7 +3316,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Damian"
-        }
+        },
+        "payUp": 520
     },
     {
         "level": 187,
@@ -3152,7 +3338,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Frank"
-        }
+        },
+        "payUp": 480
     },
     {
         "level": 188,
@@ -3165,7 +3352,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Jenna"
-        }
+        },
+        "payUp": 560
     },
     {
         "level": 189,
@@ -3178,7 +3366,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Jeff"
-        }
+        },
+        "payUp": 530
     },
     {
         "level": 190,
@@ -3199,7 +3388,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Debra"
-        }
+        },
+        "payUp": 545
     },
     {
         "level": 191,
@@ -3220,7 +3410,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Terry"
-        }
+        },
+        "payUp": 545
     },
     {
         "level": 192,
@@ -3237,7 +3428,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Wendy"
-        }
+        },
+        "payUp": 555
     },
     {
         "level": 193,
@@ -3250,7 +3442,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Ginne"
-        }
+        },
+        "payUp": 530
     },
     {
         "level": 194,
@@ -3283,7 +3476,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Xavier"
-        }
+        },
+        "payUp": 1080
     },
     {
         "level": 195,
@@ -3300,7 +3494,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Felicity"
-        }
+        },
+        "payUp": 560
     },
     {
         "level": 196,
@@ -3317,7 +3512,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Gym Member Jaquiline"
-        }
+        },
+        "payUp": 550
     },
     {
         "level": 197,
@@ -3338,7 +3534,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Gym Member Henry"
-        }
+        },
+        "payUp": 560
     },
     {
         "level": 198,
@@ -3351,7 +3548,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "Gym Member Vijay"
-        }
+        },
+        "payUp": 525
     },
     {
         "level": 199,
@@ -3372,7 +3570,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Gym Member Swift"
-        }
+        },
+        "payUp": 545
     },
     {
         "level": 200,
@@ -3402,7 +3601,8 @@
         "details": {
             "image": "gym-leaders/sabrina.png",
             "name": "Gym Leader Sabrina"
-        }
+        },
+        "payUp": 1800
     },
     {
         "level": 201,
@@ -3419,7 +3619,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Bulla"
-        }
+        },
+        "payUp": 580
     },
     {
         "level": 202,
@@ -3436,7 +3637,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Kylie"
-        }
+        },
+        "payUp": 570
     },
     {
         "level": 203,
@@ -3457,7 +3659,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Peter"
-        }
+        },
+        "payUp": 575
     },
     {
         "level": 204,
@@ -3474,7 +3677,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Norman"
-        }
+        },
+        "payUp": 580
     },
     {
         "level": 205,
@@ -3491,7 +3695,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Minnie"
-        }
+        },
+        "payUp": 560
     },
     {
         "level": 206,
@@ -3508,7 +3713,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Dianne"
-        }
+        },
+        "payUp": 590
     },
     {
         "level": 207,
@@ -3521,7 +3727,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Garry"
-        }
+        },
+        "payUp": 500
     },
     {
         "level": 208,
@@ -3538,7 +3745,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher Shauna"
-        }
+        },
+        "payUp": 535
     },
     {
         "level": 209,
@@ -3555,7 +3763,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Veronica"
-        }
+        },
+        "payUp": 585
     },
     {
         "level": 210,
@@ -3572,7 +3781,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Ron"
-        }
+        },
+        "payUp": 590
     },
     {
         "level": 211,
@@ -3589,7 +3799,8 @@
         "details": {
             "image": "trainers/gladion.png",
             "name": "Rockstar Freddy"
-        }
+        },
+        "payUp": 585
     },
     {
         "level": 212,
@@ -3606,7 +3817,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Rilna"
-        }
+        },
+        "payUp": 595
     },
     {
         "level": 213,
@@ -3623,7 +3835,8 @@
         "details": {
             "image": "trainers/lorelei.png",
             "name": "Teacher Sharon"
-        }
+        },
+        "payUp": 600
     },
     {
         "level": 214,
@@ -3640,7 +3853,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Arnold"
-        }
+        },
+        "payUp": 620
     },
     {
         "level": 215,
@@ -3657,7 +3871,8 @@
         "details": {
             "image": "trainers/lucy.png",
             "name": "Goth Wendy"
-        }
+        },
+        "payUp": 605
     },
     {
         "level": 216,
@@ -3674,7 +3889,8 @@
         "details": {
             "image": "trainers/marlon.png",
             "name": "Diver Lucas"
-        }
+        },
+        "payUp": 600
     },
     {
         "level": 217,
@@ -3691,7 +3907,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Teddy"
-        }
+        },
+        "payUp": 615
     },
     {
         "level": 218,
@@ -3708,7 +3925,8 @@
         "details": {
             "image": "trainers/nessa.png",
             "name": "Surfer Olivia"
-        }
+        },
+        "payUp": 635
     },
     {
         "level": 219,
@@ -3725,7 +3943,8 @@
         "details": {
             "image": "trainers/whitney.png",
             "name": "Lass Isabella"
-        }
+        },
+        "payUp": 615
     },
     {
         "level": 220,
@@ -3742,7 +3961,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Raymond"
-        }
+        },
+        "payUp": 1125
     },
     {
         "level": 221,
@@ -3763,7 +3983,8 @@
         "details": {
             "image": "trainers/bianca.png",
             "name": "Explorer Lizzie"
-        }
+        },
+        "payUp": 660
     },
     {
         "level": 222,
@@ -3784,7 +4005,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Shane"
-        }
+        },
+        "payUp": 550
     },
     {
         "level": 223,
@@ -3805,7 +4027,8 @@
         "details": {
             "image": "trainers/bugsy.png",
             "name": "Bug catcher May"
-        }
+        },
+        "payUp": 620
     },
     {
         "level": 224,
@@ -3826,7 +4049,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Alegra"
-        }
+        },
+        "payUp": 605
     },
     {
         "level": 225,
@@ -3847,7 +4071,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Philip"
-        }
+        },
+        "payUp": 1155
     },
     {
         "level": 226,
@@ -3872,7 +4097,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Caitlin"
-        }
+        },
+        "payUp": 600
     },
     {
         "level": 227,
@@ -3897,7 +4123,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Rod"
-        }
+        },
+        "payUp": 590
     },
     {
         "level": 228,
@@ -3922,7 +4149,8 @@
         "details": {
             "image": "trainers/brycen.png",
             "name": "Monk Clark"
-        }
+        },
+        "payUp": 580
     },
     {
         "level": 229,
@@ -3947,7 +4175,8 @@
         "details": {
             "image": "trainers/caitlin.png",
             "name": "Baker Abigail"
-        }
+        },
+        "payUp": 650
     },
     {
         "level": 230,
@@ -3980,7 +4209,8 @@
         "details": {
             "image": "trainers/pryce.png",
             "name": "Elder Hagrid"
-        }
+        },
+        "payUp": 1250
     },
     {
         "level": 231,
@@ -4005,7 +4235,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Marry"
-        }
+        },
+        "payUp": 670
     },
     {
         "level": 232,
@@ -4030,7 +4261,8 @@
         "details": {
             "image": "trainers/cheren.png",
             "name": "Teacher Danveer"
-        }
+        },
+        "payUp": 655
     },
     {
         "level": 233,
@@ -4055,7 +4287,8 @@
         "details": {
             "image": "trainers/thorton.png",
             "name": "Nerd Liam"
-        }
+        },
+        "payUp": 640
     },
     {
         "level": 234,
@@ -4080,7 +4313,8 @@
         "details": {
             "image": "trainers/victor.png",
             "name": "School boy Timmy"
-        }
+        },
+        "payUp": 635
     },
     {
         "level": 235,
@@ -4105,7 +4339,8 @@
         "details": {
             "image": "trainers/jasmine.png",
             "name": "Florist Camilla"
-        }
+        },
+        "payUp": 670
     },
     {
         "level": 236,
@@ -4138,7 +4373,8 @@
         "details": {
             "image": "elite-four/koga.png",
             "name": "Elite Four Koga"
-        }
+        },
+        "payUp": 2000
     },
     {
         "level": 237,
@@ -4171,7 +4407,8 @@
         "details": {
             "image": "elite-four/agatha.png",
             "name": "Elite Four Agatha"
-        }
+        },
+        "payUp": 2000
     },
     {
         "level": 238,
@@ -4204,7 +4441,8 @@
         "details": {
             "image": "elite-four/wikstrom.png",
             "name": "Elite Four Wikstrom"
-        }
+        },
+        "payUp": 2000
     },
     {
         "level": 239,
@@ -4237,7 +4475,8 @@
         "details": {
             "image": "elite-four/drake.png",
             "name": "Elite Four Drake"
-        }
+        },
+        "payUp": 2000
     },
     {
         "level": 240,
@@ -4270,6 +4509,7 @@
         "details": {
             "image": "brendan.png",
             "name": "Champion Brendan"
-        }
+        },
+        "payUp": 2400
     }
 ]

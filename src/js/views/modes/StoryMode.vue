@@ -41,13 +41,13 @@
                         </button>
                     </template>
                 </pop-up>
-            </template>
 
-            <StoryPopUp 
-                :show="showBattleEnd"
-                :foe-name="foeDetails.name"
-                :coins="foeDetails.payUp"
-                @ok="reInitializeFoe" />
+                <StoryPopUp 
+                    :show="showBattleEnd"
+                    :foe-name="foeDetails.name"
+                    :coins="foeDetails.payUp"
+                    @ok="reInitializeFoe" />
+            </template>
         </div>
     </div>
 </template>
@@ -153,6 +153,7 @@
                 }
                 this.showBattleEnd = true
                 this.levelUp()
+                this.updatePlayerCoins(this.foeDetails.payUp)
             },
 
             toggleNavBar() {
@@ -161,7 +162,8 @@
 
             reInitializeFoe() {
                 this.showBattleEnd = false
-                this.initializeFoe()
+                if (this.playerLevel <= 240)
+                    this.initializeFoe()
             },
 
             closeForfeit() {
@@ -179,7 +181,8 @@
 
             ...mapActions([
                 'levelUp',
-                'setLevel'
+                'setLevel',
+                'updatePlayerCoins'
             ])
         }
     }
