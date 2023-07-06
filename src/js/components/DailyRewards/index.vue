@@ -22,50 +22,26 @@
             </div>
         </transition>
 
-        <pop-up
-            :show="receivedRewards.length"
-            class="daily-reward-pop-up">
-            <template #title>
-                You Received
-            </template>
-            <template #body>
-                <div
-                    v-for="({image, count}, index) in rewardItems"
-                    :key="index">
-                    <img
-                        :src="require(`@/assets/images/items${image}`)"
-                        class="image" />
-                    <span>
-                        {{ count }}
-                    </span>
-                </div>
-            </template>
-            <template #actions>
-                <button
-                    class="confirm"
-                    @click="hasReward = false">
-                    Ok
-                </button>
-            </template>
-        </pop-up>
+        <daily-rewards-pop-up
+            :rewards="receivedRewards"
+            @close="hasReward = false" />
     </div>
 </template>
 
 <script>
     import Day from '@/js/components/DailyRewards/Day.vue'
-    import PopUp from '@/js/components/UI/PopUp.vue'
+    import DailyRewardsPopUp from '@/js/components/pop-up/DailyRewardsPopUp.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 
     import { getRandomFromList } from '@/js/mixins/randomGenerator'
     import rewardList from '@/assets/data/daily-rewards'
-    import items from '@/assets/data/items'
 
     export default {
         name: 'daily-rewards',
         components: {
             Day,
-            PopUp
+            DailyRewardsPopUp
         },
 
         data() {
@@ -85,13 +61,6 @@
         computed: {
             rewardList() {
                 return rewardList
-            },
-
-            rewardItems() {
-                return this.receivedRewards.map(({itemId, count}) => {
-                    const { image } = items.find(({id}) => id === itemId)
-                    return { image, count }
-                })
             },
 
             ...mapGetters([

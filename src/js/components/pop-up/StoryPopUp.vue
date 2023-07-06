@@ -52,4 +52,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/modes/story.scss"></style>
+<style lang="scss" scoped src="@/styles/modes/story.scss"></style>

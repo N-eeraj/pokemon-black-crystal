@@ -49,7 +49,7 @@
 <script>
 
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
-    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
+    import CarnivalEventPopUp from '@/js/components/pop-up/CarnivalEventPopUp.vue'
 
     import { mapActions } from 'vuex'
 

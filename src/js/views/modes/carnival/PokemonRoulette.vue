@@ -85,7 +85,7 @@
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
-    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
+    import CarnivalEventPopUp from '@/js/components/pop-up/CarnivalEventPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 

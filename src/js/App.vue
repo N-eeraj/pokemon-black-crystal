@@ -35,7 +35,7 @@
     import RotateScreen from '@/js/components/screens/RotateScreen.vue'
     import OfflineScreen from '@/js/components/screens/OfflineScreen.vue'
     import DuplicateScreen from '@/js/components/screens/DuplicateScreen.vue'
-    import EvolutionPopUp from '@/js/components/EvolutionPopUp.vue'
+    import EvolutionPopUp from '@/js/components/pop-up/EvolutionPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 

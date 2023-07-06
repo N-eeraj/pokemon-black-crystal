@@ -153,4 +153,4 @@
 
 </script>
 
-<style lang="scss" src="@/styles/evolutionPopUp.scss"></style>
+<style lang="scss" scoped src="@/styles/evolutionPopUp.scss"></style>

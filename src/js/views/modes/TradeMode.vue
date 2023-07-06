@@ -59,7 +59,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import PokemonList from '@/js/components/PokemonList.vue'
-    import EvolutionPopUp from '@/js/components/EvolutionPopUp.vue'
+    import EvolutionPopUp from '@/js/components/pop-up/EvolutionPopUp.vue'
 
     import { Peer } from 'peerjs'
 

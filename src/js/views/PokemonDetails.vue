@@ -166,7 +166,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
     import TypeIcon from '@/js/components/TypeIcon.vue'
-    import EvolutionPopUp from '@/js/components/EvolutionPopUp.vue'
+    import EvolutionPopUp from '@/js/components/pop-up/EvolutionPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 

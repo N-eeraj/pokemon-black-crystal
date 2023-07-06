@@ -47,7 +47,7 @@
 
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
     import PokemonList from '@/js/components/PokemonList.vue'
-    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
+    import CarnivalEventPopUp from '@/js/components/pop-up/CarnivalEventPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 

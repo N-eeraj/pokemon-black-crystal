@@ -59,7 +59,7 @@
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import ChampionScreen from '@/js/components/screens/ChampionScreen.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
-    import StoryPopUp from '@/js/components/StoryPopUp.vue'
+    import StoryPopUp from '@/js/components/pop-up/StoryPopUp.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 

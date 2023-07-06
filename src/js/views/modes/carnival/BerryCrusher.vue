@@ -37,7 +37,7 @@
 
 <script>
 
-    import CarnivalEventPopUp from '@/js/components/CarnivalEventPopUp.vue'
+    import CarnivalEventPopUp from '@/js/components/pop-up/CarnivalEventPopUp.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 

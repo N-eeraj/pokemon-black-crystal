@@ -1,0 +1,26 @@
+@use "@/styles/mixins/main.scss";
+@use "@/styles/colors/palette";
+
+.daily-reward-pop-up {
+    :deep(.body-container) {
+        @include main.flex($col: 10px);
+
+        .reward-item {
+            position: relative;
+
+            .image {
+                width: 80px;
+            }
+
+            .count {
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding: 3px;
+                background-color: palette.$accent;
+                color: palette.$primary;
+                border-radius: 10px;
+            }
+        }
+    }
+}
