@@ -1,0 +1,149 @@
+[
+    {
+        "fixed": true,
+        "items": [
+            {
+                "itemId": 1,
+                "count": 1
+            }
+        ],
+        "image": ""
+    },
+    {
+        "fixed": true,
+        "items": [
+            {
+                "itemId": 1,
+                "count": 3
+            }
+        ],
+        "image": ""
+    },
+    {
+        "fixed": true,
+        "items": [
+            {
+                "itemId": 2,
+                "count": 3
+            }
+        ],
+        "image": ""
+    },
+    {
+        "fixed": false,
+        "items": [
+            {
+                "itemId": 1,
+                "count": 6,
+                "chance": 3
+            },
+            {
+                "itemId": 2,
+                "count": 3,
+                "chance": 1
+            },
+            {
+                "itemId": 3,
+                "count": 1,
+                "chance": 1
+            }
+        ],
+        "image": ""
+    },
+    {
+        "fixed": true,
+        "items": [
+            {
+                "itemId": 1,
+                "count": 6
+            },
+            {
+                "itemId": 4,
+                "count": 6
+            }
+        ],
+        "image": ""
+    },
+    {
+        "fixed": false,
+        "items": [
+            {
+                "itemId": 3,
+                "count": 4,
+                "chance": 40
+            },
+            {
+                "itemId": 5,
+                "count": 3,
+                "chance": 80
+            },
+            {
+                "itemId": 12,
+                "count": 1,
+                "chance": 1
+            }
+        ],
+        "image": ""
+    },
+    {
+        "fixed": false,
+        "items": [
+            {
+                "itemId": 1,
+                "count": 24,
+                "chance": 40
+            },
+            {
+                "itemId": 2,
+                "count": 10,
+                "chance": 30
+            },
+            {
+                "itemId": 3,
+                "count": 6,
+                "chance": 20
+            },
+            {
+                "itemId": 6,
+                "count": 1,
+                "chance": 25
+            },
+            {
+                "itemId": 7,
+                "count": 1,
+                "chance": 25
+            },
+            {
+                "itemId": 8,
+                "count": 1,
+                "chance": 25
+            },
+            {
+                "itemId": 9,
+                "count": 1,
+                "chance": 25
+            },
+            {
+                "itemId": 10,
+                "count": 1,
+                "chance": 25
+            },
+            {
+                "itemId": 11,
+                "count": 1,
+                "chance": 25
+            },
+            {
+                "itemId": 12,
+                "count": 1,
+                "chance": 5
+            },
+            {
+                "itemId": 13,
+                "count": 1,
+                "chance": 1
+            }
+        ],
+        "image": ""
+    }
+]
