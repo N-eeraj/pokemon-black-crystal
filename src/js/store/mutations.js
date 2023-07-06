@@ -36,6 +36,11 @@ export default {
         encryptAndSave()
     },
 
+    updateDailyRewards(state, { unixtime: last, streak }) {
+        state.gameData.dailyRewards = { streak, last }
+        encryptAndSave()
+    },
+
     savePlayerInfo(state, playerInfo) {
         state.gameData.playerInfo = playerInfo
         encryptAndSave()

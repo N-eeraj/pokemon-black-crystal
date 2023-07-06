@@ -7,6 +7,10 @@ export default {
         return state.audio
     },
 
+    dailyRewardsStreak(state) {
+        return state.gameData.dailyRewards.streak
+    },
+
     getPokemon(state) {
         return state.pokemonData
     },

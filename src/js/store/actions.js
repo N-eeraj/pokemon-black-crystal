@@ -27,6 +27,22 @@ export default {
         commit('updateAudio', audio)
     },
 
+    async checkDailyReward({ state, commit }) {
+        const response = await fetch('https://worldtimeapi.org/api/timezone/America/Santiago')
+        const { unixtime } = await response.json()
+        const { last, streak } = state.gameData.dailyRewards
+        switch (Math.floor((unixtime - last) / 86_400)) {
+            case 0:
+                return false
+            case 1:
+                commit('updateDailyRewards', { unixtime, streak: streak + 1 })
+                return true
+            default:
+                commit('updateDailyRewards', { unixtime, streak: 1 })
+                return true
+        }
+    },
+
     async cachePokemonById({ commit }, id) {
         const pokemon = await Pokemon(id)
         commit('storePokemonDataByPokemon', pokemon)
