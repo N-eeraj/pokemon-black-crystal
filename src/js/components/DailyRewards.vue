@@ -1,10 +1,12 @@
 <template>
     <div class="overlay show-gifts">
         <div class="modal">
-            <div class="title">
-                <strong>
-                    Daily Rewards
-                </strong>
+            <img
+                src="@/assets/images/daily-rewards-title.png"
+                alt="Daily Rewards"
+                class="title" />
+
+            <div class="content">
             </div>
         </div>
     </div>

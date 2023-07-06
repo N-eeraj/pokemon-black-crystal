@@ -20,22 +20,18 @@
     }
 
     .modal {
-        position: relative;
+        @include main.flex($direction: column);
         width: 90%;
-        min-height: 300px;
-        padding: 10px;
-        background-image: radial-gradient(lighten(palette.$accent, 15%), darken(palette.$accent, 15%));
-        border-radius: 10px;
-        border: 10px solid palette.$white;
 
         .title {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            width: 80%;
-            transform: translateX(-50%);
-            background-color: palette.$white;
-            text-align: center;
+            width: 100%;
+        }
+
+        .content {
+            width: 100%;
+            padding: 10px 30px;
+            background-image: linear-gradient(lighten(palette.$accent, 15%), darken(palette.$accent, 15%));
+            border-radius: 0 0 15px 15px;
         }
     }
 }
