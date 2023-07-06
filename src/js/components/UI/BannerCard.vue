@@ -48,4 +48,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/bannerCard.scss"></style>
+<style lang="scss" src="@/styles/UI/bannerCard.scss"></style>

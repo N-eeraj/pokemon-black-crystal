@@ -75,6 +75,8 @@
         </button>
 
         <main-menu :open="openMenu" />
+
+        <daily-rewards />
     </div>
 
 </template>
@@ -82,6 +84,7 @@
 <script>
 
     import MainMenu from '@/js/components/MainMenu.vue'
+    import DailyRewards from '@/js/components/DailyRewards.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -89,7 +92,8 @@
         name: 'home-view',
 
         components: {
-            MainMenu
+            MainMenu,
+            DailyRewards
         },
 
         data() {
