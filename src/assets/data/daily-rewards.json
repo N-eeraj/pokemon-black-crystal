@@ -7,7 +7,7 @@
                 "count": 1
             }
         ],
-        "image": ""
+        "image": "/items/balls/pokeball.webp"
     },
     {
         "fixed": true,
@@ -17,7 +17,7 @@
                 "count": 3
             }
         ],
-        "image": ""
+        "image": "/daily-rewards/day-2.webp"
     },
     {
         "fixed": true,
@@ -27,7 +27,7 @@
                 "count": 3
             }
         ],
-        "image": ""
+        "image": "/daily-rewards/day-3.webp"
     },
     {
         "fixed": false,
@@ -48,7 +48,7 @@
                 "chance": 1
             }
         ],
-        "image": ""
+        "image": "/daily-rewards/mystery-box.webp"
     },
     {
         "fixed": true,
@@ -62,7 +62,7 @@
                 "count": 6
             }
         ],
-        "image": ""
+        "image": "/daily-rewards/day-5.webp"
     },
     {
         "fixed": false,
@@ -83,7 +83,7 @@
                 "chance": 1
             }
         ],
-        "image": ""
+        "image": "/daily-rewards/mystery-box.webp"
     },
     {
         "fixed": false,
@@ -144,6 +144,6 @@
                 "chance": 1
             }
         ],
-        "image": ""
+        "image": "/daily-rewards/mystery-box.webp"
     }
 ]

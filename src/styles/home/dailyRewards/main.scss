@@ -1,5 +1,6 @@
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
+@use "@/styles/animation";
 
 .overlay {
     @include main.full-screen;
@@ -36,6 +37,15 @@
 
                 &:last-of-type {
                     width: 100%;
+
+                    .reward {
+                        animation: wiggle 250ms ease-in-out infinite alternate;
+
+                        .image {
+                            width: 80px;
+                            filter: saturate(2);
+                        }
+                    }
                 }
             }
         }

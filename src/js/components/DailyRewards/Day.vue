@@ -15,9 +15,9 @@
             </template>
             <template v-else>
                 <img
-                    :src="image"
+                    :src="require(`@/assets/images${image}`)"
                     :alt="`Day ${day} rewards`"
-                    class="check-mark" />
+                    class="image" />
             </template>
         </div>
     </div>

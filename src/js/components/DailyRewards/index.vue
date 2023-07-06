@@ -87,7 +87,7 @@
                             count
                         })
                     })
-                }, 1000);
+                }, 2000);
             },
 
             handleRewardChances(items) {
