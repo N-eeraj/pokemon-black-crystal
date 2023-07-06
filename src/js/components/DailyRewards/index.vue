@@ -21,28 +21,57 @@
                 </div>
             </div>
         </transition>
+
+        <pop-up
+            :show="receivedRewards.length"
+            class="daily-reward-pop-up">
+            <template #title>
+                You Received
+            </template>
+            <template #body>
+                <div
+                    v-for="({image, count}, index) in rewardItems"
+                    :key="index">
+                    <img
+                        :src="require(`@/assets/images/items${image}`)"
+                        class="image" />
+                    <span>
+                        {{ count }}
+                    </span>
+                </div>
+            </template>
+            <template #actions>
+                <button
+                    class="confirm"
+                    @click="hasReward = false">
+                    Ok
+                </button>
+            </template>
+        </pop-up>
     </div>
 </template>
 
 <script>
     import Day from '@/js/components/DailyRewards/Day.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { mapActions, mapGetters } from 'vuex'
 
     import { getRandomFromList } from '@/js/mixins/randomGenerator'
     import rewardList from '@/assets/data/daily-rewards'
+    import items from '@/assets/data/items'
 
     export default {
         name: 'daily-rewards',
         components: {
-            Day
+            Day,
+            PopUp
         },
 
         data() {
             return {
                 hasReward: false,
                 streak: 0,
-                rewardList: [],
                 receivedRewards: []
             }
         },
@@ -50,11 +79,21 @@
         async created() {
             this.hasReward = await this.checkDailyReward()
             if (!this.hasReward) return
-            this.rewardList = rewardList
             this.streakUpdation()
         },
 
         computed: {
+            rewardList() {
+                return rewardList
+            },
+
+            rewardItems() {
+                return this.receivedRewards.map(({itemId, count}) => {
+                    const { image } = items.find(({id}) => id === itemId)
+                    return { image, count }
+                })
+            },
+
             ...mapGetters([
                 'dailyRewardsStreak'
             ])

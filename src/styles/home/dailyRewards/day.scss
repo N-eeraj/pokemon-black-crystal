@@ -2,12 +2,32 @@
 @use "@/styles/colors/palette";
 
 .day-container {
+    @include main.flex($justify: space-between, $align: flex-start);
+    padding: 10px;
     height: 100px;
-    padding: 5px;
     background-color: palette.$white;
     border-radius: 10px;
+    transition: 400ms;
 
     .day-number {
+        width: 100%;
         color: palette.$primary;
+        transition: 400ms;
+    }
+
+    &.is-completed {
+        background-color: palette.$primary;
+
+        .day-number {
+            color: palette.$white;
+        }
+    }
+
+    .reward {
+        align-self: flex-end;
+
+        .check-mark {
+            width: 36px;
+        }
     }
 }
