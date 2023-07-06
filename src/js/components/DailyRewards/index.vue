@@ -64,12 +64,36 @@
             streakUpdation() {
                 this.streak = this.dailyRewardsStreak - 1
                 setTimeout(() => {
+                    this.rewardCollection()
                     ++this.streak
                 }, 1000)
             },
 
+            rewardCollection() {
+                setTimeout(() => {
+                    const { fixed, items } = rewardList[this.dailyRewardsStreak]
+                    this.receivedRewards = fixed ? items : this.handleRewardChances(items)
+                    this.receivedRewards.forEach(({ itemId, count }) => {
+                        this.updateBag({
+                            itemId,
+                            count
+                        })
+                    })
+                }, 1000);
+            },
+
+            handleRewardChances(items) {
+                const chances = []
+                items.forEach(({chance, ...item}) => {
+                    for (let i = 0; i < chance; i++)
+                        chances.push(item)
+                })
+                return [getRandomFromList(chances)]
+            },
+
             ...mapActions([
-                'checkDailyReward'
+                'checkDailyReward',
+                'updateBag'
             ])
         }
     }
