@@ -84,7 +84,7 @@
 <script>
 
     import MainMenu from '@/js/components/MainMenu.vue'
-    import DailyRewards from '@/js/components/DailyRewards.vue'
+    import DailyRewards from '@/js/components/DailyRewards/index.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 

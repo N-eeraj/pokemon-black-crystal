@@ -28,10 +28,19 @@
         }
 
         .content {
+            @include main.flex($justify: space-between, $row: 15px, $col: 15px, $wrap: wrap);
             width: 100%;
-            padding: 10px 30px;
+            padding: 10px 30px 30px 30px;
             background-image: linear-gradient(lighten(palette.$accent, 15%), darken(palette.$accent, 15%));
             border-radius: 0 0 15px 15px;
+
+            :deep(.day-container) {
+                width: calc((100% - 15px) / 2);
+
+                &:last-of-type {
+                    width: 100%;
+                }
+            }
         }
     }
 }
