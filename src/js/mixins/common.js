@@ -25,7 +25,9 @@ export const toTitleCase = text => text
     .map(word => word[0].toUpperCase() + word.slice(1))
     .join(' ')
 
-export const deepCopy = value => JSON.parse(JSON.stringify(value))
+export const deepCopy = value => {
+    return { ...value }
+}
 
 export const getIdFromUrl = url => Number(url.split('/').slice(-2, -1)[0])
 

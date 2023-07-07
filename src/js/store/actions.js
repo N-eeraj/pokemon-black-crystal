@@ -35,7 +35,10 @@ export default {
             case 0:
                 return false
             case 1:
-                commit('updateDailyRewards', { unixtime, streak: streak + 1 })
+                if (streak === 7)
+                    commit('updateDailyRewards', { unixtime, streak: 1 })
+                else
+                    commit('updateDailyRewards', { unixtime, streak: streak + 1 })
                 return true
             default:
                 commit('updateDailyRewards', { unixtime, streak: 1 })

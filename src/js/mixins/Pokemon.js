@@ -99,7 +99,6 @@ export const Pokemon = async (id) => {
 }
 
 export const PokemonObject = data => {
-    
     return {
         ...data,
 

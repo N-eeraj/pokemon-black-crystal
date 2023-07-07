@@ -79,7 +79,7 @@
 
             rewardCollection() {
                 setTimeout(() => {
-                    const { fixed, items } = rewardList[this.dailyRewardsStreak]
+                    const { fixed, items } = rewardList[this.streak - 1]
                     this.receivedRewards = fixed ? items : this.handleRewardChances(items)
                     this.receivedRewards.forEach(({ itemId, count }) => {
                         this.updateBag({
