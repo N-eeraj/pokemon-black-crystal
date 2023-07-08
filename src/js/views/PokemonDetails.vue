@@ -411,11 +411,9 @@
 
             handleMovePokemon() {
                 const from = this.listType
-                const to = (from === 'party') ? 'pc' : 'party'
                 this.movePokemon({
                     id: this.pokemon.encounterId,
-                    from,
-                    to
+                    from
                 })
                 this.$router.push(`/pokemon/list/${this.listType}`)
             },

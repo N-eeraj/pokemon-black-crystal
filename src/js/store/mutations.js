@@ -99,10 +99,13 @@ export default {
         encryptAndSave()
     },
 
-    movePokemon(state, { id, from, to }) {
+    movePokemon(state, { id, from }) {
         const pokemonData = state.gameData.pokemon
         pokemonData[from] = pokemonData[from].filter(caughtId => caughtId !== id)
-        pokemonData[to].push(id)
+        if (from === 'pc')
+            pokemonData.party.push(id)
+        else
+            pokemonData.pc.unshift(id)
         encryptAndSave()
     },
 
@@ -192,7 +195,7 @@ export default {
         if (pokemonData.party.length < 6)
             pokemonData.party.push(pokemonData.encountered.last)
         else
-            pokemonData.pc.push(pokemonData.encountered.last)
+            pokemonData.pc.unshift(pokemonData.encountered.last)
         encryptAndSave()
     },
 
