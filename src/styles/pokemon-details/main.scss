@@ -50,6 +50,7 @@
 
         .details {
             @include main.flex($direction: column, $justify: flex-start, $row: 10px);
+            overflow: hidden auto;
 
             .label {
                 color: palette.$white-secondary;

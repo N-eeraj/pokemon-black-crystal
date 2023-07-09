@@ -331,7 +331,18 @@ export default {
         return randomPokemon
     },
 
-    updateCarnivalEntry({ commit  }, eventName) {
+    updateCarnivalEntry({ commit }, eventName) {
         commit('updateCarnivalEntry', eventName)
+    },
+
+    async getPokemonImageById({ state }, id) {
+        try {
+            const { image } = state.pokemonData[id]
+            return image
+        }
+        catch {
+            const { image } = await Pokemon(id)
+            return image
+        }
     }
 }

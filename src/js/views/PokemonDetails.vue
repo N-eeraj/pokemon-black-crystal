@@ -93,6 +93,10 @@
                                 :max="pokemon.happiness.max"
                                 class="happiness" />
                         </div>
+
+                        <pokemon-evolutions
+                            v-if="showEvolutions"
+                            :evolutions="pokemon.evolution" />
                     </div>
                 </div>
 
@@ -141,6 +145,7 @@
 
     import PokemonStats from '@/js/components/pokemon-details/PokemonStats.vue'
     import LinearProgress from '@/js/components/UI/LinearProgress.vue'
+    import PokemonEvolutions from '@/js/components/pokemon-details/PokemonEvolutions.vue'
     import ItemsList from '@/js/components/ItemsList.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
@@ -157,6 +162,7 @@
         components: {
             PokemonStats,
             LinearProgress,
+            PokemonEvolutions,
             ItemsList,
             NavigationBar,
             PopUp,
@@ -191,6 +197,10 @@
         },
 
         computed: {
+            showEvolutions() {
+                return this.listType === 'pokedex'
+            },
+
             ...mapGetters([
                 'getCaughtPokemon',
                 'partyPokemon',
@@ -469,4 +479,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/pokemonDetails.scss"></style>
+<style lang="scss" src="@/styles/pokemon-details/main.scss"></style>
