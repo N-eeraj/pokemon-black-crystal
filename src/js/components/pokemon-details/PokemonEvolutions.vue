@@ -6,52 +6,90 @@
             Loading Evolutions
         </div>
 
-        <div v-else>
+
+        <div
+            v-else-if="noEvolutions"
+            class="no-evolution">
+            This Pokémon has no evolutions
+        </div>
+
+        <div
+            v-else
+            class="main-container">
+
             <div
                 v-if="levelUp"
-                class="level-up-container">
-                {{ levelUp }}
+                class="container">
+                <strong class="sub-title">
+                    Evolutions by leveling up
+                </strong>
+                <div class="evolution-pokemon-list">
+                    <img
+                        v-for="(pokemon, index) in levelUp.pokemonList"
+                        :src="pokemon"
+                        alt="Pokemon"
+                        :key="index"
+                        class="pokemon" />
+                </div>
             </div>
 
             <div
                 v-if="happinessUp"
-                class="happiness-up-container">
-                {{ happinessUp }}
+                class="container">
+                <strong class="sub-title">
+                    Evolutions with happiness
+                </strong>
+                <span class="requirement">
+                    Happiness required: {{ happinessUp.happiness }}
+                </span>
+                <div class="evolution-pokemon-list">
+                    <img
+                        v-for="(pokemon, index) in happinessUp.pokemonList"
+                        :src="pokemon"
+                        alt="Pokemon"
+                        :key="index"
+                        class="pokemon" />
+                </div>
             </div>
 
             <div
                 v-if="useItems.length"
-                class="use-items-container">
-                <div
-                    v-for="({itemName, evolvesTo}, index) in useItems"
-                    :key="index"
-                    class="item-container">
-                    <img
-                        :src="require(`@/assets/images/items/evolution/${itemName}.png`)"
-                        :alt="itemName" />
-                    <img
-                        :src="evolvesTo"
-                        alt="Pokemon" />
+                class="container">
+                <strong class="sub-title">
+                    Evolutions by using items
+                </strong>
+                <div class="evolution-pokemon-list">
+                    <div
+                        v-for="({itemName, evolvesTo}, index) in useItems"
+                        :key="index"
+                        class="item">
+                        <img
+                            :src="evolvesTo"
+                            alt="Pokemon"
+                            class="pokemon" />
+
+                        <img
+                            :src="require(`@/assets/images/items/evolution/${itemName}.png`)"
+                            :alt="itemName"
+                            class="evolution-item" />
+                    </div>
                 </div>
             </div>
 
             <div
                 v-if="trade.length"
-                class="trade-container">
-                <div
-                    v-for="(pokemon, index) in trade"
-                    :key="index"
-                    class="pokemon">
+                class="container">
+                <strong class="sub-title">
+                    Evolutions by trading
+                </strong>
+                <div class="evolution-pokemon-list">
                     <img
+                        v-for="(pokemon, index) in trade"
                         :src="pokemon"
-                        alt="Pokemon" />
+                        alt="Pokemon"
+                        :key="index"
+                        class="pokemon" />
                 </div>
-            </div>
-
-            <div
-                v-if="noEvolutions"
-                class="no-evolution">
-                This Pokémon has no evolutions
             </div>
         </div>
     </div>
@@ -87,7 +125,7 @@
                 this.getUseItemsEvolutions(),
                 this.getTradeEvolutions()
             ])
-            // this.loading = false
+            this.loading = false
         },
 
         computed: {
@@ -146,4 +184,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/pokemon-details/evolutions.scss"></style>
+<style lang="scss" scoped src="@/styles/pokemon-details/evolutions.scss"></style>

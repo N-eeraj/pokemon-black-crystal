@@ -50,6 +50,7 @@
 
         .details {
             @include main.flex($direction: column, $justify: flex-start, $row: 10px);
+            width: 100%;
             overflow: hidden auto;
 
             .label {
@@ -70,8 +71,12 @@
                 padding: 0 5%;
                 text-align: center;
 
-                .label {
-                    font-size: 0.8rem;
+                div {
+                    @include main.flex($direction: column, $row: 5px);
+                    
+                    .label {
+                        font-size: 0.8rem;
+                    }
                 }
             }
 

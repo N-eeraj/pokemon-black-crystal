@@ -1,0 +1,68 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+@use "@/styles/animation";
+
+#pokemonEvolutions {
+    margin-top: 25px;
+
+    .loading {
+        width: 100%;
+        text-align: center;
+        font-size: 0.7rem;
+        animation: blink 1s linear infinite alternate;
+    }
+
+    .no-evolution {
+        width: 100%;
+        color: palette.$white-secondary;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    .main-container {
+        @include main.flex($direction: column, $row: 20px);
+        
+        .container {
+            width: 100%;
+            padding: 10px;
+            background-color: palette.$secondary;
+            border-radius: 7px;
+            
+            .sub-title {
+                display: block;
+                color: palette.$white-secondary;
+                font-size: 0.8rem;
+            }
+
+            .requirement {
+                display: block;
+                margin-top: 10px;
+                font-size: 0.75rem;
+            }
+
+            .evolution-pokemon-list {
+                @include main.flex($justify: flex-start ,$col: 10px);
+                width: 100%;
+                padding: 10px;
+                overflow: auto hidden;
+
+                .item {
+                    position: relative;
+
+                    .evolution-item {
+                        position: absolute;
+                        bottom: 10%;
+                        right: 0;
+                        width: auto;
+                        height: 30%;
+                    }
+                }
+            
+                .pokemon {
+                    width: auto;
+                    height: 125px;
+                }
+            }
+        }
+    }
+}
