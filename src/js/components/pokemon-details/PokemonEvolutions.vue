@@ -1,7 +1,7 @@
 <template>
     <div id="pokemonEvolutions">
         <div
-            v-if="loading"
+            v-if="loading.length"
             class="loading">
             Loading Evolutions
         </div>
@@ -110,11 +110,11 @@
 
         data() {
             return {
-                levelUp: null,
-                happinessUp: null,
+                levelUp: {},
+                happinessUp: {},
                 useItems: [],
                 trade: [],
-                loading: true
+                loading: []
             }
         },
 
@@ -125,7 +125,6 @@
                 this.getUseItemsEvolutions(),
                 this.getTradeEvolutions()
             ])
-            this.loading = false
         },
 
         computed: {
@@ -135,33 +134,40 @@
         },
 
         methods: {
-            async getEvolvesToPokemonImages(pokemonList) {
-                const evolvedList = []
-                await pokemonList.forEach(async (id) => {
-                    const image= await this.getPokemonImageById(id)
-                    evolvedList.push(image)
+            async loadPokemonImage(pokemon) {
+                this.loading.push(pokemon)
+                const image = await this.getPokemonImageById(pokemon)
+                this.loading = this.loading.filter(id => id !== pokemon)
+                return image
+            },
+
+            getEvolvesToPokemonImages(pokemonIds, list) {
+                pokemonIds.forEach(async (id) => {
+                    const image = await this.loadPokemonImage(id)
+                    list.push(image)
                 })
-                return evolvedList
             },
 
-            async getLevelUpEvolutions() {
+            getLevelUpEvolutions() {
                 const { minLevel: level, pokemon } = this.evolutions.levelUp
-                if (!level) return
-                const pokemonList = await this.getEvolvesToPokemonImages(pokemon)
-                this.levelUp = { level, pokemonList }
+                if (!level) return this.levelUp = null
+                this.levelUp.level = level
+                this.levelUp.pokemonList = []
+                this.getEvolvesToPokemonImages(pokemon, this.levelUp.pokemonList)
             },
 
-            async getHappinessUpEvolutions() {
+            getHappinessUpEvolutions() {
                 const { minLevel: happiness, pokemon } = this.evolutions.happinessUp
-                if (!happiness) return
-                const pokemonList = await this.getEvolvesToPokemonImages(pokemon)
-                this.happinessUp = { happiness, pokemonList }
+                if (!happiness) return this.happinessUp = null
+                this.happinessUp.happiness = happiness
+                this.happinessUp.pokemonList = []
+                this.getEvolvesToPokemonImages(pokemon, this.happinessUp.pokemonList)
             },
 
             async getUseItemsEvolutions() {
                 if (!this.evolutions.useItem.length) return
                 this.evolutions.useItem.forEach(async ({itemName, pokemon}) => {
-                    const evolvesTo = await this.getPokemonImageById(pokemon)
+                    const evolvesTo = await this.loadPokemonImage(pokemon)
                     this.useItems.push({
                         itemName,
                         evolvesTo
@@ -172,7 +178,7 @@
             async getTradeEvolutions() {
                 if (!this.evolutions.trade) return
                 this.evolutions.trade.forEach(async id => {
-                    const pokemon = await this.getPokemonImageById(id)
+                    const pokemon = await this.loadPokemonImage(id)
                     this.trade.push(pokemon)
                 })
             },
