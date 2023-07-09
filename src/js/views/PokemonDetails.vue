@@ -84,37 +84,14 @@
                         </span>
 
                         <div class="stats">
-                            <div
-                                v-for="(stat, index) in stats"
-                                :key="`stat-${index}`"
-                                class="stat-value">
+                            <pokemon-stats :stats="stats" />
 
-                                <span class="stat-label">
-                                    {{ stat.label }}
-                                </span>
-                                <span>
-                                    {{ stat.value }}
-                                </span>
-                                <progress
-                                    :value="stat.value"
-                                    :max="stat.max"
-                                    :class="getClass(stat)" />
-                            </div>
-
-                            <div
+                            <linear-progress
                                 v-if="pokemon.happiness"
-                                class="stat-value happiness">
-                                <span class="stat-label">
-                                    Happiness
-                                </span>
-                                <span>
-                                    {{ pokemon.happiness.value }}
-                                </span>
-                                <progress
-                                    :value="pokemon.happiness.value"
-                                    :max="pokemon.happiness.max"
-                                    :class="getClass(pokemon.happiness)" />
-                            </div>
+                                label="Happiness"
+                                :value="pokemon.happiness.value"
+                                :max="pokemon.happiness.max"
+                                class="happiness" />
                         </div>
                     </div>
                 </div>
@@ -162,6 +139,8 @@
 
 <script>
 
+    import PokemonStats from '@/js/components/pokemon-details/PokemonStats.vue'
+    import LinearProgress from '@/js/components/UI/LinearProgress.vue'
     import ItemsList from '@/js/components/ItemsList.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
@@ -176,6 +155,8 @@
         name: 'pokemon-details',
 
         components: {
+            PokemonStats,
+            LinearProgress,
             ItemsList,
             NavigationBar,
             PopUp,
@@ -322,14 +303,6 @@
                 let value = (0.02 * statValue * level) + 5 + (5 + level)
                 if (isHp) value += (5 + level)
                 return Math.round(value, 2)
-            },
-
-            getClass(stat) {
-                if (!stat) return null
-                const percentage = stat.value / stat.max
-                if (percentage > 0.65) return 'high'
-                if (percentage > 0.25) return 'medium'
-                return 'low'
             },
 
             setStats(stat, level = null) {
