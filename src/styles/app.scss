@@ -1,3 +1,4 @@
+@use "@/styles/scrollBar";
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
 @use "@/styles/fonts";
@@ -12,8 +13,6 @@
     text-decoration: none;
     border: none;
     outline: none;
-    scrollbar-width: thin;
-    scrollbar-color: palette.$accent palette.$secondary;
 }
 
 #main:not(.page_not_found), .global-evolution-pop-up {
@@ -53,22 +52,6 @@
     }
 }
 
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: palette.$secondary;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: palette.$accent;
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: palette.$white;
-}
 
 .v-enter-active,
 .v-leave-active {

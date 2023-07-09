@@ -1,0 +1,33 @@
+@use "@/styles/colors/palette";
+
+* {
+    scrollbar-width: none;
+
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
+
+@media (orientation: landscape) {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: palette.$white palette.$secondary;
+    
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background-color: palette.$secondary;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background-color: palette.$white;
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: palette.$accent;
+        }
+    }
+}
