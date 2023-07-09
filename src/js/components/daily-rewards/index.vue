@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import Day from '@/js/components/DailyRewards/Day.vue'
+    import Day from '@/js/components/daily-rewards/Day.vue'
     import DailyRewardsPopUp from '@/js/components/pop-up/DailyRewardsPopUp.vue'
 
     import { mapActions, mapGetters } from 'vuex'
