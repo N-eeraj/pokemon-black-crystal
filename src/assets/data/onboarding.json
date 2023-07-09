@@ -140,6 +140,10 @@
 					"victories": 0
 				}
 			}
+		},
+		"dailyRewards": {
+			"streak": 0,
+			"last": 0
 		}
 	}
 }

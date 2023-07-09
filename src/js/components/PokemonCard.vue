@@ -1,17 +1,16 @@
 <template>
-
     <div
         draggable="true"
         class="pokemon-card"
-        :class="{ wiggle: (startPosition && canMove) }">
+        :class="{ wiggle: (startPosition && canMove) }"
+        @dragstart="handleDragStart"
+        @dragend="handleDragEnd">
 
         <div
             class="image"
-            :style="`background-image: url(${pokemon.image});`"
+            :style="{'background-image': `url(${pokemon.image})`}"
             @touchstart="handleTouchStart"
-            @dragstart="handleDragStart"
-            @touchend="handleTouchEnd"
-            @dragend="handleDragEnd">
+            @touchend="handleTouchEnd">
         </div>
 
         <div class="details">
@@ -36,8 +35,7 @@
                     :key="index" />
             </div>
         </div>
-</div>
-
+    </div>
 </template>
 
 <script>
@@ -72,7 +70,8 @@
             return {
                 startPosition: null,
                 startTime: null,
-                now: null
+                now: null,
+                interval: null
             }
         },
 
@@ -84,9 +83,13 @@
         },
 
         mounted() {
-            setInterval(() => {
+            this.interval = setInterval(() => {
                 if (this.startTime) this.now = Date.now()
             }, 100)
+        },
+
+        beforeUnmount() {
+            clearInterval(this.interval)
         },
 
         methods: {
@@ -98,6 +101,7 @@
             },
 
             handleTouchStart() {
+                event.preventDefault()
                 this.handleStart(event.changedTouches[0].screenY)
             },
 
@@ -107,7 +111,6 @@
 
             handleStart(startValue) {
                 if (!this.rearrangeable) return
-                event.preventDefault()
                 this.startPosition = startValue
                 this.startTime = Date.now()
             },
