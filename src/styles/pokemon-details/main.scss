@@ -30,6 +30,28 @@
         }
     }
 
+    .level-ring {
+        position: relative;
+        width: 90%;
+        aspect-ratio: 1;
+        margin: auto;
+        border: 2px solid palette.$white-secondary;
+        border-radius: 50%;
+        transition: 1s;
+
+        &::after {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            content: '';
+            width: 10px;
+            aspect-ratio: 1;
+            background-color: palette.$white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
     .details-container {
         position: fixed;
         bottom: 0;
