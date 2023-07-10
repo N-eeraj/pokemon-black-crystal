@@ -31,8 +31,14 @@
                 </template>
             </navigation-bar>
 
-            <div class="details-container">
 
+            <div
+                v-if="pokemon.level"
+                class="level-ring"
+                :style="{transform: `translateY(-12.5%) rotate(${pokemon.levelProgress}deg)`}">
+            </div>
+
+            <div class="details-container">
                 <img
                     :src="pokemon.image"
                     :alt="pokemon.name"
@@ -297,6 +303,13 @@
                     value: pokemon.happiness,
                     max: 255
                 }
+                const nextLevelExp = this.pokemon.getExpByLevel(this.pokemon.level + 1)
+                const currentLevelExp = this.pokemon.getExpByLevel(this.pokemon.level)
+                this.pokemon.levelProgress = 0
+                setTimeout(() => {
+                    const progress = (this.pokemon.exp - currentLevelExp) / (nextLevelExp - currentLevelExp)
+                    this.pokemon.levelProgress = progress * 180
+                }, 400);
 
                 const isInParty = this.partyPokemon.includes(id)
                 // check if this is party pokemon & if pokemon is in party
