@@ -21,8 +21,11 @@
                 v-if="levelUp"
                 class="container">
                 <strong class="sub-title">
-                    Evolutions by leveling up
+                    Level Up
                 </strong>
+                <span class="requirement">
+                    Evolution at level {{ levelUp.level }}
+                </span>
                 <div class="evolution-pokemon-list">
                     <img
                         v-for="(pokemon, index) in levelUp.pokemonList"
@@ -37,10 +40,10 @@
                 v-if="happinessUp"
                 class="container">
                 <strong class="sub-title">
-                    Evolutions with happiness
+                    Happiness Up
                 </strong>
                 <span class="requirement">
-                    Happiness required: {{ happinessUp.happiness }}
+                    Required Happiness: {{ happinessUp.happiness }}
                 </span>
                 <div class="evolution-pokemon-list">
                     <img
