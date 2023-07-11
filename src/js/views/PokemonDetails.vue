@@ -17,17 +17,20 @@
                         alt="options"
                         class="right-icon"
                         @click.stop="showActions = true" />
-                    <ul
-                        v-if="showActions"
-                        class="options-container">
-                        <li
-                            v-for="(action, index) in actions"
-                            :key="`action-${index}`"
-                            class="option"
-                            @click="action.action">
-                            {{ action.label }}
-                        </li>
-                    </ul>
+
+                    <transition name="actions">
+                        <ul
+                            v-if="showActions"
+                            class="actions-container">
+                            <li
+                                v-for="(action, index) in actions"
+                                :key="`action-${index}`"
+                                class="action"
+                                @click="action.action">
+                                {{ action.label }}
+                            </li>
+                        </ul>
+                    </transition>
                 </template>
             </navigation-bar>
 

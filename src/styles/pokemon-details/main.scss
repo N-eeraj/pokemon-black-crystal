@@ -13,13 +13,13 @@
             cursor: pointer;
         }
 
-        .options-container {
+        .actions-container {
             position: fixed;
             top: 0;
             right: 0;
             z-index: 1;
 
-            .option {
+            .action {
                 padding: 7px;
                 background-color: palette.$primary;
                 list-style-type: none;
@@ -144,4 +144,15 @@
             font-size: 0.8rem;
         }
     }
+}
+
+.actions-enter-active,
+.actions-leave-active {
+    transition: 400ms;
+}
+
+.actions-enter-from,
+.actions-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
 }
