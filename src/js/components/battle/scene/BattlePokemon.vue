@@ -15,6 +15,14 @@
         <div
             class="status"
             :class="{ caught: catchStatus?.caught }">
+            <div class="types-list">
+                <type-icon
+                    v-for="(type, index) in pokemon.types"
+                    :type="type"
+                    :key="index"
+                    class="type" />
+            </div>
+
             <strong>
                 {{ $filters.toTitleCase(pokemon.name) }}
             </strong>
@@ -22,6 +30,7 @@
                 Level
                 {{ pokemon.level }}
             </span>
+
             <progress
                 :value="pokemon.currentHp"
                 :max="pokemon.stat.hp"
@@ -45,12 +54,18 @@
 
 <script>
 
-    import items from '@/assets/data/items'
+    import TypeIcon from '@/js/components/TypeIcon.vue'
 
     import { mapGetters } from 'vuex'
 
+    import items from '@/assets/data/items'
+
     export default {
         name: 'battle-pokemon',
+
+        components: {
+            TypeIcon
+        },
 
         props: {
             pokemon: {
