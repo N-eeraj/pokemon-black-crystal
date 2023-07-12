@@ -6,16 +6,28 @@
                 Berry Crusher
             </h1>
 
-            <div
-                class="crusher-container"
-                @click="handleCrusherPress">
-                <img
-                    src="@/assets/images/carnival/berry-crusher/rotar.png"
-                    class="rotar"
-                    :style="`transform: rotate(${angle}deg);`" />
-                <img
-                    src="@/assets/images/carnival/berry-crusher/pointer.png"
-                    :class="{ disabled: !chance }" />
+            <div class="main-container">
+                <div
+                    class="crusher-container"
+                    @click="handleCrusherPress">
+                    <img
+                        src="@/assets/images/carnival/berry-crusher/rotar.png"
+                        class="rotar"
+                        :style="`transform: rotate(${angle}deg);`" />
+                    <img
+                        src="@/assets/images/carnival/berry-crusher/pointer.png"
+                        :class="{ disabled: !chance }" />
+                </div>
+                
+                <div class="progress">
+                    <template
+                        v-for="(value, index) of progress"
+                        :key="index">
+                        <div
+                            class="progress-item"
+                            :class="getProgressClass(value)" />
+                    </template>
+                </div>
             </div>
 
             <p class="instructions">
@@ -52,7 +64,7 @@
             return {
                 angle: 0,
                 speed: 0.5,
-                points: 0,
+                progress: [null, null, null, null, null],
                 chance: 5,
                 popUp: {
                     show: false,
@@ -62,6 +74,10 @@
         },
 
         computed: {
+            points() {
+                return this.progress.reduce((total, value) => total += value, 0)
+            },
+
             count() {
                 return Math.floor(this.points / 3)
             },
@@ -76,7 +92,7 @@
                 return this.$router.push('/mode/carnival')
             const crusherRotation = setInterval(() => {
                 this.angle += this.speed
-                if (this.angle >= 1800) {
+                if (this.angle >= 1800 || this.chance === 0) {
                     clearInterval(crusherRotation)
                     this.gameOver()
                 }
@@ -90,8 +106,21 @@
         },
 
         methods: {
+            getProgressClass(value) {
+                switch (value) {
+                    case null:
+                        return 'pending'
+                    case 0:
+                        return 'failed'
+                    case 1:
+                        return 'success'
+                    case 2:
+                        return 'success double'
+                }
+            },
+
             updatePoints(points) {
-                this.points += points
+                this.progress[4 - this.chance] = points
                 this.speed = Number((this.speed + (0.3 * points)).toFixed(2))
             },
 
@@ -103,6 +132,8 @@
                     this.updatePoints(2)
                 else if (currentAngle > 170 && currentAngle < 190)
                     this.updatePoints(1)
+                else
+                    this.updatePoints(0)
             },
 
             gameOver() {
