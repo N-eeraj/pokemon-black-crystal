@@ -1,5 +1,11 @@
 @use "@/styles/mixins/main";
 
+@mixin circle() {
+    aspect-ratio: 1;
+    border: 3px solid;
+    border-radius: 50%;
+}
+
 #berry_crusher {
     @include main.full-screen;
     @include main.flex($direction: column, $justify: space-around);
@@ -10,17 +16,56 @@
         font-size: 1.5rem;
     }
 
-    .crusher-container {
-        @include main.flex($direction: column, $row: 10px);
-        height: 50%;
-        cursor: pointer;
+    .main-container {
+        height: fit-content;
+        @include main.flex($direction: column, $row: 15px);
 
-        .rotar {
-            width: 72%;
+        .crusher-container {
+            @include main.flex($direction: column, $row: 10px);
+            cursor: pointer;
+
+            .rotar {
+                width: 72%;
+            }
+
+            .disabled {
+                filter: grayscale(1);
+            }
         }
 
-        .disabled {
-            filter: grayscale(1);
+        .progress {
+            @include main.flex($justify: space-evenly);
+            width: 100%;
+
+            .progress-item {
+                width: 32px;
+                @include circle;
+
+                &.pending {
+                    border-color: #AAA;
+                }
+                &.failed {
+                    border-color: #F55;
+                }
+                &.success {
+                    border-color: #0FA;
+
+                    &.double {
+                        position: relative;
+
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            width: 10px;
+                            @include circle;
+                            border-color: #0FA;
+                        }
+                    }                        
+                }
+            }
         }
     }
 
