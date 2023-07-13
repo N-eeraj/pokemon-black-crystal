@@ -102,10 +102,19 @@
                                 :max="pokemon.happiness.max"
                                 class="happiness" />
                         </div>
+                    </div>
 
-                        <pokemon-evolutions
-                            v-if="showEvolutions"
-                            :evolutions="pokemon.evolution" />
+                    <pokemon-evolutions
+                        v-if="showEvolutions"
+                        :evolutions="pokemon.evolution" />
+                    <div
+                        v-else
+                        class="moves-container">
+                        <span class="label">
+                            Moves
+                        </span>
+
+                        <moves-list :moves="pokemon.moves" />
                     </div>
                 </div>
 
@@ -155,6 +164,7 @@
     import PokemonStats from '@/js/components/pokemon-details/PokemonStats.vue'
     import LinearProgress from '@/js/components/UI/LinearProgress.vue'
     import PokemonEvolutions from '@/js/components/pokemon-details/PokemonEvolutions.vue'
+    import MovesList from '@/js/components/pokemon-details/MovesList.vue'
     import ItemsList from '@/js/components/ItemsList.vue'
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PopUp from '@/js/components/UI/PopUp.vue'
@@ -172,6 +182,7 @@
             PokemonStats,
             LinearProgress,
             PokemonEvolutions,
+            MovesList,
             ItemsList,
             NavigationBar,
             PopUp,

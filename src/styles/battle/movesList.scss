@@ -6,22 +6,11 @@
     background-color: palette.$primary;
     z-index: 1;
 
-    #moves_list {
+    #battle_moves_list {
         @include main.flex($direction: column, $justify: flex-start, $row: 20px);
         width: 100%;
         height: 92vh;
         padding: 10px 0 60px 0;
         overflow-y: auto;
-
-        .move-card {
-            @include main.flex($direction: column, $align: flex-start, $row: 5px);
-            width: 90%;
-            padding: 15px;
-            background-color: palette.$secondary;
-            border: 1px solid palette.$white-secondary;
-            border-radius: 15px;
-            color: palette.$white;
-            cursor: pointer;
-        }
     }
 }
