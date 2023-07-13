@@ -8,7 +8,7 @@
             <navigation-bar
                 icon="back"
                 class="nav-bar"
-                @icon-event="$router.push(backPath)">
+                @icon-event="$router.back">
                 <template
                     #right-action
                     v-if="actions?.length">
@@ -232,14 +232,16 @@
         watch: {
             $route: {
                 deep: true,
-                handler({ hash: toHash }, { hash: fromHash }) {
+                handler({ hash: toHash, params: toParams }, { hash: fromHash, params: fromParams }) {
                     if (!toHash && fromHash === '#release')
                         this.closeConfirmRelease()
+                    else if (toParams.type && toParams.type !== fromParams.type)
+                        this.initialize()
                 }
             }
         },
 
-        created() {
+        mounted() {
             this.updateAudio('pokemon-details.mp3')
             this.initialize()
         },
@@ -247,8 +249,12 @@
         methods: {
             initialize() {
                 this.listType = this.$route.params.type
-                let id = this.$route.params.id
-                id = Number(id)
+                let id = Number(this.$route.params.id)
+
+                this.stats = []
+                this.usableItems = []
+                this.backPath = null
+                this.actions = []
 
                 switch (this.listType) {
                     case 'pokedex':
@@ -281,6 +287,10 @@
                     actions.push({
                         label: 'Use Item',
                         action: this.toggleShowItems
+                    })
+                    actions.push({
+                        label: 'Check Pokédex',
+                        action: this.checkPokedex
                     })
 
                 if (isParty && this.partyPokemon.length < 2)
@@ -417,6 +427,10 @@
 
             toggleShowItems() {
                 this.showItems = !this.showItems
+            },
+
+            checkPokedex() {
+                this.$router.push(`/pokemon/details/pokedex/${this.pokemon.id}`)
             },
 
             handleMovePokemon() {
