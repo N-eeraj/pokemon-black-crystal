@@ -7,42 +7,11 @@
             @icon-event="$emit('closeMoveset')" />
 
         <div id="moves_list">
-            <div
+            <move-card
                 v-for="(move, index) in moveList"
+                :move="move"
                 :key="index"
-                class="move-card"
-                @click="$emit('useMove', move)">
-
-                <span>
-                    {{ $filters.toTitleCase(move.name) }}
-                </span>
-
-                <span v-if="move.healing > 0">
-                    Heal:
-                    {{ move.healing }}%
-                </span>
-                <span v-else>
-                    Power:
-                    {{ move.power || 'KO' }}
-                </span>
-
-                <span>
-                    PP:
-                    {{ move.pp }}
-                </span>
-
-                <span>
-                    Accuracy:
-                    {{ move.accuracy }}%
-                </span>
-
-                <span>
-                    Type:
-                    {{ $filters.toTitleCase(move.type) }}
-                    <type-icon :type="move.type" />
-                </span>
-                
-            </div>
+                @click="$emit('useMove', move)" />
         </div>
     </div>
 </template>
@@ -50,7 +19,7 @@
 <script>
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
-    import TypeIcon from '@/js/components/TypeIcon.vue'
+    import MoveCard from '@/js/components/MoveCard.vue'
 
     import { mapGetters } from 'vuex'
 
@@ -60,7 +29,7 @@
 
         components: {
             NavigationBar,
-            TypeIcon
+            MoveCard
         },
 
         computed: {
