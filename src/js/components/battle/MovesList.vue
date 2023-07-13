@@ -6,7 +6,7 @@
             icon="back"
             @icon-event="$emit('closeMoveset')" />
 
-        <div id="moves_list">
+        <div id="battle_moves_list">
             <move-card
                 v-for="(move, index) in moveList"
                 :move="move"

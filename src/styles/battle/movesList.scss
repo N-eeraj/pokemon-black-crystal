@@ -6,7 +6,7 @@
     background-color: palette.$primary;
     z-index: 1;
 
-    #moves_list {
+    #battle_moves_list {
         @include main.flex($direction: column, $justify: flex-start, $row: 20px);
         width: 100%;
         height: 92vh;
