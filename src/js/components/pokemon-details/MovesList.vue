@@ -1,9 +1,12 @@
 <template>
     <div id="pokemon_moves_list">
-        <move-card
-            v-for="(move, index) in movesList"
-            :move="move"
-            :key="index" />
+        <div class="scroller">
+            <move-card
+                v-for="(move, index) in movesList"
+                :move="move"
+                :key="index"
+                class="move-card" />
+        </div>
     </div>
 </template>
 
@@ -42,3 +45,5 @@
         }
     }
 </script>
+
+<style lang="scss" scoped src="@/styles/pokemon-details/movesList.scss"></style>

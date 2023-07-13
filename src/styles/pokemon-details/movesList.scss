@@ -1,0 +1,17 @@
+@use "@/styles/mixins/main";
+
+#pokemon_moves_list {
+    width: 100%;
+    padding: 3% 0;
+    overflow-x: auto;
+    
+    .scroller {
+        @include main.flex($justify: flex-start, $align: center, $col: 20px);
+        width: max-content;
+
+        .move-card {
+            width: fit-content;
+            cursor: default;
+        }
+    }
+}
