@@ -84,7 +84,7 @@
                 width: 100%;
 
                 .type-icon {
-                    width: max(25px, 10%);
+                    width: 25px;
                 }
             }
 
@@ -104,7 +104,7 @@
 
             .stats-container {
                 width: 100%;
-                padding: 5% 5% 10% 5%;
+                padding: 2.5% 5%;
 
                 .stats {
                     @include main.flex($direction: column, $align: flex-start, $row: 10px);
@@ -133,6 +133,11 @@
                         }
                     }
                 }
+            }
+
+            .moves-container {
+                width: 100%;
+                padding: 2.5% 5%;
             }
         }
     }
