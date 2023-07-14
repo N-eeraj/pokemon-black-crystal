@@ -1,3 +1,5 @@
+import { getInRange } from '@/js/mixins/randomGenerator'
+
 function getAttackDefenseRatio(damageClass, attacker, defender) {
     if (damageClass === 'physical') return attacker.stat.attack / defender.stat.defense
     return attacker.stat['special-attack'] / defender.stat['special-defense']
@@ -34,5 +36,6 @@ export const getCaptureRate = (pokemon, ballId) => {
     const successRate = ballSuccessRate[ballId]
 
     const captureRate = ((3 * maxHp - 2 * currentHp) * pokemonCaptureRate * successRate) / (765 * maxHp)
-    return captureRate > Math.random()
+    const luck = getInRange(0.95, 1.1, true)
+    return captureRate * luck > Math.random()
 }

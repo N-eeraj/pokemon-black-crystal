@@ -249,10 +249,9 @@ export default {
         encounterDetails.forEach(pokemon => {
             if (pokemon.id > 386) return
             for (let i=0; i<pokemon.rate; i++)
-                encounterPossibilities.splice(encounterPossibilities.length, 0, ...Array.from({length: 100}, () => pokemon.id))
+                encounterPossibilities.splice(encounterPossibilities.length, 0, ...Array.from({length: 1000}, () => pokemon.id))
         })
 
-        
         const randomPokemon = encounterPossibilities[getInRange(0, encounterPossibilities.length)]
         const pokemonDetails = await dispatch('getPokemonById', randomPokemon)
         if (pokemonDetails.isLegendary)

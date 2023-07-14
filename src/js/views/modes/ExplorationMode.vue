@@ -108,9 +108,9 @@
                 this.battleOngoing = true
                 const encounteredPokemon = await this.getWildPokemonByLocation(location)
 
-                const strongestPokemonExp = getInRange(this.strongestPokemon.exp * 0.4, this.strongestPokemon.exp * 0.6)
-                const minExp = encounteredPokemon.getExpByLevel(3)
-                const maxExp = encounteredPokemon.getExpByLevel(50)
+                const strongestPokemonExp = getInRange(this.strongestPokemon.exp * 0.2, this.strongestPokemon.exp * 0.7)
+                const minExp = encounteredPokemon.getExpByLevel(2)
+                const maxExp = encounteredPokemon.getExpByLevel(60)
                 this.wildPokemonLevel = clamp(minExp, strongestPokemonExp, maxExp)
                 const exp = this.wildPokemonLevel
 

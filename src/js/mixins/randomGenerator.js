@@ -7,7 +7,12 @@ export const getRandomMove = (pokemon) => {
 
 export const checkMoveAccuracy = (attack) => Math.random() * 100 < attack.accuracy
 
-export const getInRange = (min, max) => Math.floor(Math.random() * (max - min) + min)
+export const getInRange = (min, max, isFloat=false) => {
+    const random = Math.random() * (max - min) + min
+    if (isFloat)
+        return random
+    return Math.floor(random)
+}
 
 export const getRandomFromList = (list) => list[Math.floor(Math.random() * list.length)]
 
