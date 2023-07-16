@@ -33,7 +33,8 @@
 
             <div
                 v-if="pokedex.length"
-                class="pokemon-list">
+                class="pokemon-list"
+                @scroll="handleScroll">
 
                 <div
                     v-for="pokemon in currentPokemonList"
@@ -196,7 +197,8 @@
                         value: 2
                     }
                 ],
-                loading: true
+                loading: true,
+                limit: 10
             }
         },
 
@@ -204,7 +206,7 @@
             currentPokemonList() {
                 const pokemonList = this.searchQuery ? this.filteredDexList : this.pokedex
                 const sortedList = pokemonList.sort((first, second) => first.id - second.id)
-                return sortedList
+                return sortedList.slice(0, this.limit)
             },
 
             filteredDexList() {
@@ -258,6 +260,11 @@
             viewPokemon(pokemon) {
                 if (!pokemon.caught) return
                 this.$router.push(`/pokemon/details/pokedex/${pokemon.id}`)
+            },
+
+            handleScroll({target}) {
+                if (target.scrollTop === target.scrollTopMax && this.limit < this.pokedex.length)
+                    this.limit += 10
             },
 
             ...mapActions([
