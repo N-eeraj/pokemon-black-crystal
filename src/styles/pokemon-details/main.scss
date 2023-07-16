@@ -20,12 +20,22 @@
             z-index: 1;
 
             .action {
-                padding: 7px;
+                padding: 10px;
                 background-color: palette.$primary;
                 list-style-type: none;
                 text-align: right;
                 font-size: 0.8rem;
                 cursor: pointer;
+
+                &:hover {
+                    background-color: palette.$white;
+                    color: palette.$secondary;
+                    font-weight: 600;
+                }
+
+                &:not(:last-child) {
+                    border-bottom: 1px solid palette.$secondary;
+                }
             }
         }
     }
@@ -104,7 +114,9 @@
 
             .stats-container {
                 width: 100%;
+                margin-top: 10px;
                 padding: 2.5% 5%;
+                border-top: 1px solid palette.$secondary;
 
                 .stats {
                     @include main.flex($direction: column, $align: flex-start, $row: 10px);
@@ -138,6 +150,7 @@
             .moves-container {
                 width: 100%;
                 padding: 2.5% 5%;
+                border-top: 1px solid palette.$secondary;
             }
         }
     }
