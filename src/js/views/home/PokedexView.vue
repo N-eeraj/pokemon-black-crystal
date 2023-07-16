@@ -263,8 +263,8 @@
             },
 
             handleScroll({target}) {
-                if (target.scrollTop === target.scrollTopMax && this.limit < this.pokedex.length)
-                    this.limit += 10
+                if (this.limit < this.pokedex.length)
+                    this.limit = Math.floor(target.scrollTop / target.offsetHeight + 1) * 10
             },
 
             ...mapActions([
