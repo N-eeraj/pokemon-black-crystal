@@ -26,17 +26,24 @@
             moves: {
                 type: Array,
                 required: true
+            },
+            level: {
+                type: Number,
+                required: true
             }
         },
 
         computed: {
             movesList() {
-                return this.moves.map(move => {
-                        return {
-                            name: move.name,
-                            ...this.getMovesByName(move.name)
-                        }
-                    })
+                const availableMoves = []
+                this.moves.forEach(({name, level}) => {
+                    if (level <= this.level)
+                        availableMoves.push({
+                            name: name,
+                            ...this.getMovesByName(name)
+                        })
+                })
+                return availableMoves
             },
 
             ...mapGetters([

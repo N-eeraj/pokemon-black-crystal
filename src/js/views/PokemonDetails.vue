@@ -114,7 +114,9 @@
                             Moves
                         </span>
 
-                        <moves-list :moves="pokemon.moves" />
+                        <moves-list
+                            :moves="pokemon.moves"
+                            :level="pokemon.level" />
                     </div>
                 </div>
 
