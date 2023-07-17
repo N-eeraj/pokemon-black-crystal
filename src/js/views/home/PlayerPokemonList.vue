@@ -22,8 +22,10 @@
                     :show-actions="showActions"
                     :boxes="boxList"
                     :current-box="currentBox"
+                    :pokemon-list="pokemonList"
                     @show-actions="showActions = true"
-                    @renamed="changeCurrentBox" />
+                    @rename="changeCurrentBox"
+                    @delete="resetCurrentBox" />
             </template>
 
         </pokemon-list>
@@ -88,8 +90,10 @@
 
         methods: {
             setList() {
-                if (this.isPC)
+                if (this.isPC) {
+                    this.currentBoxIndex = 0
                     this.setPCPokemonList()
+                }
                 else
                     this.setPartyPokemonList()
             },
@@ -118,7 +122,6 @@
             },
 
             setPCPokemonList() {
-                this.currentBoxIndex = 0
                 this.setPokemonList(this.pcPokemon[this.currentBox])
             },
 
@@ -143,11 +146,17 @@
                     this.currentBoxIndex = 0
                 else
                     this.currentBoxIndex = newIndex
-                this.setPokemonList(this.pcPokemon[this.currentBox])
+                this.setPCPokemonList()
             },
 
             changeCurrentBox(boxName) {
                 this.currentBoxIndex = this.boxList.indexOf(boxName)
+                this.setPCPokemonList()
+            },
+
+            resetCurrentBox() {
+                this.currentBoxIndex = 0
+                this.setPCPokemonList()
             },
 
             ...mapActions([

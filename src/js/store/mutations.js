@@ -121,6 +121,11 @@ export default {
         encryptAndSave()
     },
 
+    deleteBox(state, boxName) {
+        delete state.gameData.pokemon.pc[boxName]
+        encryptAndSave()
+    },
+
     releasePokemon(state, { id, list }) {
         const pokemonData = state.gameData.pokemon
         pokemonData[list] = pokemonData[list].filter(caughtId => caughtId !== id)
