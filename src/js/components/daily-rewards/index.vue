@@ -107,4 +107,4 @@
     }
 </script>
 
-<style lang="scss" scoped src="@/styles/home/dailyRewards/main.scss"></style>
+<style lang="scss" scoped src="@/styles/home/daily-rewards/main.scss"></style>

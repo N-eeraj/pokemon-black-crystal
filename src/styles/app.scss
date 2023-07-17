@@ -54,11 +54,19 @@
 
 
 .v-enter-active,
-.v-leave-active {
+.v-leave-active,
+.actions-enter-active,
+.actions-leave-active {
     transition: 400ms;
 }
 
 .v-enter-from,
 .v-leave-to {
     opacity: 0;
+}
+
+.actions-enter-from,
+.actions-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
 }

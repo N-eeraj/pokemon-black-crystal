@@ -31,4 +31,4 @@
     }
 </script>
 
-<style lang="scss" scopped src="@/styles/boxList.scss"></style>
+<style lang="scss" scoped src="@/styles/home/pc-boxes/boxList.scss"></style>

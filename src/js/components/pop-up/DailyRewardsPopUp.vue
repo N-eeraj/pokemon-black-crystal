@@ -57,4 +57,4 @@
     }
 </script>
 
-<style lang="scss" scoped src="@/styles/home/dailyRewards/popUp.scss"></style>
+<style lang="scss" scoped src="@/styles/home/daily-rewards/popUp.scss"></style>

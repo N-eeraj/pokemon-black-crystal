@@ -1,0 +1,33 @@
+@use "@/styles/colors/palette";
+
+.pc-actions {
+    width: 25px;
+    cursor: pointer;
+}
+
+.actions-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
+
+    .action {
+        padding: 10px;
+        background-color: palette.$white;
+        color: palette.$secondary;
+        list-style-type: none;
+        text-align: right;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:hover {
+            background-color: palette.$accent;
+            color: palette.$primary;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid palette.$white-secondary;
+        }
+    }
+}

@@ -3,7 +3,11 @@
         <navigation-bar
             :title="title"
             :icon="icon"
-            @icon-event="$emit('navIconAction')" />
+            @icon-event="$emit('navIconAction')">
+            <template #right-action>
+                <slot name="nav-right-actions" />
+            </template>
+        </navigation-bar>
 
         <slot />
 

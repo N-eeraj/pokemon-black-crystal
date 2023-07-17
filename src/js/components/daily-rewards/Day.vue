@@ -44,4 +44,4 @@
     }
 </script>
 
-<style lang="scss" scoped src="@/styles/home/dailyRewards/day.scss"></style>
+<style lang="scss" scoped src="@/styles/home/daily-rewards/day.scss"></style>
