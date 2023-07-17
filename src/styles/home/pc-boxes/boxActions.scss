@@ -1,4 +1,5 @@
 @use "@/styles/colors/palette";
+@use "@/styles/animation";
 
 .pc-actions {
     width: 25px;
@@ -30,4 +31,42 @@
             border-bottom: 1px solid palette.$white-secondary;
         }
     }
+}
+
+.new-box {
+    :deep(.body-container) {
+        flex-direction: column;
+        align-items: flex-start;
+        
+        .new-box-input {
+            width: 100%;
+            background-color: transparent;
+            color: palette.$white;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .new-box-error {
+            margin-top: 10px;
+            color: #F77;
+            font-size: 0.7rem;
+        }
+    }
+}
+
+.error-animation {
+    animation: shiver 100ms alternate 4;
+}
+
+.error-enter-active,
+.error-leave-active {
+    transition: 400ms;
+}
+.error-enter-active {
+    animation: shiver 100ms alternate infinite;
+}
+
+.error-enter-from,
+.error-leave-to {
+    opacity: 0;
 }
