@@ -109,6 +109,18 @@ export default {
         encryptAndSave()
     },
 
+    createBox(state, boxName) {
+        state.gameData.pokemon.pc[boxName] = []
+        encryptAndSave()
+    },
+
+    updateBoxName(state, { current, updated }) {
+        const pc = state.gameData.pokemon.pc
+        pc[updated] = pc[current]
+        delete pc[current]
+        encryptAndSave()
+    },
+
     releasePokemon(state, { id, list }) {
         const pokemonData = state.gameData.pokemon
         pokemonData[list] = pokemonData[list].filter(caughtId => caughtId !== id)

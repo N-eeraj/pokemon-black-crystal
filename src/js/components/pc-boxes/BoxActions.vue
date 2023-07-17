@@ -23,19 +23,19 @@
         :show="modal.newBox"
         close
         prevent-redirect
-        hash="escape"
-        class="modal new-box"
+        hash="new-box"
+        class="modal pc-box"
         @close-pop-up="closePopUp('newBox')">
         <template #body>
             <input
                 v-model="newBoxName"
                 placeholder="Enter Box Name"
-                class="new-box-input"
+                class="box-input"
                 @keyup.enter="saveBox" />
             <transition name="error">
                 <small
                     v-if="error.newBox.text"
-                    class="new-box-error"
+                    class="box-error"
                     :class="{'error-animation': error.newBox.animate}">
                     {{ error.newBox.text }}
                 </small>
@@ -49,10 +49,43 @@
             </button>
         </template>
     </pop-up>
+
+    <pop-up
+        :show="modal.renameBox"
+        close
+        prevent-redirect
+        hash="rename-box"
+        class="modal pc-box"
+        @close-pop-up="closePopUp('renameBox')">
+        <template #body>
+            <input
+                v-model="renameBoxName"
+                placeholder="Enter New Box Name"
+                class="box-input"
+                @keyup.enter="updateBox" />
+            <transition name="error">
+                <small
+                    v-if="error.renameBox.text"
+                    class="box-error"
+                    :class="{'error-animation': error.renameBox.animate}">
+                    {{ error.renameBox.text }}
+                </small>
+            </transition>
+        </template>
+        <template #actions>
+            <button
+                class="confirm"
+                @click="updateBox">
+                Rename Box
+            </button>
+        </template>
+    </pop-up>
 </template>
 
 <script>
+
     import PopUp from '@/js/components/UI/PopUp.vue'
+    import { mapActions } from 'vuex'
 
     export default {
         name: 'box-actions',
@@ -71,6 +104,11 @@
                 type: Array,
                 required: false,
                 default: []
+            },
+            currentBox: {
+                type: String,
+                required: false,
+                default: 'Box 1'
             }
         },
 
@@ -91,11 +129,17 @@
                     }
                 ],
                 modal: {
-                    newBox: false
+                    newBox: false,
+                    renameBox: false
                 },
                 newBoxName: null,
+                renameBoxName: null,
                 error: {
                     newBox: {
+                        text: null,
+                        animate: null
+                    },
+                    renameBox: {
                         text: null,
                         animate: null
                     }
@@ -110,7 +154,7 @@
 
             displayError(location, text) {
                 this.error[location].text = text
-                this.error.newBox.animate = true
+                this.error[location].animate = true
                 setTimeout(() => {
                     this.error[location].animate = false
                 }, 1000)
@@ -128,16 +172,38 @@
                     return this.displayError('newBox', 'Enter a box name')
                 if (this.boxes.find(box => box.toLowerCase() === this.newBoxName.trim().toLowerCase()))
                     return this.displayError('newBox', 'Box with this name exists')
-                console.log(this.newBoxName)
+                this.createBox(this.newBoxName.trim())
+                this.closePopUp('newBox')
             },
 
             renameBox() {
-                console.log('renameBox')
+                this.renameBoxName = this.currentBox
+                this.modal.renameBox = true
+            },
+
+            updateBox() {
+                this.error.renameBox.text = null
+                this.error.renameBox.animate = false
+                if (!this.renameBoxName)
+                    return this.displayError('renameBox', 'Enter a box name')
+                if (this.boxes.find(box => box.toLowerCase() === this.renameBoxName.trim().toLowerCase()))
+                    return this.displayError('renameBox', 'Box with this name exists')
+                this.updateBoxName({
+                    current: this.currentBox,
+                    updated: this.renameBoxName
+                })
+                this.$emit('renamed', this.renameBoxName)
+                this.closePopUp('renameBox')
             },
 
             deleteBox() {
                 console.log('deleteBox')
-            }
+            },
+
+            ...mapActions([
+                'createBox',
+                'updateBoxName',
+            ])
         }
     }
 </script>

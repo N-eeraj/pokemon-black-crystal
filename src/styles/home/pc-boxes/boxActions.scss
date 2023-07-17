@@ -33,12 +33,12 @@
     }
 }
 
-.new-box {
+.pc-box {
     :deep(.body-container) {
         flex-direction: column;
         align-items: flex-start;
         
-        .new-box-input {
+        .box-input {
             width: 100%;
             background-color: transparent;
             color: palette.$white;
@@ -46,7 +46,7 @@
             font-size: 1.1rem;
         }
         
-        .new-box-error {
+        .box-error {
             margin-top: 10px;
             color: #F77;
             font-size: 0.7rem;
