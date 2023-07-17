@@ -54,3 +54,12 @@
         transform: rotate(-15deg);
     }
 }
+
+@keyframes shiver {
+    from {
+        transform: translateX(5px);
+    }
+    to {
+        transform: translateX(-5px);
+    }
+}

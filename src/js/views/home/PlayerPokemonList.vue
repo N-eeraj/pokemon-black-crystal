@@ -20,6 +20,7 @@
                 #nav-right-actions>
                 <box-actions 
                     :show-actions="showActions"
+                    :boxes="boxList"
                     @show-actions="showActions = true" />
             </template>
 

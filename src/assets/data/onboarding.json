@@ -117,8 +117,10 @@
 		"pokemon": {
 			"encountered": [],
 			"caught": {},
-			"party":[],
-			"pc":[]
+			"party": [],
+			"pc": {
+				"Box 1": []
+			}
 		},
 		"progress": {
 			"level": 1,
