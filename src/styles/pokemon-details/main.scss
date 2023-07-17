@@ -163,14 +163,3 @@
         }
     }
 }
-
-.actions-enter-active,
-.actions-leave-active {
-    transition: 400ms;
-}
-
-.actions-enter-from,
-.actions-leave-to {
-    opacity: 0;
-    transform: translateY(-100%);
-}

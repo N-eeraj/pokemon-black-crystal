@@ -1,29 +1,37 @@
 <template>
-    <div>
-        <div id="player_pokemon_list">
-            <pokemon-list
-                :list="pokemonList"
-                :title="listTitle"
-                icon="cross-mark"
-                rearrangeable
-                @nav-icon-action="$router.push('/')"
-                @selected-pokemon="handleSelectPokemon"
-                @rearrange-pokemon="changeListOrder">
+    <div id="player_pokemon_list">
+        <pokemon-list
+            :list="pokemonList"
+            :title="listTitle"
+            icon="cross-mark"
+            rearrangeable
+            @nav-icon-action="$router.push('/')"
+            @selected-pokemon="handleSelectPokemon"
+            @rearrange-pokemon="changeListOrder"
+            @click="showActions = false">
 
-                <box-list
-                    v-if="isPC"
-                    :box="currentBox"
-                    @change-box="handleBoxChange" />
+            <box-list
+                v-if="isPC"
+                :box="currentBox"
+                @change-box="handleBoxChange" />
 
-            </pokemon-list>
-        </div>
+            <template
+                v-if="isPC"
+                #nav-right-actions>
+                <box-actions 
+                    :show-actions="showActions"
+                    @show-actions="showActions = true" />
+            </template>
+
+        </pokemon-list>
     </div>
 </template>
 
 <script>
 
     import PokemonList from '@/js/components/PokemonList.vue'
-    import BoxList from '@/js/components/BoxList.vue'
+    import BoxList from '@/js/components/pc-boxes/BoxList.vue'
+    import BoxActions from '@/js/components/pc-boxes/BoxActions.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -32,14 +40,16 @@
 
         components: {
             PokemonList,
-            BoxList
+            BoxList,
+            BoxActions
         },
 
         data() {
             return {
                 listType: null,
                 pokemonList: null,
-                currentBoxIndex: null
+                currentBoxIndex: null,
+                showActions: false
             }
         },
 
