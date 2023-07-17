@@ -7,6 +7,7 @@ import migration_v_1_8_0 from '@/js/mixins/migrations/migration_v_1_8_0'
 import migration_v_1_9_2 from '@/js/mixins/migrations/migration_v_1_9_2'
 import migration_v_1_9_7 from '@/js/mixins/migrations/migration_v_1_9_7'
 import migration_v_2_0_0 from '@/js/mixins/migrations/migration_v_2_0_0'
+import migration_v_2_1_1 from '@/js/mixins/migrations/migration_v_2_1_1'
 
 
 const updateVersion = () => {
@@ -17,6 +18,7 @@ const updateVersion = () => {
     migration_v_1_9_2(currentVersion)
     migration_v_1_9_7(currentVersion)
     migration_v_2_0_0(currentVersion)
+    migration_v_2_1_1(currentVersion)
 }
 
 export default updateVersion
