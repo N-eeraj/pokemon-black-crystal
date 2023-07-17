@@ -21,7 +21,9 @@
                 <box-actions 
                     :show-actions="showActions"
                     :boxes="boxList"
-                    @show-actions="showActions = true" />
+                    :current-box="currentBox"
+                    @show-actions="showActions = true"
+                    @renamed="changeCurrentBox" />
             </template>
 
         </pokemon-list>
@@ -64,7 +66,7 @@
             },
 
             boxList() {
-                return Object.keys(this.pcPokemon)
+                return Object.keys(this.pcPokemon).sort()
             },
 
             currentBox() {
@@ -142,6 +144,10 @@
                 else
                     this.currentBoxIndex = newIndex
                 this.setPokemonList(this.pcPokemon[this.currentBox])
+            },
+
+            changeCurrentBox(boxName) {
+                this.currentBoxIndex = this.boxList.indexOf(boxName)
             },
 
             ...mapActions([
