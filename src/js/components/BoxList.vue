@@ -1,6 +1,16 @@
 <template>
     <div class="box-list">
-        {{ box }}
+        <button
+            class="btn prev"
+            @click="handleBoxChange(-1)" />
+        
+        <strong>
+            {{ box }}
+        </strong>
+
+        <button
+            class="btn next"
+            @click="handleBoxChange(1)" />
     </div>
 </template>
 
@@ -12,6 +22,13 @@
                 type: String,
                 required: true
             }
+        },
+        methods: {
+            handleBoxChange(change) {
+                this.$emit('changeBox', change)
+            }
         }
     }
 </script>
+
+<style lang="scss" scopped src="@/styles/boxList.scss"></style>

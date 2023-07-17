@@ -1,0 +1,19 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+.box-list {
+    @include main.flex($justify: space-between);
+    width: 100%;
+    padding: 5px 10px;
+
+    .btn {
+        border: 10px solid palette.$primary;
+
+        &.prev {
+            border-right-color: palette.$white;
+        }
+        &.next {
+            border-left-color: palette.$white;
+        }
+    }
+}
