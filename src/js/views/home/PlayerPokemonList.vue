@@ -8,7 +8,13 @@
                 rearrangeable
                 @nav-icon-action="$router.push('/')"
                 @selected-pokemon="handleSelectPokemon"
-                @rearrange-pokemon="changeListOrder" />
+                @rearrange-pokemon="changeListOrder">
+
+                <box-list
+                    v-if="isPC"
+                    :box="currentBox" />
+
+            </pokemon-list>
         </div>
     </div>
 </template>
@@ -16,6 +22,7 @@
 <script>
 
     import PokemonList from '@/js/components/PokemonList.vue'
+    import BoxList from '@/js/components/BoxList.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -23,19 +30,33 @@
         name: 'player-pokemon-list',
 
         components: {
-            PokemonList
+            PokemonList,
+            BoxList
         },
 
         data() {
             return {
                 listType: null,
-                pokemonList: null
+                pokemonList: null,
+                currentBoxIndex: null
             }
         },
 
         computed: {
             listTitle() {
-                return (this.listType === 'party') ? 'Party' : 'PC'
+                return this.isPC ? 'PC' : 'Party'
+            },
+
+            isPC() {
+                return this.listType === 'pc'
+            },
+
+            boxList() {
+                return Object.keys(this.pcPokemon)
+            },
+
+            currentBox() {
+                return this.boxList[this.currentBoxIndex]
             },
 
             ...mapGetters([
@@ -54,14 +75,20 @@
         methods: {
             setList() {
                 this.pokemonList = []
-                const pokemonIdList = (this.listType === 'party') ? this.partyPokemon : this.pcPokemon
-                const pokemonList = pokemonIdList.map(id => {
+                if (this.isPC)
+                    this.setPCPokemonList()
+                else
+                    this.setPartyPokemonList()
+            },
+
+            setPokemonList(pokemonList) {
+                const pokemonIdList = pokemonList.map(id => {
                     return {
                         caughtId: id,
                         ...this.getCaughtPokemon(id)
                     }
                 })
-                pokemonList.map(async (pokemon) => {
+                pokemonIdList.map(async (pokemon) => {
                     const pokemonDetails = await this.getPokemonById(pokemon.id)
                     this.pokemonList.push({
                         caughtId: pokemon.caughtId,
@@ -70,6 +97,15 @@
                         ...pokemonDetails
                     })
                 })
+            },
+
+            setPartyPokemonList() {
+                this.setPokemonList(this.partyPokemon)
+            },
+
+            setPCPokemonList() {
+                this.currentBoxIndex = 0
+                this.setPokemonList(this.pcPokemon[this.currentBox])
             },
 
             handleSelectPokemon(index) {
