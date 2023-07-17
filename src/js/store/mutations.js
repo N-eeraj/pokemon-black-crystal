@@ -194,8 +194,13 @@ export default {
         }
         if (pokemonData.party.length < 6)
             pokemonData.party.push(pokemonData.encountered.last)
-        else
-            pokemonData.pc.unshift(pokemonData.encountered.last)
+        else {
+            for (const [boxName, boxList] of Object.entries(pokemonData.pc)) {
+                if (boxList.length === 30) continue
+                pokemonData.pc[boxName].push(pokemonData.encountered.last)
+                break
+            }
+        }
         encryptAndSave()
     },
 

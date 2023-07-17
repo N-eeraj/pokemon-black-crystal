@@ -12,7 +12,8 @@
 
                 <box-list
                     v-if="isPC"
-                    :box="currentBox" />
+                    :box="currentBox"
+                    @change-box="handleBoxChange" />
 
             </pokemon-list>
         </div>
@@ -74,7 +75,6 @@
 
         methods: {
             setList() {
-                this.pokemonList = []
                 if (this.isPC)
                     this.setPCPokemonList()
                 else
@@ -82,6 +82,7 @@
             },
 
             setPokemonList(pokemonList) {
+                this.pokemonList = []
                 const pokemonIdList = pokemonList.map(id => {
                     return {
                         caughtId: id,
@@ -119,6 +120,17 @@
                     ...data
                 })
                 this.setList()
+            },
+
+            handleBoxChange(change) {
+                const newIndex = this.currentBoxIndex + change
+                if (newIndex === -1)
+                    this.currentBoxIndex = this.boxList.length - 1
+                else if (newIndex === this.boxList.length)
+                    this.currentBoxIndex = 0
+                else
+                    this.currentBoxIndex = newIndex
+                this.setPokemonList(this.pcPokemon[this.currentBox])
             },
 
             ...mapActions([
