@@ -4,7 +4,9 @@
             :title="title"
             :icon="icon"
             @icon-event="$emit('navIconAction')" />
-        
+
+        <slot />
+
         <div id="pokemon_list">
             <pokemon-card
                 v-for="(pokemon, index) in list"
