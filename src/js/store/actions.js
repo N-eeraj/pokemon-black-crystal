@@ -203,12 +203,16 @@ export default {
         commit('movePokemon', data)
     },
 
-    createBox({ commit }, data) {
-        commit('createBox', data)
+    createBox({ commit }, boxName) {
+        commit('createBox', boxName)
     },
 
     updateBoxName({ commit }, data) {
         commit('updateBoxName', data)
+    },
+
+    deleteBox({ commit }, boxName) {
+        commit('deleteBox', boxName)
     },
 
     releasePokemon({ commit }, data) {
