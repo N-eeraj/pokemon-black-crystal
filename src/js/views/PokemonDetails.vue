@@ -3,7 +3,7 @@
         <div
             v-if="pokemon"
             id="pokemon_details"
-            @click="showActions = false">
+            @click="closeAll">
 
             <navigation-bar
                 icon="back"
@@ -16,11 +16,11 @@
                         src="@/assets/icons/options.svg"
                         alt="options"
                         class="right-icon"
-                        @click.stop="showActions = true" />
+                        @click.stop="show.actions = true" />
 
                     <transition name="actions">
                         <ul
-                            v-if="showActions"
+                            v-if="show.actions"
                             class="actions-container">
                             <li
                                 v-for="(action, index) in actions"
@@ -123,7 +123,7 @@
             </div>
 
             <pop-up
-                :show="showReleaseModal"
+                :show="show.releaseModal"
                 prevent-redirect
                 hash="release"
                 class="release-modal">
@@ -147,7 +147,7 @@
             </pop-up>
 
             <items-list
-                v-if="usableItems.length && showItems"
+                v-if="usableItems.length && show.items"
                 :items-list="usableItems"
                 selectable
                 @icon-event="toggleShowItems"
@@ -157,6 +157,45 @@
                 v-if="triggerEvolution.trigger"
                 :pokemon-list="triggerEvolution.pokemon"
                 @completed-evolutions="handleCompletedEvolution" />
+
+            <pop-up
+                :show="show.boxes"
+                close
+                prevent-redirect
+                hash="change-box"
+                class="change-box"
+                @close-pop-up="closeMoveToBox">
+                <template #body>
+                    <strong
+                        class="selected-box"
+                        :class="{placeholder: !selectedBox}"
+                        @click.stop="show.availableBoxesOptions = true">
+                        {{ selectedBox || 'Select Box' }}
+                    </strong>
+
+                    <transition name="select">
+                        <ul
+                            v-if="show.availableBoxesOptions"
+                            class="available-boxes">
+                            <li
+                                v-for="box in availableBoxes"
+                                class="box-name">
+                                <button @click="selectedBox = box">
+                                    {{ box }}
+                                </button>
+                            </li>
+                        </ul>
+                    </transition>
+                </template>
+                <template #actions>
+                    <button
+                        class="confirm"
+                        @click="moveToBox">
+                        Move
+                    </button>
+                </template>
+            </pop-up>
+
         </div>
     </div>
 </template>
@@ -200,9 +239,14 @@
                 usableItems:  [],
                 backPath: null,
                 actions: null,
-                showActions: false,
-                showReleaseModal: false,
-                showItems: false,
+                show: {
+                    actions: false,
+                    releaseModal: false,
+                    items: false,
+                    boxes: false,
+                    availableBoxesOptions: false
+                },
+                selectedBox: null,
                 triggerEvolution: {
                     trigger: false,
                     pokemon: null
@@ -223,11 +267,21 @@
                 return this.listType === 'pokedex'
             },
 
+            availableBoxes() {
+                const availableBoxes = []
+                Object.entries(this.pcPokemon).forEach(([box, list]) => {
+                    if (list.length < 30)
+                        availableBoxes.push(box)
+                })
+                return availableBoxes
+            },
+
             ...mapGetters([
                 'getCaughtPokemon',
                 'partyPokemon',
                 'getCaughtPokemonList',
-                'bagItems'
+                'bagItems',
+                'pcPokemon'
             ])
         },
 
@@ -305,7 +359,17 @@
 
                 if (!isParty && this.partyPokemon.length > 5) return actions
 
-                if (!isParty) {
+                if (isParty) {
+                    actions.unshift({
+                        label: 'Move to Box',
+                        action: this.showAvailableBoxes
+                    })
+                }
+                else {
+                    actions.unshift({
+                        label: 'Change Box',
+                        action: this.showAvailableBoxes
+                    })
                     actions.unshift({
                         label: 'Move to Party',
                         action: this.handleMoveToParty
@@ -412,13 +476,13 @@
             },
 
             confirmRelease() {
-                this.showReleaseModal = true
+                this.show.releaseModal = true
             },
 
             closeConfirmRelease() {
                 if (this.$route.hash)
                     this.$router.back()
-                this.showReleaseModal = false
+                this.show.releaseModal = false
             },
 
             release() {
@@ -431,11 +495,27 @@
             },
 
             toggleShowItems() {
-                this.showItems = !this.showItems
+                this.show.items = !this.show.items
             },
 
             checkPokedex() {
                 this.$router.push(`/pokemon/details/pokedex/${this.pokemon.id}`)
+            },
+
+            showAvailableBoxes() {
+                this.show.boxes = true
+                this.selectedBox = null
+            },
+
+            closeMoveToBox() {
+                this.show.boxes = false
+            },
+
+            moveToBox() {
+                console.log(this.listType)
+                console.log(this.selectedBox)
+                this.closeMoveToBox()
+                // this.$router.back()
             },
 
             handleMoveToParty() {
@@ -505,6 +585,11 @@
                 })
                 this.setUsableItems()
                 this.toggleShowItems()
+            },
+
+            closeAll() {
+                this.show.actions = false
+                this.show.availableBoxesOptions = false
             },
 
             ...mapActions([
