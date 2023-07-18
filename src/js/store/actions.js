@@ -203,6 +203,10 @@ export default {
         commit('moveToParty', pokemon)
     },
 
+    moveToBox({ commit }, data) {
+        commit('moveToBox', data)
+    },
+
     createBox({ commit }, boxName) {
         commit('createBox', boxName)
     },
