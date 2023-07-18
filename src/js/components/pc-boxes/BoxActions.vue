@@ -124,8 +124,7 @@
             },
             boxes: {
                 type: Array,
-                required: false,
-                default: []
+                required: true
             },
             currentBox: {
                 type: String,
@@ -134,8 +133,7 @@
             },
             pokemonList: {
                 type: Array,
-                required: false,
-                default: []
+                required: true
             }
         },
 

@@ -7,11 +7,17 @@
             @icon-event="$emit('closeMoveset')" />
 
         <div id="battle_moves_list">
+            <template v-if="moveList.length">
+                <move-card
+                    v-for="(move, index) in moveList"
+                    :move="move"
+                    :key="index"
+                    @click="$emit('useMove', move)" />
+            </template>
             <move-card
-                v-for="(move, index) in moveList"
-                :move="move"
-                :key="index"
-                @click="$emit('useMove', move)" />
+                v-else
+                :move="hit"
+                @click="$emit('useMove', hit)" />
         </div>
     </div>
 </template>
@@ -30,6 +36,24 @@
         components: {
             NavigationBar,
             MoveCard
+        },
+
+        data() {
+            return {
+                hit: {
+                    "name": "hit",
+                    "type": "normal",
+                    "power": 5,
+                    "pp": "∞",
+                    "accuracy": 100,
+                    "priority": 0,
+                    "category": "damage",
+                    "damageClass": "physical",
+                    "healing": 0,
+                    "min": null,
+                    "max": null
+                }
+            }
         },
 
         computed: {

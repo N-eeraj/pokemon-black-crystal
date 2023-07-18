@@ -204,7 +204,9 @@ export default {
         defendingPokemon.currentHp -= damage
         attackingPokemon.currentHp += heal
         attackingPokemon.currentHp = Math.min(attackingPokemon.currentHp, attackingPokemon.stat.hp)
-        attackingPokemon.movesList.find(move => move.name === moveData.name).pp -= 1
+        const usedMove = attackingPokemon.movesList.find(move => move.name === moveData.name)
+        if (usedMove)
+            usedMove.pp -= 1
     },
 
     pokemonFaintedBattleDataUpdate(state, user) {

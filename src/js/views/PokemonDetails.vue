@@ -179,6 +179,7 @@
                             class="available-boxes">
                             <li
                                 v-for="box in availableBoxes"
+                                :key="box"
                                 class="box-name">
                                 <button @click="selectedBox = box">
                                     {{ box }}

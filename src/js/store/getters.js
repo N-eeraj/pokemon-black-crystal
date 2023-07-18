@@ -74,6 +74,12 @@ export default {
         return caughtPokemonDetails.sort((first, second) => first.exp - second.exp)[caughtPokemonDetails.length - 1]
     },
 
+    strongestPartyPokemon(state) {
+        const pokemonData = state.gameData.pokemon
+        const caughtPokemonDetails = pokemonData.party.map(pokemon => state.gameData.pokemon.caught[pokemon])
+        return caughtPokemonDetails.sort((first, second) => first.exp - second.exp)[caughtPokemonDetails.length - 1]
+    },
+
     partyPokemon(state) {
         return state.gameData.pokemon.party
     },
