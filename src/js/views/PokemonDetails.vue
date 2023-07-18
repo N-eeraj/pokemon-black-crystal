@@ -187,10 +187,10 @@
                         </ul>
                     </transition>
                 </template>
-                <template #actions>
+                <template v-if="selectedBox" #actions>
                     <button
                         class="confirm"
-                        @click="moveToBox">
+                        @click="handleMoveToBox">
                         Move
                     </button>
                 </template>
@@ -353,11 +353,9 @@
                     return actions
 
                 actions.unshift({
-                        label: 'Release',
-                        action: this.confirmRelease
-                    })
-
-                if (!isParty && this.partyPokemon.length > 5) return actions
+                    label: 'Release',
+                    action: this.confirmRelease
+                })
 
                 if (isParty) {
                     actions.unshift({
@@ -370,10 +368,11 @@
                         label: 'Change Box',
                         action: this.showAvailableBoxes
                     })
-                    actions.unshift({
-                        label: 'Move to Party',
-                        action: this.handleMoveToParty
-                    })
+                    if (this.partyPokemon.length < 6)
+                        actions.unshift({
+                            label: 'Move to Party',
+                            action: this.handleMoveToParty
+                        })
                 }
 
                 return actions
@@ -508,14 +507,19 @@
             },
 
             closeMoveToBox() {
+                if (this.$route.hash)
+                    this.$router.back()
                 this.show.boxes = false
             },
 
-            moveToBox() {
-                console.log(this.listType)
-                console.log(this.selectedBox)
+            handleMoveToBox() {
+                this.moveToBox({
+                    from: this.listType,
+                    box: this.selectedBox,
+                    pokemon: this.pokemon.encounterId
+                })
                 this.closeMoveToBox()
-                // this.$router.back()
+                this.$router.back()
             },
 
             handleMoveToParty() {
@@ -597,6 +601,7 @@
                 'getPokemonById',
                 'getPokemonByEncounterId',
                 'moveToParty',
+                'moveToBox',
                 'releasePokemon',
                 'updatePokemonHappiness',
                 'updateBag',

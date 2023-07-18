@@ -107,6 +107,22 @@ export default {
             break
         }
         pokemonData.party.push(pokemon)
+        encryptAndSave()
+    },
+
+    moveToBox(state, { from, box, pokemon }) {
+        const pokemonData = state.gameData.pokemon
+        if (from === 'party')
+            pokemonData.party = pokemonData.party.filter(id => id !== pokemon)
+        else {
+            for (const [boxName, pokemonList] of Object.entries(pokemonData.pc)) {
+                if (!pokemonList.includes(pokemon)) continue
+                pokemonData.pc[boxName] = pokemonList.filter(id => id !== pokemon)
+                break
+            }
+        }
+        pokemonData.pc[box].push(pokemon)
+        encryptAndSave()
     },
 
     createBox(state, boxName) {
