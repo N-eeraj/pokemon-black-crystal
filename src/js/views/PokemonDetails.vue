@@ -305,10 +305,13 @@
 
                 if (!isParty && this.partyPokemon.length > 5) return actions
 
-                actions.unshift({
-                    label: `Move to ${ isParty ? 'PC' : 'Party' }`,
-                    action: this.handleMovePokemon
-                })
+                if (!isParty) {
+                    actions.unshift({
+                        label: 'Move to Party',
+                        action: this.handleMoveToParty
+                    })
+                }
+
                 return actions
             },
 
@@ -424,7 +427,7 @@
                     list: this.$route.params.type
                 })
                 this.closeConfirmRelease()
-                this.$router.push(`/pokemon/list/${this.listType}`)
+                this.$router.back()
             },
 
             toggleShowItems() {
@@ -435,13 +438,9 @@
                 this.$router.push(`/pokemon/details/pokedex/${this.pokemon.id}`)
             },
 
-            handleMovePokemon() {
-                const from = this.listType
-                this.movePokemon({
-                    id: this.pokemon.encounterId,
-                    from
-                })
-                this.$router.push(`/pokemon/list/${this.listType}`)
+            handleMoveToParty() {
+                this.moveToParty(this.pokemon.encounterId)
+                this.$router.back()
             },
 
             feedPokeblock() {
@@ -512,7 +511,7 @@
                 'updateAudio',
                 'getPokemonById',
                 'getPokemonByEncounterId',
-                'movePokemon',
+                'moveToParty',
                 'releasePokemon',
                 'updatePokemonHappiness',
                 'updateBag',

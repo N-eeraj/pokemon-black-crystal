@@ -199,8 +199,8 @@ export default {
         commit('rearrangePlayerPokemon', data)
     },
 
-    movePokemon({ commit }, data) {
-        commit('movePokemon', data)
+    moveToParty({ commit }, pokemon) {
+        commit('moveToParty', pokemon)
     },
 
     createBox({ commit }, boxName) {
