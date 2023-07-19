@@ -85,17 +85,13 @@
         created() {
             this.updateAudio('pokemon-list.mp3')
             this.listType = this.$route.params.type
+            this.currentBoxIndex = 0
             this.setList()
         },
 
         methods: {
             setList() {
-                if (this.isPC) {
-                    this.currentBoxIndex = 0
-                    this.setPCPokemonList()
-                }
-                else
-                    this.setPartyPokemonList()
+                this.isPC ? this.setPCPokemonList() : this.setPartyPokemonList()
             },
 
             setPokemonList(pokemonList) {
@@ -130,11 +126,14 @@
                 this.$router.push(`/pokemon/details/${this.listType}/${selectedPokemon.caughtId}`)
             },
 
-            changeListOrder(data) {
-                this.rearrangePlayerPokemon({
-                    list: this.listType,
-                    ...data
-                })
+            changeListOrder({ currentIndex, newIndex }) {
+                const data = {
+                    isParty: this.listType === 'party',
+                    box: this.currentBox,
+                    currentIndex,
+                    newIndex
+                }
+                this.rearrangePlayerPokemon(data)
                 this.setList()
             },
 

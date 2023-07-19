@@ -4,7 +4,7 @@ import story from '@/assets/data/story'
 
 const migration_v_1_9_7 = (version) => {
     deleteStorage('version')
-    if (version >= '1.9.70') return
+    if (!version || version >= '1.9.70') return
     const { gameData } = decryptAndLoad()
     const missedCoins = story.reduce((total, {level, payUp}) => {
         if (level < gameData.progress.level)

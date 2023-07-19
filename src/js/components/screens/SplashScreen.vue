@@ -2,7 +2,7 @@
     <div
         id="splash_screen"
         :class="{ loaded : !isLoading }"
-        @click="emitLoaded">
+        @click="handleLoaded">
 
         <div id="title">
             <img
@@ -60,7 +60,7 @@
                 this.isLoading = false
             },
 
-            emitLoaded() {
+            handleLoaded() {
                 if (this.isLoading) return
                 this.$emit('loading-complete')
             },

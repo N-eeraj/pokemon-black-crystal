@@ -87,8 +87,9 @@ export default {
         state.growthRateData[name] = data
     },
 
-    rearrangePlayerPokemon(state, { list, currentIndex, newIndex }) {
-        const pokemonList = state.gameData.pokemon[list]
+    rearrangePlayerPokemon(state, { isParty, box, currentIndex, newIndex }) {
+        const pokemonData = state.gameData.pokemon
+        const pokemonList = isParty ? pokemonData.party : pokemonData.pc[box]
 
         if (newIndex < 0) newIndex = 0
         else if (newIndex >= pokemonList.length) {
