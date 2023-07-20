@@ -1,5 +1,5 @@
-@use "@/styles/mixins/main.scss";
-@use "@/styles/mixins/progress.scss";
+@use "@/styles/mixins/main";
+@use "@/styles/mixins/progress";
 
 .evolution-modal {
     :deep(.body-container) {

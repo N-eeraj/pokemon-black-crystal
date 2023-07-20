@@ -7,34 +7,11 @@
                 @icon-event="$router.push('/')" />
 
             <div class="achievements-list">
-                <div
-                    v-for="([event, achievement], index) in Object.entries(playerAchievements)"
-                    :key="`event-${index}`"
-                    class="achievement-card">
-
-                    <div class="details">
-                        <strong v-if="event">
-                            {{ $filters.toTitleCase(event) }}
-                        </strong>
-                        <ul>
-                            <li
-                                v-for="([key, value], index) in Object.entries(achievement)"
-                                :key="`list-${index}`">
-                                <span>
-                                    {{ $filters.toTitleCase(key) }}:
-                                </span>
-                                <span>
-                                    {{ value }}
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="chart-container">
-                        <doughnut-chart :value="getPecentage(achievement)" />
-                    </div>
-
-                </div>
+                <achievements-group
+                    v-for="({title, achievements}, index) in allAchievements"
+                    :title="title"
+                    :achievements="achievements"
+                    :key="index" />
             </div>
         </div>
     </div>
@@ -43,7 +20,7 @@
 <script>
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
-    import DoughnutChart from '@/js/components/UI/DoughnutChart.vue'
+    import AchievementsGroup from '@/js/components/achievements/AchievementsGroup.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -53,7 +30,68 @@
 
         components: {
             NavigationBar,
-            DoughnutChart
+            AchievementsGroup
+        },
+
+        data() {
+            return {
+                allAchievements: [
+                    {
+                        title: 'group 1',
+                        achievements: [
+                            {
+                                name: 'Test1',
+                                badge: 'Test',
+                                required: [
+                                    1,
+                                    5,
+                                    10,
+                                    25
+                                ],
+                                current: 0
+                            },
+                            {
+                                name: 'Test2',
+                                badge: 'Test',
+                                required: [
+                                    1,
+                                    5,
+                                    10,
+                                    25
+                                ],
+                                current: 0
+                            }
+                        ]
+                    },
+                    {
+                        title: 'group 2',
+                        achievements: [
+                            {
+                                name: 'Test3',
+                                badge: 'Test',
+                                required: [
+                                    1,
+                                    5,
+                                    10,
+                                    25
+                                ],
+                                current: 0
+                            },
+                            {
+                                name: 'Test4',
+                                badge: 'Test',
+                                required: [
+                                    1,
+                                    5,
+                                    10,
+                                    25
+                                ],
+                                current: 0
+                            }
+                        ]
+                    }
+                ]
+            }
         },
 
         computed: {
@@ -78,4 +116,4 @@
     }
 </script>
 
-<style lang="scss" src="@/styles/home/achievements.scss"></style>
+<style lang="scss" scoped src="@/styles/home/achievements/main.scss"></style>
