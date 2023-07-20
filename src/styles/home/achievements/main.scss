@@ -1,0 +1,9 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#achievements {
+    .achievements-list {
+        @include main.flex($direction: column, $row: 25px);
+
+    }
+}
