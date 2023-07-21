@@ -3,7 +3,7 @@
 
 .achievement-card {
     position: relative;
-    @include main.flex($justify: space-between);
+    @include main.flex($justify: space-between, $align: flex-start);
     width: 100%;
     height: 120px;
     padding: 5px 10px;
@@ -18,6 +18,7 @@
 
         .achievement-name {
             color: palette.$white-secondary;
+            font-size: 0.75rem;
         }
 
         .requirement {
@@ -28,9 +29,12 @@
     }
 
     .badge {
-        height: 100%;
+        height: 80px;
         aspect-ratio: 1;
         
+        &.base {
+            filter: contrast(0);
+        }
         &.bronze {
             filter: sepia(1) hue-rotate(330deg) brightness(0.75) saturate(3);
         }

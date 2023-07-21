@@ -281,13 +281,8 @@ export default {
         encryptAndSave()
     },
 
-    startArcade(state, arcadeEvent) {
-        ++state.gameData.progress.arcade[arcadeEvent].attempts
-        encryptAndSave()
-    },
-
     winArcade(state, arcadeEvent) {
-        ++state.gameData.progress.arcade[arcadeEvent].victories
+        ++state.gameData.achievements.arcade[arcadeEvent]
         encryptAndSave()
     },
 

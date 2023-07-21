@@ -105,7 +105,9 @@ export default {
     },
 
     playerAchievements(state) {
-        return state.gameData.progress.arcade
+        return {
+            ...state.gameData.achievements
+        }
     },
 
     bagItems(state) {

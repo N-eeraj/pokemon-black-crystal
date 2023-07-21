@@ -151,7 +151,6 @@
             },
 
             startMatch() {
-                this.startArcade('battle')
                 this.toggleNavBar()
                 this.encounterNewPokemon(6)
             },
@@ -159,7 +158,6 @@
             ...mapActions([
                 'getRandomPokemon',
                 'updatePlayerCoins',
-                'startArcade',
                 'winArcade',
                 'encounterNewPokemon'
             ])
