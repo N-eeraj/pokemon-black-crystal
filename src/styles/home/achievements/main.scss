@@ -5,7 +5,7 @@
     @include main.full-screen;
     
     .achievements-list {
-        @include main.flex($direction: column, $row: 25px);
+        @include main.flex($direction: column, $justify: flex-start, $row: 25px);
         max-height: calc(100vh - 80px);
         padding: 25px 0;
         overflow-y: auto;

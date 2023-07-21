@@ -1,12 +1,23 @@
 <template>
-    <template v-for="level in required.length">
-        <div
-            class="achievement-card"
-            :class="getLevelClass(level)">
-            {{ name }}
-            {{ badge }}
-            {{ required }}
-            {{ current }}
+    <template v-for="(requirement, level) in required">
+        <div class="achievement-card">
+            <div class="text-container">
+                <span class="achievement-name">
+                    {{ name }}
+                </span>
+                <div class="requirement">
+                    {{ `${requirement < current ? requirement : current}/${requirement}` }}
+                </div>
+            </div>
+            <img
+                :src="badge"
+                :alt="`${name}-${getLevelClass(level)}`"
+                class="badge"
+                :class="getLevelClass(level)" />
+            <progress
+                :value="current"
+                :max="requirement"
+                class="progress" />
         </div>
     </template>
 </template>
@@ -46,13 +57,13 @@
         methods: {
             getLevelClass(index) {
                 switch (index) {
-                    case 1:
+                    case 0:
                         return 'base'
-                    case 2:
+                    case 1:
                         return 'bronze'
-                    case 3:
+                    case 2:
                         return 'silver'
-                    case 4:
+                    case 3:
                         return 'gold'
                 }
             }
