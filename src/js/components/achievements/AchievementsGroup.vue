@@ -1,6 +1,6 @@
 <template>
     <div class="achievements-group">
-        <strong>
+        <strong class="title">
             {{ title }}
         </strong>
         <div class="achievements-container">
