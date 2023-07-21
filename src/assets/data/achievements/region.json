@@ -1,0 +1,38 @@
+{
+    "id": "region",
+    "title": "Region",
+    "achievements": [
+        {
+            "id": "kanto",
+            "name": "Complete Kanto Region Pokédex",
+            "badge": "region/kanto.webp",
+            "required": [
+                151
+            ]
+        },
+        {
+            "id": "johto",
+            "name": "Complete Johto Region Pokédex",
+            "badge": "region/johto.webp",
+            "required": [
+                100
+            ]
+        },
+        {
+            "id": "hoenn",
+            "name": "Complete Kanto Region Pokédex",
+            "badge": "region/hoenn.webp",
+            "required": [
+                135
+            ]
+        },
+        {
+            "id": "pokedex",
+            "name": "Complete Pokédex",
+            "badge": "region/pokedex.webp",
+            "required": [
+                386
+            ]
+        }
+    ]
+}
