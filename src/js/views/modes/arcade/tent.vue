@@ -125,7 +125,6 @@
                     if (pokeballList.includes(index + 1)) pokemon.trainer = true
                     else pokemon.trainer = false
                 })
-                this.startArcade('tent')
                 this.showSelection = false
                 this.encounterNewPokemon(6)
             },
@@ -140,7 +139,6 @@
 
             ...mapActions([
                 'getRandomPokemon',
-                'startArcade',
                 'updatePlayerCoins',
                 'winArcade',
                 'encounterNewPokemon'
