@@ -105,7 +105,10 @@ export default {
     },
 
     playerAchievements(state) {
+        const caughtList = state.gameData.pokemon.caughtList
+        const ownedPokemon = caughtList.filter((item, index) => caughtList.indexOf(item) === index).length
         return {
+            ownedPokemon,
             ...state.gameData.achievements
         }
     },

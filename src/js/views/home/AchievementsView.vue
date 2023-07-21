@@ -50,6 +50,7 @@
             this.allAchievements = achievements
             this.updateAudio('achievements.mp3')
             this.setCurrentArcade()
+            this.setCurrentOwnedPokemon()
         },
 
         methods: {
@@ -67,6 +68,16 @@
                             return event.current = this.playerAchievements.arcade.tent
                         case 'tower':
                             return event.current = this.playerAchievements.arcade.tower
+                    }
+                })
+            },
+
+            setCurrentOwnedPokemon() {
+                const ownedPokemonAchievements = this.allAchievements.find(({ id }) => id === 'pokemonOwned')
+                ownedPokemonAchievements.achievements.forEach(event => {
+                    switch (event.id) {
+                        case 'owned':
+                            return event.current = this.playerAchievements.ownedPokemon
                     }
                 })
             },
