@@ -1,0 +1,17 @@
+{
+    "id": "pokemonOwned",
+    "title": "Pokemon Owned",
+    "achievements": [
+        {
+            "id": "owned",
+            "name": "Own <count> Pokémon",
+            "badge": "pokemon-owned/owned.webp",
+            "required": [
+                6,
+                50,
+                100,
+                300
+            ]
+        }
+    ]
+}
