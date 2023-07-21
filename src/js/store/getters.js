@@ -106,9 +106,28 @@ export default {
 
     playerAchievements(state) {
         const caughtList = state.gameData.pokemon.caughtList
-        const ownedPokemon = caughtList.filter((item, index) => caughtList.indexOf(item) === index).length
+
+        const region = {
+            kanto: 0,
+            johto: 0,
+            hoenn: 0
+        }
+        let ownedPokemon = 0
+
+        caughtList.forEach((pokemonId, index) => {
+            if (caughtList.indexOf(pokemonId) !== index) return
+            ++ownedPokemon
+            if (pokemonId <= 151)
+                ++region.kanto
+            else if (pokemonId <= 251)
+                ++region.johto
+            else
+                ++region.hoenn
+        })
+
         return {
             ownedPokemon,
+            region,
             ...state.gameData.achievements
         }
     },

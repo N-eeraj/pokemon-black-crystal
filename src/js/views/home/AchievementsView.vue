@@ -51,6 +51,7 @@
             this.updateAudio('achievements.mp3')
             this.setCurrentArcade()
             this.setCurrentOwnedPokemon()
+            this.setCurrentRegion()
         },
 
         methods: {
@@ -78,6 +79,26 @@
                     switch (event.id) {
                         case 'owned':
                             return event.current = this.playerAchievements.ownedPokemon
+                    }
+                })
+            },
+
+            setCurrentRegion() {
+                const regionalAchievements = this.allAchievements.find(({ id }) => id === 'region')
+                regionalAchievements.achievements.forEach(event => {
+                    switch (event.id) {
+                        case 'kanto':
+                            return event.current = this.playerAchievements.region.kanto
+                        case 'johto':
+                            return event.current = this.playerAchievements.region.johto
+                        case 'hoenn':
+                            return event.current = this.playerAchievements.region.hoenn
+                        case 'pokedex':
+                            return event.current = (
+                                this.playerAchievements.region.kanto +
+                                this.playerAchievements.region.johto +
+                                this.playerAchievements.region.hoenn
+                            )
                     }
                 })
             },
