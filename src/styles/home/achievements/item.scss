@@ -2,20 +2,58 @@
 @use "@/styles/colors/palette";
 
 .achievement-card {
+    position: relative;
+    @include main.flex($justify: space-between);
     width: 100%;
-    height: 100px;
-    padding: 5px;
+    height: 120px;
+    padding: 5px 10px;
     background-color: palette.$secondary;
     border-radius: 10px;
+    overflow: hidden;
 
+    .text-container {
+        width: 100%;
+        height: 100%;
+        padding: 3px;
 
-    &.bronze {
-        filter: sepia(1) hue-rotate(330deg) brightness(0.6) saturate(2);
+        .achievement-name {
+            color: palette.$white-secondary;
+        }
+
+        .requirement {
+            font-size: 1.5rem;
+            line-height: 4rem;
+        }
+
     }
-    &.silver {
-        filter: grayscale(1) brightness(1.6);
+
+    .badge {
+        height: 100%;
+        aspect-ratio: 1;
+        
+        &.bronze {
+            filter: sepia(1) hue-rotate(330deg) brightness(0.75) saturate(3);
+        }
+        &.silver {
+            filter: grayscale(1) brightness(1.6);
+        }
+        &.gold {
+            filter: sepia(1) brightness(1.25) saturate(3);
+        }
     }
-    &.gold {
-        filter: sepia(1) brightness(1.25) saturate(3);
+
+    .progress {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 7px;
+        background-color: palette.$white-secondary;
+        &::-webkit-progress-value {
+            background-color: palette.$accent;
+        }
+        &::-moz-progress-bar {
+            background-color: palette.$accent;
+        }
     }
 }
