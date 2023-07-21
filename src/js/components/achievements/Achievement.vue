@@ -3,14 +3,14 @@
         <div class="achievement-card">
             <div class="text-container">
                 <span class="achievement-name">
-                    {{ name }}
+                    {{ getRequiredText(requirement) }}
                 </span>
                 <div class="requirement">
                     {{ `${requirement < current ? requirement : current}/${requirement}` }}
                 </div>
             </div>
             <img
-                :src="badge"
+                :src="require(`@/assets/images/achievements/${badge}`)"
                 :alt="`${name}-${getLevelClass(level)}`"
                 class="badge"
                 :class="getLevelClass(level)" />
@@ -66,6 +66,10 @@
                     case 3:
                         return 'gold'
                 }
+            },
+
+            getRequiredText(requirement) {
+                return this.name.replace(/<Count>/gi, requirement)
             }
         }
     }

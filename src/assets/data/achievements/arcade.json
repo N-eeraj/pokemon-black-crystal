@@ -1,0 +1,39 @@
+{
+    "id": "arcade",
+    "title": "Arcade",
+    "achievements": [
+        {
+            "id": "battle",
+            "name": "Win <count> Arcade Battles",
+            "badge": "arcade/battle.webp",
+            "required": [
+                3,
+                25,
+                100,
+                500
+            ]
+        },
+        {
+            "id": "tent",
+            "name": "Win <count> Arcade Tent Matches",
+            "badge": "arcade/tent.webp",
+            "required": [
+                10,
+                50,
+                250,
+                1000
+            ]
+        },
+        {
+            "id": "tower",
+            "name": "Win <count> Arcade Tower Matches",
+            "badge": "arcade/tower.webp",
+            "required": [
+                1,
+                10,
+                50,
+                100
+            ]
+        }
+    ]
+}

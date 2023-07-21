@@ -194,7 +194,6 @@
             },
 
             startMatch() {
-                this.startArcade('tower')
                 this.toggleNavBar()
                 this.encounterNewPokemon(this.foePartySize)
             },
@@ -202,7 +201,6 @@
             ...mapActions([
                 'getRandomPokemon',
                 'updatePlayerCoins',
-                'startArcade',
                 'winArcade',
                 'encounterNewPokemon'
             ])

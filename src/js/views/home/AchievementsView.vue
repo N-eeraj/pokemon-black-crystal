@@ -24,6 +24,7 @@
 
     import { mapGetters, mapActions } from 'vuex'
 
+    import achievements from '@/assets/data/achievements'
 
     export default {
         name: 'achievements-view',
@@ -35,58 +36,7 @@
 
         data() {
             return {
-                allAchievements: [
-                    {
-                        title: 'group 1',
-                        achievements: [
-                            {
-                                name: 'Test1',
-                                badge: 'Test',
-                                required: [
-                                    1,
-                                    5,
-                                    10,
-                                    25
-                                ],
-                                current: 30
-                            },
-                            {
-                                name: 'Test2',
-                                badge: 'Test',
-                                required: [
-                                    1,
-                                    5,
-                                    10,
-                                    25
-                                ],
-                                current: 15
-                            }
-                        ]
-                    },
-                    {
-                        title: 'group 2',
-                        achievements: [
-                            {
-                                name: 'Test3',
-                                badge: 'Test',
-                                required: [
-                                    1,
-                                    5,
-                                    10
-                                ],
-                                current: 3
-                            },
-                            {
-                                name: 'Test4',
-                                badge: 'Test',
-                                required: [
-                                    1
-                                ],
-                                current: 0
-                            }
-                        ]
-                    }
-                ]
+                allAchievements: null
             }
         },
 
@@ -97,12 +47,28 @@
         },
 
         created() {
+            this.allAchievements = achievements
             this.updateAudio('achievements.mp3')
+            this.setCurrentArcade()
         },
 
         methods: {
             getPecentage(achievement) {
                 return Math.round(achievement.victories / achievement.attempts * 100, 2) || 0
+            },
+
+            setCurrentArcade() {
+                const arcadeAchievements = this.allAchievements.find(({ id }) => id === 'arcade')
+                arcadeAchievements.achievements.forEach(event => {
+                    switch (event.id) {
+                        case 'battle':
+                            return event.current = this.playerAchievements.arcade.battle
+                        case 'tent':
+                            return event.current = this.playerAchievements.arcade.tent
+                        case 'tower':
+                            return event.current = this.playerAchievements.arcade.tower
+                    }
+                })
             },
 
             ...mapActions([
