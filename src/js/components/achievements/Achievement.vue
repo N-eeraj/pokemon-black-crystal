@@ -1,6 +1,10 @@
 <template>
-    <template v-for="(requirement, level) in required">
-        <div class="achievement-card">
+    <template
+        v-for="(requirement, level) in required"
+        :key="level">
+        <div
+            v-if="level <= currentLevel"
+            class="achievement-card">
             <div class="text-container">
                 <span class="achievement-name">
                     {{ getRequiredText(requirement) }}
@@ -24,7 +28,7 @@
 
 <script>
     export default {
-        name: 'achievement',
+        name: 'achievement-item',
 
         props: {
             name: {
