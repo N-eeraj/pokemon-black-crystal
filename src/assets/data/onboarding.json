@@ -127,20 +127,25 @@
 			"coins": 500,
 			"bag": {
 				"1": 5
-			},
+			}
+		},
+		"achievements": {
 			"arcade": {
-				"battle": {
-					"attempts": 0,
-					"victories": 0
-				},
-				"tent": {
-					"attempts": 0,
-					"victories": 0
-				},
-				"tower": {
-					"attempts": 0,
-					"victories": 0
-				}
+				"battle": 0,
+				"tent": 0,
+				"tower": 0
+			},
+			"multiplayer": {
+				"trade": 0,
+				"pvp": 0
+			},
+			"carnival": {
+				"whosThatPokemon": 0,
+				"findingDitto": 0,
+				"berryCrusher": 0,
+				"pokemonRoulette": 0,
+				"pokemonDash": 0,
+				"blockSmash": 0
 			}
 		},
 		"dailyRewards": {
