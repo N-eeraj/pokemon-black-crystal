@@ -1,0 +1,17 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+.achievements-group {
+    @include main.flex($direction: column, $row: 10px, $align: flex-start);
+    width: 90%;
+
+    .title {
+        font-size: 1.1rem;
+        color: palette.$white-secondary;
+    }
+
+    .achievements-container {
+        @include main.flex($direction: column, $row: 15px);
+        width: 100%;
+    }
+}

@@ -2,8 +2,12 @@
 @use "@/styles/colors/palette";
 
 #achievements {
+    @include main.full-screen;
+    
     .achievements-list {
         @include main.flex($direction: column, $row: 25px);
-
+        max-height: calc(100vh - 80px);
+        padding: 25px 0;
+        overflow-y: auto;
     }
 }

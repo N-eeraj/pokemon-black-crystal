@@ -1,10 +1,14 @@
 <template>
-    <div class="achievement-card">
-        {{ name }}
-        {{ badge }}
-        {{ required }}
-        {{ current }}
-    </div>
+    <template v-for="level in required.length">
+        <div
+            class="achievement-card"
+            :class="getLevelClass(level)">
+            {{ name }}
+            {{ badge }}
+            {{ required }}
+            {{ current }}
+        </div>
+    </template>
 </template>
 
 <script>
@@ -28,6 +32,29 @@
                 type: Number,
                 required: false,
                 default: 0
+            }
+        },
+
+        computed: {
+            currentLevel() {
+                let level = 0
+                this.required.forEach(requirement => requirement <= this.current && level++)
+                return level
+            }
+        },
+
+        methods: {
+            getLevelClass(index) {
+                switch (index) {
+                    case 1:
+                        return 'base'
+                    case 2:
+                        return 'bronze'
+                    case 3:
+                        return 'silver'
+                    case 4:
+                        return 'gold'
+                }
             }
         }
     }

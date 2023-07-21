@@ -48,7 +48,7 @@
                                     10,
                                     25
                                 ],
-                                current: 0
+                                current: 30
                             },
                             {
                                 name: 'Test2',
@@ -59,7 +59,7 @@
                                     10,
                                     25
                                 ],
-                                current: 0
+                                current: 15
                             }
                         ]
                     },
@@ -72,19 +72,15 @@
                                 required: [
                                     1,
                                     5,
-                                    10,
-                                    25
+                                    10
                                 ],
-                                current: 0
+                                current: 3
                             },
                             {
                                 name: 'Test4',
                                 badge: 'Test',
                                 required: [
-                                    1,
-                                    5,
-                                    10,
-                                    25
+                                    1
                                 ],
                                 current: 0
                             }

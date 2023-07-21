@@ -1,0 +1,21 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+.achievement-card {
+    width: 100%;
+    height: 100px;
+    padding: 5px;
+    background-color: palette.$secondary;
+    border-radius: 10px;
+
+
+    &.bronze {
+        filter: sepia(1) hue-rotate(330deg) brightness(0.6) saturate(2);
+    }
+    &.silver {
+        filter: grayscale(1) brightness(1.6);
+    }
+    &.gold {
+        filter: sepia(1) brightness(1.25) saturate(3);
+    }
+}
