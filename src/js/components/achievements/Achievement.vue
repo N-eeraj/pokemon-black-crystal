@@ -60,6 +60,7 @@
 
         methods: {
             getLevelClass(index) {
+                if (this.required.length === 1) return 'gold'
                 switch (index) {
                     case 0:
                         return 'base'
