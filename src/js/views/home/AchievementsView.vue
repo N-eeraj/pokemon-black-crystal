@@ -59,10 +59,6 @@
         },
 
         methods: {
-            getPecentage(achievement) {
-                return Math.round(achievement.victories / achievement.attempts * 100, 2) || 0
-            },
-
             setCurrentArcade() {
                 const arcadeAchievements = this.allAchievements.find(({ id }) => id === 'arcade')
                 arcadeAchievements.achievements.forEach(event => {
