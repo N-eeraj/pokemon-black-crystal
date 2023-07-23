@@ -5,7 +5,7 @@
         {
             "id": "gymBadges",
             "name": "Earn <count> Gym Badges",
-            "badge": "pokemon-owned/owned.webp",
+            "badge": "story/championship.webp",
             "required": [
                 1,
                 4,
@@ -15,7 +15,7 @@
         {
             "id": "champion",
             "name": "Become Pokémon Champion",
-            "badge": "pokemon-owned/owned.webp",
+            "badge": "story/championship.webp",
             "required": [
                 1
             ]

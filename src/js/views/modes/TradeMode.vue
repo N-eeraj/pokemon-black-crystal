@@ -206,6 +206,7 @@
                         text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal.\n`,
                         url: `${basePath}${this.$route.fullPath}?key=${this.key}`
                     }
+                    console.log(shareData)
                     await navigator.share(shareData)
                 } catch {
                     console.log('Share failed')
@@ -309,6 +310,10 @@
                 this.addCaughtPokemon({
                     pokemon: peerPokemonDetails.id,
                     exp: exp
+                })
+                this.updateAchievement({
+                    type: 'multiplayer',
+                    item: 'trade'
                 });
                 [ this.tradePokemon.client, this.tradePokemon.peer ] = [ this.tradePokemon.peer, this.tradePokemon.client ]
                 setTimeout(() => {
@@ -324,7 +329,8 @@
                 'encounterNewPokemon',
                 'cachePokemonById',
                 'releasePokemon',
-                'addCaughtPokemon'
+                'addCaughtPokemon',
+                'updateAchievement'
             ])
         }
     }

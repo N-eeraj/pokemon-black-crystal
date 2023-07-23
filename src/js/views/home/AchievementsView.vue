@@ -54,6 +54,7 @@
             this.setCurrentOwnedPokemon()
             this.setCurrentRegion()
             this.setCurrentStory()
+            this.setCurrentMultiplayer()
         },
 
         methods: {
@@ -118,7 +119,19 @@
                             })
                             break
                         case 'champion':
-                            event.current = Number(this.playerAchievements.currentLevel === 240)
+                            return event.current = Number(this.playerAchievements.currentLevel === 240)
+                    }
+                })
+            },
+
+            setCurrentMultiplayer() {
+                const multiplayerAchievements = this.allAchievements.find(({ id }) => id === 'multiplayer')
+                multiplayerAchievements.achievements.forEach(event => {
+                    switch(event.id) {
+                        case 'trade':
+                            return event.current = this.playerAchievements.multiplayer.trade
+                        case 'pvp':
+                            return event.current = this.playerAchievements.multiplayer.pvp
                     }
                 })
             },
