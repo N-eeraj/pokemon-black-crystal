@@ -5,7 +5,7 @@
         <div
             v-if="level <= currentLevel"
             class="achievement-card"
-            :class="{ achieved: checkAchievement(level), 'single-achievement': singleAchievement }">
+            :class="{ achieved: checkAchievement(level), 'single-achievement': isSingleAchievement }">
 
             <div class="text-container">
                 <span class="achievement-name">
@@ -14,7 +14,7 @@
                 <div
                     v-if="!checkAchievement(level)"
                     class="requirement">
-                    {{ `${requirement < current ? requirement : current}/${requirement}` }}
+                    {{ `${formatNumber(current)}/${formatNumber(requirement)}` }}
                 </div>
             </div>
 
@@ -65,7 +65,7 @@
                 return level
             },
 
-            singleAchievement() {
+            isSingleAchievement() {
                 return this.required.length === 1 && this.required[0] === 1
             }
         },
@@ -90,7 +90,21 @@
             },
 
             getRequiredText(requirement) {
-                return this.name.replace(/<Count>/gi, requirement)
+                return this.name.replace(/<Count>/gi, Intl.NumberFormat('en-US').format(requirement))
+            },
+
+            getRounded(number) {
+                const rounded = number.toFixed(1)
+                if (Number(rounded.at(-1)))
+                    return rounded
+                return rounded.slice(0, -2)
+            },
+
+            formatNumber(number) {
+                if (number <= 1000) return number
+                if (number < 1_000_000)
+                    return `${this.getRounded(number/1_000)}k`
+                return `${this.getRounded(number/1_000_000)}m`
             }
         }
     }
