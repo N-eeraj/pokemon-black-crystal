@@ -137,7 +137,10 @@
             handleVictory() {
                 this.won = true
                 this.updatePlayerCoins(100)
-                this.winArcade('battle')
+                this.updateAchievement({
+                    type: 'arcade',
+                    item: 'battle'
+                })
             },
 
             handleMatchCompleteion(result) {
@@ -158,7 +161,7 @@
             ...mapActions([
                 'getRandomPokemon',
                 'updatePlayerCoins',
-                'winArcade',
+                'updateAchievement',
                 'encounterNewPokemon'
             ])
         }

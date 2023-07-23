@@ -134,13 +134,16 @@
                 if (!result) return
                 this.won = true
                 this.updatePlayerCoins(40)
-                this.winArcade('tent')
+                this.updateAchievement({
+                    type: 'arcade',
+                    item: 'tent'
+                })
             },
 
             ...mapActions([
                 'getRandomPokemon',
                 'updatePlayerCoins',
-                'winArcade',
+                'updateAchievement',
                 'encounterNewPokemon'
             ])
         }
