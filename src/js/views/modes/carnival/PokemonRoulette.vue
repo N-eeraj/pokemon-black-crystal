@@ -210,6 +210,11 @@
                         this.coins = Math.ceil(9 * betAmount / this.selections.length)
                         this.popUp.text = "You've won Pokécoins"
                         this.updatePlayerCoins(this.coins)
+                        this.updateAchievement({
+                            type: 'carnival',
+                            item: 'pokemonRoulette',
+                            count: this.coins
+                        })
                     }
                     else
                         this.popUp.text = 'Better luck next time'
@@ -219,7 +224,8 @@
 
             ...mapActions([
                 'updateAudio',
-                'updatePlayerCoins'
+                'updatePlayerCoins',
+                'updateAchievement'
             ])
         }
     }

@@ -55,6 +55,7 @@
             this.setCurrentRegion()
             this.setCurrentStory()
             this.setCurrentMultiplayer()
+            this.setCurrentCarnival()
         },
 
         methods: {
@@ -132,6 +133,26 @@
                             return event.current = this.playerAchievements.multiplayer.trade
                         case 'pvp':
                             return event.current = this.playerAchievements.multiplayer.pvp
+                    }
+                })
+            },
+
+            setCurrentCarnival() {
+                const carnivalAchievements = this.allAchievements.find(({ id }) => id === 'carnival')
+                carnivalAchievements.achievements.forEach(event => {
+                    switch(event.id) {
+                        case 'whosThatPokemon':
+                            return event.current = this.playerAchievements.carnival.whosThatPokemon
+                        case 'findingDitto':
+                            return event.current = this.playerAchievements.carnival.findingDitto
+                        case 'berryCrusher':
+                            return event.current = this.playerAchievements.carnival.berryCrusher
+                        case 'pokemonRoulette':
+                            return event.current = this.playerAchievements.carnival.pokemonRoulette
+                        case 'pokemonDash':
+                            return event.current = this.playerAchievements.carnival.pokemonDash
+                        case 'blockSmash':
+                            return event.current = this.playerAchievements.carnival.blockSmash
                     }
                 })
             },

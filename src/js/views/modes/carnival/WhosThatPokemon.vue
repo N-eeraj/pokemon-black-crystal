@@ -112,6 +112,10 @@
                         itemId: 4,
                         count: 1
                     })
+                    this.updateAchievement({
+                        type: 'carnival',
+                        item: 'whosThatPokemon'
+                    })
                 }
                 else
                     this.popUp.text = 'Better luck next time'
@@ -129,7 +133,8 @@
             ...mapActions([
                 'updateAudio',
                 'getCarnivalPokemon',
-                'updateBag'
+                'updateBag',
+                'updateAchievement'
             ])
         }
     }

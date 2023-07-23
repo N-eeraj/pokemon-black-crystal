@@ -1,0 +1,72 @@
+{
+    "id": "carnival",
+    "title": "Carnival",
+    "achievements": [
+        {
+            "id": "whosThatPokemon",
+            "name": "Guess <count> Pokémon",
+            "badge": "carnival/whosThatPokemon.webp",
+            "required": [
+                10,
+                50,
+                250,
+                1000
+            ]
+        },
+        {
+            "id": "findingDitto",
+            "name": "Find Ditto <count> Times",
+            "badge": "carnival/findingDitto.webp",
+            "required": [
+                10,
+                50,
+                250,
+                1000
+            ]
+        },
+        {
+            "id": "berryCrusher",
+            "name": "Crush <count> Berries",
+            "badge": "carnival/berryCrusher.webp",
+            "required": [
+                5,
+                25,
+                100,
+                500
+            ]
+        },
+        {
+            "id": "pokemonRoulette",
+            "name": "Earn <count> Pokécoins in Roulette",
+            "badge": "carnival/pokemonRoulette.webp",
+            "required": [
+                1000,
+                10000,
+                100000,
+                1000000
+            ]
+        },
+        {
+            "id": "pokemonDash",
+            "name": "Win Pokémon Dash <count> times",
+            "badge": "carnival/pokemonDash.webp",
+            "required": [
+                10,
+                30,
+                100,
+                500
+            ]
+        },
+        {
+            "id": "blockSmash",
+            "name": "Win Block Smash <count> times",
+            "badge": "carnival/blockSmash.webp",
+            "required": [
+                10,
+                30,
+                100,
+                500
+            ]
+        }
+    ]
+}

@@ -93,6 +93,10 @@
                 if (this.victory) {
                     this.popUp.text = "You've won Pokécoins"
                     this.updatePlayerCoins(50)
+                    this.updateAchievement({
+                        type: 'carnival',
+                        item: 'findingDitto'
+                    })
                 }
                 else
                     this.popUp.text = 'Better luck next time'
@@ -104,7 +108,8 @@
             ...mapActions([
                 'getCarnivalPokemon',
                 'updateCarnivalEntry',
-                'updatePlayerCoins'
+                'updatePlayerCoins',
+                'updateAchievement'
             ])
         }
     }
