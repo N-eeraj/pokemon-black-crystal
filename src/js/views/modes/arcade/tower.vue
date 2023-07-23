@@ -170,7 +170,10 @@
                 ++this.won
                 this.updatePlayerCoins(50)
                 if (this.won === 16) {
-                    this.winArcade('tower')
+                    this.updateAchievement({
+                        type: 'arcade',
+                        item: 'tower'
+                    })
                     return this.gameOver = true
                 }
                 this.loading = true
@@ -201,7 +204,7 @@
             ...mapActions([
                 'getRandomPokemon',
                 'updatePlayerCoins',
-                'winArcade',
+                'updateAchievement',
                 'encounterNewPokemon'
             ])
         }

@@ -281,8 +281,8 @@ export default {
         encryptAndSave()
     },
 
-    winArcade(state, arcadeEvent) {
-        ++state.gameData.achievements.arcade[arcadeEvent]
+    updateAchievement(state, { type, item, count }) {
+        state.gameData.achievements[type][item] += count || 1
         encryptAndSave()
     },
 

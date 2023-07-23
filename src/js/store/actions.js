@@ -314,8 +314,8 @@ export default {
         commit('setLevel', level)
     },
 
-    winArcade({ commit }, arcadeEvent) {
-        commit('winArcade', arcadeEvent)
+    updateAchievement({ commit }, data) {
+        commit('updateAchievement', data)
     },
 
     async getCarnivalPokemon({ getters }, count) {

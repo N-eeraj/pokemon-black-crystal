@@ -182,6 +182,7 @@
                         text: `${this.playerInfo.name} has invited you for a PVP Battle in Pokémon Black Crystal.\n`,
                         url: `${basePath}${this.$route.fullPath}?key=${this.key}`
                     }
+                    console.log(shareData)
                     await navigator.share(shareData)
                 } catch {
                     console.log('Share failed')
@@ -273,10 +274,16 @@
             handleGameOver(victory) {
                 this.gameOverPopUp.show = true
                 this.gameOverPopUp.text = `You ${ victory ? 'won' : 'lost' } the match`
+                if (victory)
+                    this.updateAchievement({
+                        type: 'multiplayer',
+                        item: 'pvp'
+                    })
             },
 
             ...mapActions([
-                'updateAudio'
+                'updateAudio',
+                'updateAchievement'
             ])
         }
     }

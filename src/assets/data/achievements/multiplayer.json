@@ -1,0 +1,28 @@
+{
+    "id": "multiplayer",
+    "title": "Multiplayer",
+    "achievements": [
+        {
+            "id": "trade",
+            "name": "Complete <count> Trade",
+            "badge": "multiplayer/trade.webp",
+            "required": [
+                1,
+                10,
+                50,
+                100
+            ]
+        },
+        {
+            "id": "pvp",
+            "name": "Win <count> PVP",
+            "badge": "multiplayer/pvp.webp",
+            "required": [
+                1,
+                10,
+                50,
+                100
+            ]
+        }
+    ]
+}
