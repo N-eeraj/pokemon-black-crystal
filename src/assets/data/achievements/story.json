@@ -1,0 +1,24 @@
+{
+    "id": "story",
+    "title": "Story",
+    "achievements": [
+        {
+            "id": "gymBadges",
+            "name": "Earn <count> Gym Badges",
+            "badge": "pokemon-owned/owned.webp",
+            "required": [
+                1,
+                4,
+                8
+            ]
+        },
+        {
+            "id": "champion",
+            "name": "Become Pokémon Champion",
+            "badge": "pokemon-owned/owned.webp",
+            "required": [
+                1
+            ]
+        }
+    ]
+}

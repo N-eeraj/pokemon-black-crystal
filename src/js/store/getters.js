@@ -106,6 +106,7 @@ export default {
 
     playerAchievements(state) {
         const caughtList = state.gameData.pokemon.caughtList
+        const currentLevel = state.gameData.progress.level
 
         const region = {
             kanto: 0,
@@ -128,6 +129,7 @@ export default {
         return {
             ownedPokemon,
             region,
+            currentLevel,
             ...state.gameData.achievements
         }
     },

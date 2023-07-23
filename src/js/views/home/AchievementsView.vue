@@ -25,6 +25,7 @@
     import { mapGetters, mapActions } from 'vuex'
 
     import achievements from '@/assets/data/achievements'
+    import gymLevels from '@/assets/data/gym-levels.json'
 
     export default {
         name: 'achievements-view',
@@ -52,6 +53,7 @@
             this.setCurrentArcade()
             this.setCurrentOwnedPokemon()
             this.setCurrentRegion()
+            this.setCurrentStory()
         },
 
         methods: {
@@ -99,6 +101,24 @@
                                 this.playerAchievements.region.johto +
                                 this.playerAchievements.region.hoenn
                             )
+                    }
+                })
+            },
+
+            setCurrentStory() {
+                const storyAchievements = this.allAchievements.find(({ id }) => id === 'story')
+                storyAchievements.achievements.forEach(event => {
+                    switch (event.id) {
+                        case 'gymBadges':
+                            event.current = 0
+                            gymLevels.forEach(({ level }) => {
+                                if (level <= this.playerAchievements.currentLevel)
+                                    ++event.current
+                                else return
+                            })
+                            break
+                        case 'champion':
+                            event.current = Number(this.playerAchievements.currentLevel === 240)
                     }
                 })
             },
