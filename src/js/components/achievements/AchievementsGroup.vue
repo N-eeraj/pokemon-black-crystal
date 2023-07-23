@@ -5,7 +5,7 @@
         </strong>
         <div class="achievements-container">
             <achievement
-                v-for="({name, badge, required, current}, index) in achievements"
+                v-for="({ name, badge, required, current }, index) in achievements"
                 :name="name"
                 :badge="badge"
                 :required="required"

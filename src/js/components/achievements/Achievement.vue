@@ -4,24 +4,32 @@
         :key="level">
         <div
             v-if="level <= currentLevel"
-            class="achievement-card">
+            class="achievement-card"
+            :class="{ achieved: checkAchievement(level), 'single-achievement': singleAchievement }">
+
             <div class="text-container">
                 <span class="achievement-name">
                     {{ getRequiredText(requirement) }}
                 </span>
-                <div class="requirement">
+                <div
+                    v-if="!checkAchievement(level)"
+                    class="requirement">
                     {{ `${requirement < current ? requirement : current}/${requirement}` }}
                 </div>
             </div>
+
             <img
                 :src="require(`@/assets/images/achievements/${badge}`)"
                 :alt="`${name}-${getLevelClass(level)}`"
                 class="badge"
                 :class="getLevelClass(level)" />
+
             <progress
+                v-if="!checkAchievement(level)"
                 :value="current"
                 :max="requirement"
                 class="progress" />
+
         </div>
     </template>
 </template>
@@ -55,6 +63,10 @@
                 let level = 0
                 this.required.forEach(requirement => requirement <= this.current && level++)
                 return level
+            },
+
+            singleAchievement() {
+                return this.required.length === 1 && this.required[0] === 1
             }
         },
 
@@ -71,6 +83,10 @@
                     case 3:
                         return 'gold'
                 }
+            },
+
+            checkAchievement(level) {
+                return level < this.currentLevel
             },
 
             getRequiredText(requirement) {

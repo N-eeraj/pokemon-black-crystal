@@ -60,4 +60,24 @@
             background-color: palette.$accent;
         }
     }
+
+
+    &.achieved {
+        height: 100px;
+        align-items: center;
+
+        .text-container {
+            @include main.flex($direction: column, $align: flex-start);
+
+            .achievement-name {
+                color: palette.$white;
+                font-size: 0.9rem;
+            }
+        }
+    }
+    &:not(.achieved) {
+        &.single-achievement {
+            display: none;
+        }
+    }
 }

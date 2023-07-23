@@ -20,7 +20,7 @@
         },
         {
             "id": "hoenn",
-            "name": "Complete Kanto Region Pokédex",
+            "name": "Complete Hoenn Region Pokédex",
             "badge": "region/hoenn.webp",
             "required": [
                 135
