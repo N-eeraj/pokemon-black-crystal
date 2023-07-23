@@ -142,6 +142,13 @@
                     itemId: 5,
                     count: this.count
                 })
+                if (this.count) {
+                    this.updateAchievement({
+                        type: 'carnival',
+                        item: 'berryCrusher',
+                        count: this.count
+                    })
+                }
                 setTimeout(() => {
                     this.popUp.show = true
                 }, 1000)
@@ -149,7 +156,8 @@
 
             ...mapActions([
                 'updateCarnivalEntry',
-                'updateBag'
+                'updateBag',
+                'updateAchievement'
             ])
         }
     }

@@ -156,6 +156,10 @@
                     this.popUp.text = "You've won Pokécoins"
                     this.updatePlayerCoins(200)
                     happiness = 20
+                    this.updateAchievement({
+                        type: 'carnival',
+                        item: 'blockSmash'
+                    })
                 }
                 else {
                     this.popUp.text = 'Better luck next time'
@@ -212,7 +216,8 @@
                 'getPokemonById',
                 'updateCarnivalEntry',
                 'updatePokemonHappiness',
-                'updatePlayerCoins'
+                'updatePlayerCoins',
+                'updateAchievement'
             ])
         }
     }
