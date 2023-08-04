@@ -8,7 +8,9 @@
             @nav-icon-action="$router.push('/')"
             @selected-pokemon="handleSelectPokemon"
             @rearrange-pokemon="changeListOrder"
-            @click="showActions = false">
+            @click="showActions = false"
+            @touchstart="handleTouchStart"
+            @touchend="handleTouchEnd">
 
             <box-list
                 v-if="isPC"
@@ -54,7 +56,11 @@
                 listType: null,
                 pokemonList: null,
                 currentBoxIndex: null,
-                showActions: false
+                showActions: false,
+                swipeHandler: {
+                    x: null,
+                    y: null
+                }
             }
         },
 
@@ -156,6 +162,23 @@
             resetCurrentBox() {
                 this.currentBoxIndex = 0
                 this.setPCPokemonList()
+            },
+
+            handleTouchStart({ changedTouches }) {
+                if (!this.isPC) return
+                const { clientX, clientY } = changedTouches[0]
+                this.swipeHandler.x = clientX
+                this.swipeHandler.y = clientY
+            },
+
+            handleTouchEnd({ changedTouches }) {
+                if (!this.isPC) return
+                const { clientX, clientY } = changedTouches[0]
+                const swipeX = this.swipeHandler.x - clientX
+                const swipeY = this.swipeHandler.y - clientY
+
+                if (Math.abs(swipeY) < 50 && Math.abs(swipeX) > 100)
+                    this.handleBoxChange(Math.sign(swipeX))
             },
 
             ...mapActions([
