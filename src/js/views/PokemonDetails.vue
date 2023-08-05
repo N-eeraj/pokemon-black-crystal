@@ -3,7 +3,9 @@
         <div
             v-if="pokemon"
             id="pokemon_details"
-            @click="closeAll">
+            @click="closeAll"
+            @touchstart="handleTouchStart"
+            @touchend="handleTouchEnd">
 
             <navigation-bar
                 icon="back"
@@ -259,6 +261,10 @@
                     'leaf-stone': 9,
                     'sun-stone': 10,
                     'moon-stone': 11
+                },
+                swipeHandler: {
+                    x: null,
+                    y: null
                 }
             }
         },
@@ -292,7 +298,7 @@
                 handler({ hash: toHash, params: toParams }, { hash: fromHash, params: fromParams }) {
                     if (!toHash && fromHash === '#release')
                         this.closeConfirmRelease()
-                    else if (toParams.type && toParams.type !== fromParams.type)
+                    else if (toParams.type && ((toParams.type !== fromParams.type) || (toParams.id && fromParams.id !== toParams.id)))
                         this.initialize()
                 }
             }
@@ -595,6 +601,60 @@
             closeAll() {
                 this.show.actions = false
                 this.show.availableBoxesOptions = false
+            },
+
+            getNextIndex(pokemonList, changeBy) {
+                const currentIndex = pokemonList.indexOf(Number(this.$route.params.id))
+                let nextIndex = currentIndex + changeBy
+                if (nextIndex === -1)
+                    nextIndex = pokemonList.length - 1
+                else if (nextIndex === pokemonList.length)
+                    nextIndex = 0
+                return pokemonList[nextIndex]
+            },
+
+            partySwipe(changeBy) {
+                const changeToId = this.getNextIndex(this.partyPokemon, changeBy)
+                this.$router.replace(
+                    `/pokemon/details/party/${changeToId}`
+                )
+            },
+
+            pcSwipe(changeBy) {
+                for (let pokemon of Object.values(this.pcPokemon)) {
+                    if (pokemon.includes(Number(this.$route.params.id))) {
+                        const changeToId = this.getNextIndex(pokemon, changeBy)
+                        this.$router.replace(
+                            `/pokemon/details/pc/${changeToId}`
+                        )
+                        return
+                    }
+                }
+            },
+
+            handleTouchStart({ changedTouches }) {
+                if (this.listType === 'pokedex') return
+                const { clientX, clientY } = changedTouches[0]
+                this.swipeHandler.x = clientX
+                this.swipeHandler.y = clientY
+            },
+
+            handleTouchEnd({ changedTouches }) {
+                if (this.listType === 'pokedex') return
+                const { clientX, clientY } = changedTouches[0]
+                const swipeX = this.swipeHandler.x - clientX
+                const swipeY = this.swipeHandler.y - clientY
+
+                if (Math.abs(swipeY) > 50 || Math.abs(swipeX) < 100)
+                    return
+
+                const changeBy = Math.sign(swipeX)
+
+                if (this.listType === 'party')
+                    this.partySwipe(changeBy)
+
+                else if (this.listType === 'pc')
+                    this.pcSwipe(changeBy)
             },
 
             ...mapActions([
