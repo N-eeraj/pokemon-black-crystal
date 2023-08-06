@@ -4,6 +4,7 @@ import router from '@/js/router'
 import store from '@/js/store/store'
 
 import { toTitleCase } from '@/js/mixins/common'
+import './registerServiceWorker'
 
 const app = createApp(App)
 
