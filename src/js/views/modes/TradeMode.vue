@@ -200,16 +200,23 @@
 
             async inviteFriend() {
                 const basePath = process.env.BASE_URL.slice(0, -1)
-                try {
+                const url = `${basePath}${this.$route.fullPath}?key=${this.key}`
+                if (navigator.share) {
                     const shareData = {
                         title: 'Pokémon Black Crystal',
                         text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal.\n`,
-                        url: `${basePath}${this.$route.fullPath}?key=${this.key}`
+                        url
                     }
-                    console.log(shareData)
                     await navigator.share(shareData)
-                } catch {
-                    console.log('Share failed')
+                }
+                else {
+                    const dummy = document.createElement('textarea')
+                    document.body.appendChild(dummy)
+                    dummy.value = url
+                    dummy.select()
+                    document.execCommand('copy')
+                    document.body.removeChild(dummy)
+                    alert('Copied Invitation Link')
                 }
             },
 
