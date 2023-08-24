@@ -65,6 +65,8 @@
 
     import { mapGetters, mapActions } from 'vuex'
 
+    import { shareLink } from '@/js/mixins/invitation'
+
     export default {
         name: 'trade-mode',
 
@@ -201,23 +203,10 @@
             async inviteFriend() {
                 const basePath = process.env.BASE_URL.slice(0, -1)
                 const url = `${basePath}${this.$route.fullPath}?key=${this.key}`
-                if (navigator.share) {
-                    const shareData = {
-                        title: 'Pokémon Black Crystal',
-                        text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal.\n`,
-                        url
-                    }
-                    await navigator.share(shareData)
-                }
-                else {
-                    const dummy = document.createElement('textarea')
-                    document.body.appendChild(dummy)
-                    dummy.value = url
-                    dummy.select()
-                    document.execCommand('copy')
-                    document.body.removeChild(dummy)
-                    alert('Copied Invitation Link')
-                }
+                shareLink({
+                    url,
+                    text: `${this.playerInfo.name} has invited you for a trade session in Pokémon Black Crystal.\n`
+                })
             },
 
             handleDisconnect(message) {
