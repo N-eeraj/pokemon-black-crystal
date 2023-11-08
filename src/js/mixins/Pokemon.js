@@ -110,17 +110,17 @@ export const PokemonObject = data => {
             })
             return level
         },
-    
+
         getExpByLevel(level) {
             const growthRateFromState = store.state.growthRateData
             return growthRateFromState[this.growthRate][level - 1]
         },
-    
+
         getExpGained(canCatch, user, exp) {
             const level = this.getLevel(exp)
             return Math.round(((!canCatch || user ==='trainer') ? 1.5 : 1) * this.baseExp * level / 7)
         },
-    
+
         getStat(exp) {
             const level = this.getLevel(exp)
             return {
@@ -132,7 +132,7 @@ export const PokemonObject = data => {
                 'speed': Math.round((0.02 * this.baseStat['speed'] * level) + 5, 2)
             }
         },
-    
+
         getDamageRate(attackType) {
             let rate = 1
             const typesDataFromState = store.state.typesData
@@ -143,7 +143,7 @@ export const PokemonObject = data => {
             })
             return rate
         },
-    
+
         getMovesByLevel(exp) {
             let filteredMoves = this.moves.filter(move => move.level <= this.getLevel(exp))
             if (!filteredMoves.length) {

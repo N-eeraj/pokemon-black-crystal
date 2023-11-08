@@ -387,6 +387,12 @@
 
             async setPokemonDetails(id) {
                 this.pokemon = await this.getPokemonById(id)
+                if (!this.pokemon.moves.length) {
+                    this.pokemon.moves = [{
+                        name: 'tackle',
+                        level: 1
+                    }]
+                }
                 this.setStats('baseStat')
             },
 
