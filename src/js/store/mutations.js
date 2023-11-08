@@ -144,8 +144,19 @@ export default {
     },
 
     releasePokemon(state, { id, list }) {
+        const removeCaught = caughtId => caughtId !== id
+
         const pokemonData = state.gameData.pokemon
-        pokemonData[list] = pokemonData[list].filter(caughtId => caughtId !== id)
+        if (list === 'pc') {
+            for (let [boxName, pokemonList] of Object.entries(pokemonData[list])) {
+                if (pokemonList.includes(id)) {
+                    pokemonData[list][boxName] = pokemonData[list][boxName].filter(removeCaught)
+                    return
+                }
+            }
+        }
+        else
+            pokemonData[list] = pokemonData[list].filter(removeCaught)
         encryptAndSave()
     },
 
