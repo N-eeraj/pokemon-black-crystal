@@ -519,7 +519,10 @@
             },
 
             showAvailableBoxes() {
-                console.log(this.availableBoxes)
+                if (this.availableBoxes.length === 1) {
+                    this.selectedBox = this.availableBoxes[0]
+                    return this.handleMoveToBox()
+                }
                 this.show.boxes = true
                 this.selectedBox = null
             },
