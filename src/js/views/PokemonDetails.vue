@@ -270,6 +270,10 @@
         },
 
         computed: {
+            pokemonId() {
+                return Number(this.$route.params.id)
+            },
+
             showEvolutions() {
                 return this.listType === 'pokedex'
             },
@@ -277,7 +281,7 @@
             availableBoxes() {
                 const availableBoxes = []
                 Object.entries(this.pcPokemon).forEach(([box, list]) => {
-                    if (list.length < 30)
+                    if (list.length < 30 && !list.includes(this.pokemonId))
                         availableBoxes.push(box)
                 })
                 return availableBoxes
@@ -312,7 +316,6 @@
         methods: {
             initialize() {
                 this.listType = this.$route.params.type
-                let id = Number(this.$route.params.id)
 
                 this.stats = []
                 this.usableItems = []
@@ -321,21 +324,21 @@
 
                 switch (this.listType) {
                     case 'pokedex':
-                        if (id < 387 && this.getCaughtPokemonList.includes(id)) {
+                        if (this.pokemonId < 387 && this.getCaughtPokemonList.includes(this.pokemonId)) {
                             this.backPath = '/pokedex'
-                            this.setPokemonDetails(id)
+                            this.setPokemonDetails(this.pokemonId)
                         }
                         else this.$router.push('/page-not-found')
                         break
 
                     case 'party':
                         this.backPath = '/pokemon/list/party'
-                        this.getCaughtPokemonDetails(id, true)
+                        this.getCaughtPokemonDetails(this.pokemonId, true)
                         break
 
                     case 'pc':
                         this.backPath = '/pokemon/list/pc'
-                        this.getCaughtPokemonDetails(id, false)
+                        this.getCaughtPokemonDetails(this.pokemonId, false)
                         break
 
                     default:
@@ -371,10 +374,11 @@
                     })
                 }
                 else {
-                    actions.unshift({
-                        label: 'Change Box',
-                        action: this.showAvailableBoxes
-                    })
+                    if (this.availableBoxes.length)
+                        actions.unshift({
+                            label: 'Change Box',
+                            action: this.showAvailableBoxes
+                        })
                     if (this.partyPokemon.length < 6)
                         actions.unshift({
                             label: 'Move to Party',
@@ -515,6 +519,7 @@
             },
 
             showAvailableBoxes() {
+                console.log(this.availableBoxes)
                 this.show.boxes = true
                 this.selectedBox = null
             },
@@ -610,7 +615,7 @@
             },
 
             getNextIndex(pokemonList, changeBy) {
-                const currentIndex = pokemonList.indexOf(Number(this.$route.params.id))
+                const currentIndex = pokemonList.indexOf(this.pokemonId)
                 let nextIndex = currentIndex + changeBy
                 if (nextIndex === -1)
                     nextIndex = pokemonList.length - 1
@@ -628,7 +633,7 @@
 
             pcSwipe(changeBy) {
                 for (let pokemon of Object.values(this.pcPokemon)) {
-                    if (pokemon.includes(Number(this.$route.params.id))) {
+                    if (pokemon.includes(this.pokemonId)) {
                         const changeToId = this.getNextIndex(pokemon, changeBy)
                         this.$router.replace(
                             `/pokemon/details/pc/${changeToId}`
