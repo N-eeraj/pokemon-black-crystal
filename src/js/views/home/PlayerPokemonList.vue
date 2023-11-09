@@ -14,7 +14,7 @@
 
             <box-list
                 v-if="isPC"
-                :box="currentBox"
+                :current-box="currentBox"
                 @change-box="handleBoxChange" />
 
             <template
