@@ -368,10 +368,11 @@
                 })
 
                 if (isParty) {
-                    actions.unshift({
-                        label: 'Move to Box',
-                        action: this.showAvailableBoxes
-                    })
+                    if (this.availableBoxes.length)
+                        actions.unshift({
+                            label: 'Move to Box',
+                            action: this.showAvailableBoxes
+                        })
                 }
                 else {
                     if (this.availableBoxes.length)
