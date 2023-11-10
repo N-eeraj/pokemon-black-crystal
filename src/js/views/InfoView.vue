@@ -17,10 +17,12 @@
 
                 <div class="content-container">
 
-                    <img
-                        v-if="pageData[currentPage].image"
-                        :src="require(`@/assets/images${pageData[currentPage].image}`)"
-                        class="image" />
+                    <a :href="pageData[currentPage].link" target="_blank">
+                        <img
+                            v-if="pageData[currentPage].image"
+                            :src="require(`@/assets/images${pageData[currentPage].image}`)"
+                            class="image" />
+                    </a>
 
                     <div
                         v-if="pageData[currentPage].text"
