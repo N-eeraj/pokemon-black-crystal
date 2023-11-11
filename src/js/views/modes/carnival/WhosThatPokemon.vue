@@ -39,6 +39,7 @@
                 :show="popUp.show"
                 :image="require('@/assets/images/items/razz-berry.webp')"
                 item="Razz Berry"
+                :count="popUp.count"
                 :victory="victory"
                 :text="popUp.text" />
 
@@ -75,7 +76,8 @@
                 victory: null,
                 popUp: {
                     show: false,
-                    text: null
+                    text: null,
+                    count: 0
                 }
             }
         },
@@ -107,10 +109,12 @@
             chooseOption(index) {
                 this.victory = index === this.correctOption
                 if (this.victory) {
-                    this.popUp.text = "You've won a Razz Berry"
+                    const double = this.timer.timeLeft > 7
+                    this.popUp.text = `You've won ${double ? '2' : 'a'} Razz ${double ? 'Berries' : 'Berry'}`
+                    this.popUp.count = double ? 2 : 1
                     this.updateBag({
                         itemId: 4,
-                        count: 1
+                        count: this.popUp.count
                     })
                     this.updateAchievement({
                         type: 'carnival',
