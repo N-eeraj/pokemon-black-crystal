@@ -21,6 +21,7 @@
         .image {
             width: 75%;
             transition: 1s;
+            filter: drop-shadow(0 0 7px #000);
 
             &.hide {
                 filter: brightness(0);
