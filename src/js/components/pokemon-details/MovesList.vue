@@ -1,5 +1,8 @@
 <template>
-    <div id="pokemon_moves_list">
+    <div
+        id="pokemon_moves_list"
+        @touchstart.stop
+        @touchend.stop>
         <div class="scroller">
             <move-card
                 v-for="(move, index) in movesList"
