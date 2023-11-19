@@ -73,22 +73,25 @@ export const Pokemon = async (id) => {
                 case 'level-up':
                     if (evolutionObject.min_level) {
                         nextEvolutionObj.levelUp.minLevel = evolutionObject.min_level
-                        nextEvolutionObj.levelUp.pokemon.push(evolvedPokemonId)
+                        if (!nextEvolutionObj.levelUp.pokemon.includes(evolvedPokemonId))
+                            nextEvolutionObj.levelUp.pokemon.push(evolvedPokemonId)
                     }
                     else if (evolutionObject.min_happiness) {
                         nextEvolutionObj.happinessUp.minLevel = evolutionObject.min_happiness
-                        nextEvolutionObj.happinessUp.pokemon.push(evolvedPokemonId)
+                        if (!nextEvolutionObj.happinessUp.pokemon.includes(evolvedPokemonId))
+                            nextEvolutionObj.happinessUp.pokemon.push(evolvedPokemonId)
                     }
                         break
                 case 'use-item':
-                    if (evolutionObject.item.name)
+                    if (evolutionObject.item.name && !nextEvolutionObj.useItem.some(({ pokemon }) => pokemon === evolvedPokemonId ))
                         nextEvolutionObj.useItem.push({
                             itemName: evolutionObject.item.name,
                             pokemon: evolvedPokemonId
                         })
                         break
                 case 'trade':
-                    nextEvolutionObj.trade.push(evolvedPokemonId)
+                    if (!nextEvolutionObj.trade.includes(evolvedPokemonId))
+                        nextEvolutionObj.trade.push(evolvedPokemonId)
                     break
             }
         })
