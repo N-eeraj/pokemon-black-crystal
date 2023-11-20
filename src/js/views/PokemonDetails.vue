@@ -557,6 +557,8 @@
                     id: this.pokemon.encounterId,
                     happiness: 30
                 })
+                if (this.pokemon.happiness.value >= this.pokemon.evolution.happinessUp.minLevel)
+                    this.toggleEvolutionCheck()
             },
 
             feedRareCandy() {
@@ -681,7 +683,8 @@
                 'releasePokemon',
                 'updatePokemonHappiness',
                 'updateBag',
-                'gainExperience'
+                'gainExperience',
+                'toggleEvolutionCheck'
             ])
         }
     }
