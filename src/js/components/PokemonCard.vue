@@ -76,9 +76,11 @@
         },
 
         computed: {
+            delay() {
+                return this.now - this.startTime
+            },
             canMove() {
-                if (this.startTime) return (this.now - this.startTime) > 1000
-                return false
+                return this.delay > 1000 ? this.startTime : false
             },
         },
 
@@ -124,8 +126,10 @@
             },
 
             handleEnd(endValue, elementHeight) {
-                if (this.rearrangeable && this.canMove) {
-                    const change = Math.round((endValue - this.startPosition) / elementHeight)
+                const change = Math.round((endValue - this.startPosition) / elementHeight)
+                if (!change && this.delay < 400)
+                    this.$emit('click')
+                else if (this.rearrangeable && this.canMove) {
                     if (change !== 0) this.$emit('rearrange', change)
                 }
                 this.startPosition = null
