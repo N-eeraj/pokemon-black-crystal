@@ -3,7 +3,7 @@
         class="battle-pokemon"
         :class="view">
 
-        <div>
+        <div v-if="!canCatch">
             <img
                 v-for="(index) of partySize"
                 src="@/assets/images/pokeball-icon.png"
@@ -71,6 +71,11 @@
             pokemon: {
                 type: Object,
                 required: true
+            },
+            canCatch: {
+                type: Boolean,
+                required: false,
+                default: false,
             },
             catchStatus: {
                 type: Object,

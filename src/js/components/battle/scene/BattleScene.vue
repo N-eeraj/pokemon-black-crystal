@@ -32,6 +32,7 @@
                     v-if="currentPokemon.foe"
                     :pokemon="currentPokemon.foe"
                     isFoe
+                    :can-catch="canCatch"
                     :catch-status="catchStatus"
                     :party-size="foeParty.length" />
                 <div v-else></div> <!-- to leave space for foe -->
