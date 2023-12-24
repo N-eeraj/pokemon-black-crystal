@@ -11,7 +11,7 @@
         "image": "/finding-ditto.png",
         "route": "finding-ditto",
         "item": "coin",
-        "count": 30
+        "count": 10
     },
     {
         "name": "Berry Crusher",
@@ -33,7 +33,7 @@
         "image": "/pokemon-dash.png",
         "route": "pokemon-dash",
         "item": "coin",
-        "count": 80
+        "count": 30
     },
     {
         "name": "Block Smash",
@@ -41,6 +41,6 @@
         "image": "/block-smash.png",
         "route": "block-smash",
         "item": "coin",
-        "count": 100
+        "count": 50
     }
 ]

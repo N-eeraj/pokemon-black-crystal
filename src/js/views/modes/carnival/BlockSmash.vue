@@ -154,8 +154,8 @@
                 let happiness
                 if (this.victory) {
                     this.popUp.text = "You've won Pokécoins"
-                    this.updatePlayerCoins(200)
-                    happiness = 20
+                    this.updatePlayerCoins(120)
+                    happiness = 5
                     this.updateAchievement({
                         type: 'carnival',
                         item: 'blockSmash'
@@ -163,7 +163,7 @@
                 }
                 else {
                     this.popUp.text = 'Better luck next time'
-                    happiness = 10
+                    happiness = 1
                 }
                 this.updatePokemonHappiness({
                     id: this.participants[3].caughtId,

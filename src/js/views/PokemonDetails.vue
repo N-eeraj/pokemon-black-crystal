@@ -555,7 +555,7 @@
                     this.pokemon.happiness.value = 255
                 this.updatePokemonHappiness({
                     id: this.pokemon.encounterId,
-                    happiness: 30
+                    happiness: 10
                 })
                 if (this.pokemon.happiness.value >= this.pokemon.evolution.happinessUp.minLevel)
                     this.toggleEvolutionCheck()

@@ -127,7 +127,7 @@
                 this.foeParty = randomParty.map(pokemon => {
                     return {
                         pokemon : pokemon.id,
-                        exp: getInRange(this.strongestPartyPokemon.exp * 0.7, this.strongestPartyPokemon.exp)
+                        exp: getInRange(this.strongestPartyPokemon.exp * 0.65, this.strongestPartyPokemon.exp * 0.9)
                     }
                 })
 
