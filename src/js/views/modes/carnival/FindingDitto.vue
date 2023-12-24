@@ -92,7 +92,7 @@
                 this.victory = index === this.correctOption
                 if (this.victory) {
                     this.popUp.text = "You've won Pokécoins"
-                    this.updatePlayerCoins(50)
+                    this.updatePlayerCoins(25)
                     this.updateAchievement({
                         type: 'carnival',
                         item: 'findingDitto'
