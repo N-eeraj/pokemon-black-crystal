@@ -645,19 +645,23 @@
                 else if (!foeParty) this.victory()
                 if (this.saveBattle) {
                     let totalExpGained = 0
-                    this.battleData.faintedPokemon.forEach(pokemon => {
-                        if (pokemon.encounterId) {
+                    this.battleData.faintedPokemon.forEach(({encounterId, exp}) => {
+                        if (encounterId) {
                             return this.updatePokemonHappiness({
-                                id: pokemon.encounterId,
+                                id: encounterId,
                                 happiness: -5
                             })
                         }
-                        totalExpGained += pokemon.exp
+                        totalExpGained += exp
                     })
                     this.gainExperience({
                         totalExp: totalExpGained,
                         encounterIds: this.playerParty.map(pokemon => pokemon.encounterId)
                     })
+                    this.playerParty.forEach(({encounterId}) => this.updatePokemonHappiness({
+                        id: encounterId,
+                        happiness: 1
+                    }))
                     this.toggleEvolutionCheck()
                 }
                 return true
