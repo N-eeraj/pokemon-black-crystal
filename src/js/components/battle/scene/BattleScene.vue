@@ -209,6 +209,7 @@
                     confirmEscape: false
                 },
                 battleMessage: null,
+                messageSpeed: 3200,
                 catchStatus: {
                     ballUsed: null,
                     caught: false
@@ -414,6 +415,17 @@
                 })
             },
 
+            setBattleMessage(message, start=true) {
+                if (start)
+                    this.battleMessage = ''
+                let counter = 0
+                if (counter === message?.length || !message) return
+                setTimeout(() => {
+                    this.battleMessage += message[counter++]
+                    this.setBattleMessage(message.slice(1), false)
+                }, 50)
+            },
+
             changeCurrentPokemon(newIndex) {
                 if (newIndex === this.battleData.trainer.currentPokemonIndex) return
                 this.switchBattlePokemon({
@@ -421,20 +433,20 @@
                     isOpponent: false
                 })
                 this.hidePartyPokemon()
-                this.battleMessage = changePokemon(false)
+                this.setBattleMessage(changePokemon(false))
                 if (this.isMultiplayer)
                     return this.handlePVPEvent('changePokemon', newIndex)
                 setTimeout(() => {
                     this.useMove(null)
-                }, 2000)
+                }, this.messageSpeed)
             },
 
             handleCapture() {
-                this.battleMessage = caughtPokemon(this.currentPokemon.foe)
+                this.setBattleMessage(caughtPokemon(this.currentPokemon.foe))
                 this.catchStatus.caught = true
                 setTimeout(() => {
                     this.$emit('caughtPokemon')
-                }, 2000)
+                }, this.messageSpeed)
             },
 
             useBall(itemId, item) {
@@ -443,20 +455,20 @@
                     itemId
                 })
                 this.hidePokeballs()
-                this.battleMessage = useItem(item.name)
+                this.setBattleMessage(useItem(item.name))
                 this.catchStatus.ballUsed = itemId
 
                 const captureRate = getCaptureRate(this.currentPokemon.foe, itemId)
                 setTimeout(() => {
                     if (captureRate) this.handleCapture()
                     else {
-                        this.battleMessage = pokemonBrokeFree(this.currentPokemon.foe)
+                        this.setBattleMessage(pokemonBrokeFree(this.currentPokemon.foe))
                         this.catchStatus.ballUsed = null
                         setTimeout(() => {
                             this.useMove(null)
-                        }, 2000)
+                        }, this.messageSpeed)
                     }
-                }, 4000)
+                }, this.messageSpeed + 1000)
             },
 
             manipulateMoveData(moveData) {
@@ -523,10 +535,10 @@
                 // Make the first attack and display message
                 if (firstMove.moveData && firstMove.moveData.contact) {
                     this.useMoveBattleDataUpdate(firstMove)
-                    this.battleMessage = firstMoveMessage
+                    this.setBattleMessage(firstMoveMessage)
                 }
                 else if (firstMove.moveData && !firstMove.moveData?.contact) {
-                    this.battleMessage = missedMove(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
+                    this.setBattleMessage(missedMove(this.currentPokemon[firstPokemon], firstPokemon === 'foe'))
                 }
 
                 if (this.currentPokemon[secondPokemon].currentHp > 0) {
@@ -535,47 +547,47 @@
                         // Make the second attack and display message
                         if (secondMove.moveData && secondMove.moveData.contact) {
                             this.useMoveBattleDataUpdate(secondMove)
-                            this.battleMessage = secondMoveMessage
+                            this.setBattleMessage(secondMoveMessage)
                         }
                         else if (secondMove.moveData && !secondMove.moveData?.contact) {
-                            this.battleMessage = missedMove(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
+                            this.setBattleMessage(missedMove(this.currentPokemon[secondPokemon], secondPokemon === 'foe'))
                         }
 
                         setTimeout(() => {
                             // checks if the Pokémon that made the first attack faints
                             if (this.currentPokemon[firstPokemon].currentHp <= 0) {
-                                this.battleMessage = faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
+                                this.setBattleMessage(faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe'))
                                 this.handleFaint(firstPokemon)
                             }
                             if (this.currentPokemon[secondPokemon].currentHp <= 0) {
-                                this.battleMessage = faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
+                                this.setBattleMessage(faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe'))
                                 this.handleFaint(secondPokemon)
                             }
                             // if battle is not over reset battle message
                             if (!this.checkGameOver()) {
                                 setTimeout(() => {
-                                    this.battleMessage = null
-                                }, 2000)
+                                    this.setBattleMessage(null)
+                                }, this.messageSpeed)
                             }
-                        }, 2000)
-                    }, 2000)
+                        }, this.messageSpeed)
+                    }, this.messageSpeed)
                 }
                 else {
                     setTimeout(() => {
                         // the Pokémon to make the second move faints
-                        this.battleMessage = faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe')
+                        this.setBattleMessage(faintMessage(this.currentPokemon[secondPokemon], secondPokemon === 'foe'))
                         this.handleFaint(secondPokemon)
                         if (this.currentPokemon[firstPokemon].currentHp <= 0) {
-                            this.battleMessage = faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe')
+                            this.setBattleMessage(faintMessage(this.currentPokemon[firstPokemon], firstPokemon === 'foe'))
                             this.handleFaint(firstPokemon)
                         }
                         // if battle is not over reset battle message
                         if (!this.checkGameOver()) {
                             setTimeout(() => {
-                                this.battleMessage = null
-                            }, 2000)
+                                this.setBattleMessage(null)
+                            }, this.messageSpeed)
                         }
-                    }, 2000)
+                    }, this.messageSpeed)
                 }
             },
 
@@ -601,14 +613,14 @@
             handlePVPTurn({ client, peer }) {
                 if (peer.action === 'changePokemon') {
                     this.changeCurrentFoePokemon(peer.index)
-                    this.battleMessage = changePokemon(true)
+                    this.setBattleMessage(changePokemon(true))
                 }
 
                 setTimeout(() => {
                     this.performMove(client.moveData, peer.moveData)
                     this.$emit('resetActions')
                     this.startCountdown()
-                }, 2000)
+                }, this.messageSpeed)
             },
 
             handlePVPEvent(event, data) {
@@ -662,27 +674,29 @@
                         id: encounterId,
                         happiness: 1
                     }))
-                    this.toggleEvolutionCheck()
+                    setTimeout(() => {
+                        this.toggleEvolutionCheck()
+                    }, 2 * this.messageSpeed);
                 }
                 return true
             },
 
             blackOut() {
                 setTimeout(() => {
-                    this.battleMessage = 'You have no usable Pokémon left.'
+                    this.setBattleMessage('You have no usable Pokémon left.')
                     setTimeout(() => {
                         this.$emit('gameOver', false)
-                    }, 2000)
-                }, 2000)
+                    }, this.messageSpeed)
+                }, this.messageSpeed)
             },
 
             victory() {
                 setTimeout(() => {
-                    this.battleMessage = 'You defeated your opponent.'
+                    this.setBattleMessage('You defeated your opponent.')
                     setTimeout(() => {
                         this.$emit('gameOver', true)
-                    }, 2000)
-                }, 2000)
+                    }, this.messageSpeed)
+                }, this.messageSpeed)
             },
 
             ...mapActions([
