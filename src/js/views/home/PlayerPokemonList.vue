@@ -92,7 +92,13 @@
             this.updateAudio('pokemon-list.mp3')
             this.listType = this.$route.params.type
             this.currentBoxIndex = 0
-            this.setList()
+            const box = this.$route.query.box
+            if (box) {
+                const actualBoxIndex = this.boxList.indexOf(box)
+                this.handleBoxChange(Math.abs(this.currentBoxIndex - actualBoxIndex))
+            }
+            else
+                this.setList()
         },
 
         methods: {
@@ -151,6 +157,12 @@
                     this.currentBoxIndex = 0
                 else
                     this.currentBoxIndex = newIndex
+                this.$router.replace({
+                    ...this.$route,
+                    query: {
+                        box: this.boxList[newIndex]
+                    }
+                })
                 this.setPCPokemonList()
             },
 
