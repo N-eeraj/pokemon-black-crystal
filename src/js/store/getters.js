@@ -155,5 +155,9 @@ export default {
 
     currentCarnivalEntry(state) {
         return state.carnivalEntry
+    },
+
+    achievementUnlocked(state) {
+        return state.achievementUnlocked
     }
 }
