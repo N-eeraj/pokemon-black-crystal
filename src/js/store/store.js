@@ -16,10 +16,7 @@ export default createStore({
             battle: null,
             checkEvolution: false,
             carnivalEntry: null,
-            achievementUnlocked: {
-                show: false,
-                achievemet: null
-            }
+            achievementUnlocked: null
         }
     },
     getters,

@@ -355,5 +355,9 @@ export default {
             const { image } = await Pokemon(id)
             return image
         }
+    },
+
+    unlockAchievement({ commit }) {
+        commit('unlockAchievement')
     }
 }

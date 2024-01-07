@@ -25,6 +25,7 @@
                 @completed-evolutions="handleCompletedEvolutions" />
 
             <rotate-screen v-if="isSmallScreen" />
+            <AchievementUnlocked />
         </template>
     </template>
 </template>
@@ -36,6 +37,7 @@
     import OfflineScreen from '@/js/components/screens/OfflineScreen.vue'
     import DuplicateScreen from '@/js/components/screens/DuplicateScreen.vue'
     import EvolutionPopUp from '@/js/components/pop-up/EvolutionPopUp.vue'
+    import AchievementUnlocked from '@/js/components/AchievementUnlocked.vue'
 
     import { mapGetters, mapActions } from 'vuex'
 
@@ -46,7 +48,8 @@
             RotateScreen,
             OfflineScreen,
             DuplicateScreen,
-            EvolutionPopUp
+            EvolutionPopUp,
+            AchievementUnlocked
         },
 
         data() {
