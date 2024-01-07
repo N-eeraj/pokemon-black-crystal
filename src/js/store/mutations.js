@@ -1,5 +1,6 @@
 import { encryptAndSave } from '@/js/mixins/common'
 import { moveDamage } from '@/js/mixins/calculations'
+import achievements from '@/assets/data/achievements'
 
 let currentAudio
 
@@ -293,11 +294,46 @@ export default {
     },
 
     updateAchievement(state, { type, item, count }) {
+        const before = state.gameData.achievements[type][item]
         state.gameData.achievements[type][item] += count || 1
-        encryptAndSave()
+        // encryptAndSave()
+        const achievement = achievements
+            .find(({ id }) => id === type)?.achievements
+            .find(({ id }) => id === item)
+        let nextIndex
+        for (let i = 0; i < achievement.required.length; i++) {
+            if (achievement.required[i] > before) {
+                nextIndex = i
+                break
+            }
+        }
+        if (achievement.required[nextIndex] > state.gameData.achievements[type][item]) return
+        const title = achievement.name.replace(/<Count>/gi, Intl.NumberFormat('en-US').format(achievement.required[nextIndex]))
+        const level = (() => {
+            if (achievement.required.length === 1) return 'gold'
+            switch (nextIndex) {
+                case 0:
+                    return 'base'
+                case 1:
+                    return 'bronze'
+                case 2:
+                    return 'silver'
+                case 3:
+                    return 'gold'
+            }
+        })()
+        state.achievementUnlocked = {
+            title,
+            level,
+            badge: achievement.badge
+        }
     },
 
     updateCarnivalEntry(state, eventName = null) {
         state.carnivalEntry = eventName
+    },
+
+    unlockAchievement(state) {
+        state.achievementUnlocked = null
     }
 }
