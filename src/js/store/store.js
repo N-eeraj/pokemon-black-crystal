@@ -15,7 +15,11 @@ export default createStore({
             audio: null,
             battle: null,
             checkEvolution: false,
-            carnivalEntry: null
+            carnivalEntry: null,
+            achievementUnlocked: {
+                show: false,
+                achievemet: null
+            }
         }
     },
     getters,
