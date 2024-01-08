@@ -116,6 +116,7 @@ export default {
         let ownedPokemon = 0
 
         caughtList.forEach((pokemonId, index) => {
+            // check for duplicate pokemonId
             if (caughtList.indexOf(pokemonId) !== index) return
             ++ownedPokemon
             if (pokemonId <= 151)
