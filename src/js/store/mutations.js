@@ -233,8 +233,9 @@ export default {
     },
 
     addCaughtPokemon(state, { pokemon, exp }) {
-        state.gameData.pokemon.caughtList.push(pokemon)
         const pokemonData = state.gameData.pokemon
+        const isOldEntry = pokemonData.caughtList.includes(pokemon)
+        pokemonData.caughtList.push(pokemon)
         pokemonData.caught[pokemonData.encountered.last] = {
             id: pokemon,
             exp: exp,
@@ -250,6 +251,30 @@ export default {
             }
         }
         encryptAndSave()
+        if (isOldEntry) return
+        const achievement = achievements.find(({ id }) => id === 'pokemonOwned').achievements[0]
+        const nextIndex = achievement.required.indexOf(Array.from(new Set(pokemonData.caughtList)).length)
+        if (nextIndex !== -1) {
+            const title = achievement.name.replace(/<Count>/gi, Intl.NumberFormat('en-US').format(achievement.required[nextIndex]))
+            const level = (() => {
+                if (achievement.required.length === 1) return 'gold'
+                switch (nextIndex) {
+                    case 0:
+                        return 'base'
+                    case 1:
+                        return 'bronze'
+                    case 2:
+                        return 'silver'
+                    case 3:
+                        return 'gold'
+                }
+            })()
+            state.achievementUnlocked = {
+                title,
+                level,
+                badge: achievement.badge
+            }
+        }
     },
 
     gainExperience(state, { totalExp, encounterIds }) {
@@ -296,7 +321,7 @@ export default {
     updateAchievement(state, { type, item, count }) {
         const before = state.gameData.achievements[type][item]
         state.gameData.achievements[type][item] += count || 1
-        // encryptAndSave()
+        encryptAndSave()
         const achievement = achievements
             .find(({ id }) => id === type)?.achievements
             .find(({ id }) => id === item)
