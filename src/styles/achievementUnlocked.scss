@@ -1,16 +1,24 @@
+@use "@/styles/mixins/main";
+@use "@/styles/mixins/achievement";
 @use "@/styles/colors/palette";
 
 #achievement-unlocked {
     position: fixed;
     top: 25px;
     left: 5%;
+    @include main.flex($justify: space-evenly);
     width: 90%;
-    height: 75px;
+    height: 100px;
     background-color: palette.$secondary;
     border-radius: 6px;
     border: 1px solid palette.$white;
-    box-shadow: 0 0 5px 3px palette.$white-secondary;
+    color: palette.$white;
+    box-shadow: 0 0 10px 5px rgba(palette.$white-secondary, 0.5);
     z-index: 100;
+
+    .badge {
+        @include achievement.badge(80%);
+    }
 }
 
 .achievement-unlocked-enter-active,
