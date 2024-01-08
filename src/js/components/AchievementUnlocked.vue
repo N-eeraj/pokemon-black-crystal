@@ -1,7 +1,12 @@
 <template>
     <transition name="achievement-unlocked">
         <div v-if="achievementUnlocked" id="achievement-unlocked" @click="viewAchievement">
-            {{ achievementUnlocked }}
+        <img
+            :src="require(`@/assets/images/achievements/${achievementUnlocked.badge}`)"
+            :alt="`${achievementUnlocked.title}-${achievementUnlocked.level}`"
+            class="badge"
+            :class="achievementUnlocked.level" />
+            {{ achievementUnlocked.title }}
         </div>
     </transition>
 </template>

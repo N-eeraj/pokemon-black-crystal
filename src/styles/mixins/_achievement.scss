@@ -1,0 +1,17 @@
+@mixin badge($height) {
+  height: $height;
+  aspect-ratio: 1;
+  
+  &.base {
+      filter: contrast(0);
+  }
+  &.bronze {
+      filter: sepia(1) hue-rotate(330deg) brightness(0.75) saturate(3);
+  }
+  &.silver {
+      filter: grayscale(1) brightness(1.6);
+  }
+  &.gold {
+      filter: sepia(1) brightness(1.25) saturate(3);
+  }
+}
