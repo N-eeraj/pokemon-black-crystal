@@ -18,7 +18,7 @@
         name: 'achievement-unlocked',
 
         computed: {
-            ...mapGetters([,
+            ...mapGetters([
                 'achievementUnlocked'
             ])
         },

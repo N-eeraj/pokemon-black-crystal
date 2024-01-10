@@ -31,7 +31,7 @@ export default {
             resume = false
         })
     },
-    
+
     saveGameData(state, data) {
         state.gameData = data
         encryptAndSave()
@@ -252,12 +252,15 @@ export default {
         }
         encryptAndSave()
         if (isOldEntry) return
-        const achievement = achievements.find(({ id }) => id === 'pokemonOwned').achievements[0]
-        const nextIndex = achievement.required.indexOf(Array.from(new Set(pokemonData.caughtList)).length)
+        const ownedAchievement = achievements.find(({ id }) => id === 'pokemonOwned').achievements[0]
+        const distinctCaughtList = Array.from(new Set(pokemonData.caughtList))
+        const nextIndex = ownedAchievement.required
+            .indexOf(distinctCaughtList.length)
         if (nextIndex !== -1) {
-            const title = achievement.name.replace(/<Count>/gi, Intl.NumberFormat('en-US').format(achievement.required[nextIndex]))
+            const title = ownedAchievement.name
+                .replace(/<Count>/gi, Intl.NumberFormat('en-US')
+                .format(ownedAchievement.required[nextIndex]))
             const level = (() => {
-                if (achievement.required.length === 1) return 'gold'
                 switch (nextIndex) {
                     case 0:
                         return 'base'
@@ -272,8 +275,41 @@ export default {
             state.achievementUnlocked = {
                 title,
                 level,
-                badge: achievement.badge
+                badge: ownedAchievement.badge
             }
+        }
+
+        let region
+        if (pokemon <= 151)
+            region = 'kanto'
+        else if (pokemon <= 251)
+            region = 'johto'
+        else
+            region = 'hoenn'
+        const regionAchievement = achievements
+            .find(({ id }) => id === 'region')?.achievements
+            .find(({ id }) => id === region)
+        const requiredCount = regionAchievement.required[0]
+        if (requiredCount === distinctCaughtList.filter(id => {
+            switch (region) {
+                case 'kanto':
+                    return id <= 151
+                case 'johto':
+                    return id > 151 && id <= 251
+                default:
+                    return id > 251
+            }
+        }).length) {
+            setTimeout(() => {
+                const title = regionAchievement.name
+                    .replace(/<Count>/gi, Intl.NumberFormat('en-US')
+                    .format(requiredCount))
+                state.achievementUnlocked = {
+                    title,
+                    level: 'gold',
+                    badge: regionAchievement.badge
+                }
+            }, 3000)
         }
     },
 
@@ -333,7 +369,9 @@ export default {
             }
         }
         if (achievement.required[nextIndex] > state.gameData.achievements[type][item]) return
-        const title = achievement.name.replace(/<Count>/gi, Intl.NumberFormat('en-US').format(achievement.required[nextIndex]))
+        const title = achievement.name
+            .replace(/<Count>/gi, Intl.NumberFormat('en-US')
+            .format(achievement.required[nextIndex]))
         const level = (() => {
             if (achievement.required.length === 1) return 'gold'
             switch (nextIndex) {
