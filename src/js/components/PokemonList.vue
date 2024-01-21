@@ -11,7 +11,7 @@
 
         <slot />
 
-        <div id="pokemon_list">
+        <div ref="pokemonList" id="pokemon_list">
             <pokemon-card
                 v-for="(pokemon, index) in list"
                 :pokemon="pokemon"
@@ -28,6 +28,8 @@
 
     import NavigationBar from '@/js/components/UI/NavigationBar.vue'
     import PokemonCard from '@/js/components/PokemonCard.vue'
+
+    import autoAnimate from '@formkit/auto-animate'
 
     export default {
         name: 'pokemon-list',
@@ -67,7 +69,14 @@
             }
         },
 
+        data() {
+            return {
+                pokemonList: null
+            }
+        },
+
         mounted() {
+            autoAnimate(this.$refs.pokemonList)
             if (this.closable)
                 this.$router.push({ hash: '#pokemon'})
         },

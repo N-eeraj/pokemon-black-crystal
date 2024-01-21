@@ -33,6 +33,7 @@
 
             <div
                 v-if="pokedex.length"
+                ref="listRef"
                 class="pokemon-list"
                 @scroll="handleScroll">
 
@@ -159,6 +160,7 @@
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
 
     import { mapGetters, mapActions } from 'vuex'
+    import autoAnimate from '@formkit/auto-animate'
 
     export default {
         name: 'pokedex-view',
@@ -198,7 +200,8 @@
                     }
                 ],
                 loading: true,
-                limit: 10
+                limit: 10,
+                listRef: null
             }
         },
 
@@ -233,6 +236,12 @@
                     this.loading = false
             })
             this.pokedex = this.originalPokedex
+        },
+
+        mounted() {
+            setTimeout(() => {
+                autoAnimate(this.$refs.listRef)
+            }, 400)
         },
 
         methods: {
