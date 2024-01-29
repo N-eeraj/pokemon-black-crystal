@@ -1,3 +1,11 @@
 @use "@/styles/mixins/main";
 @use "@/styles/colors/palette";
 
+#settings {
+	@include main.full-screen;
+	@include main.flex($direction: column, $justify: flex-start, $row: max(5vh, 50px));
+
+	.options {
+		@include main.flex($direction: column);
+	}
+}

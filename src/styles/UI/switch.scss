@@ -1,0 +1,36 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+label {
+	position: relative;
+	display: inline-block;
+	height: 32px;
+	aspect-ratio: 2;
+	background-color: palette.$secondary;
+	border-radius: 20px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 10%;
+		height: 80%;
+		aspect-ratio: 1;
+		background-color: palette.$white;
+		border-radius: 50%;
+		transform: translateY(-50%);
+		transition: 400ms;
+	}
+
+	&.active {
+		background-color: palette.$accent;
+
+		&::after {
+			left: 50%;
+		}
+	}
+
+	input {
+		display: none;
+	}
+}
