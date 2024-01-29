@@ -49,7 +49,8 @@ export default {
 
     toggleSound(state) {
         state.gameData.sound = !state.gameData.sound
-        currentAudio.muted = !state.gameData.sound
+        if (currentAudio)
+            currentAudio.muted = !state.gameData.sound
         encryptAndSave()
     },
 

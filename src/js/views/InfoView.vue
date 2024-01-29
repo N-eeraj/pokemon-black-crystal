@@ -85,7 +85,7 @@
     },
 
     created() {
-        this.updateAudio('info.mp3')
+        this.updateAudio('settings-info.mp3')
         this.pageData = info
     },
 
