@@ -5,10 +5,10 @@
             id="main_menu">
             <header class="menu-header">
                 <img
-                    :src="soundImage"
+                    src="@/assets/icons/settings.svg"
                     alt="Sound Toggle"
                     class="icon"
-                    @click="toggleSound" />
+                    @click="$router.push('/settings')" />
 
                 <div class="player-coins">
                     <img
@@ -68,7 +68,7 @@
 
 <script>
 
-    import { mapGetters, mapActions } from 'vuex'
+    import { mapGetters } from 'vuex'
 
     export default {
         name: 'main-menu',
@@ -119,21 +119,10 @@
         },
 
         computed: {
-            soundImage() {
-                return require(`@/assets/icons/sound-${ this.soundStatus ? 'on': 'off' }.svg`)
-            },
-
             ...mapGetters([
-                'soundStatus',
                 'playerCoins'
             ])
         },
-
-        methods: {
-            ...mapActions([
-                'toggleSound'
-            ])
-        }
     }
 </script>
 
