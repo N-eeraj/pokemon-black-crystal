@@ -4,6 +4,7 @@ import PokemonDetails from '@/js/views/PokemonDetails.vue'
 import ShopView from '@/js/views/items/ShopView.vue'
 import BagView from '@/js/views/items/BagView.vue'
 import InfoView from '@/js/views/InfoView.vue'
+import SettingsView from '@/js/views/SettingsView.vue'
 
 import home from '@/js/router/routes/home'
 import modes from '@/js/router/routes/modes'
@@ -38,6 +39,14 @@ export const routes = [
         component: BagView,
         meta: {
             title: 'Bag'
+        }
+    },
+    {
+        path: '/settings',
+        name: 'SettingsView',
+        component: SettingsView,
+        meta: {
+            title: 'Settings'
         }
     },
     {
