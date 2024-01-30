@@ -100,9 +100,12 @@
 
             fullScreenStatus(to) {
                 if (this.showSplashScreen) return
-                if (to)
-                    document.getElementById('app').requestFullscreen()
-                else
+                if (to) return document.getElementById('app').requestFullscreen()
+                if (
+                    document.fullscreenElement ||
+                    document.mozFullScreenElement ||
+                    document.webkitFullscreenElement
+                )
                     document.exitFullscreen()
             }
         },
@@ -111,6 +114,7 @@
             setInterval(() => {
                 this.updateOfflineStats()
             }, 10000)
+            this.handleFullScreenChange()
         },
 
         methods: {
@@ -156,10 +160,28 @@
                 this.evolutionReadyPokemon = []
             },
 
+            handleFullScreenChange() {
+                const eventHandler = () => {
+                    const notFullScreen = !(
+                        document.fullscreenElement ||
+                        document.mozFullScreenElement ||
+                        document.webkitFullscreenElement
+                    )
+                    if (this.fullScreenStatus === notFullScreen)
+                        this.toggleFullScreen()
+                }
+
+                document.addEventListener('fullscreenchange', eventHandler)
+                document.addEventListener('mozfullscreenchange', eventHandler)
+                document.addEventListener('MSFullscreenChange', eventHandler)
+                document.addEventListener('webkitfullscreenchange', eventHandler)
+            },
+
             ...mapActions([
                 'updateOfflineStats',
                 'toggleEvolutionCheck',
-                'getPokemonById'
+                'getPokemonById',
+                'toggleFullScreen'
             ])
         }
     }
