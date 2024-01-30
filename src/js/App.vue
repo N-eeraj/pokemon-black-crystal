@@ -81,7 +81,8 @@
                 'isOffline',
                 'checkEvolution',
                 'partyPokemon',
-                'getCaughtPokemon'
+                'getCaughtPokemon',
+                'fullScreenStatus'
             ])
         },
 
@@ -95,6 +96,14 @@
                 if (!to) return
                 this.toggleEvolutionCheck()
                 this.checkProgressiveEvolutions()
+            },
+
+            fullScreenStatus(to) {
+                if (this.showSplashScreen) return
+                if (to)
+                    document.getElementById('app').requestFullscreen()
+                else
+                    document.exitFullscreen()
             }
         },
 
@@ -107,6 +116,8 @@
         methods: {
             startGame() {
                 this.showSplashScreen = false
+                if (this.fullScreenStatus)
+                    document.getElementById('app').requestFullscreen()
             },
 
             checkProgressiveEvolutions() {

@@ -47,7 +47,7 @@ export default {
     },
 
     fullScreenStatus(state) {
-        return state.gameData.settings.fullScreen
+        return state.gameData?.settings?.fullScreen
     },
 
     playerCoins(state) {

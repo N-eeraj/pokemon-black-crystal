@@ -59,7 +59,9 @@
         methods: {
             ...mapActions([
                 'updateAudio',
-                'toggleSound'
+                'toggleSound',
+                'toggleVibrations',
+                'toggleFullScreen'
             ])
         }
     }
