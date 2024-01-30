@@ -119,7 +119,8 @@
                 'playerInfo',
                 'partyPokemon',
                 'getCaughtPokemon',
-                'lastEncountered'
+                'lastEncountered',
+                'vibrationsStatus'
             ])
         },
 
@@ -236,6 +237,8 @@
                 switch (type) {
                     case 'connection':
                         this.connected = true
+                        if (this.vibrationsStatus)
+                            navigator.vibrate(1000)
                         break
                     case 'message':
                         this.handleMessage(message, false)
@@ -312,6 +315,8 @@
                     item: 'trade'
                 });
                 [ this.tradePokemon.client, this.tradePokemon.peer ] = [ this.tradePokemon.peer, this.tradePokemon.client ]
+                if (this.vibrationsStatus)
+                    navigator.vibrate(800)
                 setTimeout(() => {
                     this.checkTradeEvolution(peerPokemonDetails)
                     this.disconnectPopUp.text = 'Completed trade.'                    

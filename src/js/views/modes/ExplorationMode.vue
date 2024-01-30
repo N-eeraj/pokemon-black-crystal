@@ -84,7 +84,8 @@
             ...mapGetters([
                 'partyPokemonData',
                 'getCaughtPokemon',
-                'strongestPokemon'
+                'strongestPokemon',
+                'vibrationsStatus'
             ])
         },
 
@@ -126,8 +127,10 @@
                     this.setWildPokemon(legendaryPokemon.id, exp)
                     return
                 }
-                this.isLoading = false
-                this.legendaryNotFound = true
+                setTimeout(() => {
+                    this.isLoading = false
+                    this.legendaryNotFound = true
+                }, 1500)
             },
 
             setWildPokemon(pokemon, exp) {
@@ -135,6 +138,8 @@
                     pokemon,
                     exp
                 }
+                if (this.vibrationsStatus)
+                    navigator.vibrate(500)
                 this.isLoading = false
                 this.encounterNewPokemon()
             },

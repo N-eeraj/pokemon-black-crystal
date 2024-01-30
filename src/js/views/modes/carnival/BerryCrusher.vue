@@ -83,7 +83,8 @@
             },
 
             ...mapGetters([
-                'currentCarnivalEntry'
+                'currentCarnivalEntry',
+                'vibrationsStatus'
             ])
         },
 
@@ -132,8 +133,11 @@
                     this.updatePoints(2)
                 else if (currentAngle > 170 && currentAngle < 190)
                     this.updatePoints(1)
-                else
+                else {
+                    if (this.vibrationsStatus)
+                        navigator.vibrate(500)
                     this.updatePoints(0)
+                }
             },
 
             gameOver() {

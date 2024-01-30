@@ -52,7 +52,7 @@
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
     import CarnivalEventPopUp from '@/js/components/pop-up/CarnivalEventPopUp.vue'
 
-    import { mapActions } from 'vuex'
+    import { mapActions, mapGetters } from 'vuex'
 
     import { getInRange } from '@/js/mixins/randomGenerator'
 
@@ -80,6 +80,10 @@
                     count: 0
                 }
             }
+        },
+
+        computed: {
+            ...mapGetters(['vibrationsStatus'])
         },
 
         async created() {
@@ -121,8 +125,11 @@
                         item: 'whosThatPokemon'
                     })
                 }
-                else
+                else {
+                    if (this.vibrationsStatus)
+                        navigator.vibrate(500)
                     this.popUp.text = 'Better luck next time'
+                }
                 this.handleComplete()
             },
 
