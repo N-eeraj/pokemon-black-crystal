@@ -16,12 +16,12 @@ export default {
             currentAudio.pause()
         currentAudio = new Audio(audioFile)
         if (state.gameData)
-            currentAudio.muted = !state.gameData.sound
+            currentAudio.muted = !state.gameData.settings.sound
         currentAudio.loop = true
         currentAudio.play()
         let resume = false
         window.addEventListener('blur', () => {
-            if (state.gameData && !state.gameData.sound) return
+            if (state.gameData && !state.gameData.settings.sound) return
             currentAudio.pause()
             resume = true
         })
@@ -48,9 +48,19 @@ export default {
     },
 
     toggleSound(state) {
-        state.gameData.sound = !state.gameData.sound
+        state.gameData.settings.sound = !state.gameData.settings.sound
         if (currentAudio)
-            currentAudio.muted = !state.gameData.sound
+            currentAudio.muted = !state.gameData.settings.sound
+        encryptAndSave()
+    },
+
+    toggleVibrations(state) {
+        state.gameData.settings.vibrations = !state.gameData.settings.vibrations
+        encryptAndSave()
+    },
+
+    toggleFullScreen(state) {
+        state.gameData.settings.fullScreen = !state.gameData.settings.fullScreen
         encryptAndSave()
     },
 

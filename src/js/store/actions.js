@@ -174,7 +174,7 @@ export default {
     reArrangePartyPokemon({ commit }, data) {
         commit('reArrangePartyPokemon', data)
     },
-    
+
     switchBattlePokemon({ commit }, data) {
         commit('switchBattlePokemon', data)
     },
@@ -182,17 +182,25 @@ export default {
     useMoveBattleDataUpdate({ commit }, data) {
         if (data.moveData) commit('useMoveBattleDataUpdate', data)
     },
-    
+
     pokemonFaintedBattleDataUpdate({ commit }, data) {
         commit('pokemonFaintedBattleDataUpdate', data)
     },
-    
+
     savePlayerInfo({ commit }, playerInfo) {
         commit('savePlayerInfo', playerInfo)
     },
-    
+
     toggleSound({ commit }) {
         commit('toggleSound')
+    },
+
+    toggleVibrations({ commit }) {
+        commit('toggleVibrations')
+    },
+
+    toggleFullScreen({ commit }) {
+        commit('toggleFullScreen')
     },
 
     rearrangePlayerPokemon({ commit }, data) {
