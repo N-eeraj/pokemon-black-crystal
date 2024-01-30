@@ -108,7 +108,8 @@
             ...mapGetters([
                 'playerInfo',
                 'partyPokemon',
-                'getCaughtPokemon'
+                'getCaughtPokemon',
+                'vibrationsStatus'
             ])
         },
 
@@ -204,6 +205,8 @@
                 switch (type) {
                     case 'connection':
                         this.connected = true
+                        if (this.vibrationsStatus)
+                            navigator.vibrate(1000)
                         this.party.peer = party
                         break
                     case 'attack':

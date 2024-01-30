@@ -68,7 +68,8 @@
 
         computed: {
             ...mapGetters([
-                'currentCarnivalEntry'
+                'currentCarnivalEntry',
+                'vibrationsStatus'
             ])
         },
 
@@ -98,8 +99,11 @@
                         item: 'findingDitto'
                     })
                 }
-                else
+                else {
+                    if (this.vibrationsStatus)
+                        navigator.vibrate(500)
                     this.popUp.text = 'Better luck next time'
+                }
                 setTimeout(() => {
                     this.popUp.show = true
                 }, 1000)

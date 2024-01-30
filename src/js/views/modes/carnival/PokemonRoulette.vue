@@ -135,7 +135,8 @@
             },
 
             ...mapGetters([
-                'playerCoins'
+                'playerCoins',
+                'vibrationsStatus'
             ])
         },
 
@@ -216,8 +217,11 @@
                             count: this.coins
                         })
                     }
-                    else
+                    else {
+                        if (this.vibrationsStatus)
+                            navigator.vibrate(500)
                         this.popUp.text = 'Better luck next time'
+                    }
                     this.popUp.show = true
                 }, 11500)
             },
