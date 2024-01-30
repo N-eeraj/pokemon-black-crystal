@@ -113,7 +113,11 @@
 			"name": null,
 			"avatar": 0
 		},
-		"sound":true,
+		"settings": {
+			"sound": true,
+			"vibrations": true,
+			"fullScreen": true
+		},
 		"pokemon": {
 			"encountered": [],
 			"caught": {},

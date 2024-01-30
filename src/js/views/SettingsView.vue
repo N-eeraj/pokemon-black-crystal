@@ -13,6 +13,18 @@
                     </span>
                     <toggle-switch v-model="soundStatus" @change="toggleSound" />
                 </label>
+                <label>
+                    <span>
+                        Vibrations
+                    </span>
+                    <toggle-switch v-model="vibrationsStatus" @change="toggleVibrations" />
+                </label>
+                <label>
+                    <span>
+                        Full Screen
+                    </span>
+                    <toggle-switch v-model="fullScreenStatus" @change="toggleFullScreen" />
+                </label>
             </div>
         </div>
     </div>
@@ -33,11 +45,20 @@
         },
 
         computed: {
-            ...mapGetters(['soundStatus'])
+            ...mapGetters([
+                'soundStatus',
+                'vibrationsStatus',
+                'fullScreenStatus'
+            ])
+        },
+
+        created() {
+            this.updateAudio('settings-info.mp3')
         },
 
         methods: {
             ...mapActions([
+                'updateAudio',
                 'toggleSound'
             ])
         }

@@ -39,7 +39,15 @@ export default {
     },
 
     soundStatus(state) {
-        return state.gameData.sound
+        return state.gameData.settings.sound
+    },
+
+    vibrationsStatus(state) {
+        return state.gameData.settings.vibrations
+    },
+
+    fullScreenStatus(state) {
+        return state.gameData.settings.fullScreen
     },
 
     playerCoins(state) {
