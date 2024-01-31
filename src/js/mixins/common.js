@@ -25,6 +25,8 @@ export const toTitleCase = text => text
     .map(word => word[0].toUpperCase() + word.slice(1))
     .join(' ')
 
+export const numberFormat = number => Intl.NumberFormat().format(number)
+
 export const deepCopy = value => {
     return { ...value }
 }

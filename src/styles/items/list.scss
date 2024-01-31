@@ -37,10 +37,11 @@
                 position: absolute;
                 left: 0;
                 bottom: 0;
-                padding: 3px;
+                padding: 0px 3px;
                 background-color: palette.$accent;
                 color: palette.$primary;
                 border-radius: 10px;
+                font-size: 0.8rem;
             }
         }
     }

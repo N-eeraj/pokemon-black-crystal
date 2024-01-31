@@ -8,6 +8,7 @@ label {
 	aspect-ratio: 2;
 	background-color: palette.$secondary;
 	border-radius: 20px;
+	cursor: pointer;
 
 	&::after {
 		content: '';

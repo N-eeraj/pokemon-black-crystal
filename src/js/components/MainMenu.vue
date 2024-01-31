@@ -14,7 +14,7 @@
                     <img
                         src="@/assets/images/coin.svg"
                         alt="PokeCoin" />
-                    {{ playerCoins }}
+                    {{ $filters.numberFormat(playerCoins) }}
                 </div>
 
                 <img

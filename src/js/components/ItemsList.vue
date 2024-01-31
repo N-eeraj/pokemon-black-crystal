@@ -27,8 +27,8 @@
                     </span>
                 </div>
 
-                <div class="item-count">
-                    {{ item.count }}
+            <div class="item-count">
+                    {{ $filters.numberFormat(item.count) }}
                 </div>
 
             </div>

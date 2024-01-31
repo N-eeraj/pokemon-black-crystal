@@ -25,7 +25,7 @@
                             alt="Coins"
                             class="coin-icon" />
                         <span>
-                            {{ item.price }}
+                            {{ $filters.numberFormat(item.price) }}
                         </span>
                     </div>
 
