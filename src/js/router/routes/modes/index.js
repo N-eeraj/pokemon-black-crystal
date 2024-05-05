@@ -1,5 +1,6 @@
 import StoryMode from '@/js/views/modes/StoryMode.vue'
-import ExplorationMode from '@/js/views/modes/ExplorationMode.vue'
+import ExplorationMode from '@/js/views/modes/exploration/index.vue'
+import SafariZone from '@/js/views/modes/exploration/SafariZone.vue'
 import PVPMode from '@/js/views/modes/PVPMode.vue'
 import TradeMode from '@/js/views/modes/TradeMode.vue'
 
@@ -21,6 +22,14 @@ export default [
         component: ExplorationMode,
         meta: {
             title: 'Exploration Mode'
+        }
+    },
+    {
+        path: '/mode/exploration/safari-zone',
+        name: 'SafariZone',
+        component: SafariZone,
+        meta: {
+            title: 'Safari Zone'
         }
     },
     ...arcade,

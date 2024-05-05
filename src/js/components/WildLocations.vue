@@ -15,6 +15,12 @@
                     @click="$emit('selectedLocation', location.title)" />
 
                 <banner-card
+                    image="images/wild/safari-zone.png"
+                    title="Safari Zone"
+                    overlay="linear-gradient(270deg, #0000, #0007)"
+                    @click="$emit('safariZone')" />
+
+                <banner-card
                     image="images/wild/legendary.png"
                     title="Legendary Hunt"
                     overlay="linear-gradient(270deg, #7080, #708)"
