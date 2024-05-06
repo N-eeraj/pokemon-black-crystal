@@ -403,6 +403,10 @@ export default {
         }
     },
 
+    updateSafariZoneEntry(state, status) {
+        state.safariZoneTicket = status
+    },
+
     updateCarnivalEntry(state, eventName = null) {
         state.carnivalEntry = eventName
     },

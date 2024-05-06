@@ -12,7 +12,6 @@ const migration_v_2_2_3 = (version) => {
         vibrations: true,
         fullScreen: true
     }
-    console.log(gameData)
     setStorage(appName, window.btoa(JSON.stringify(gameData)))
 }
 

@@ -53,7 +53,7 @@
                     #actions>
                     <button
                         class="confirm"
-                        @click="$router.push('/mode/exploration/safari-zone')">
+                        @click="enterSafariZone">
                         Continue
                     </button>
                 </template>
@@ -166,6 +166,12 @@
                 this.setWildPokemon(encounteredPokemon.id, exp)
             },
 
+            enterSafariZone() {
+                this.updatePlayerCoins(-500)
+                this.updateSafariZoneEntry(true)
+                this.$router.push('/mode/exploration/safari-zone')
+            },
+
             closeSafariZoneConfirmation() {
                 if (this.$route.hash)
                     this.$router.back()
@@ -230,7 +236,9 @@
                 'getLegendaryPokemon',
                 'addCaughtPokemon',
                 'setBattleData',
-                'encounterNewPokemon'
+                'encounterNewPokemon',
+                'updatePlayerCoins',
+                'updateSafariZoneEntry'
             ])
         }
     }

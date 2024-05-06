@@ -15,6 +15,7 @@ export default createStore({
             audio: null,
             battle: null,
             checkEvolution: false,
+            safariZoneTicket: false,
             carnivalEntry: null,
             achievementUnlocked: null
         }
