@@ -326,6 +326,10 @@ export default {
         commit('updateAchievement', data)
     },
 
+    updateSafariZoneEntry({ commit }, status) {
+        commit('updateSafariZoneEntry', status)
+    },
+
     async getCarnivalPokemon({ getters }, count) {
         const randomPokemon = []
         for (let i=0; i<count; i++) {
