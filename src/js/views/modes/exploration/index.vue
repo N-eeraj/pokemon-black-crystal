@@ -245,4 +245,4 @@
 
 </script>
 
-<style lang="scss" src="@/styles/modes/expolration.scss"></style>
+<style lang="scss" src="@/styles/modes/expolration/main.scss"></style>

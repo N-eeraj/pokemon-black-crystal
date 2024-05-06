@@ -1,0 +1,28 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+.button-group {
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  @include main.flex($wrap: wrap, $row: 5px, $col: 5px);
+  transform: translateX(-50%);
+  width: min(200px, 50%);
+
+  > * {
+    width: 26%;
+    aspect-ratio: 1;
+  }
+
+  button {
+    display: grid;
+    place-items: center;
+    background-color: rgba(palette.$white-secondary, 0.5);
+    color: palette.$white;
+    border: 1px solid palette.$white;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+}
