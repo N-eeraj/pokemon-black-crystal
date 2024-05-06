@@ -1,0 +1,25 @@
+@use "@/styles/mixins/main";
+@use "@/styles/colors/palette";
+
+#exploration {
+
+  .pop-up-wrapper .pop-up-card .body-container {
+    @include main.flex($direction: column, $row: 20px);
+    
+    .entry-fee {
+      @include main.flex($col: 20px);
+      
+      .icon {
+        width: 42px;
+      }
+      
+      .count {
+        font-size: 1.25rem;
+      }
+    }
+    
+    .message {
+      font-size: 0.75rem;
+    }
+  }
+}
