@@ -3,7 +3,7 @@
 
 .button-group {
   position: fixed;
-  bottom: 5%;
+  bottom: min(5%, 10px);
   left: 50%;
   @include main.flex($wrap: wrap, $row: 5px, $col: 5px);
   transform: translateX(-50%);
@@ -25,4 +25,8 @@
     -ms-user-select: none;
     user-select: none;
   }
+}
+
+.sprites {
+  display: none;
 }
