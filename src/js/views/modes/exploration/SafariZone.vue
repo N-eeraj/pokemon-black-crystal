@@ -1,45 +1,64 @@
 <template>
     <div>
-        <canvas ref="canvasElement" />
+        <common-loader v-if="loading" />
 
-        <div class="button-group">
-            <div />
-            <button
-                :disabled="player.direction && player.direction !== 'up'"
-                @mousedown="player.direction = 'up'"
-                @touchstart="player.direction = 'up'"
-                @mouseup="player.direction = null"
-                @touchend="player.direction = null">
-                &uarr;
-            </button>
-            <div />
-            <button
-                :disabled="player.direction && player.direction !== 'left'"
-                @mousedown="player.direction = 'left'"
-                @touchstart="player.direction = 'left'"
-                @mouseup="player.direction = null"
-                @touchend="player.direction = null">
-                &larr;
-            </button>
-            <button
-                :disabled="player.direction && player.direction !== 'down'"
-                @mousedown="player.direction = 'down'"
-                @touchstart="player.direction = 'down'"
-                @mouseup="player.direction = null"
-                @touchend="player.direction = null">
-                &darr;
-            </button>
-            <button
-                :disabled="player.direction && player.direction !== 'right'"
-                @mousedown="player.direction = 'right'"
-                @touchstart="player.direction = 'right'"
-                @mouseup="player.direction = null"
-                @touchend="player.direction = null">
-                &rarr;
-            </button>
+        <div v-else>
+            <canvas ref="canvasElement" />
+
+            <div class="button-group">
+                <div />
+                <button
+                    :disabled="player.direction && player.direction !== 'up'"
+                    @mousedown="player.direction = 'up'"
+                    @touchstart="player.direction = 'up'"
+                    @mouseup="resetPlayerDirection"
+                    @touchend="resetPlayerDirection">
+                    &uarr;
+                </button>
+                <div />
+                <button
+                    :disabled="player.direction && player.direction !== 'left'"
+                    @mousedown="player.direction = 'left'"
+                    @touchstart="player.direction = 'left'"
+                    @mouseup="resetPlayerDirection"
+                    @touchend="resetPlayerDirection">
+                    &larr;
+                </button>
+                <button
+                    :disabled="player.direction && player.direction !== 'down'"
+                    @mousedown="player.direction = 'down'"
+                    @touchstart="player.direction = 'down'"
+                    @mouseup="resetPlayerDirection"
+                    @touchend="resetPlayerDirection">
+                    &darr;
+                </button>
+                <button
+                    :disabled="player.direction && player.direction !== 'right'"
+                    @mousedown="player.direction = 'right'"
+                    @touchstart="player.direction = 'right'"
+                    @mouseup="resetPlayerDirection"
+                    @touchend="resetPlayerDirection">
+                    &rarr;
+                </button>
+            </div>
         </div>
 
+
+        <battle-scene
+            v-if="game.pokemon"
+            :player-party="partyPokemonData"
+            :foe-party="[game.pokemon]"
+            save-battle
+            can-catch
+            can-escape
+            @escape="game.pokemon = null"
+            @caught-pokemon="handleCaughtPokemon"
+            @game-over="game.pokemon = null" />
+
         <div class="sprites">
+            <img
+                ref="playerImage"
+                :src="playerSprite" />
             <img
                 ref="tallGrassImage"
                 src="@/assets/images/safari-zone/tall-grass.png" />
@@ -48,36 +67,77 @@
 </template>
 
 <script>
-    import { mapState } from 'vuex'
+    import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
+    import BattleScene from '@/js/components/battle/scene/BattleScene.vue'
+
+    import { mapState, mapGetters, mapActions } from 'vuex'
+
+    import { getInRange } from '@/js/mixins/randomGenerator'
+    import { clamp } from '@/js/mixins/common'
 
     export default {
         name: 'safari-zone',
 
+        components: {
+            CommonLoader,
+            BattleScene
+        },
+
         data() {
             return {
+                loading: false,
+                pokemon: null,
                 canvasElement: null,
                 ctx: null,
                 game: {
                     size: null,
                     tile: 0,
-                    pokemon: null
+                    pokemon: null,
+                    over: false
                 },
                 player: {
                     position: {
                         x: 0,
                         y: 0,
                     },
+                    frame: {
+                        x: 0,
+                        y: 0,
+                    },
+                    size: {
+                        x: 36,
+                        y: 52
+                    },
                     direction: null
                 },
                 tallGrasses: [],
-                tallGrassImage: null
+                playerImage: null,
+                tallGrassImage: null,
+                debug: true
             }
         },
 
         computed: {
+            playerSprite() {
+                return require(`@/assets/images/safari-zone/${this.playerInfo.avatar < 2 ? 'red' : 'leaf'}-sprite.svg`)
+            },
+
             ...mapState([
                 'safariZoneTicket'
+            ]),
+            ...mapGetters([
+                'partyPokemonData',
+                'strongestPokemon',
+                'playerInfo'
             ])
+        },
+
+        watch: {
+            'game.pokemon'(pokemon) {
+                if (pokemon) return
+                if (this.tallGrasses.every(({ pokemon }) => !pokemon))
+                    this.game.over = true
+            }
         },
 
         created() {
@@ -87,29 +147,31 @@
         },
 
         mounted() {
-            const canvas = this.$refs.canvasElement
-            const { clientWidth, clientHeight } = document.getElementById('main')
-            this.game.size = {
-                width: clientWidth,
-                height: clientHeight
-            }
-            canvas.width = clientWidth
-            canvas.height = clientHeight
-            this.ctx = canvas.getContext('2d')
-            this.initZone()
-
-            const animate = () => {
-                this.draw()
-                if (!this.game.pokemon)
-                    requestAnimationFrame(animate)
-            }
-
-            animate()
-            document.addEventListener('keydown', this.handleKeyboard)
-            document.addEventListener('keyup', () => this.player.direction = null)
+            this.getPokemon()
         },
 
         methods: {
+            async getPokemon() {
+                this.loading = true
+                const pokemonList = await this.getRandomPokemon({
+                    count: 10,
+                    includeLegendary: false
+                })
+
+                const strongestPokemonExp = getInRange(this.strongestPokemon.exp * 0.2, this.strongestPokemon.exp * 0.6)
+                
+                this.pokemon = pokemonList.map(pokemon => {
+                    const minExp = pokemon.getExpByLevel(3)
+                    const maxExp = pokemon.getExpByLevel(50)
+                    return {
+                        pokemon: pokemon.id,
+                        exp: clamp(minExp, strongestPokemonExp, maxExp)
+                    }
+                })
+                this.loading = false
+                this.$nextTick(this.initZone)
+            },
+
             grassIntersection(x, y) {
                 let grassLeft = x * this.game.tile
                 let grassRight = (x + 1) * this.game.tile
@@ -121,6 +183,31 @@
             },
 
             initZone() {
+                const canvas = this.$refs.canvasElement
+                const { clientWidth, clientHeight } = document.getElementById('main')
+                this.game.size = {
+                    width: clientWidth,
+                    height: clientHeight
+                }
+                canvas.width = clientWidth
+                canvas.height = clientHeight
+                this.ctx = canvas.getContext('2d')
+
+                let lastTime = 0
+                const animate = (timestamp) => {
+                    let deltaTime = timestamp - lastTime
+                    if (deltaTime > 45) {
+                        lastTime = timestamp
+                        if (!this.game.pokemon)
+                            this.draw()
+                    }
+                    requestAnimationFrame(animate)
+                }
+
+                animate(0)
+                document.addEventListener('keydown', this.handleKeyboard)
+                document.addEventListener('keyup', this.resetPlayerDirection)
+
                 this.game.tile = this.game.size.width / 8
                 this.player.position.x = (this.game.size.width - this.game.tile) / 2
                 this.player.position.y = (this.game.size.height - this.game.tile) / 2
@@ -140,10 +227,11 @@
                     }
                     const [ x, y ] = setGrassPosition()
 
+                    const pokemon = Math.random() > 0.8 && this.pokemon.length ? this.pokemon.splice(Math.floor(Math.random() * this.pokemon.length), 1)[0] : null
                     this.tallGrasses.push({
                         x,
                         y,
-                        pokemon: Math.random() > 0.8 ? 2 : null,
+                        pokemon,
                     })
                 }
             },
@@ -169,21 +257,35 @@
                 }
             },
 
+            resetPlayerDirection() {
+                this.player.direction = null
+            },
+
             drawPlayer() {
                 switch (this.player.direction) {
                     case 'up':
-                        this.player.position.y -= 3
+                        this.player.position.y -= 5
+                        this.player.frame.x++
+                        this.player.frame.y = 3
                         break
                     case 'left':
-                        this.player.position.x -= 3
+                        this.player.position.x -= 5
+                        this.player.frame.x++
+                        this.player.frame.y = 1
                         break
                     case 'down':
-                        this.player.position.y += 3
+                        this.player.position.y += 5
+                        this.player.frame.x++
+                        this.player.frame.y = 0
                         break
                     case 'right':
-                        this.player.position.x += 3
+                        this.player.position.x += 5
+                        this.player.frame.x++
+                        this.player.frame.y = 2
                         break
                 }
+                if (this.player.frame.x === 4 || !this.player.direction)
+                    this.player.frame.x = 0
                 if (this.player.position.y < 10)
                     this.player.position.y = 10
                 else if (this.player.position.y + this.game.tile > this.game.size.height - 10)
@@ -192,18 +294,29 @@
                     this.player.position.x = 10
                 else if (this.player.position.x + this.game.tile > this.game.size.width - 10)
                     this.player.position.x = this.game.size.width - this.game.tile - 10
-                this.ctx.fillStyle = 'black'
-                this.ctx.fillRect(this.player.position.x, this.player.position.y, this.game.tile, this.game.tile)
+                this.ctx.drawImage(this.$refs.playerImage, this.player.frame.x * this.player.size.x, this.player.frame.y * this.player.size.y, this.player.size.x, this.player.size.y, this.player.position.x, this.player.position.y, this.player.size.x, this.player.size.y)
+
+                if (!this.debug) return
+                this.ctx.strokeStyle = 'blue'
+                this.ctx.strokeRect(this.player.position.x, this.player.position.y, this.player.size.x, this.player.size.y)
             },
 
             drawTallGrasses() {
-                const image = this.$refs.tallGrassImage
-                this.tallGrasses.forEach(({ x, y, pokemon }) => {
-                    if (this.grassIntersection(x, y))
-                        this.game.pokemon = pokemon
-                    this.ctx.drawImage(image, x * this.game.tile, y * this.game.tile, this.game.tile, this.game.tile)
-                })
-                // debug option
+                for (let index = 0; index < this.tallGrasses.length; index++) {
+                    let { x, y, pokemon } = this.tallGrasses[index]
+                    if (this.grassIntersection(x, y)) {
+                        if (pokemon) {
+                            this.player.position.x = (this.game.size.width - this.game.tile) / 2
+                            this.player.position.y = (this.game.size.height - this.game.tile) / 2
+                            this.tallGrasses[index].pokemon = null
+                            this.game.pokemon = pokemon
+                            break
+                        }
+                    }
+                    this.ctx.drawImage(this.$refs.tallGrassImage, x * this.game.tile, y * this.game.tile, this.game.tile, this.game.tile)
+                }
+
+                if (!this.debug) return
                 this.tallGrasses.forEach(({ x, y, pokemon }) => {
                     if (pokemon) {
                         this.ctx.strokeStyle = this.grassIntersection(x, y) ? 'red' : 'black'
@@ -218,7 +331,19 @@
                 this.ctx.fillRect(0, 0, this.game.size.width, this.game.size.height)
                 this.drawTallGrasses()
                 this.drawPlayer()
-            }
+            },
+
+            handleCaughtPokemon() {
+                this.addCaughtPokemon(this.game.pokemon)
+                this.game.pokemon = null
+                this.setBattleData(null)
+            },
+
+            ...mapActions([
+                'getRandomPokemon',
+                'addCaughtPokemon',
+                'setBattleData'
+            ])
         },
 
         beforeUnmount() {
