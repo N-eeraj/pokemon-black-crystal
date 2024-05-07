@@ -85,6 +85,7 @@
 
         data() {
             return {
+                animation: null,
                 loading: false,
                 pokemon: null,
                 canvasElement: null,
@@ -201,7 +202,7 @@
                         if (!this.game.pokemon)
                             this.draw()
                     }
-                    requestAnimationFrame(animate)
+                    this.animation = requestAnimationFrame(animate)
                 }
 
                 animate(0)
@@ -309,6 +310,7 @@
                             this.player.position.x = (this.game.size.width - this.game.tile) / 2
                             this.player.position.y = (this.game.size.height - this.game.tile) / 2
                             this.tallGrasses[index].pokemon = null
+                            this.encounterNewPokemon()
                             this.game.pokemon = pokemon
                             break
                         }
@@ -342,6 +344,7 @@
             ...mapActions([
                 'getRandomPokemon',
                 'addCaughtPokemon',
+                'encounterNewPokemon',
                 'setBattleData'
             ])
         },
@@ -350,6 +353,7 @@
             document.removeEventListener('keydown', () => {})
             document.removeEventListener('keyup', () => {})
             window.onbeforeunload = null
+            cancelAnimationFrame(this.animation)
         },
     }
 </script>
