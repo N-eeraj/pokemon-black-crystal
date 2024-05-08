@@ -61,23 +61,21 @@
 
         <pop-up
             :show="modal.show"
-            close
+            :close="modal.hash === 'exit'"
             prevent-redirect
             :hash="modal.hash"
             class="modal"
-            @close-pop-up="closeModal()">
+            @close-pop-up="closeModal">
             <template #body>
                 <p>
                     {{ modal.body }}
                 </p>
             </template>
-            <template
-                v-if="modal.action"
-                #actions>
+            <template #actions>
                 <button
                     class="confirm"
                     @click="modal.action">
-                    Exit
+                    {{ modal.hash === 'exit' ? 'Exit' : 'OK' }}
                 </button>
             </template>
         </pop-up>
@@ -198,8 +196,8 @@
         },
 
         created() {
-            // if (!this.safariZoneTicket)
-            //     return this.$router.push('/mode/exploration')
+            if (!this.safariZoneTicket)
+                return this.$router.push('/mode/exploration')
             window.onbeforeunload = () => true
         },
 
@@ -423,7 +421,8 @@
                 this.modal = {
                     show: true,
                     hash: 'help',
-                    body: 'Safari Zone is a special region where you can encounter various Pokémon. Use the keys to walk through the tall grass and find the Pokémon'
+                    body: 'Safari Zone is a special region where you can encounter various Pokémon. Use the keys to walk through the tall grass and find the Pokémon',
+                    action: this.closeModal
                 }
             },
 
