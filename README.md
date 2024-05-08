@@ -16,7 +16,16 @@
     <summary>
         Exploration Mode
     </summary>
-    Catch and battle with wild Pokémon using the Exploration mode.
+    <ul>
+    <li>
+        Catch and battle with wild Pokémon using the Exploration mode.
+    </li>
+    <li>
+        Try your luck in search of legendary Pokémon
+    </li>
+    <li>
+        Interactive Safari Zone
+    </li>
 </details>
 
 <details>
@@ -54,6 +63,7 @@
 - [Vue Router](https://router.vuejs.org/)
 - [Vuex](https://vuex.vuejs.org/)
 - [PeerJS](https://peerjs.com/)
+- [AutoAnimate](https://auto-animate.formkit.com/)
 
 <br>
 
