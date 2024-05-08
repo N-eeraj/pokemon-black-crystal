@@ -5,43 +5,82 @@
         <div v-else>
             <canvas ref="canvasElement" />
 
-            <div class="button-group">
-                <div />
-                <button
-                    :disabled="player.direction && player.direction !== 'up'"
-                    @mousedown="player.direction = 'up'"
-                    @touchstart="player.direction = 'up'"
-                    @mouseup="resetPlayerDirection"
-                    @touchend="resetPlayerDirection">
-                    &uarr;
-                </button>
-                <div />
-                <button
-                    :disabled="player.direction && player.direction !== 'left'"
-                    @mousedown="player.direction = 'left'"
-                    @touchstart="player.direction = 'left'"
-                    @mouseup="resetPlayerDirection"
-                    @touchend="resetPlayerDirection">
-                    &larr;
-                </button>
-                <button
-                    :disabled="player.direction && player.direction !== 'down'"
-                    @mousedown="player.direction = 'down'"
-                    @touchstart="player.direction = 'down'"
-                    @mouseup="resetPlayerDirection"
-                    @touchend="resetPlayerDirection">
-                    &darr;
-                </button>
-                <button
-                    :disabled="player.direction && player.direction !== 'right'"
-                    @mousedown="player.direction = 'right'"
-                    @touchstart="player.direction = 'right'"
-                    @mouseup="resetPlayerDirection"
-                    @touchend="resetPlayerDirection">
-                    &rarr;
-                </button>
+            <div
+                ref="controlsElement"
+                class="controls-container">
+
+                <img
+                    src="@/assets/icons/escape.svg"
+                    class="exit"
+                    @click="confirmExit" />
+
+                <div class="button-group">
+                    <div />
+                    <button
+                        :disabled="player.direction && player.direction !== 'up'"
+                        @mousedown="player.direction = 'up'"
+                        @touchstart="player.direction = 'up'"
+                        @mouseup="resetPlayerDirection"
+                        @touchend="resetPlayerDirection">
+                        &uarr;
+                    </button>
+                    <div />
+                    <button
+                        :disabled="player.direction && player.direction !== 'left'"
+                        @mousedown="player.direction = 'left'"
+                        @touchstart="player.direction = 'left'"
+                        @mouseup="resetPlayerDirection"
+                        @touchend="resetPlayerDirection">
+                        &larr;
+                    </button>
+                    <button
+                        :disabled="player.direction && player.direction !== 'down'"
+                        @mousedown="player.direction = 'down'"
+                        @touchstart="player.direction = 'down'"
+                        @mouseup="resetPlayerDirection"
+                        @touchend="resetPlayerDirection">
+                        &darr;
+                    </button>
+                    <button
+                        :disabled="player.direction && player.direction !== 'right'"
+                        @mousedown="player.direction = 'right'"
+                        @touchstart="player.direction = 'right'"
+                        @mouseup="resetPlayerDirection"
+                        @touchend="resetPlayerDirection">
+                        &rarr;
+                    </button>
+                </div>
+
+                <span
+                    class="help"
+                    @click="showHelp">
+                    ?
+                </span>
             </div>
         </div>
+
+        <pop-up
+            :show="modal.show"
+            close
+            prevent-redirect
+            :hash="modal.hash"
+            class="modal"
+            @close-pop-up="closeModal()">
+            <template #body>
+                <p>
+                    {{ modal.body }}
+                </p>
+            </template>
+            <template
+                v-if="modal.action"
+                #actions>
+                <button
+                    class="confirm"
+                    @click="modal.action">
+                    Exit
+                </button>
+            </template>
+        </pop-up>
 
 
         <battle-scene
@@ -69,6 +108,7 @@
 <script>
     import CommonLoader from '@/js/components/screens/loading/CommonLoader.vue'
     import BattleScene from '@/js/components/battle/scene/BattleScene.vue'
+    import PopUp from '@/js/components/UI/PopUp.vue'
 
     import { mapState, mapGetters, mapActions } from 'vuex'
 
@@ -80,7 +120,8 @@
 
         components: {
             CommonLoader,
-            BattleScene
+            BattleScene,
+            PopUp
         },
 
         data() {
@@ -89,6 +130,7 @@
                 loading: false,
                 pokemon: null,
                 canvasElement: null,
+                controlsElement: null,
                 ctx: null,
                 game: {
                     size: null,
@@ -114,7 +156,13 @@
                 tallGrasses: [],
                 playerImage: null,
                 tallGrassImage: null,
-                debug: true
+                modal: {
+                    show: false,
+                    hash: null,
+                    body: '',
+                    action: null
+                },
+                debug: false
             }
         },
 
@@ -138,16 +186,25 @@
                 if (pokemon) return
                 if (this.tallGrasses.every(({ pokemon }) => !pokemon))
                     this.game.over = true
+            },
+
+            $route: {
+                deep: true,
+                handler({ hash: toHash }, { hash: fromHash }) {
+                    if (!toHash && (fromHash === '#exit' || fromHash === '#help'))
+                        this.closeModal()
+                }
             }
         },
 
         created() {
-            if (!this.safariZoneTicket)
-                return this.$router.push('/mode/exploration')
+            // if (!this.safariZoneTicket)
+            //     return this.$router.push('/mode/exploration')
             window.onbeforeunload = () => true
         },
 
         mounted() {
+            this.updateAudio('wild.mp3')
             this.getPokemon()
         },
 
@@ -185,13 +242,17 @@
 
             initZone() {
                 const canvas = this.$refs.canvasElement
+                const controls = this.$refs.controlsElement
                 const { clientWidth, clientHeight } = document.getElementById('main')
+
+                this.game.tile = clientWidth / 8
                 this.game.size = {
-                    width: clientWidth,
-                    height: clientHeight
+                    width: this.game.tile * 8,
+                    height: this.game.tile * 12
                 }
-                canvas.width = clientWidth
-                canvas.height = clientHeight
+                canvas.width = this.game.size.width
+                canvas.height = this.game.size.height
+                controls.style.height = `${clientHeight - canvas.height}px`
                 this.ctx = canvas.getContext('2d')
 
                 let lastTime = 0
@@ -209,11 +270,10 @@
                 document.addEventListener('keydown', this.handleKeyboard)
                 document.addEventListener('keyup', this.resetPlayerDirection)
 
-                this.game.tile = this.game.size.width / 8
                 this.player.position.x = (this.game.size.width - this.game.tile) / 2
                 this.player.position.y = (this.game.size.height - this.game.tile) / 2
 
-                for (let i = 0; i < 80; i++) {
+                for (let i = 0; i < 72; i++) {
                     const setGrassPosition = () => {
                         let xPosition = Math.floor(Math.random() * this.game.size.width / this.game.tile)
                         let yPosition = Math.floor(Math.random() * this.game.size.height / this.game.tile)
@@ -341,11 +401,38 @@
                 this.setBattleData(null)
             },
 
+            closeModal() {
+                this.modal = {
+                    show: false,
+                    hash: null,
+                    body: '',
+                    action: null
+                }
+            },
+
+            confirmExit() {
+                this.modal = {
+                    show: true,
+                    hash: 'exit',
+                    body: `Are you sure you want to exit? There are ${this.tallGrasses.filter(({ pokemon }) => pokemon).length} Pokémon left for you to find`,
+                    action: () => this.$router.push('/mode/exploration')
+                }
+            },
+
+            showHelp() {
+                this.modal = {
+                    show: true,
+                    hash: 'help',
+                    body: 'Safari Zone is a special region where you can encounter various Pokémon. Use the keys to walk through the tall grass and find the Pokémon'
+                }
+            },
+
             ...mapActions([
                 'getRandomPokemon',
                 'addCaughtPokemon',
                 'encounterNewPokemon',
-                'setBattleData'
+                'setBattleData',
+                'updateAudio'
             ])
         },
 
