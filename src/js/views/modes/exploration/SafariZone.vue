@@ -431,6 +431,7 @@
                 'addCaughtPokemon',
                 'encounterNewPokemon',
                 'setBattleData',
+                'updateSafariZoneEntry',
                 'updateAudio'
             ])
         },
@@ -440,6 +441,7 @@
             document.removeEventListener('keyup', () => {})
             window.onbeforeunload = null
             cancelAnimationFrame(this.animation)
+            this.updateSafariZoneEntry(false)
         },
     }
 </script>
