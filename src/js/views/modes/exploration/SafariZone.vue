@@ -196,7 +196,7 @@
         },
 
         created() {
-            if (!this.safariZoneTicket)
+            if (!(this.safariZoneTicket || this.debug))
                 return this.$router.push('/mode/exploration')
             window.onbeforeunload = () => true
         },
@@ -256,7 +256,7 @@
                 let lastTime = 0
                 const animate = (timestamp) => {
                     let deltaTime = timestamp - lastTime
-                    if (deltaTime > 45) {
+                    if (deltaTime > 60) {
                         lastTime = timestamp
                         if (!this.game.pokemon)
                             this.draw()
@@ -268,8 +268,8 @@
                 document.addEventListener('keydown', this.handleKeyboard)
                 document.addEventListener('keyup', this.resetPlayerDirection)
 
-                this.player.position.x = (this.game.size.width - this.game.tile) / 2
-                this.player.position.y = (this.game.size.height - this.game.tile) / 2
+                this.player.position.x = (this.game.size.width - this.game.tile) * 0.5
+                this.player.position.y = (this.game.size.height - this.game.tile) * 0.5
 
                 for (let i = 0; i < 72; i++) {
                     const setGrassPosition = () => {
@@ -290,7 +290,7 @@
                     this.tallGrasses.push({
                         x,
                         y,
-                        pokemon,
+                        pokemon
                     })
                 }
             },
@@ -323,36 +323,36 @@
             drawPlayer() {
                 switch (this.player.direction) {
                     case 'up':
-                        this.player.position.y -= 5
-                        this.player.frame.x++
                         this.player.frame.y = 3
+                        this.player.frame.x++
+                        this.player.position.y -= 5
                         break
                     case 'left':
-                        this.player.position.x -= 5
-                        this.player.frame.x++
                         this.player.frame.y = 1
+                        this.player.frame.x++
+                        this.player.position.x -= 5
                         break
                     case 'down':
-                        this.player.position.y += 5
-                        this.player.frame.x++
                         this.player.frame.y = 0
+                        this.player.frame.x++
+                        this.player.position.y += 5
                         break
                     case 'right':
-                        this.player.position.x += 5
-                        this.player.frame.x++
                         this.player.frame.y = 2
+                        this.player.frame.x++
+                        this.player.position.x += 5
                         break
                 }
                 if (this.player.frame.x === 4 || !this.player.direction)
                     this.player.frame.x = 0
-                if (this.player.position.y < 10)
-                    this.player.position.y = 10
-                else if (this.player.position.y + this.game.tile > this.game.size.height - 10)
-                    this.player.position.y = this.game.size.height - this.game.tile - 10
-                if (this.player.position.x < 10)
-                    this.player.position.x = 10
-                else if (this.player.position.x + this.game.tile > this.game.size.width - 10)
-                    this.player.position.x = this.game.size.width - this.game.tile - 10
+                if (this.player.position.y < 0)
+                    this.player.position.y = 0
+                else if (this.player.position.y + this.player.size.y > this.game.size.height)
+                    this.player.position.y = this.game.size.height - this.player.size.y
+                if (this.player.position.x < 0)
+                    this.player.position.x = 0
+                else if (this.player.position.x + this.player.size.x > this.game.size.width)
+                    this.player.position.x = this.game.size.width - this.player.size.x
                 this.ctx.drawImage(this.$refs.playerImage, this.player.frame.x * this.player.size.x, this.player.frame.y * this.player.size.y, this.player.size.x, this.player.size.y, this.player.position.x, this.player.position.y, this.player.size.x, this.player.size.y)
 
                 if (!this.debug) return
@@ -360,13 +360,13 @@
                 this.ctx.strokeRect(this.player.position.x, this.player.position.y, this.player.size.x, this.player.size.y)
             },
 
-            drawTallGrasses() {
+            drawGrasses() {
                 for (let index = 0; index < this.tallGrasses.length; index++) {
                     let { x, y, pokemon } = this.tallGrasses[index]
                     if (this.grassIntersection(x, y)) {
                         if (pokemon) {
-                            this.player.position.x = (this.game.size.width - this.game.tile) / 2
-                            this.player.position.y = (this.game.size.height - this.game.tile) / 2
+                            this.player.position.x = (this.game.size.width - this.game.tile) * 0.5
+                            this.player.position.y = (this.game.size.height - this.game.tile) * 0.5
                             this.tallGrasses[index].pokemon = null
                             this.encounterNewPokemon()
                             this.game.pokemon = pokemon
@@ -385,12 +385,25 @@
                 })
             },
 
+            drawOverlappingGrasses() {
+                this.tallGrasses.forEach(({ x, y }) => {
+                    if (this.grassIntersection(x, y)) {
+                        const playerYEnd = this.player.position.y + this.player.size.y
+                        if (playerYEnd > (y + 0.6) * this.game.tile && playerYEnd < (y + 1) * this.game.tile) {
+                            const { width, height } = this.$refs.tallGrassImage
+                            this.ctx.drawImage(this.$refs.tallGrassImage, 0, height * 0.6, width, height * 0.4, x * this.game.tile, (y + 0.6) * this.game.tile, this.game.tile, this.game.tile * 0.4)
+                        }
+                    }
+                })
+            },
+
             draw() {
                 this.ctx.clearRect(0, 0, this.game.size.width, this.game.size.height)
                 this.ctx.fillStyle = '#78c9a6'
                 this.ctx.fillRect(0, 0, this.game.size.width, this.game.size.height)
-                this.drawTallGrasses()
+                this.drawGrasses()
                 this.drawPlayer()
+                this.drawOverlappingGrasses()
             },
 
             handleCaughtPokemon() {
