@@ -35,7 +35,7 @@
                             alt="coin"
                             class="icon" />
                         <span class="count">
-                            500
+                            100
                         </span>
                     </div>
                     <p class="message">
@@ -43,7 +43,7 @@
                             You don't have enough Pokécoins to enter the Safari Zone.
                         </template>
                         <template v-else>
-                            Entry to Safari Zone will cost you 500 Pokécoins, would you like to continue ?
+                            Entry to Safari Zone will cost you 100 Pokécoins, would you like to continue ?
                         </template>
                     </p>
                 </template>
@@ -123,7 +123,7 @@
 
         computed: {
             insufficientCoins() {
-                return this.playerCoins < 500
+                return this.playerCoins < 100
             },
 
             ...mapGetters([
@@ -167,7 +167,7 @@
             },
 
             enterSafariZone() {
-                this.updatePlayerCoins(-500)
+                this.updatePlayerCoins(-100)
                 this.updateSafariZoneEntry(true)
                 this.$router.push('/mode/exploration/safari-zone')
             },
