@@ -133,8 +133,7 @@
                 game: {
                     size: null,
                     tile: 0,
-                    pokemon: null,
-                    over: false
+                    pokemon: null
                 },
                 player: {
                     position: {
@@ -182,8 +181,16 @@
         watch: {
             'game.pokemon'(pokemon) {
                 if (pokemon) return
-                if (this.tallGrasses.every(({ pokemon }) => !pokemon))
-                    this.game.over = true
+                if (this.tallGrasses.every(({ pokemon }) => !pokemon)) {
+                    this.modal = {
+                        show: true,
+                        body: 'You have found all the Pokémon in the Safari Zone now. Please visit again later',
+                        action: () => {
+                            this.exitSafariZone()
+                            cancelAnimationFrame(this.animation)
+                        }
+                    }
+                }
             },
 
             $route: {
@@ -421,12 +428,16 @@
                 }
             },
 
+            exitSafariZone() {
+                this.$router.push('/mode/exploration')
+            },
+
             confirmExit() {
                 this.modal = {
                     show: true,
                     hash: 'exit',
                     body: `Are you sure you want to exit? There are ${this.tallGrasses.filter(({ pokemon }) => pokemon).length} Pokémon left for you to find`,
-                    action: () => this.$router.push('/mode/exploration')
+                    action: this.exitSafariZone
                 }
             },
 
