@@ -11,6 +11,7 @@ import migration_v_2_1_1 from '@/js/mixins/migrations/migration_v_2_1_1'
 import migration_v_2_1_2 from '@/js/mixins/migrations/migration_v_2_1_2'
 import migration_v_2_2_1 from '@/js/mixins/migrations/migration_v_2_2_1'
 import migration_v_2_2_3 from '@/js/mixins/migrations/migration_v_2_2_3'
+import migration_v_2_3_1 from '@/js/mixins/migrations/migration_v_2_3_1'
 
 const updateVersion = () => {
     const { currentVersion, updateIsAvailable } = versionUpdate()
@@ -24,6 +25,7 @@ const updateVersion = () => {
     migration_v_2_1_2(currentVersion)
     migration_v_2_2_1(currentVersion)
     migration_v_2_2_3(currentVersion)
+    migration_v_2_3_1(currentVersion)
 }
 
 export default updateVersion
