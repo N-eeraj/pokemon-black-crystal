@@ -403,8 +403,11 @@ export default {
         }
     },
 
-    updateSafariZoneEntry(state, status) {
+    updateSafariZoneEntry(state, { status, unixtime }) {
         state.safariZoneTicket = status
+        if (!unixtime) return
+        state.gameData.lastSafariZone = unixtime
+        encryptAndSave()
     },
 
     updateCarnivalEntry(state, eventName = null) {

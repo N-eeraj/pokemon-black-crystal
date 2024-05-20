@@ -7,7 +7,7 @@
             <wild-locations
                 v-else-if="!battleOngoing"
                 @selectedLocation="handleLocation"
-                @safariZone="safariConfirmation = true"
+                @safariZone="enterSafariZone"
                 @legendaryHunt="startLegendaryHunt" />
 
             <battle-scene
@@ -20,45 +20,6 @@
                 @escape="battleOver"
                 @caught-pokemon="handleCaughtPokemon"
                 @game-over="handleGameOver" />
-
-            <pop-up
-                :show="safariConfirmation"
-                close
-                prevent-redirect
-                hash="safari-zone"
-                @close-pop-up="closeSafariZoneConfirmation">
-
-                <template #body>
-                    <div class="entry-fee">
-                        <img
-                            src="@/assets/images/coin.svg"
-                            alt="coin"
-                            class="icon" />
-                        <span class="count">
-                            100
-                        </span>
-                    </div>
-                    <p class="message">
-                        <template v-if="insufficientCoins">
-                            You don't have enough Pokécoins to enter the Safari Zone.
-                        </template>
-                        <template v-else>
-                            Entry to Safari Zone will cost you 100 Pokécoins, would you like to continue ?
-                        </template>
-                    </p>
-                </template>
-
-                <template
-                    v-if="!insufficientCoins"
-                    #actions>
-                    <button
-                        class="confirm"
-                        @click="enterSafariZone">
-                        Continue
-                    </button>
-                </template>
-
-            </pop-up>
 
             <pop-up
                 :show="legendaryNotFound"
@@ -116,21 +77,15 @@
                 wildPokemon: null,
                 wildPokemonLevel: null,
                 isLoading: false,
-                safariConfirmation: false,
                 legendaryNotFound: false
             }
         },
 
         computed: {
-            insufficientCoins() {
-                return this.playerCoins < 100
-            },
-
             ...mapGetters([
                 'partyPokemonData',
                 'getCaughtPokemon',
                 'strongestPokemon',
-                'playerCoins',
                 'vibrationsStatus'
             ])
         },
@@ -141,8 +96,6 @@
                 handler({ hash: toHash }, { hash: fromHash }) {
                     if (!toHash && fromHash === '#failed-legendary-hunt')
                         this.closeLegendaryHunt()
-                    if (!toHash && fromHash === '#safari-zone')
-                        this.closeSafariZoneConfirmation()
                 }
             }
         },
@@ -166,16 +119,12 @@
                 this.setWildPokemon(encounteredPokemon.id, exp)
             },
 
-            enterSafariZone() {
-                this.updatePlayerCoins(-100)
-                this.updateSafariZoneEntry(true)
+            enterSafariZone(unixtime) {
+                this.updateSafariZoneEntry({
+                    status: true,
+                    unixtime
+                })
                 this.$router.push('/mode/exploration/safari-zone')
-            },
-
-            closeSafariZoneConfirmation() {
-                if (this.$route.hash)
-                    this.$router.back()
-                this.safariConfirmation = false
             },
 
             async startLegendaryHunt() {
@@ -237,7 +186,6 @@
                 'addCaughtPokemon',
                 'setBattleData',
                 'encounterNewPokemon',
-                'updatePlayerCoins',
                 'updateSafariZoneEntry'
             ])
         }
