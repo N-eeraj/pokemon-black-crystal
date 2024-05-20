@@ -326,8 +326,17 @@ export default {
         commit('updateAchievement', data)
     },
 
-    updateSafariZoneEntry({ commit }, status) {
-        commit('updateSafariZoneEntry', status)
+    updateSafariZoneEntry({ commit }, { status, unixtime }) {
+        commit('updateSafariZoneEntry', { status, unixtime })
+    },
+
+    async checkSafariZoneEntry({ state }) {
+        const response = await fetch('https://worldtimeapi.org/api/timezone/America/Santiago')
+        const { unixtime } = await response.json()
+        return {
+            unixtime,
+            canEnter: Math.floor((unixtime - state.gameData.lastSafariZone) / 86_400) >= 1
+        }
     },
 
     async getCarnivalPokemon({ getters }, count) {
