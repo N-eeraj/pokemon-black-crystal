@@ -1,0 +1,22 @@
+// fade in
+.fade-enter-active,
+.fade-leave-active {
+  transition: 400ms;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+// fade zoom
+.fade-zoom-slow-enter-active,
+.fade-zoom-slow-leave-active {
+  transition: 1s;
+}
+
+.fade-zoom-slow-enter-from,
+.fade-zoom-slow-leave-to {
+  opacity: 0;
+  scale: 50%;
+}

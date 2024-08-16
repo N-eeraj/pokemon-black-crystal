@@ -60,6 +60,10 @@ const useMeta = ({ title, description }: MetaDetails = {}): void => {
         name: 'twitterCard',
         content: 'summary_large_image',
       },
+      {
+        name: 'theme-color',
+        content: '#333',
+      },
     ],
   })
 }

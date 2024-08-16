@@ -1,0 +1,5 @@
+@use "sass:map";
+
+@function linearGradient($color, $direction: 90, $opacity: 1) {
+  @return linear-gradient(#{$direction}deg, rgba(map.get($color, "start"), $opacity), rgba(map.get($color, "end"), $opacity));
+}

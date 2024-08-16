@@ -8,7 +8,13 @@ export default defineNuxtConfig({
     },
   },
   ssr: false,
-  modules: ['@vite-pwa/nuxt'],
+  modules: [
+    '@vite-pwa/nuxt',
+    '@nuxtjs/google-fonts',
+  ],
+  alias: {
+    '@styles': '/styles',
+  },
   pwa: {
     registerType: 'autoUpdate',
     manifest: {
@@ -56,7 +62,12 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: true,
     },
-  },  
+  },
+  googleFonts: {
+    families: {
+      'Nunito Sans': '200..1000',
+    },
+  },
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
 })

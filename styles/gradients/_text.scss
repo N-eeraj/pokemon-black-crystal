@@ -1,0 +1,35 @@
+@use "@styles/gradients/creator" as createGradient;
+
+@mixin gradient-text($gradient, $direction: 90) {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: createGradient.linearGradient($gradient, $direction);
+}
+
+@mixin animated-gradient-text($gradient) {
+    @include gradient-text($gradient);
+    animation: gradient-keyframes 1s ease-in-out infinite alternate;
+    -webkit-animation: gradient-keyframes 1s ease-in-out infinite alternate;
+    -moz-animation: gradient-keyframes 1s ease-in-out infinite alternate;
+    background-size: 150% 150%;
+}
+
+@mixin change-position {
+  from {
+      background-position: 0% 0%;
+  }
+  to {
+      background-position: 100% 100%;
+  }
+}
+
+@-webkit-keyframes gradient-keyframes {
+  @include change-position;
+}
+@-moz-keyframes gradient-keyframes {
+  @include change-position;
+}
+@keyframes gradient-keyframes {
+  @include change-position;
+}

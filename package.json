@@ -17,6 +17,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0",
     "@vite-pwa/assets-generator": "^0.2.4",
     "@vite-pwa/nuxt": "^0.9.1",
     "sass": "^1.77.8"
