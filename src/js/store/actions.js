@@ -28,8 +28,9 @@ export default {
     },
 
     async checkDailyReward({ state, commit }) {
-        const response = await fetch('https://worldtimeapi.org/api/timezone/America/Santiago')
-        const { unixtime } = await response.json()
+        const data = await fetch('https://one.one.one.one/cdn-cgi/trace').then(res=>res.text())
+        const arr = data.trim().split('\n').map(e=>e.split('='))
+        const unixtime = Object.fromEntries(arr)["ts"] * 1000
         const { last, streak } = state.gameData.dailyRewards
         switch (Math.floor((unixtime - last) / 86_400)) {
             case 0:
@@ -326,8 +327,8 @@ export default {
         commit('updateAchievement', data)
     },
 
-    updateSafariZoneEntry({ commit }, { status, unixtime }) {
-        commit('updateSafariZoneEntry', { status, unixtime })
+    updateSafariZoneEntry({ commit }, status) {
+        commit('updateSafariZoneEntry', status)
     },
 
     async checkSafariZoneEntry({ state }) {

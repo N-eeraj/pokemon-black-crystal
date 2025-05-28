@@ -119,11 +119,8 @@
                 this.setWildPokemon(encounteredPokemon.id, exp)
             },
 
-            enterSafariZone(unixtime) {
-                this.updateSafariZoneEntry({
-                    status: true,
-                    unixtime
-                })
+            enterSafariZone() {
+                this.updateSafariZoneEntry(true)
                 this.$router.push('/mode/exploration/safari-zone')
             },
 

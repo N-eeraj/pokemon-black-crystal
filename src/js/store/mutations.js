@@ -403,10 +403,8 @@ export default {
         }
     },
 
-    updateSafariZoneEntry(state, { status, unixtime }) {
+    updateSafariZoneEntry(state, status) {
         state.safariZoneTicket = status
-        if (!unixtime) return
-        state.gameData.lastSafariZone = unixtime
         encryptAndSave()
     },
 

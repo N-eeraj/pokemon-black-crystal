@@ -15,7 +15,6 @@
                     @click="$emit('selectedLocation', location.title)" />
 
                 <banner-card
-                    v-if="canEnterSafariZone"
                     image="images/wild/safari-zone.png"
                     title="Safari Zone"
                     overlay="linear-gradient(270deg, #0000, #0007)"
@@ -51,31 +50,20 @@
         data() {
             return {
                 locations,
-                canEnterSafariZone: false,
-                unixtime: null,
-                interval: null
             }
         },
 
         async mounted() {
             this.updateAudio('wild.mp3')
-            const { unixtime, canEnter } = await this.checkSafariZoneEntry()
-            this.canEnterSafariZone = canEnter
-            if (!this.canEnterSafariZone) return
-            this.unixtime = unixtime
-            const interval = setInterval(() => this.unixtime += 100, 100)
-            this.interval = interval
         },
 
         methods: {
             handleSafariZone() {
-                clearInterval(this.interval)
-                this.$emit('safariZone', this.unixtime)
+                this.$emit('safariZone')
             },
 
             ...mapActions([
                 'updateAudio',
-                'checkSafariZoneEntry'
             ])
         }
     }
